@@ -17,22 +17,24 @@
             height: 1.25rem;
             border-radius: 1rem;
             transition: background-color .15s ease-out;
+            background-color: $white;
         }
 
         &::after {
-            top: (($line-height-base - 1rem) / 2);
-            left: .125rem;
-            width: 1rem;
-            height: 1rem;
+            top: (($line-height-base - .875rem) / 2);
+            left: .25rem;
+            width: .875rem;
+            height: .875rem;
             transform: none;
             background-color: $white;
             border-radius: 1rem;
-            box-shadow: .125rem 0 .125rem rgba(0,0,0,.1);
+            background-color: gray('500');
         }
     }
 
     .custom-control-input:checked ~ .custom-control-label::after {
-        transform: translateX(.75rem);
+        background-color: $white;
+        transform: translateX(.625rem);
         box-shadow: -.125rem 0 .125rem rgba(0,0,0,.2);
     }
 }
@@ -40,6 +42,10 @@
 // Custom control label
 .custom-control-label {
     font-weight: $font-weight-normal;
+
+    &::before {
+        background-color: $body-bg-dark;
+    }
 
     &::after {
         transition: transform .12s ease-out;
@@ -63,7 +69,7 @@
 
 // Color variants for all custom controls
 .custom-control-primary {
-    @include custom-control-variant($body-bg-dark, theme-color("primary"));
+    @include custom-control-variant(theme-color("primary-lighter"), theme-color("primary"));
 }
 
 .custom-control-success {

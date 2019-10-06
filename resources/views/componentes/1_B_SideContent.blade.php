@@ -22,12 +22,10 @@
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Recent Activity</h3>
                         <div class="block-options">
-                            <button type="button" class="btn-block-option" data-toggle="block-option"
-                                    data-action="state_toggle" data-action-mode="demo">
+                            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                                 <i class="si si-refresh"></i>
                             </button>
-                            <button type="button" class="btn-block-option" data-toggle="block-option"
-                                    data-action="content_toggle"></button>
+                            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
                         </div>
                     </div>
                     <div class="block-content">
@@ -82,12 +80,10 @@
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Online Friends</h3>
                         <div class="block-options">
-                            <button type="button" class="btn-block-option" data-toggle="block-option"
-                                    data-action="state_toggle" data-action-mode="demo">
+                            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                                 <i class="si si-refresh"></i>
                             </button>
-                            <button type="button" class="btn-block-option" data-toggle="block-option"
-                                    data-action="content_toggle"></button>
+                            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
                         </div>
                     </div>
                     <div class="block-content">
@@ -96,13 +92,11 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48"
-                                             src="assets/media/avatars/avatar3.jpg" alt="">
-                                        <span
-                                            class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
+                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar8.jpg" alt="">
+                                        <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
                                     </div>
                                     <div class="media-body">
-                                        <div class="font-w600">Helen Jacobs</div>
+                                        <div class="font-w600">Carol White</div>
                                         <div class="font-w400 text-muted">Copywriter</div>
                                     </div>
                                 </a>
@@ -110,10 +104,8 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48"
-                                             src="assets/media/avatars/avatar10.jpg" alt="">
-                                        <span
-                                            class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
+                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar9.jpg" alt="">
+                                        <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
                                     </div>
                                     <div class="media-body">
                                         <div class="font-w600">Ryan Flores</div>
@@ -124,13 +116,11 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48"
-                                             src="assets/media/avatars/avatar8.jpg" alt="">
-                                        <span
-                                            class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
+                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar6.jpg" alt="">
+                                        <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
                                     </div>
                                     <div class="media-body">
-                                        <div class="font-w600">Susan Day</div>
+                                        <div class="font-w600">Betty Kelley</div>
                                         <div class="font-w400 text-muted">Web Designer</div>
                                     </div>
                                 </a>
@@ -138,13 +128,11 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48"
-                                             src="assets/media/avatars/avatar3.jpg" alt="">
-                                        <span
-                                            class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
+                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar4.jpg" alt="">
+                                        <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
                                     </div>
                                     <div class="media-body">
-                                        <div class="font-w600">Sara Fields</div>
+                                        <div class="font-w600">Helen Jacobs</div>
                                         <div class="font-w400 text-muted">Photographer</div>
                                     </div>
                                 </a>
@@ -152,13 +140,11 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48"
-                                             src="assets/media/avatars/avatar15.jpg" alt="">
-                                        <span
-                                            class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
+                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar13.jpg" alt="">
+                                        <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
                                     </div>
                                     <div class="media-body">
-                                        <div class="font-w600">Adam McCoy</div>
+                                        <div class="font-w600">Wayne Garcia</div>
                                         <div class="font-w400 text-muted">Graphic Designer</div>
                                     </div>
                                 </a>
@@ -174,22 +160,19 @@
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Quick Settings</h3>
                         <div class="block-options">
-                            <button type="button" class="btn-block-option" data-toggle="block-option"
-                                    data-action="content_toggle"></button>
+                            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
                         </div>
                     </div>
                     <div class="block-content">
                         <!-- Quick Settings Form -->
-                        <form action="be_pages_dashboard.blade.php" method="POST" onsubmit="return false;">
+                        <form action="be_pages_dashboard.html" method="POST" onsubmit="return false;">
                             <div class="form-group">
                                 <p class="font-w600 mb-2">
                                     Online Status
                                 </p>
                                 <div class="custom-control custom-switch mb-1">
-                                    <input type="checkbox" class="custom-control-input" id="so-settings-check1"
-                                           name="so-settings-check1" checked>
-                                    <label class="custom-control-label" for="so-settings-check1">Show your
-                                        status to all</label>
+                                    <input type="checkbox" class="custom-control-input" id="so-settings-check1" name="so-settings-check1" checked>
+                                    <label class="custom-control-label" for="so-settings-check1">Show your status to all</label>
                                 </div>
                             </div>
                             <hr>
@@ -198,10 +181,8 @@
                                     Auto Updates
                                 </p>
                                 <div class="custom-control custom-switch mb-1">
-                                    <input type="checkbox" class="custom-control-input" id="so-settings-check2"
-                                           name="so-settings-check2" checked>
-                                    <label class="custom-control-label" for="so-settings-check2">Keep up to
-                                        date</label>
+                                    <input type="checkbox" class="custom-control-input" id="so-settings-check2" name="so-settings-check2" checked>
+                                    <label class="custom-control-label" for="so-settings-check2">Keep up to date</label>
                                 </div>
                             </div>
                             <hr>
@@ -210,16 +191,12 @@
                                     Application Alerts
                                 </p>
                                 <div class="custom-control custom-switch mb-1">
-                                    <input type="checkbox" class="custom-control-input" id="so-settings-check3"
-                                           name="so-settings-check3" checked>
-                                    <label class="custom-control-label" for="so-settings-check3">Email
-                                        Notifications</label>
+                                    <input type="checkbox" class="custom-control-input" id="so-settings-check3" name="so-settings-check3" checked>
+                                    <label class="custom-control-label" for="so-settings-check3">Email Notifications</label>
                                 </div>
                                 <div class="custom-control custom-switch mb-1">
-                                    <input type="checkbox" class="custom-control-input" id="so-settings-check4"
-                                           name="so-settings-check4" checked>
-                                    <label class="custom-control-label" for="so-settings-check4">SMS
-                                        Notifications</label>
+                                    <input type="checkbox" class="custom-control-input" id="so-settings-check4" name="so-settings-check4" checked>
+                                    <label class="custom-control-label" for="so-settings-check4">SMS Notifications</label>
                                 </div>
                             </div>
                             <hr>
@@ -228,10 +205,8 @@
                                     API
                                 </p>
                                 <div class="custom-control custom-switch mb-1">
-                                    <input type="checkbox" class="custom-control-input" id="so-settings-check5"
-                                           name="so-settings-check5" checked>
-                                    <label class="custom-control-label" for="so-settings-check5">Enable
-                                        access</label>
+                                    <input type="checkbox" class="custom-control-input" id="so-settings-check5" name="so-settings-check5" checked>
+                                    <label class="custom-control-label" for="so-settings-check5">Enable access</label>
                                 </div>
                             </div>
                         </form>
@@ -254,8 +229,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="font-w700 text-uppercase">Balance</div>
-                                <a class="link-fx font-size-h3 font-w300"
-                                   href="javascript:void(0)">$4.589,00</a>
+                                <a class="link-fx font-size-h3 font-w300" href="javascript:void(0)">$4.589,00</a>
                             </div>
                         </div>
                     </div>

@@ -1,14 +1,12 @@
 <!-- Customers and Latest Orders -->
 <div class="row row-deck">
-
     <!-- Latest Customers -->
     <div class="col-lg-6">
         <div class="block block-mode-loading-oneui">
             <div class="block-header border-bottom">
                 <h3 class="block-title">Latest Customers</h3>
                 <div class="block-options">
-                    <button type="button" class="btn-block-option" data-toggle="block-option"
-                            data-action="state_toggle" data-action-mode="demo">
+                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                         <i class="si si-refresh"></i>
                     </button>
                     <button type="button" class="btn-block-option">
@@ -17,18 +15,13 @@
                 </div>
             </div>
             <div class="block-content block-content-full">
-                <table
-                    class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
                     <thead class="thead-dark">
                     <tr class="text-uppercase">
                         <th class="font-w700" style="width: 80px;">ID</th>
-                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">
-                            Photo
-                        </th>
+                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 100px;">Photo</th>
                         <th class="font-w700">Name</th>
-                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 80px;">
-                            Orders
-                        </th>
+                        <th class="d-none d-sm-table-cell font-w700 text-center" style="width: 80px;">Orders</th>
                         <th class="font-w700 text-center" style="width: 60px;"></th>
                     </tr>
                     </thead>
@@ -38,18 +31,15 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar15.jpg"
-                                 alt="">
+                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar10.jpg" alt="">
                         </td>
                         <td class="font-w600">
-                            Thomas Riley
-                        </td>
+                            Jesse Fisher                                </td>
                         <td class="d-none d-sm-table-cell text-center">
                             <a class="link-fx font-w600" href="javascript:void(0)">5</a>
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Edit">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -59,18 +49,15 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar2.jpg"
-                                 alt="">
+                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar7.jpg" alt="">
                         </td>
                         <td class="font-w600">
-                            Melissa Rice
-                        </td>
+                            Amber Harvey                                </td>
                         <td class="d-none d-sm-table-cell text-center">
                             <a class="link-fx font-w600" href="javascript:void(0)">14</a>
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Edit">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -80,18 +67,15 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar15.jpg"
-                                 alt="">
+                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar10.jpg" alt="">
                         </td>
                         <td class="font-w600">
-                            Jose Wagner
-                        </td>
+                            Henry Harrison                                </td>
                         <td class="d-none d-sm-table-cell text-center">
                             <a class="link-fx font-w600" href="javascript:void(0)">15</a>
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Edit">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -101,18 +85,15 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar3.jpg"
-                                 alt="">
+                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar1.jpg" alt="">
                         </td>
                         <td class="font-w600">
-                            Megan Fuller
-                        </td>
+                            Carol Ray                                </td>
                         <td class="d-none d-sm-table-cell text-center">
                             <a class="link-fx font-w600" href="javascript:void(0)">36</a>
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Edit">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -122,18 +103,15 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar12.jpg"
-                                 alt="">
+                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar10.jpg" alt="">
                         </td>
                         <td class="font-w600">
-                            Albert Ray
-                        </td>
+                            Jose Wagner                                </td>
                         <td class="d-none d-sm-table-cell text-center">
                             <a class="link-fx font-w600" href="javascript:void(0)">3</a>
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Edit">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -143,18 +121,15 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar1.jpg"
-                                 alt="">
+                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar1.jpg" alt="">
                         </td>
                         <td class="font-w600">
-                            Betty Kelley
-                        </td>
+                            Lori Grant                                </td>
                         <td class="d-none d-sm-table-cell text-center">
                             <a class="link-fx font-w600" href="javascript:void(0)">1</a>
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Edit">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -164,18 +139,15 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar11.jpg"
-                                 alt="">
+                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar12.jpg" alt="">
                         </td>
                         <td class="font-w600">
-                            Jose Wagner
-                        </td>
+                            Justin Hunt                                </td>
                         <td class="d-none d-sm-table-cell text-center">
                             <a class="link-fx font-w600" href="javascript:void(0)">12</a>
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Edit">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Edit">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -193,8 +165,7 @@
             <div class="block-header border-bottom">
                 <h3 class="block-title">Latest Orders</h3>
                 <div class="block-options">
-                    <button type="button" class="btn-block-option" data-toggle="block-option"
-                            data-action="state_toggle" data-action-mode="demo">
+                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                         <i class="si si-refresh"></i>
                     </button>
                     <button type="button" class="btn-block-option">
@@ -203,16 +174,13 @@
                 </div>
             </div>
             <div class="block-content block-content-full">
-                <table
-                    class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
                     <thead class="thead-dark">
                     <tr class="text-uppercase">
                         <th class="font-w700">ID</th>
                         <th class="d-none d-sm-table-cell font-w700">Date</th>
                         <th class="font-w700">State</th>
-                        <th class="d-none d-sm-table-cell font-w700 text-right" style="width: 120px;">
-                            Price
-                        </th>
+                        <th class="d-none d-sm-table-cell font-w700 text-right" style="width: 120px;">Price</th>
                         <th class="font-w700 text-center" style="width: 60px;"></th>
                     </tr>
                     </thead>
@@ -231,8 +199,7 @@
                             $999,99
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Manage">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -251,8 +218,7 @@
                             $2.299,00
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Manage">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -271,8 +237,7 @@
                             $1200,00
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Manage">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -291,8 +256,7 @@
                             $399,00
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Manage">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -311,8 +275,7 @@
                             $349,00
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Manage">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -331,8 +294,7 @@
                             $999,00
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Manage">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -351,8 +313,7 @@
                             $39,99
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Manage">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -371,8 +332,7 @@
                             $499,00
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Manage">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -391,8 +351,7 @@
                             $325,00
                         </td>
                         <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left"
-                               title="Manage">
+                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="Manage">
                                 <i class="fa fa-fw fa-pencil-alt"></i>
                             </a>
                         </td>
@@ -403,6 +362,5 @@
         </div>
     </div>
     <!-- END Latest Orders -->
-
 </div>
 <!-- END Customers and Latest Orders -->

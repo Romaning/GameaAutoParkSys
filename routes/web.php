@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return view('paginas.index2');
+    return view('welcome');
 });
 Route::get('/paginaindex', 'CarpetaControlador\ControllerRoman@index');
 /*#################################################### VEHICULOS #######################################################*/

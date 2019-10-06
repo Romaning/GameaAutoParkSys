@@ -121,7 +121,7 @@ class pageCompCharts {
     *
     */
     static initRandomEasyPieChart() {
-        jQuery('.js-pie-randomize').on('click', (e) => {
+        jQuery('.js-pie-randomize').on('click', e => {
             jQuery(e.currentTarget)
                 .parents('.block')
                 .find('.pie-chart')

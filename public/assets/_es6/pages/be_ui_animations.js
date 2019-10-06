@@ -13,7 +13,7 @@ class pageAnimations {
         let animationClass, animationButton, currentSection;
 
         // On button click
-        jQuery('.js-animation-section button').on('click', (e) => {
+        jQuery('.js-animation-section button').on('click', e => {
             animationButton = jQuery(e.currentTarget);
             animationClass  = animationButton.data('animation-class');
             currentSection  = animationButton.parents('.js-animation-section');

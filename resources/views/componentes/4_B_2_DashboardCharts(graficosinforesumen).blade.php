@@ -5,8 +5,7 @@
             <div class="block-header">
                 <h3 class="block-title">Earnings in $</h3>
                 <div class="block-options">
-                    <button type="button" class="btn-block-option" data-toggle="block-option"
-                            data-action="state_toggle" data-action-mode="demo">
+                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                         <i class="si si-refresh"></i>
                     </button>
                     <button type="button" class="btn-block-option">
@@ -17,9 +16,7 @@
             <div class="block-content p-0 bg-body-light text-center">
                 <!-- Chart.js is initialized in js/pages/be_pages_dashboard.min.js which was auto compiled from _es6/pages/be_pages_dashboard.js) -->
                 <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
-                <div class="pt-3" style="height: 360px;">
-                    <canvas class="js-chartjs-dashboard-earnings"></canvas>
-                </div>
+                <div class="pt-3" style="height: 360px;"><canvas class="js-chartjs-dashboard-earnings"></canvas></div>
             </div>
             <div class="block-content">
                 <div class="row items-push text-center py-3">
@@ -48,8 +45,7 @@
             <div class="block-header">
                 <h3 class="block-title">Sales</h3>
                 <div class="block-options">
-                    <button type="button" class="btn-block-option" data-toggle="block-option"
-                            data-action="state_toggle" data-action-mode="demo">
+                    <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                         <i class="si si-refresh"></i>
                     </button>
                     <button type="button" class="btn-block-option">
@@ -60,9 +56,7 @@
             <div class="block-content p-0 bg-body-light text-center">
                 <!-- Chart.js is initialized in js/pages/be_pages_dashboard.min.js which was auto compiled from _es6/pages/be_pages_dashboard.js) -->
                 <!-- For more info and examples you can check out http://www.chartjs.org/docs/ -->
-                <div class="pt-3" style="height: 360px;">
-                    <canvas class="js-chartjs-dashboard-sales"></canvas>
-                </div>
+                <div class="pt-3" style="height: 360px;"><canvas class="js-chartjs-dashboard-sales"></canvas></div>
             </div>
             <div class="block-content">
                 <div class="row items-push text-center py-3">

@@ -10,7 +10,7 @@ class pageProgress {
      *
      */
     static barsRandomize() {
-        jQuery('.js-bar-randomize').on('click', (e) => {
+        jQuery('.js-bar-randomize').on('click', e => {
             jQuery(e.currentTarget)
                 .parents('.block')
                 .find('.progress-bar')

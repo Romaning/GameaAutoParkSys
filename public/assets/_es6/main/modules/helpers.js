@@ -6,7 +6,7 @@
  */
 
 // Import global dependencies
-import './../bootstrap.js';
+import './../bootstrap';
 
 // Import required modules
 import Tools from './tools';
@@ -49,7 +49,9 @@ export default class Helpers {
            'easy-pie-chart': () => this.easyPieChart(),
            maxlength: () => this.maxlength(),
            rangeslider: () => this.rangeslider(),
-           sparkline: () => this.sparkline()
+           sparkline: () => this.sparkline(),
+           validation: () => this.validation(),
+           flatpickr: () => this.flatpickr()
        };
 
        if (helpers instanceof Array) {
@@ -77,7 +79,7 @@ export default class Helpers {
      */
 
     /*
-     * Bootstrap Tooltip, for more examples you can check out https://getbootstrap.com/docs/4.1/components/tooltips/
+     * Bootstrap Tooltip, for more examples you can check out https://getbootstrap.com/docs/4.3/components/tooltips/
      *
      * Helpers.run('core-bootstrap-tooltip');
      *
@@ -100,7 +102,7 @@ export default class Helpers {
     }
 
     /*
-     * Bootstrap Popover, for more examples you can check out https://getbootstrap.com/docs/4.1/components/popovers/
+     * Bootstrap Popover, for more examples you can check out https://getbootstrap.com/docs/4.3/components/popovers/
      *
      * Helpers.run('core-bootstrap-popover');
      *
@@ -124,7 +126,7 @@ export default class Helpers {
     }
 
     /*
-     * Bootstrap Tab, for examples you can check out http://getbootstrap.com/docs/4.1/components/navs/#tabs
+     * Bootstrap Tab, for examples you can check out http://getbootstrap.com/docs/4.2/components/navs/#tabs
      *
      * Helpers.run('core-bootstrap-tabs');
      *
@@ -136,7 +138,7 @@ export default class Helpers {
     static coreBootstrapTabs() {
         jQuery('[data-toggle="tabs"]:not(.js-tabs-enabled)').add('.js-tabs:not(.js-tabs-enabled)').each((index, element) => {
             // Add .js-tabs-enabled class to tag it as activated and init it
-            jQuery(element).addClass('js-tabs-enabled').find('a').on('click.pixelcave.helpers.core', (e) => {
+            jQuery(element).addClass('js-tabs-enabled').find('a').on('click.pixelcave.helpers.core', e => {
                 e.preventDefault();
                 jQuery(e.currentTarget).tab('show');
             });
@@ -159,7 +161,7 @@ export default class Helpers {
             let el = jQuery(element);
 
             // Add .js-custom-file-input-enabled class to tag it as activated
-            el.addClass('js-custom-file-input-enabled').on('change', (e) => {
+            el.addClass('js-custom-file-input-enabled').on('change', e => {
                 let fileName = (e.target.files.length > 1) ? e.target.files.length + ' ' + (el.data('lang-files') || 'Files') : e.target.files[0].name;
 
                 el.next('.custom-file-label').css('overflow-x', 'hidden').html(fileName);
@@ -184,7 +186,7 @@ export default class Helpers {
     static coreToggleClass() {
         jQuery('[data-toggle="class-toggle"]:not(.js-class-toggle-enabled)')
                 .add('.js-class-toggle:not(.js-class-toggle-enabled)')
-                .on('click.pixelcave.helpers.core', (e) => {
+                .on('click.pixelcave.helpers.core', e => {
             let el = jQuery(e.currentTarget);
 
             // Add .js-class-toggle-enabled class to tag it as activated and then blur it
@@ -207,7 +209,7 @@ export default class Helpers {
      *
      */
     static coreScrollTo() {
-        jQuery('[data-toggle="scroll-to"]:not(.js-scroll-to-enabled)').on('click.pixelcave.helpers.core', (e) => {
+        jQuery('[data-toggle="scroll-to"]:not(.js-scroll-to-enabled)').on('click.pixelcave.helpers.core', e => {
             e.stopPropagation();
 
             // Set variables
@@ -301,7 +303,7 @@ export default class Helpers {
                     overflow: 'hidden',
                     position: 'relative',
                     'z-index': 1
-                }).on('click.pixelcave.helpers.core', (e) => {
+                }).on('click.pixelcave.helpers.core', e => {
                     let cssClass = 'click-ripple', ripple, d, x, y;
 
                     // If the ripple element doesn't exist in this element, add it..
@@ -383,7 +385,7 @@ export default class Helpers {
             table.addClass('js-table-sections-enabled');
 
             // When a row is clicked in tbody.js-table-sections-header
-            jQuery('.js-table-sections-header > tr', table).on('click.pixelcave.helpers', (e) => {
+            jQuery('.js-table-sections-header > tr', table).on('click.pixelcave.helpers', e => {
                 if (e.target.type !== 'checkbox'
                         && e.target.type !== 'button'
                         && e.target.tagName.toLowerCase() !== 'a'
@@ -423,7 +425,7 @@ export default class Helpers {
             table.addClass('js-table-checkable-enabled');
 
             // When a checkbox is clicked in thead
-            jQuery('thead input:checkbox', table).on('click.pixelcave.helpers', (e) => {
+            jQuery('thead input:checkbox', table).on('click.pixelcave.helpers', e => {
                 let checkedStatus = jQuery(e.currentTarget).prop('checked');
 
                 // Check or uncheck all checkboxes in tbody
@@ -436,7 +438,7 @@ export default class Helpers {
             });
 
             // When a checkbox is clicked in tbody
-            jQuery('tbody input:checkbox, tbody input + label', table).on('click.pixelcave.helpers', (e) => {
+            jQuery('tbody input:checkbox, tbody input + label', table).on('click.pixelcave.helpers', e => {
                 let checkbox = jQuery(e.currentTarget);
                 let checkedStatus  = checkbox.prop('checked');
 
@@ -452,7 +454,7 @@ export default class Helpers {
             });
 
             // When a row is clicked in tbody
-            jQuery('tbody > tr', table).on('click.pixelcave.helpers', (e) => {
+            jQuery('tbody > tr', table).on('click.pixelcave.helpers', e => {
                 if (e.target.type !== 'checkbox'
                         && e.target.type !== 'button'
                         && e.target.tagName.toLowerCase() !== 'a'
@@ -777,7 +779,7 @@ export default class Helpers {
             // Init notifications (with .js-notify class)
             jQuery('.js-notify:not(.js-notify-enabled)').each((index, element) => {
                 // Add .js-notify-enabled class to tag it as activated and init it
-                jQuery(element).addClass('js-notify-enabled').on('click.pixelcave.helpers', (e) => {
+                jQuery(element).addClass('js-notify-enabled').on('click.pixelcave.helpers', e => {
                     let el = jQuery(e.currentTarget);
 
                     // Create notification
@@ -909,9 +911,12 @@ export default class Helpers {
     static rangeslider() {
         // Init Ion Range Slider (with .js-rangeslider class)
         jQuery('.js-rangeslider:not(.js-rangeslider-enabled)').each((index, element) => {
+            let el = jQuery(element);
+
             // Add .js-rangeslider-enabled class to tag it as activated and init it
             jQuery(element).addClass('js-rangeslider-enabled').ionRangeSlider({
-                input_values_separator: ';'
+                input_values_separator: ';',
+                skin: el.data('skin') || 'round'
             });
         });
     }
@@ -1018,6 +1023,58 @@ export default class Helpers {
             } else {
                 console.log('[jQuery Sparkline JS Helper] Please add a correct type (line, bar, pie or tristate) in all your elements with \'js-sparkline\' class.')
             }
+        });
+    }
+
+    /*
+     * jQuery Validation, for more examples you can check out https://github.com/jzaefferer/jquery-validation
+     *
+     * Helpers.run('validation');
+     *
+     * Example usage:
+     *
+     * By calling the helper, you set up the default options that will be used for jQuery Validation
+     *
+     */
+    static validation() {
+        // Set default options for jQuery Validation plugin
+        jQuery.validator.setDefaults({
+            errorClass: 'invalid-feedback animated fadeIn',
+            errorElement: 'div',
+            errorPlacement: (error, el) => {
+                jQuery(el).addClass('is-invalid');
+                jQuery(el).parents('.form-group').append(error);
+            },
+            highlight: el => {
+                jQuery(el).parents('.form-group').find('.is-invalid').removeClass('is-invalid').addClass('is-invalid');
+            },
+            success: el => {
+                jQuery(el).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
+                jQuery(el).remove();
+            }
+        });
+    }
+
+    /*
+     * Flatpickr init, for more examples you can check out https://github.com/flatpickr/flatpickr
+     *
+     * Helpers.run('flatpickr');
+     *
+     * Example usage:
+     *
+     * <input type="text" class="js-flatpickr form-control">
+     *
+     */
+    static flatpickr() {
+        // Init Flatpickr (with .js-flatpickr class)
+        jQuery('.js-flatpickr:not(.js-flatpickr-enabled)').each((index, element) => {
+            let el = jQuery(element);
+
+            // Add .js-flatpickr-enabled class to tag it as activated
+            el.addClass('js-flatpickr-enabled');
+
+            // Init it
+            flatpickr(el, {});
         });
     }
 }

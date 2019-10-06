@@ -47,10 +47,12 @@
 @import 'bootstrap/media';
 @import 'bootstrap/list-group';
 @import 'bootstrap/close';
+@import 'bootstrap/toasts';
 @import 'bootstrap/modal';
 @import 'bootstrap/tooltip';
 @import 'bootstrap/popover';
 //@import 'bootstrap/carousel';
+@import 'bootstrap/spinners';
 @import 'bootstrap/utilities';
 @import 'bootstrap/print';
 
@@ -94,6 +96,7 @@
 @import 'oneui/item';
 @import 'oneui/overlay';
 @import 'oneui/timeline';
+@import 'oneui/ribbon';
 
 // Utilities
 @import 'oneui/utilities';
@@ -122,6 +125,7 @@
 @import 'vendor/simplemde';
 @import 'vendor/summernote';
 @import 'vendor/slick';
+@import 'vendor/flatpickr';
 
 // User styles (your own styles/overrides)
 @import 'custom/main';

@@ -6,32 +6,28 @@
         <div class="d-flex align-items-center">
             <!-- Toggle Sidebar -->
             <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-            <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout"
-                    data-action="sidebar_toggle">
+            <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
             <!-- END Toggle Sidebar -->
 
             <!-- Toggle Mini Sidebar -->
             <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-            <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout"
-                    data-action="sidebar_mini_toggle">
+            <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                 <i class="fa fa-fw fa-ellipsis-v"></i>
             </button>
             <!-- END Toggle Mini Sidebar -->
 
             <!-- Apps Modal -->
             <!-- Opens the Apps modal found at the bottom of the page, after footer’s markup -->
-            <button type="button" class="btn btn-sm btn-dual mr-2" data-toggle="modal"
-                    data-target="#one-modal-apps">
+            <button type="button" class="btn btn-sm btn-dual mr-2" data-toggle="modal" data-target="#one-modal-apps">
                 <i class="si si-grid"></i>
             </button>
             <!-- END Apps Modal -->
 
             <!-- Open Search Section (visible on smaller screens) -->
             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-sm btn-dual d-sm-none" data-toggle="layout"
-                    data-action="header_search_on">
+            <button type="button" class="btn btn-sm btn-dual d-sm-none" data-toggle="layout" data-action="header_search_on">
                 <i class="si si-magnifier"></i>
             </button>
             <!-- END Open Search Section -->
@@ -39,8 +35,7 @@
             <!-- Search Form (visible on larger screens) -->
             <form class="d-none d-sm-inline-block" action="be_pages_generic_search.html" method="POST">
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-alt" placeholder="Search.."
-                           id="page-header-search-input2" name="page-header-search-input2">
+                    <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="page-header-search-input2">
                     <div class="input-group-append">
                                     <span class="input-group-text bg-body border-0">
                                         <i class="si si-magnifier"></i>
@@ -56,51 +51,42 @@
         <div class="d-flex align-items-center">
             <!-- User Dropdown -->
             <div class="dropdown d-inline-block ml-2">
-                <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded" src="assets/media/avatars/avatar10.jpg" alt="Header Avatar"
-                         style="width: 18px;">
+                <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="rounded" src="assets/media/avatars/avatar10.jpg" alt="Header Avatar" style="width: 18px;">
                     <span class="d-none d-sm-inline-block ml-1">Adam</span>
                     <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
-                     aria-labelledby="page-header-user-dropdown">
+                <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
                     <div class="p-3 text-center bg-primary">
-                        <img class="img-avatar img-avatar48 img-avatar-thumb"
-                             src="assets/media/avatars/avatar10.jpg" alt="">
+                        <img class="img-avatar img-avatar48 img-avatar-thumb" src="assets/media/avatars/avatar10.jpg" alt="">
                     </div>
                     <div class="p-2">
                         <h5 class="dropdown-header text-uppercase">User Options</h5>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between"
-                           href="be_pages_generic_inbox.html">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
                             <span>Inbox</span>
                             <span>
                                             <span class="badge badge-pill badge-primary">3</span>
                                             <i class="si si-envelope-open ml-1"></i>
                                         </span>
                         </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between"
-                           href="be_pages_generic_profile.html">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
                             <span>Profile</span>
                             <span>
                                             <span class="badge badge-pill badge-success">1</span>
                                             <i class="si si-user ml-1"></i>
                                         </span>
                         </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between"
-                           href="javascript:void(0)">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
                             <span>Settings</span>
                             <i class="si si-settings"></i>
                         </a>
                         <div role="separator" class="dropdown-divider"></div>
                         <h5 class="dropdown-header text-uppercase">Actions</h5>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between"
-                           href="op_auth_lock.html">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.html">
                             <span>Lock Account</span>
                             <i class="si si-lock ml-1"></i>
                         </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between"
-                           href="op_auth_signin.html">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_signin.html">
                             <span>Log Out</span>
                             <i class="si si-logout ml-1"></i>
                         </a>
@@ -111,13 +97,11 @@
 
             <!-- Notifications Dropdown -->
             <div class="dropdown d-inline-block ml-2">
-                <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="si si-bell"></i>
                     <span class="badge badge-primary badge-pill">6</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm"
-                     aria-labelledby="page-header-notifications-dropdown">
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-notifications-dropdown">
                     <div class="p-2 bg-primary text-center">
                         <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
                     </div>
@@ -200,8 +184,7 @@
 
             <!-- Toggle Side Overlay -->
             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout"
-                    data-action="side_overlay_toggle">
+            <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout" data-action="side_overlay_toggle">
                 <i class="fa fa-fw fa-list-ul fa-flip-horizontal"></i>
             </button>
             <!-- END Toggle Side Overlay -->
@@ -217,13 +200,11 @@
                 <div class="input-group input-group-sm">
                     <div class="input-group-prepend">
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <button type="button" class="btn btn-danger" data-toggle="layout"
-                                data-action="header_search_off">
+                        <button type="button" class="btn btn-danger" data-toggle="layout" data-action="header_search_off">
                             <i class="fa fa-fw fa-times-circle"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search or hit ESC.."
-                           id="page-header-search-input" name="page-header-search-input">
+                    <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
                 </div>
             </form>
         </div>

@@ -32,7 +32,7 @@ class pageCompImageCropper {
         });
 
         // Mini Cropper API
-        jQuery('[data-toggle="cropper"]').on('click', (e) => {
+        jQuery('[data-toggle="cropper"]').on('click', e => {
             let btn     = jQuery(e.currentTarget);
             let method  = btn.data('method') || false;
             let option  = btn.data('option') || false;

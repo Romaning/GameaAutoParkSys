@@ -10,7 +10,7 @@ class pageComingSoon {
      *
      */
     static countdown() {
-        jQuery('.js-countdown').countdown((new Date().getFullYear() + 2) + '/01/15', (e) => {
+        jQuery('.js-countdown').countdown((new Date().getFullYear() + 2) + '/01/15', e => {
             jQuery(e.currentTarget).html(e.strftime('<div class="row items-push py-3 text-center">'
                     + '<div class="col-6 col-md-3"><div class="font-size-h1 font-w700 text-white">%-D</div><div class="font-size-sm font-w700 text-muted">DAYS</div></div>'
                     + '<div class="col-6 col-md-3"><div class="font-size-h1 font-w700 text-white">%H</div><div class="font-size-sm font-w700 text-muted">HOURS</div></div>'

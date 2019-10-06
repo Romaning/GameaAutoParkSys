@@ -6,7 +6,7 @@
  */
 
 // Import global dependencies
-import './../bootstrap.js';
+import './../bootstrap';
 
 // Import required modules
 import Tools from './tools';
@@ -94,7 +94,7 @@ export default class Template {
                     self._lSidebarScroll = new SimpleBar(self._lSidebar[0]);
 
                     // Enable scrolling lock
-                    jQuery('.simplebar-scroll-content', self._lSidebar).scrollLock('enable');
+                    jQuery('.simplebar-content-wrapper', self._lSidebar).scrollLock('enable');
                 }
 
                 // Init custom scrolling on Side Overlay
@@ -102,13 +102,13 @@ export default class Template {
                     self._lSideOverlayScroll = new SimpleBar(self._lSideOverlay[0]);
 
                     // Enable scrolling lock
-                    jQuery('.simplebar-scroll-content', self._lSideOverlay).scrollLock('enable');
+                    jQuery('.simplebar-content-wrapper', self._lSideOverlay).scrollLock('enable');
                 }
             } else {
                 // If custom scrolling exists on Sidebar remove it
                 if (self._lSidebar && self._lSidebarScroll) {
                     // Disable scrolling lock
-                    jQuery('.simplebar-scroll-content', self._lSidebar).scrollLock('disable');
+                    jQuery('.simplebar-content-wrapper', self._lSidebar).scrollLock('disable');
 
                     // Unmount Simplebar
                     self._lSidebarScroll.unMount();
@@ -116,13 +116,13 @@ export default class Template {
 
                     // Remove Simplebar leftovers
                     self._lSidebar.removeAttr('data-simplebar')
-                            .html(jQuery('.simplebar-content', self._lSidebar).html());
+                        .html(jQuery('.simplebar-content', self._lSidebar).html());
                 }
 
                 // If custom scrolling exists on Side Overlay remove it
                 if (self._lSideOverlay && self._lSideOverlayScroll) {
                     // Disable scrolling lock
-                    jQuery('.simplebar-scroll-content', self._lSideOverlay).scrollLock('disable');
+                    jQuery('.simplebar-content-wrapper', self._lSideOverlay).scrollLock('disable');
 
                     // Unmount Simplebar
                     self._lSideOverlayScroll.unMount();
@@ -130,7 +130,7 @@ export default class Template {
 
                     // Remove Simplebar leftovers
                     self._lSideOverlay.removeAttr('data-simplebar')
-                            .html(jQuery('.simplebar-content', self._lSideOverlay).html());
+                        .html(jQuery('.simplebar-content', self._lSideOverlay).html());
                 }
             }
         }
@@ -145,26 +145,29 @@ export default class Template {
         this._lPage.off('click.pixelcave.menu');
 
         // When a submenu link is clicked
-        this._lPage.on('click.pixelcave.menu', '[data-toggle="submenu"]', (e) => {
+        this._lPage.on('click.pixelcave.menu', '[data-toggle="submenu"]', e => {
             // Get link
             let link = jQuery(e.currentTarget);
 
-            // Get link's parent
-            let parentLi = link.parent('li');
+            // Check if we are in horizontal navigation, large screen and hover is enabled
+            if (!(Tools.getWidth() > 991 && link.parents('.nav-main').hasClass('nav-main-horizontal nav-main-hover'))) {
+                // Get link's parent
+                let parentLi = link.parent('li');
 
-            if (parentLi.hasClass('open')) {
-                // If submenu is open, close it..
-                parentLi.removeClass('open');
-                link.attr('aria-expanded', 'false');
-            } else {
-                // .. else if submenu is closed, close all other (same level) submenus first before open it
-                link.closest('ul').children('li').removeClass('open');
-                parentLi.addClass('open');
-                link.attr('aria-expanded', 'true');
+                if (parentLi.hasClass('open')) {
+                    // If submenu is open, close it..
+                    parentLi.removeClass('open');
+                    link.attr('aria-expanded', 'false');
+                } else {
+                    // .. else if submenu is closed, close all other (same level) submenus first before open it
+                    link.closest('ul').children('li').removeClass('open');
+                    parentLi.addClass('open');
+                    link.attr('aria-expanded', 'true');
+                }
+
+                // Remove focus from submenu link
+                link.blur();
             }
-
-            // Remove focus from submenu link
-            link.blur();
 
             return false;
         });
@@ -216,7 +219,7 @@ export default class Template {
         this._lPage.off('click.pixelcave.themes');
 
         // When a color theme link is clicked
-        this._lPage.on('click.pixelcave.themes', '[data-toggle="theme"]', (e) => {
+        this._lPage.on('click.pixelcave.themes', '[data-toggle="theme"]', e => {
             e.preventDefault();
 
             // Get element and data
@@ -261,7 +264,7 @@ export default class Template {
                 self._lPage.off('click.pixelcave.overlay');
 
                 // Call layout API on button click
-                self._lPage.on('click.pixelcave.layout', '[data-toggle="layout"]', (e) => {
+                self._lPage.on('click.pixelcave.layout', '[data-toggle="layout"]', e => {
                     let el = jQuery(e.currentTarget);
 
                     self._uiApiLayout(el.data('action'));
@@ -273,7 +276,7 @@ export default class Template {
                 if (self._lPage.hasClass('enable-page-overlay')) {
                     self._lPage.prepend('<div id="page-overlay"></div>');
 
-                    jQuery('#page-overlay').on('click.pixelcave.overlay', (e) => {
+                    jQuery('#page-overlay').on('click.pixelcave.overlay', e => {
                         self._uiApiLayout('side_overlay_close');
                     });
                 }
@@ -341,7 +344,7 @@ export default class Template {
             },
             side_overlay_open: () => {
                 // When ESCAPE key is hit close the side overlay
-                jQuery(document).on('keydown.pixelcave.sideOverlay', (e) => {
+                jQuery(document).on('keydown.pixelcave.sideOverlay', e => {
                     if (e.which === 27) {
                         e.preventDefault();
                         self._uiApiLayout('side_overlay_close');
@@ -388,7 +391,7 @@ export default class Template {
                 self._lHeaderSearchInput.focus();
 
                 // When ESCAPE key is hit close the search section
-                jQuery(document).on('keydown.pixelcave.header.search', (e) => {
+                jQuery(document).on('keydown.pixelcave.header.search', e => {
                     if (e.which === 27) {
                         e.preventDefault();
                         self._uiApiLayout('header_search_off');
@@ -482,7 +485,7 @@ export default class Template {
                 self._lPage.off('click.pixelcave.blocks');
 
                 // Call blocks API on option button click
-                self._lPage.on('click.pixelcave.blocks', '[data-toggle="block-option"]', (e) => {
+                self._lPage.on('click.pixelcave.blocks', '[data-toggle="block-option"]', e => {
                     this._uiApiBlocks(jQuery(e.currentTarget).data('action'), jQuery(e.currentTarget).closest('.block'));
                 });
             },

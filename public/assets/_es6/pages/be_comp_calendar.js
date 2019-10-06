@@ -15,7 +15,7 @@ class pageCompCalendar {
         let eventInputVal   = '';
 
         // When the add event form is submitted
-        jQuery('.js-form-add-event').on('submit', (e) => {
+        jQuery('.js-form-add-event').on('submit', e => {
             // Get input value
             eventInputVal = eventInput.prop('value');
 

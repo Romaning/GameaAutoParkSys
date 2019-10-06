@@ -11,21 +11,12 @@ class pageFormsValidation {
      *
      */
     static initValidation() {
+        // Load default options for jQuery Validation plugin
+        One.helpers('validation');
+
+        // Init Form Validation
         jQuery('.js-validation').validate({
             ignore: [],
-            errorClass: 'invalid-feedback animated fadeIn',
-            errorElement: 'div',
-            errorPlacement: (error, el) => {
-                jQuery(el).addClass('is-invalid');
-                jQuery(el).parents('.form-group').append(error);
-            },
-            highlight: (el) => {
-                jQuery(el).parents('.form-group').find('.is-invalid').removeClass('is-invalid').addClass('is-invalid');
-            },
-            success: (el) => {
-                jQuery(el).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
-                jQuery(el).remove();
-            },
             rules: {
                 'val-username': {
                     required: true,
@@ -115,7 +106,7 @@ class pageFormsValidation {
         });
 
         // Init Validation on Select2 change
-        jQuery('.js-select2').on('change', (e) => {
+        jQuery('.js-select2').on('change', e => {
             jQuery(e.currentTarget).valid();
         });
     }

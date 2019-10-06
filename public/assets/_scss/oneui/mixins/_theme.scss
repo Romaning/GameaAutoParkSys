@@ -479,20 +479,26 @@
     }
 
     .custom-control-primary {
-        @include custom-control-variant($body-bg-dark, $brand-primary);
+        @include custom-control-variant($brand-lighter, $brand-primary);
     }
 
     .custom-control-input {
         &:checked ~ .custom-control-label::before {
             @include gradient-bg($brand-primary);
+            border-color: $brand-primary;
         }
 
         &:focus ~ .custom-control-label::before {
             box-shadow: 0 0 0 1px $white, $input-btn-focus-box-shadow;
         }
 
-        &:active ~ .custom-control-label::before {
-            background-color: lighten($brand-primary, 35%);
+        &:focus:not(:checked) ~ .custom-control-label::before {
+            border-color: $brand-primary;
+        }
+
+        &:not(:disabled):active ~ .custom-control-label::before {
+            background-color: $brand-lighter;
+            border-color: $brand-lighter;
         }
     }
 
@@ -561,8 +567,8 @@
         }
     }
 
-    @include form-validation-state("valid", theme-color('success'));
-    @include form-validation-state("invalid", theme-color('danger'));
+    @include form-validation-state("valid", theme-color('success'), false);
+    @include form-validation-state("invalid", theme-color('danger'), false);
 
     .form-control.form-control-alt {
         border-color: $body-bg;
@@ -768,6 +774,25 @@
         background-color: transparent;
     }
 
+    // Nav Main Horizontal
+    @include media-breakpoint-up(lg) {
+        // Light Variation
+        .nav-main-horizontal {
+            .nav-main-submenu {
+                background-color: $body-bg;
+            }
+        }
+
+        // Dark Variation
+        .nav-main-dark.nav-main-horizontal,
+        .sidebar-dark #sidebar .nav-main-horizontal,
+        .page-header-dark #page-header .nav-main-horizontal {
+            .nav-main-submenu {
+                background-color: darken($brand-darker, 3%) !important;
+            }
+        }
+    }
+
     // Various Items Navigation
     .nav-items {
         a {
@@ -789,6 +814,15 @@
     // Timeline
     .timeline-event-icon {
         box-shadow: 0 .375rem 1.5rem darken($body-bg, 8%);
+    }
+
+    // Ribbons
+    .ribbon-light {
+        @include ribbon-variation($body-bg-dark, $body-color);
+    }
+
+    .ribbon-primary {
+        @include ribbon-variation($brand-primary, $white);
     }
 
     // Bootstrap Datepicker
@@ -914,26 +948,28 @@
     }
 
     // Ion Range Slider
-    .irs {
-        &-line {
+    .irs.irs--round {
+        .irs-min,
+        .irs-max,
+        .irs-line,
+        .irs-grid-pol {
             background: $body-bg;
         }
 
-        &-bar {
-            background: $brand-primary;
-
-            &-edge {
-                background: $brand-primary;
-            }
+        .irs-handle {
+            border-color: $brand-primary;
         }
 
-        &-from,
-        &-to,
-        &-single {
-            background: $brand-primary;
+        .irs-from:before,
+        .irs-to:before,
+        .irs-single:before {
+            border-top-color: $brand-primary;
         }
 
-        &-grid-pol {
+        .irs-bar,
+        .irs-from,
+        .irs-to,
+        .irs-single {
             background: $brand-primary;
         }
     }
@@ -968,6 +1004,11 @@
 
         .select2-results__option--highlighted[aria-selected] {
             background-color: $brand-primary;
+        }
+
+        .select2-dropdown .select2-search__field:focus {
+            border-color: $input-focus-border-color;
+            box-shadow: $input-btn-focus-box-shadow;
         }
     }
 
@@ -1013,5 +1054,33 @@
             border-top-color: $body-bg-dark;
             background-color: $body-bg-light;
         }
+    }
+
+    // Flatpickr
+    .flatpickr-day.selected,
+    .flatpickr-day.startRange,
+    .flatpickr-day.endRange,
+    .flatpickr-day.selected.inRange,
+    .flatpickr-day.startRange.inRange,
+    .flatpickr-day.endRange.inRange,
+    .flatpickr-day.selected:focus,
+    .flatpickr-day.startRange:focus,
+    .flatpickr-day.endRange:focus,
+    .flatpickr-day.selected:hover,
+    .flatpickr-day.startRange:hover,
+    .flatpickr-day.endRange:hover,
+    .flatpickr-day.selected.prevMonthDay,
+    .flatpickr-day.startRange.prevMonthDay,
+    .flatpickr-day.endRange.prevMonthDay,
+    .flatpickr-day.selected.nextMonthDay,
+    .flatpickr-day.startRange.nextMonthDay,
+    .flatpickr-day.endRange.nextMonthDay {
+        border-color: $brand-primary;
+        background: $brand-primary;
+    }
+
+    .flatpickr-months .flatpickr-prev-month:hover svg,
+    .flatpickr-months .flatpickr-next-month:hover svg {
+        fill: $brand-primary;
     }
 }

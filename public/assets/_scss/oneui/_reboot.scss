@@ -52,6 +52,10 @@ a {
             transform: scaleX(1);
         }
     }
+
+    &:focus {
+        outline-style: none !important;
+    }
 }
 
 // Paragraphs
@@ -63,7 +67,7 @@ p {
 .story p,
 p.story {
     line-height: $paragraph-line-height-lg;
-    font-size: $font-size-lg;
+    font-size: 1.125rem;
     color: gray("700");
 }
 

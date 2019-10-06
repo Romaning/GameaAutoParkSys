@@ -14,8 +14,7 @@
 
     <!-- Close Side Overlay -->
     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-    <a class="ml-auto btn btn-sm btn-dual" href="javascript:void(0)" data-toggle="layout"
-       data-action="side_overlay_close">
+    <a class="ml-auto btn btn-sm btn-dual" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
         <i class="fa fa-fw fa-times text-danger"></i>
     </a>
     <!-- END Close Side Overlay -->

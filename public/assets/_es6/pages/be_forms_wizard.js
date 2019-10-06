@@ -45,35 +45,27 @@ class pageFormsWizard {
      *
      */
     static initWizardValidation() {
+        // Load default options for jQuery Validation plugin
+        One.helpers('validation');
+
         // Get forms
         let formValidation  = jQuery('.js-wizard-validation-form');
         let formValidation2 = jQuery('.js-wizard-validation2-form');
 
         // Prevent forms from submitting on enter key press
-        formValidation.add(formValidation2).on('keyup keypress', (e) => {
+        formValidation.add(formValidation2).on('keyup keypress', e => {
             let code = e.keyCode || e.which;
 
             if (code === 13) {
-                e.preventDefault();
-                return false;
+                if (e.target.tagName.toLowerCase() !== 'textarea') {
+                    e.preventDefault();
+                    return false;
+                }
             }
         });
 
         // Init form validation on validation wizard form
         let validator = formValidation.validate({
-            errorClass: 'invalid-feedback animated fadeIn',
-            errorElement: 'div',
-            errorPlacement: (error, el) => {
-                jQuery(el).addClass('is-invalid');
-                jQuery(el).parents('.form-group').append(error);
-            },
-            highlight: (el) => {
-                jQuery(el).parents('.form-group').find('.is-invalid').removeClass('is-invalid').addClass('is-invalid');
-            },
-            success: (el) => {
-                jQuery(el).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
-                jQuery(el).remove();
-            },
             rules: {
                 'wizard-validation-firstname': {
                     required: true,
@@ -119,19 +111,6 @@ class pageFormsWizard {
 
         // Init form validation on validation 2 wizard form
         let validator2 = formValidation2.validate({
-            errorClass: 'invalid-feedback animated fadeIn',
-            errorElement: 'div',
-            errorPlacement: (error, el) => {
-                jQuery(el).addClass('is-invalid');
-                jQuery(el).parents('.form-group').append(error);
-            },
-            highlight: (el) => {
-                jQuery(el).parents('.form-group').find('.is-invalid').removeClass('is-invalid').addClass('is-invalid');
-            },
-            success: (el) => {
-                jQuery(el).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
-                jQuery(el).remove();
-            },
             rules: {
                 'wizard-validation2-firstname': {
                     required: true,
@@ -199,7 +178,7 @@ class pageFormsWizard {
             onTabClick: (tab, nav, index) => {
                 jQuery('a', nav).blur();
 
-		return false;
+		        return false;
             }
         });
 
@@ -227,7 +206,7 @@ class pageFormsWizard {
             onTabClick: (tab, nav, index) => {
                 jQuery('a', nav).blur();
 
-		return false;
+	            return false;
             }
         });
     }

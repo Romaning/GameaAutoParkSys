@@ -12,74 +12,78 @@ class pageDialogs {
      */
     static sweetAlert2() {
         // Set default properties
-        swal.setDefaults({
+        let toast = Swal.mixin({
             buttonsStyling: false,
-            confirmButtonClass: 'btn btn-success m-1',
-            cancelButtonClass: 'btn btn-danger m-1',
-            inputClass: 'form-control'
+            customClass: {
+                confirmButton: 'btn btn-success m-1',
+                cancelButton: 'btn btn-danger m-1',
+                input: 'form-control'
+            }
         });
 
         // Init a simple dialog on button click
-        jQuery('.js-swal-simple').on('click', (e) => {
-            swal('Hi, this is just a simple message!');
+        jQuery('.js-swal-simple').on('click', e => {
+            toast.fire('Hi, this is just a simple message!');
         });
 
         // Init an success dialog on button click
-        jQuery('.js-swal-success').on('click', (e) => {
-            swal('Success', 'Everything was updated perfectly!', 'success');
+        jQuery('.js-swal-success').on('click', e => {
+            toast.fire('Success', 'Everything was updated perfectly!', 'success');
         });
 
         // Init an info dialog on button click
-        jQuery('.js-swal-info').on('click', (e) => {
-            swal('Info', 'Just an informational message!', 'info');
+        jQuery('.js-swal-info').on('click', e => {
+            toast.fire('Info', 'Just an informational message!', 'info');
         });
 
         // Init an warning dialog on button click
-        jQuery('.js-swal-warning').on('click', (e) => {
-            swal('Warning', 'Something needs your attention!', 'warning');
+        jQuery('.js-swal-warning').on('click', e => {
+            toast.fire('Warning', 'Something needs your attention!', 'warning');
         });
 
         // Init an error dialog on button click
-        jQuery('.js-swal-error').on('click', (e) => {
-            swal('Oops...', 'Something went wrong!', 'error');
+        jQuery('.js-swal-error').on('click', e => {
+            toast.fire('Oops...', 'Something went wrong!', 'error');
         });
 
         // Init an question dialog on button click
-        jQuery('.js-swal-question').on('click', (e) => {
-            swal('Question', 'Are you sure about that?', 'question');
+        jQuery('.js-swal-question').on('click', e => {
+            toast.fire('Question', 'Are you sure about that?', 'question');
         });
 
         // Init an example confirm dialog on button click
-        jQuery('.js-swal-confirm').on('click', (e) => {
-            swal({
+        jQuery('.js-swal-confirm').on('click', e => {
+            toast.fire({
                 title: 'Are you sure?',
                 text: 'You will not be able to recover this imaginary file!',
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonClass: 'btn btn-danger m-1',
-                cancelButtonClass: 'btn btn-secondary m-1',
+                customClass: {
+                    confirmButton: 'btn btn-danger m-1',
+                    cancelButton: 'btn btn-secondary m-1'
+                },
                 confirmButtonText: 'Yes, delete it!',
                 html: false,
-                preConfirm: (e) => {
-                    return new Promise((resolve) => {
+                preConfirm: e => {
+                    return new Promise(resolve => {
                         setTimeout(() => {
                             resolve();
                         }, 50);
                     });
                 }
-            }).then((result) => {
+            }).then(result => {
                 if (result.value) {
-                    swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
+                    toast.fire('Deleted!', 'Your imaginary file has been deleted.', 'success');
                     // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                 } else if (result.dismiss === 'cancel') {
-                    swal('Cancelled', 'Your imaginary file is safe :)', 'error');
+                    toast.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
                 }
             });
         });
 
         // Init an example confirm alert on button click
-        jQuery('.js-swal-custom-position').on('click', (e) => {
-            swal({
+        jQuery('.js-swal-custom-position').on('click', e => {
+            toast.fire({
                 position: 'top-end',
                 title: 'Perfect!',
                 text: 'Nice Position!',

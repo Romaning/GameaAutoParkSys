@@ -22,7 +22,7 @@ class pageCompMapsGoogle {
             });
 
             // When the search form is submitted
-            jQuery('.js-form-search').on('submit', (e) => {
+            jQuery('.js-form-search').on('submit', e => {
                 let inputGroup = jQuery('.js-search-address').parent('.input-group');
 
                 GMaps.geocode({

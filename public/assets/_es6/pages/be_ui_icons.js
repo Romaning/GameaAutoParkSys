@@ -17,7 +17,7 @@ class pageIcons {
         jQuery('.js-form-icon-search').on('submit', () => false);
 
         // When user types
-        jQuery('.js-icon-search').on('keyup', (e) => {
+        jQuery('.js-icon-search').on('keyup', e => {
             searchValue = jQuery(e.currentTarget).val().toLowerCase();
 
             if (searchValue.length > 2) { // If ore than 2 characters, search the icons

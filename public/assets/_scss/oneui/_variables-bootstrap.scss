@@ -39,8 +39,17 @@ $theme-colors: (
     "dark":       $dark
 ) !default;
 
+
 // The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
 $yiq-contrasted-threshold: 200 !default;
+
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-validation-icons: false !default;
+
 
 // Spacing
 //
@@ -95,7 +104,7 @@ $border-color:                darken($body-bg, 4%) !default;
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:      "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-sans-serif:      "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $font-family-monospace:       "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:            $font-family-sans-serif !default;
 
@@ -151,6 +160,13 @@ $table-dark-bg:               theme-color("dark") !default;
 $table-dark-border-color:     theme-color("dark") !default;
 
 
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+
+$input-btn-font-size-lg:      $font-size-base !default;
+
+
 // Buttons
 //
 // For each of Bootstrap's buttons, define text, background and border color.
@@ -170,6 +186,8 @@ $form-text-margin-top:              .5rem !default;
 $input-group-addon-color:           $input-color !default;
 $input-group-addon-bg:              $body-bg !default;
 $input-group-addon-border-color:    $input-border-color !default;
+
+$custom-switch-width:               2rem;
 
 // Form validation
 $form-feedback-font-size:           $font-size-sm !default;

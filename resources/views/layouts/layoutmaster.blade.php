@@ -55,12 +55,12 @@
         @include('componentes.4_A_Hero(cuadradobienvenidaadmin)')
         <!-- Page Content -->
         <div class="content content-narrow">
-            {{--tablas, ordenes registradas--}}
+{{--            --}}{{--tablas, ordenes registradas--}}{{--
             @include('componentes.4_B_3_TablasOrdenes')
-            {{--Stats, Cuatro tarjetas informacion resumida--}}
+            --}}{{--Stats, Cuatro tarjetas informacion resumida--}}{{--
             @include('componentes.4_B_1_Stats(cuatrotarjetasinforesumen)')
-            {{--charts, informacin resumida--}}
-            @include('componentes.4_B_2_DashboardCharts(graficosinforesumen)')
+            --}}{{--charts, informacin resumida--}}{{--
+            @include('componentes.4_B_2_DashboardCharts(graficosinforesumen)')--}}
             @yield('content')
             @yield('scripts')
         </div>
