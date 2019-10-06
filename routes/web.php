@@ -1,8 +1,9 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('paginas.index2');
 });
+Route::get('/paginaindex', 'CarpetaControlador\ControllerRoman@index');
 /*#################################################### VEHICULOS #######################################################*/
 /*Route::resource('clase','ControladorVehiculo\ClaseController');*/
 Route::prefix('/clase')->group(function(){

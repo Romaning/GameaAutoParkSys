@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="817318cc-e518-4bb2-8a41-ec246c214a15" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CarpetaControlador/ControllerRoman.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CarpetaControlador/ControllerRoman.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/ClaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/ClaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/VehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/VehiculoController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -111,14 +113,18 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1Rk9TeoFIl2X5OOJo7gpV07XYIW" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GameaAutoParkGit-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../OneUISourceLaravelStarterKit" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\GameaAutoParkSys\resources\views" />
       <recent name="C:\xampp\htdocs\GameaAutoParkSys\app\Http\Controllers\ControladorVehiculo" />
     </key>
   </component>
@@ -151,7 +157,14 @@
       <option name="presentableId" value="Default" />
       <updated>1570200236018</updated>
       <workItem from="1570200240423" duration="123000" />
-      <workItem from="1570200379901" duration="8578000" />
+      <workItem from="1570200379901" duration="10322000" />
+      <workItem from="1570217656264" duration="92000" />
+      <workItem from="1570217764330" duration="6817000" />
+      <workItem from="1570296146416" duration="1588000" />
+      <workItem from="1570297781243" duration="865000" />
+      <workItem from="1570298997029" duration="1423000" />
+      <workItem from="1570300644223" duration="2520000" />
+      <workItem from="1570303641551" duration="11061000" />
     </task>
     <servers />
   </component>
@@ -163,7 +176,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
