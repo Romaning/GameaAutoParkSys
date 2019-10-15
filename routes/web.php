@@ -79,6 +79,18 @@ Route::prefix('/tipouso')->group(function(){
     Route::delete('/{tipo_uso_id}','ControladorVehiculo\TipoUsoController@destroy')->name('tipo_uso.destroy');
 });
 
+/*Route::resource('estado','ControladorVehiculo\EstadoServicioController');*/
+Route::prefix('/estado')->group(function(){
+    Route::get('/','ControladorVehiculo\EstadoServiceController@index')->name('estado.index');
+    Route::get('/create','ControladorVehiculo\EstadoServiceController@create')->name('estado.create');
+    Route::post('/','ControladorVehiculo\EstadoServiceController@store')->name('estado.store');
+    Route::get('/{estado_id}','ControladorVehiculo\EstadoServiceController@show')->name('estado.show');
+    Route::get('/{estado_id}/edit','ControladorVehiculo\EstadoServiceController@edit')->name('estado.edit');
+    Route::put('/{estado_id}','ControladorVehiculo\EstadoServiceController@update')->name('estado.update');
+    Route::delete('/{estado_id}','ControladorVehiculo\EstadoServiceController@destroy')->name('estado.destroy');
+});
+
+
 /*Route::resource('vehiculo','ControladorVehiculo\VehiculoController');*/
 Route::prefix('/vehiculo')->group(function(){
     Route::get('/','ControladorVehiculo\VehiculoController@index')->name('vehiculo.index');
@@ -88,10 +100,18 @@ Route::prefix('/vehiculo')->group(function(){
     Route::get('/{vehiculo_id}/edit','ControladorVehiculo\VehiculoController@edit')->name('vehiculo.edit');
     Route::put('/{vehiculo_id}','ControladorVehiculo\VehiculoController@update')->name('vehiculo.update');
     Route::delete('/{vehiculo_id}','ControladorVehiculo\VehiculoController@destroy')->name('vehiculo.destroy');
-
 });
 
-
+/*Route::resource('estservvehi','ControladorVehiculo\EstadoServicioVehiculoController');*/
+Route::prefix('/estservvehi')->group(function(){
+    Route::get('/','ControladorVehiculo\EstadoServicioVehiculoController@index')->name('estservvehi.index');
+    Route::get('/create','ControladorVehiculo\EstadoServicioVehiculoController@create')->name('estservvehi.create');
+    Route::post('/','ControladorVehiculo\EstadoServicioVehiculoController@store')->name('estservvehi.store');
+    Route::get('/{estservvehi_id}','ControladorVehiculo\EstadoServicioVehiculoController@show')->name('estservvehi.show');
+    Route::get('/{estservvehi_id}/edit','ControladorVehiculo\EstadoServicioVehiculoController@edit')->name('estservvehi.edit');
+    Route::put('/{estservvehi_id}','ControladorVehiculo\EstadoServicioVehiculoController@update')->name('estservvehi.update');
+    Route::delete('/{estservvehi_id}','ControladorVehiculo\EstadoServicioVehiculoController@destroy')->name('estservvehi.destroy');
+});
 
 /*Route::resource('documentospropiedadvehiculo','ControladorVehiculo\DocumentosPropiedadVehiculoController');*/
 Route::prefix('/documentospropiedadvehiculo')->group(function(){

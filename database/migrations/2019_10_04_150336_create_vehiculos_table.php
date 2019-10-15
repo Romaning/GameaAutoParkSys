@@ -31,7 +31,6 @@ class CreateVehiculosTable extends Migration
             $table->integer('tipo_id');
             $table->integer('tipo_combustible_id');
             $table->integer('tipo_uso_id');
-            $table->integer('estado_servicio_vehiculo_id');
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

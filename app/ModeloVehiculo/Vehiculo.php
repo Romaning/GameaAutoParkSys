@@ -24,7 +24,6 @@ class Vehiculo extends Model
         'tipo_id',
         'tipo_combustible_id',
         'tipo_uso_id',
-        'estado_servicio_vehiculo_id',
     ];
     use SoftDeletes;
 }

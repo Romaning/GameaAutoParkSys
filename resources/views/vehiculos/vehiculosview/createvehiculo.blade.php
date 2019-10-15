@@ -223,7 +223,100 @@
         <div id="mensaje_respuesta_form_subir_datos_vehiculo"></div>
     </div>
     <!-- END Basic -->
-    <div class="block" data-toggle="appear"></div>
+
+    <!-- Flatpickr Datetimepicker (.js-flatpickr class is initialized in Helpers.flatpickr()) -->
+    <!-- For more info and examples you can check out https://github.com/flatpickr/flatpickr -->
+    <div class="block shadow p-2 mb-1 rounded " data-toggle="appear" data-class="animated bounceIn">
+        <div class="block-header">
+            <h3 class="block-title">SUBIR ESTADO DE SERVICIO DEL VEHICULO</h3>
+        </div>
+        <div class="block-content">
+
+            <form action="{{route('estservvehi.store')}}" method="POST" id="form_subir_estado_servicio_vehicular">
+                @csrf
+                <input type="text" name="placa_id" value="" id="placa_id_subida_estado_servicio_vehicular">
+                <div class="row">
+                    {{--OPCION CODIGO 1--}}
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <br>
+                            <input type="text" name="est_id" value="1" class="d-none" id="est_id_id">
+                            <div class="btn btn-success col-lg-11 form-control" id="mensaje_de_est_serv_En_servicio">EN SERVICIO</div>
+                        </div>
+                    </div>
+                    {{--OPCION CODIGO 2--}}
+                    {{--<div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="est_id">ESTADOS<span class="text-danger">*</span></label>
+                                <select class="js-select2 form-control" id="est_id" name="est_id"
+                                        style="width: 100%;" data-placeholder="Escoger...">
+                                    <option></option>
+                                    <!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                    @foreach($datosestado as $filaestado)
+                                        <option
+                                            value="{{$filaestado->est_id}}">{{$filaestado->est_descripcion}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>--}}
+                    <div class="col-md-2 d-none">
+                        <div class="form-group">
+                            <label for="motivo">MOTIVO</label>
+                            <input type="text" class="form-control" id="motivo" name="motivo" value="Inicio de actividades">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="fecha_inicio">DESDE LA FECHA</label>
+                            <input type="text" class="js-flatpickr form-control bg-white"
+                                   id="fecha_inicio"
+                                   name="fecha_inicio" placeholder="Año-mes-dia"
+                                   data-date-format="Y-m-d">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded" style="float: right"
+                                    id="guardar_estado_servicio_vehiculo">
+                                GUARDAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="mensaje_respuesta_form_subir_est_serv_vehicular"></div>
+    </div>
+    <!-- END Flatpickr Datetimepicker -->
+
+
+
+    <!-- Slider with multiple images and center mode -->
+    <div class="block shadow p-2 mb-1 rounded" id="bloque_docs_prop_vehiculo" data-toggle="appear"
+         data-class="animated bounceIn">
+        <div class="block-header">
+            <h3 class="block-title">
+                <i class="fa fa-play fa-fw text-primary"></i>
+                DOCUMENTOS DE PROPIEDAD VEHICULAR
+                <button type="submit" class="btn btn-primary shadow p-2 mb-1 rounded"
+                        id="btn_insertar_documentos_propiedad_vehiculo" style="float:right;">
+                    INSERTAR
+                </button>
+            </h3>
+        </div>
+        <div class="js-slider slick-nav-black slick-nav-hover" data-dots="true" data-arrows="true"
+             data-slides-to-show="3" data-center-mode="true" data-autoplay="true" data-autoplay-speed="3000">
+            {{--<img class="img-fluid" src="{{asset('assets/media/photos/photo19@2x.jpg')}}" alt="">--}}
+        </div>
+    </div>
+    <!-- END Slider with multiple images and center mode -->
+
 
     {{--SECCION DE SUBIDA DE IMAGENES DE DOCUMENTOS DE PROPIEDAD DEL VEHICULO (TODOS LOS PERFILES O ANGULOS)--}}
     <!-- Dropzone (functionality is auto initialized by the plugin itself in js/plugins/dropzone/dropzone.min.js) -->
@@ -274,14 +367,14 @@
 
 
     <!-- Slider with multiple images and center mode -->
-    <div class="block shadow p-2 mb-1 rounded" id="bloque_docs_prop_vehiculo" data-toggle="appear"
+    <div class="block shadow p-2 mb-1 rounded" id="bloque_imgenes_perfil_vehiculo" data-toggle="appear"
          data-class="animated bounceIn">
         <div class="block-header">
             <h3 class="block-title">
                 <i class="fa fa-play fa-fw text-primary"></i>
-                DOCUMENTOS DE PROPIEDAD VEHICULAR
+                Imagenes de perfil Vehiculo
                 <button type="submit" class="btn btn-primary shadow p-2 mb-1 rounded"
-                        id="btn_insertar_documentos_propiedad_vehiculo" style="float:right;">
+                        id="btn_insertar_imagenes_perfil_vehiculo" style="float: right;">
                     INSERTAR
                 </button>
             </h3>
@@ -298,7 +391,7 @@
     {{--SECCION DE SUBIDA DE IMAGENES DEL VEHICULO (TODOS LOS PERFILES O ANGULOS)--}}
     <!-- Dropzone (functionality is auto initialized by the plugin itself in js/plugins/dropzone/dropzone.min.js) -->
     <!-- For more info and examples you can check out http://www.dropzonejs.com/#usage -->
-    <div class="block d-none shadow p-2 mb-1 rounded" id="bloque_subida_imagenes_perfil_vehiculo" data-toggle="appear"
+    <div class="block shadow p-2 mb-1 rounded d-none" id="bloque_subida_imagenes_perfil_vehiculo" data-toggle="appear"
          data-class="animated bounceIn">
         <div class="block-header">
             <h3 class="block-title">SUBIR IMAGENES (DELANTERA, DERECHA, IZQUIERDA, ATRAS, Y OTROS) DEL VEHICULO</h3>
@@ -341,27 +434,6 @@
     <!-- END Dropzone -->
 
 
-    <!-- Slider with multiple images and center mode -->
-    <div class="block shadow p-2 mb-1 rounded" id="bloque_imgenes_perfil_vehiculo" data-toggle="appear"
-         data-class="animated bounceIn">
-        <div class="block-header">
-            <h3 class="block-title">
-                <i class="fa fa-play fa-fw text-primary"></i>
-                Imagenes de perfil Vehiculo
-                <button type="submit" class="btn btn-primary shadow p-2 mb-1 rounded"
-                        id="btn_insertar_imagenes_perfil_vehiculo" style="float: right;">
-                    INSERTAR
-                </button>
-            </h3>
-        </div>
-        <div class="js-slider slick-nav-black slick-nav-hover" data-dots="true" data-arrows="true"
-             data-slides-to-show="3" data-center-mode="true" data-autoplay="true" data-autoplay-speed="3000">
-            {{--<img class="img-fluid" src="{{asset('assets/media/photos/photo19@2x.jpg')}}" alt="">--}}
-        </div>
-    </div>
-    <!-- END Slider with multiple images and center mode -->
-
-
     <!-- Flatpickr Datetimepicker (.js-flatpickr class is initialized in Helpers.flatpickr()) -->
     <!-- For more info and examples you can check out https://github.com/flatpickr/flatpickr -->
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
@@ -370,7 +442,8 @@
         </div>
         <div class="block-content">
 
-            <form action="{{route('documentosrenovablevehiculo.store')}}" method="POST" id="form_subir_docs_renov_vehicular">
+            <form action="{{route('documentosrenovablevehiculo.store')}}" method="POST"
+                  id="form_subir_docs_renov_vehicular">
                 @csrf
                 <input type="hidden" name="placa_id" value="" id="placa_id_subida_docs_renov_vehicular">
                 <div class="row">
@@ -466,10 +539,13 @@
                 </div>
                 <div id="body_tb_insertar_campos">
                     <div class="row">
-                        <div class="col-lg-1"><input type="text" value="{{date('Y')}}" class="form-control" name="campoa[]"></div>
+                        <div class="col-lg-1"><input type="text" value="{{date('Y')}}" class="form-control"
+                                                     name="campoa[]"></div>
                         <div class="col"><input type="text" value="" class="form-control" name="campob[]"></div>
                         <div class="col"><input type="text" value="" class="form-control" name="campoc[]"></div>
-                        <div class="col"><input type='text' value="" class='js-flatpickr form-control material_green datepickerr' name='campod[]' placeholder='Año-mes-dia'></div>
+                        <div class="col"><input type='text' value=""
+                                                class='js-flatpickr form-control material_green datepickerr'
+                                                name='campod[]' placeholder='Año-mes-dia'></div>
                         <div class="col"><input type="file" value="" class="form-control" name="campoe[]"></div>
                         <div class="btn-eliminar">
                             <i class='fas fa-trash'></i>
@@ -480,7 +556,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <button type="submit" id="btn_enviar_datos " class="btn btn-success shadow p-2 mb-1 rounded" style="float: right">
+                            <button type="submit" id="btn_enviar_datos " class="btn btn-success shadow p-2 mb-1 rounded"
+                                    style="float: right">
                                 GUARDAR
                             </button>
                         </div>
@@ -530,6 +607,7 @@
             $('#placa_id_subida_imgs_perfil_vehiculo').val(placavehiculo);
             $('#placa_id_subida_docs_renov_vehicular').val(placavehiculo);
             $('#placa_id_subir_seguro').val(placavehiculo);
+            $('#placa_id_subida_estado_servicio_vehicular').val(placavehiculo);
         }
 
         /*JQUERY PARA ENVIAR FORM DE DATOS VEHICULO*/
@@ -538,13 +616,25 @@
                 method: $(this).attr('method'),
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
-                success : function (data) {
+                success: function (data) {
                     $('#mensaje_respuesta_form_subir_datos_vehiculo').html(data);
                 }
             });
             return false;
         });
 
+        /*JQUERY PARA ENVIAR FORM ESTADO SERVICIO DE VEHICULO*/
+        $('#form_subir_estado_servicio_vehicular').submit(function () {
+            $.ajax({
+                method: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('#mensaje_respuesta_form_subir_est_serv_vehicular').html(data);
+                }
+            });
+            return false;
+        });
         /*para subir documentos de vehiculo*/
         Dropzone.options.myDropzoneDocsProp = {
             autoProcessQueue: false,
@@ -612,7 +702,7 @@
                 method: $(this).attr('method'),
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
-                success : function (data) {
+                success: function (data) {
                     $('#mensaje_respuesta_form_subir_docs_renov_vehicular').html(data);
                 }
             });
@@ -657,14 +747,15 @@
     {{-- ############################################### START Aparecer Seccion Subida Img & desaparecer Slider ######################################################--}}
     <script>
         /**/
+
         var interuptor_tbn_documentos_propiedad_vehiculo = 0;
         $(document).on('click', '#btn_insertar_documentos_propiedad_vehiculo', function () {
             if (interuptor_tbn_documentos_propiedad_vehiculo == 0) {
-                $('#bloque_subida_docs_prop_vehiculo').removeClass('d-none'); /*hacer que aparezca la seccion de subir archivos*/
                 $('#bloque_docs_prop_vehiculo').addClass('d-none') /*hacer que desaparezca el carrusel de imagenes*/
-                $('html, body').animate({
+                $('#bloque_subida_docs_prop_vehiculo').removeClass('d-none'); /*hacer que aparezca la seccion de subir archivos*/
+                /*$('html, body').animate({
                     scrollTop: $("#enfoque_zona_subir_docs_prop_vehiculo").offset().top
-                }, 20);
+                }, 20);*/
                 interuptor_tbn_documentos_propiedad_vehiculo = 1;
             } else {
                 bloque_subida_docs_prop_vehiculo
@@ -672,23 +763,30 @@
                 $('#bloque_docs_prop_vehiculo').removeClass('d-none') /*hacer que aparezca el carrusel de imagenes*/
                 /*location.reload();*//*recargamos la imagen*/
                 interuptor_tbn_documentos_propiedad_vehiculo = 0;
+                /*$('html, body').animate({
+                    scrollTop: $("#enfoque_zona_subir_docs_prop_vehiculo").offset().top
+                }, 20);*/
             }
         });
+
 
         var interuptor_tbn_imagenes_perfil_vehiculo = 0;
         $(document).on('click', '#btn_insertar_imagenes_perfil_vehiculo', function () {
             if (interuptor_tbn_imagenes_perfil_vehiculo == 0) {
-                $('#bloque_subida_imagenes_perfil_vehiculo').removeClass('d-none'); /*hacer que aparezca la seccion de subir archivos*/
                 $('#bloque_imgenes_perfil_vehiculo').addClass('d-none') /*hacer que desaparezca el carrusel de imagenes*/
-                $('html, body').animate({
+                $('#bloque_subida_imagenes_perfil_vehiculo').removeClass('d-none'); /*hacer que aparezca la seccion de subir archivos*/
+                /*$('html, body').animate({
                     scrollTop: $("#enfoque_zona_subir_imgs_perfil_vehiculo").offset().top
-                }, 20);
+                }, 1);*/
                 interuptor_tbn_imagenes_perfil_vehiculo = 1;
             } else {
                 $('#bloque_subida_imagenes_perfil_vehiculo').addClass('d-none');  /*hacer que ahora se cierre la seccion de subir archivos*/
                 $('#bloque_imgenes_perfil_vehiculo').removeClass('d-none') /*hacer que aparezca el carrusel de imagenes*/
                 /*location.reload();*//*recargamos la imagen*/
                 interuptor_tbn_imagenes_perfil_vehiculo = 0;
+                /*$('html, body').animate({
+                    scrollTop: $("#enfoque_zona_subir_imgs_perfil_vehiculo").offset().top
+                }, 1);*/
             }
         });
     </script>

@@ -80,7 +80,7 @@
                                 {{$filavehiculos->marca_descripcion}}
                             </td>
                             <td class="d-none d-sm-table-cell font-size-sm">
-                                {{$filavehiculos->estado_servicio}}
+                               {{-- {{$filavehiculos->estado_servicio}}--}}
                             </td>
 
                             <td class="d-none d-sm-table-cell text-right">

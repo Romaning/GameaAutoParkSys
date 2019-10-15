@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\ControladorVehiculo;
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Controller;
 use App\ModeloVehiculo\EstadoServicioVehiculo;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class EstadoServicioVehiculoController extends Controller
      */
     public function index()
     {
-        //
+        $datosestservvehi=EstadoServicioVehiculo::all();
+        return view('vehiculos.estadoserviciovehiculosview.indexestadovehiculo', compact('datosestservvehi'));
     }
 
     /**
@@ -35,7 +38,13 @@ class EstadoServicioVehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estservvehiculo = new EstadoServicioVehiculo();
+        $estservvehiculo->fecha_inicio = $request->fecha_inicio;
+        $estservvehiculo->motivo = $request->motivo;
+        $estservvehiculo->est_id = $request->est_id;
+        $estservvehiculo->placa_id = $request->placa_id;
+        $estservvehiculo->save();
+        return "EXITO EN GUARDAR EST_SERV_VEHICULO";
     }
 
     /**

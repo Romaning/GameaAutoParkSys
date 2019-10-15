@@ -176,12 +176,12 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col">
+                            {{--<div class="col">
                                 <label for="estado_servicio">Estado Servicio<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control shadow p-2 mb-1 rounded " id="estado_servicio"
                                        name="estado_servicio" style="width: 100%;"
                                        value="{{$filavehiculo->estado_servicio}}">
-                            </div>
+                            </div>--}}
                             <div class="col">
                                 <label for=tipo_uso_id">Tipo de Uso<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control shadow p-2 mb-1 rounded " id="tipo_uso_id"

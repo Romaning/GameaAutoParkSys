@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\ModeloVehiculo\Clase;
 use App\ModeloVehiculo\DocumentosPropiedadVehiculo;
 use App\ModeloVehiculo\DocumentosRonovableVehiculo;
+use App\ModeloVehiculo\EstadoService;
 use App\ModeloVehiculo\ImagenesPerfilVehiculo;
 use App\ModeloVehiculo\Marca;
 use App\ModeloVehiculo\Seguro;
@@ -31,7 +32,11 @@ class VehiculoController extends Controller
         /*$datosvehiculosall= Vehiculo::all();*/
         $datosvehiculos = DB::table('vehiculos')
             ->join('marcas', 'marcas.marca_id', '=', 'vehiculos.marca_id')
-            ->select('vehiculos.placa_id', 'vehiculos.numero_crpva', 'vehiculos.numero_chasis', 'vehiculos.numero_motor', 'vehiculos.estado_servicio', 'marcas.marca_descripcion')
+            ->select('vehiculos.placa_id',
+                'vehiculos.numero_crpva',
+                'vehiculos.numero_chasis',
+                'vehiculos.numero_motor',
+                'marcas.marca_descripcion')
             ->get();
         return view('vehiculos.vehiculosview.indexvehiculo', compact('datosvehiculos'));
         /*dd($datosvehiculos);*/
@@ -49,8 +54,14 @@ class VehiculoController extends Controller
         $datostipo = Tipo::all();
         $datostipo_combustible = TipoCombustible::all();
         $datostipo_uso = TipoUso::all();
+        $datosestado = EstadoService::all();
         /*$datosvehiculo = Vehiculo::all();*/
-        return view('vehiculos.vehiculosview.createvehiculo', compact('datosclase', 'datosmarca', 'datostipo', 'datostipo_combustible', 'datostipo_uso'/*, 'datosvehiculo'*/));
+        return view('vehiculos.vehiculosview.createvehiculo', compact('datosclase',
+            'datosmarca',
+            'datostipo',
+            'datostipo_combustible',
+            'datostipo_uso',
+            'datosestado'/*, 'datosvehiculo'*/));
     }
 
     /**
@@ -77,7 +88,6 @@ class VehiculoController extends Controller
         $vehiculo->plazas = $request->plazas;
         $vehiculo->ruedas = $request->ruedas;
         $vehiculo->traccion = $request->traccion;
-        $vehiculo->estado_servicio = $request->estado_servicio;
         $vehiculo->color = $request->color;
         $vehiculo->clase_id = $request->clase_id;
         $vehiculo->marca_id = $request->marca_id;

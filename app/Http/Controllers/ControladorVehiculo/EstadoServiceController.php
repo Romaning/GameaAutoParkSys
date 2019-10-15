@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ControladorVehiculo;
 
+use App\Http\Controllers\Controller;
 use App\ModeloVehiculo\EstadoService;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class EstadoServiceController extends Controller
      */
     public function index()
     {
-        //
+        $datosestado=EstadoService::all();
+        return view('vehiculos.estadosview.indexestado', compact('datosestado'));
     }
 
     /**
@@ -24,7 +26,7 @@ class EstadoServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('vehiculos.estadosview.createstado');
     }
 
     /**
@@ -35,7 +37,10 @@ class EstadoServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estado = new EstadoService();
+        $estado->est_descripcion = $request->estadoDescripcionNameFront;
+        $estado->save();
+        return redirect()->route('estado.index');
     }
 
     /**
@@ -46,7 +51,7 @@ class EstadoServiceController extends Controller
      */
     public function show(EstadoService $estadoService)
     {
-        //
+
     }
 
     /**
@@ -55,9 +60,10 @@ class EstadoServiceController extends Controller
      * @param  \App\ModeloVehiculo\EstadoService  $estadoService
      * @return \Illuminate\Http\Response
      */
-    public function edit(EstadoService $estadoService)
+    public function edit($estadoService)
     {
-        //
+        $datosestado = EstadoService::find($estadoService);
+        return view('vehiculos.estadosview.editestado',compact('datosestado'));
     }
 
     /**
@@ -67,9 +73,12 @@ class EstadoServiceController extends Controller
      * @param  \App\ModeloVehiculo\EstadoService  $estadoService
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EstadoService $estadoService)
+    public function update(Request $request,$estadoService)
     {
-        //
+        $datosestado = EstadoService::find($estadoService);
+        $datosestado->est_descripcion = $request->estadoDescripcionNameFront;
+        $datosestado->update();
+        return redirect()->route('estado.index');
     }
 
     /**
@@ -78,8 +87,9 @@ class EstadoServiceController extends Controller
      * @param  \App\ModeloVehiculo\EstadoService  $estadoService
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EstadoService $estadoService)
+    public function destroy($estadoService)
     {
-        //
+        $datosestado = EstadoService::find($estadoService)->delete();
+        return redirect()->route('estado.index');
     }
 }
