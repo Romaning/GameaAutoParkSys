@@ -213,7 +213,7 @@ class VehiculoController extends Controller
         $datostipo = Tipo::all();
         $datostipo_combustible = TipoCombustible::all();
         $datostipo_uso = TipoUso::all();
-        return view('vehiculos.vehiculosview.editvehiculo2', compact('datosvehiculo',
+        return view('vehiculos.vehiculosview.editvehiculo', compact('datosvehiculo',
             'datosdocumentospropiedadvehicular',
             'datosimagenperfilvehicular',
             'datosdocumentosrenovable',

@@ -96,7 +96,7 @@
                             $('#mensaje').val(value.nombre);
                             var mockFile = { name: value.nombre, size: value.tamano};
                             myDropzone.emit("addedfile", mockFile);
-                            myDropzone.emit("thumbnail", mockFile, '/proyecto2/GameaAutoParkSys/public/'+value.carpetamasarchivo );
+                            myDropzone.emit("thumbnail", mockFile, '/GameaAutoParkSys/public/'+value.carpetamasarchivo );
                             myDropzone.emit("complete", mockFile);
                             $('#mensaje').val(value.path);
                         });

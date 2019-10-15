@@ -31,7 +31,7 @@
                     <th class="d-none d-sm-table-cell" style="width: 19%;">Creado</th>
                     <th class="d-none d-sm-table-cell" style="width: 19%;">Actualizado</th>
                     <th style="width:12%;" class="text-right">
-                        <a href="{{route('tipo.create')}}"
+                        <a href="{{route('estservvehi.create')}}"
                            class="{{--btn --}}dt-button buttons-copy buttons-html5 btn btn-sm btn-primary">
                             <i class="fa fa-plus"></i>Añadir
                         </a>
@@ -49,13 +49,14 @@
                             {{$filaestservvehi->fecha_inicio}}
                         </td>
                         <td class="d-none d-sm-table-cell font-size-sm">
-                            {{$filaestservvehi->motivo}}
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            {{$filaestservvehi->est_id}}
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
                             {{$filaestservvehi->placa_id}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaestservvehi->est_descripcion}}
+                        </td>
+
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaestservvehi->motivo}}
                         </td>
                         <td class="d-none d-sm-table-cell font-size-sm">
                             {{$filaestservvehi->created_at}}

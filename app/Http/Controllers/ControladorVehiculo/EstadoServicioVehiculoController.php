@@ -4,8 +4,11 @@ namespace App\Http\Controllers\ControladorVehiculo;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Controller;
+use App\ModeloVehiculo\EstadoService;
 use App\ModeloVehiculo\EstadoServicioVehiculo;
+use App\ModeloVehiculo\Vehiculo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EstadoServicioVehiculoController extends Controller
 {
@@ -16,7 +19,10 @@ class EstadoServicioVehiculoController extends Controller
      */
     public function index()
     {
-        $datosestservvehi=EstadoServicioVehiculo::all();
+        $datosestservvehi= DB::table('estado_servicio_vehiculos')
+            ->join('estado_services','estado_services.est_id','=','estado_servicio_vehiculos.est_id')
+            ->select('estado_servicio_vehiculos.*','estado_services.est_descripcion')
+            ->get();
         return view('vehiculos.estadoserviciovehiculosview.indexestadovehiculo', compact('datosestservvehi'));
     }
 
@@ -27,7 +33,11 @@ class EstadoServicioVehiculoController extends Controller
      */
     public function create()
     {
-        //
+        $placas = DB::table('vehiculos')
+            ->select('placa_id')
+            ->get();
+        $datosestado = EstadoService::all();
+        return view('vehiculos.estadoserviciovehiculosview.createestadovehiculo',compact('placas','datosestado'));
     }
 
     /**

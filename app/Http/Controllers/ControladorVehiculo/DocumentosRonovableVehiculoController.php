@@ -70,9 +70,9 @@ class DocumentosRonovableVehiculoController extends Controller
             $directorio = public_path().'/caperta_imagenes/';
         }
 
-        $lista_array_archivos[]=array('nombre'=>'2911PHCadelante.jpg', 'tamano'=>'2MB', 'carpetamasarchivo'=>'carpeta_imagenes/2911PHCadelante.jpg', 'path'=>$directorio);
-        $lista_array_archivos[]=array('nombre'=>'2911PHCatras.jpg', 'tamano'=>'2MB', 'carpetamasarchivo'=>'carpeta_imagenes/2911PHCatras.jpg','path'=>$directorio);
-        $lista_array_archivos[]=array('nombre'=>'2911PHCderecha.jpg', 'tamano'=>'2MB', 'carpetamasarchivo'=>'carpeta_imagenes/2911PHCderecha.jpg','path'=>$directorio);
+        $lista_array_archivos[]=array('nombre'=>'2720RKFatrasfhdplomo.jpg', 'tamano'=>'2MB', 'carpetamasarchivo'=>'carpeta_imagenes/2911PHCadelante.jpg', 'path'=>$directorio);
+        $lista_array_archivos[]=array('nombre'=>'2720RKFderechafhdplomonegro.jpg', 'tamano'=>'2MB', 'carpetamasarchivo'=>'carpeta_imagenes/2911PHCatras.jpg','path'=>$directorio);
+        $lista_array_archivos[]=array('nombre'=>'2911PHCderechafhdrojo.jpg', 'tamano'=>'2MB', 'carpetamasarchivo'=>'carpeta_imagenes/2911PHCderecha.jpg','path'=>$directorio);
         return response()->json($lista_array_archivos);
     }
     public function autocompletarDocsRenovOriginal(Request $request)
