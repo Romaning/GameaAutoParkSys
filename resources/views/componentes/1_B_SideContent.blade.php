@@ -92,7 +92,7 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar8.jpg" alt="">
+                                        <img class="img-avatar img-avatar48" src="{{asset('assets/media/avatars/avatar8.jpg')}}" alt="">
                                         <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
                                     </div>
                                     <div class="media-body">
@@ -104,7 +104,7 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar9.jpg" alt="">
+                                        <img class="img-avatar img-avatar48" src="{{asset('assets/media/avatars/avatar9.jpg')}}" alt="">
                                         <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
                                     </div>
                                     <div class="media-body">
@@ -116,7 +116,7 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar6.jpg" alt="">
+                                        <img class="img-avatar img-avatar48" src="{{asset('assets/media/avatars/avatar6.jpg')}}" alt="">
                                         <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
                                     </div>
                                     <div class="media-body">
@@ -128,7 +128,7 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar4.jpg" alt="">
+                                        <img class="img-avatar img-avatar48" src="{{asset('assets/media/avatars/avatar4.jpg')}}" alt="">
                                         <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
                                     </div>
                                     <div class="media-body">
@@ -140,7 +140,7 @@
                             <li>
                                 <a class="media py-2" href="javascript:void(0)">
                                     <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar13.jpg" alt="">
+                                        <img class="img-avatar img-avatar48" src="{{asset('assets/media/avatars/avatar13.jpg')}}" alt="">
                                         <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
                                     </div>
                                     <div class="media-body">

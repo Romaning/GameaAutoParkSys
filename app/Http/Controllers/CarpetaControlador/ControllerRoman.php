@@ -24,7 +24,7 @@ class ControllerRoman extends Controller
      */
     public function create()
     {
-        //
+        return view('paginas.be_pages_dashboard');
     }
 
     /**

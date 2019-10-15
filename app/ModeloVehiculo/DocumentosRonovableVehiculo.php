@@ -3,6 +3,7 @@
 namespace App\ModeloVehiculo;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DocumentosRonovableVehiculo extends Model
 {
@@ -14,4 +15,5 @@ class DocumentosRonovableVehiculo extends Model
         'inspeccion_vehicular',
         'placa_id',
     ];
+    use SoftDeletes;
 }

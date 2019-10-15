@@ -15,7 +15,8 @@ class TipoController extends Controller
      */
     public function index()
     {
-        //
+        $datostipo = Tipo::all();
+        return view('vehiculos.tiposview.indextipo', compact('datostipo'));
     }
 
     /**
@@ -25,7 +26,7 @@ class TipoController extends Controller
      */
     public function create()
     {
-        //
+        return view('vehiculos.tiposview.createtipo');
     }
 
     /**
@@ -36,7 +37,10 @@ class TipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datostipo = new Tipo();
+        $datostipo->tipo_descripcion = $request->tipoDescripcionNameFront;
+        $datostipo->save();
+        return redirect()->route('tipo.index')->with('Registro exitoso');
     }
 
     /**
@@ -45,9 +49,10 @@ class TipoController extends Controller
      * @param  \App\ModeloVehiculo\Tipo  $tipo
      * @return \Illuminate\Http\Response
      */
-    public function show(Tipo $tipo)
+    public function show($tipo)
     {
-        //
+        $datostipo = Tipo::find($tipo);
+        return view('vehiculos.tiposview.showtipo',compact('datostipo'));
     }
 
     /**
@@ -56,9 +61,10 @@ class TipoController extends Controller
      * @param  \App\ModeloVehiculo\Tipo  $tipo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tipo $tipo)
+    public function edit($tipo)
     {
-        //
+        $datostipo = Tipo::find($tipo);
+        return view('vehiculos.tiposview.edittipo',compact('datostipo'));
     }
 
     /**
@@ -68,9 +74,12 @@ class TipoController extends Controller
      * @param  \App\ModeloVehiculo\Tipo  $tipo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tipo $tipo)
+    public function update(Request $request, $tipo)
     {
-        //
+        $datostipo = Tipo::find($tipo);
+        $datostipo->tipo_descripcion = $request->tipoDescripcionNameFront;
+        $datostipo->save();
+        return redirect()->route('tipo.index')->with('Informacion actualizada');
     }
 
     /**
@@ -79,8 +88,10 @@ class TipoController extends Controller
      * @param  \App\ModeloVehiculo\Tipo  $tipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tipo $tipo)
+    public function destroy($tipo)
     {
-        //
+        $datostipo = Tipo::find($tipo);
+        $datostipo->delete();
+        return redirect()->route('tipo.index')->with('Elemento eliminado exitosamente');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\ModeloVehiculo;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TipoUso extends Model
 {
@@ -10,4 +11,5 @@ class TipoUso extends Model
     protected $fillable = [
         'tipos_uso_descripcion',
     ];
+    use SoftDeletes;
 }

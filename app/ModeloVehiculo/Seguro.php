@@ -3,16 +3,17 @@
 namespace App\ModeloVehiculo;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Seguro extends Model
 {
-    protected $primaryKey = '';
     protected $fillable = [
-        'seguro_id',
-        'fecha_vigencia',
+        'gestion',
+        'texto',
         'empresa_aseguradora',
+        'fecha_vigencia',
         'archivo_subido',
-        'observacion',
-        'archivero_id',
+        'placa_id',
     ];
+    use SoftDeletes;
 }

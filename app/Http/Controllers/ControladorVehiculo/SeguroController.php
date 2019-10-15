@@ -36,7 +36,25 @@ class SeguroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*dd($request->all());*/
+
+        $gestiones = $request->campoa;
+        $texto= $request->campob;
+        $empresa_aseguradora = $request->campoc;
+        $fecha_vigencia = $request->campod;
+        $archivo_subido = $request->campoe;
+        $placa_id = $request->placa_id;
+        for ($i=0; $i< count($gestiones); $i++){
+            $seguro = new Seguro();
+            $seguro->gestion = $gestiones[$i];
+            $seguro->texto = $texto[$i];
+            $seguro->empresa_aseguradora = $empresa_aseguradora[$i];
+            $seguro->fecha_vigencia = $fecha_vigencia[$i];
+            $seguro->archivo_subido = $archivo_subido[$i];
+            $seguro->placa_id = $placa_id;
+            $seguro->save();
+        }
+        return "VER".$i;
     }
 
     /**

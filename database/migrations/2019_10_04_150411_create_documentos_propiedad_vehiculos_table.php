@@ -19,7 +19,7 @@ class CreateDocumentosPropiedadVehiculosTable extends Migration
             $table->string('archivo_subido');
             $table->string('nombre_documento_propiedad');
             /*FOREIGN KEYS*/
-            $table->integer('placa_id');
+            $table->string('placa_id');
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

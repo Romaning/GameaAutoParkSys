@@ -17,8 +17,13 @@
         <a class="font-w600 text-dual" href="index.html">
             <i class="fa fa-circle-notch text-primary"></i>
             <span class="smini-hide">
-                            <span class="font-w700 font-size-h5">ne</span> <span class="font-w400">4.3</span>
-                        </span>
+                <span class="font-w700 font-size-h5">
+                    ne
+                </span>
+                <span class="font-w400">
+                    4.3
+                </span>
+            </span>
         </a>
         <!-- END Logo -->
 
@@ -36,23 +41,23 @@
                         <span>Default</span>
                         <i class="fa fa-circle text-default"></i>
                     </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/amethyst.min.css" href="#">
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/amethyst.min.css')}}" href="#">
                         <span>Amethyst</span>
                         <i class="fa fa-circle text-amethyst"></i>
                     </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/city.min.css" href="#">
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/city.min.css')}}" href="#">
                         <span>City</span>
                         <i class="fa fa-circle text-city"></i>
                     </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="#">
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/flat.min.css')}}" href="#">
                         <span>Flat</span>
                         <i class="fa fa-circle text-flat"></i>
                     </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/modern.min.css" href="#">
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/modern.min.css')}}" href="#">
                         <span>Modern</span>
                         <i class="fa fa-circle text-modern"></i>
                     </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="assets/css/themes/smooth.min.css" href="#">
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/smooth.min.css')}}" href="#">
                         <span>Smooth</span>
                         <i class="fa fa-circle text-smooth"></i>
                     </a>

@@ -3,6 +3,7 @@
 namespace App\ModeloVehiculo;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Marca extends Model
 {
@@ -10,4 +11,5 @@ class Marca extends Model
     protected $fillable=[
         'marca_descripcion',
     ];
+    use SoftDeletes;
 }

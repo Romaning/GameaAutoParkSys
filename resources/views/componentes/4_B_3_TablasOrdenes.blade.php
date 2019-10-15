@@ -31,7 +31,7 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar10.jpg" alt="">
+                            <img class="img-avatar img-avatar32" src="{{asset('assets/media/avatars/avatar10.jpg')}}" alt="">
                         </td>
                         <td class="font-w600">
                             Jesse Fisher                                </td>
@@ -49,7 +49,7 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar7.jpg" alt="">
+                            <img class="img-avatar img-avatar32" src="{{asset('assets/media/avatars/avatar7.jpg')}}" alt="">
                         </td>
                         <td class="font-w600">
                             Amber Harvey                                </td>
@@ -67,7 +67,7 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar10.jpg" alt="">
+                            <img class="img-avatar img-avatar32" src="{{asset('assets/media/avatars/avatar10.jpg')}}" alt="">
                         </td>
                         <td class="font-w600">
                             Henry Harrison                                </td>
@@ -85,7 +85,7 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar1.jpg" alt="">
+                            <img class="img-avatar img-avatar32" src="{{asset('assets/media/avatars/avatar1.jpg')}}" alt="">
                         </td>
                         <td class="font-w600">
                             Carol Ray                                </td>
@@ -103,7 +103,7 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar10.jpg" alt="">
+                            <img class="img-avatar img-avatar32" src="{{asset('assets/media/avatars/avatar10.jpg')}}" alt="">
                         </td>
                         <td class="font-w600">
                             Jose Wagner                                </td>
@@ -121,7 +121,7 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar1.jpg" alt="">
+                            <img class="img-avatar img-avatar32" src="{{asset('assets/media/avatars/avatar1.jpg')}}" alt="">
                         </td>
                         <td class="font-w600">
                             Lori Grant                                </td>
@@ -139,7 +139,7 @@
                             <span class="font-w600">#01368</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
-                            <img class="img-avatar img-avatar32" src="assets/media/avatars/avatar12.jpg" alt="">
+                            <img class="img-avatar img-avatar32" src="{{asset('assets/media/avatars/avatar12.jpg')}}" alt="">
                         </td>
                         <td class="font-w600">
                             Justin Hunt                                </td>

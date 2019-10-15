@@ -16,7 +16,7 @@ class CreateTipoUsosTable extends Migration
         Schema::create('tipo_usos', function (Blueprint $table) {
             /*ATRIBUTOS*/
             $table->bigIncrements('tipo_uso_id');
-            $table->string('tipos_uso_descripcion',100);
+            $table->string('tipo_uso_descripcion',100);
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

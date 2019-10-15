@@ -19,6 +19,10 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        /*'btnstoreimges',*/
+        /*'dropzone/eliminarimagedropzone',*/
+        'documentospropiedadvehiculo/storefile',
+        'documentospropiedadvehiculo/deletefile',
+        'documentosrenovablevehiculo/docsrenovautocomplet',
     ];
 }

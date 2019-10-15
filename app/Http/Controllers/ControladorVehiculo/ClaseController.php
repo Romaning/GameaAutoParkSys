@@ -15,7 +15,8 @@ class ClaseController extends Controller
      */
     public function index()
     {
-        return view('vehiculos.clasesview.indexclases');
+        $datosclase=Clase::all();
+        return view('vehiculos.clasesview.indexclases',compact('datosclase'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ClaseController extends Controller
      */
     public function create()
     {
-        //
+        return view('vehiculos.clasesview.createclase');
     }
 
     /**
@@ -36,7 +37,10 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $clasebackend= new Clase();
+        $clasebackend->clase_descripcion = $request->claseDescripcionNameFront;
+        $clasebackend->save();
+        return redirect()->route('clase.index')->with('Registro exitoso');
     }
 
     /**
@@ -45,9 +49,10 @@ class ClaseController extends Controller
      * @param  \App\ModeloVehiculo\Clase  $clase
      * @return \Illuminate\Http\Response
      */
-    public function show(Clase $clase)
+    public function show($clase)
     {
-        //
+        $datosallclase = Clase::find($clase);
+        return view('vehiculos.clasesview.showclase',compact('datosallclase'));
     }
 
     /**
@@ -56,9 +61,10 @@ class ClaseController extends Controller
      * @param  \App\ModeloVehiculo\Clase  $clase
      * @return \Illuminate\Http\Response
      */
-    public function edit(Clase $clase)
+    public function edit($clase)
     {
-        //
+        $datosclase = Clase::find($clase);
+        return view('vehiculos.clasesview.editclase',compact('datosclase'));
     }
 
     /**
@@ -68,9 +74,12 @@ class ClaseController extends Controller
      * @param  \App\ModeloVehiculo\Clase  $clase
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clase $clase)
+    public function update(Request $request,$clase)
     {
-        //
+        $datosclase = Clase::find($clase);
+        $datosclase->clase_descripcion = $request->claseDescripcionNameFront;
+        $datosclase->save();
+        return redirect()->route('clase.index')->with('Informacion actualizada');
     }
 
     /**
@@ -79,8 +88,10 @@ class ClaseController extends Controller
      * @param  \App\ModeloVehiculo\Clase  $clase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clase $clase)
+    public function destroy($clase)
     {
-        //
+        $datosclase = Clase::find($clase);
+        $datosclase->delete();
+        return redirect()->route('clase.index')->with('Elemento eliminado exitosamente');
     }
 }

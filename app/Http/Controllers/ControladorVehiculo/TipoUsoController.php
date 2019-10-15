@@ -15,7 +15,8 @@ class TipoUsoController extends Controller
      */
     public function index()
     {
-        //
+        $datostipo_uso = TipoUso::all();
+        return view('vehiculos.tipousosview.indextipouso', compact('datostipo_uso'));
     }
 
     /**
@@ -25,7 +26,7 @@ class TipoUsoController extends Controller
      */
     public function create()
     {
-        //
+        return view('vehiculos.tipousosview.createtipouso');
     }
 
     /**
@@ -36,51 +37,61 @@ class TipoUsoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datostipo_uso = new TipoUso();
+        $datostipo_uso->tipo_uso_descripcion = $request->tipo_usoDescripcionNameFront;
+        $datostipo_uso->save();
+        return redirect()->route('tipo_uso.index')->with('Registro exitoso');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ModeloVehiculo\TipoUso  $tipoUso
+     * @param  \App\ModeloVehiculo\TipoUso  $tipo_uso
      * @return \Illuminate\Http\Response
      */
-    public function show(TipoUso $tipoUso)
+    public function show($tipo_uso)
     {
-        //
+        $datostipo_uso = TipoUso::find($tipo_uso);
+        return view('vehiculos.tipousosview.showtipouso',compact('datostipo_uso'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ModeloVehiculo\TipoUso  $tipoUso
+     * @param  \App\ModeloVehiculo\TipoUso  $tipo_uso
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoUso $tipoUso)
+    public function edit($tipo_uso)
     {
-        //
+        $datostipo_uso = TipoUso::find($tipo_uso);
+        return view('vehiculos.tipousosview.edittipouso',compact('datostipo_uso'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ModeloVehiculo\TipoUso  $tipoUso
+     * @param  \App\ModeloVehiculo\TipoUso  $tipo_uso
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoUso $tipoUso)
+    public function update(Request $request, $tipo_uso)
     {
-        //
+        $datostipo_uso = TipoUso::find($tipo_uso);
+        $datostipo_uso->tipo_uso_descripcion = $request->tipo_usoDescripcionNameFront;
+        $datostipo_uso->save();
+        return redirect()->route('tipo_uso.index')->with('Informacion actualizada');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ModeloVehiculo\TipoUso  $tipoUso
+     * @param  \App\ModeloVehiculo\TipoUso  $tipo_uso
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoUso $tipoUso)
+    public function destroy($tipo_uso)
     {
-        //
+        $datostipo_uso = TipoUso::find($tipo_uso);
+        $datostipo_uso->delete();
+        return redirect()->route('tipo_uso.index')->with('Elemento eliminado exitosamente');
     }
 }

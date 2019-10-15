@@ -15,7 +15,7 @@ class CreateMarcasTable extends Migration
     {
         Schema::create('marcas', function (Blueprint $table) {
             /*ATRIBUTOS*/
-            $table->bigIncrements('mara_id');
+            $table->bigIncrements('marca_id');
             $table->string('marca_descripcion',100);
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();

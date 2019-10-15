@@ -15,13 +15,14 @@ class CreateSegurosTable extends Migration
     {
         Schema::create('seguros', function (Blueprint $table) {
             /*ATRIBUTOS*/
-            $table->bigIncrements('seguro_id');
-            $table->date('fecha_vigencia');
+            $table->bigIncrements('id');
+            $table->integer('gestion');
+            $table->string('texto',191);
             $table->string('empresa_aseguradora', 191);
+            $table->date('fecha_vigencia');
             $table->string('archivo_subido',191);
-            $table->text('observacion');
             /*FOREIGN KEYS*/
-            $table->integer('archivero_id');
+            $table->string('placa_id');
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

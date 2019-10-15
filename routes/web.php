@@ -1,4 +1,23 @@
 <?php
+/* PRUEBA SUBIR ARCHIVOS DE IMAGENES*/
+Route::get('/indexfile','CarpetaControlador\BtnGeneraImgsController@index')->name('indexfile.index');
+/*BTN STORE IMG 1*/
+Route::post('/storeimg1','CarpetaControlador\BtnGeneraImgsController@storeimg1')->name('storeimg1.store');
+/*btngeneraimgs BtnGeneraImgsController->storeImagesUECam*/
+Route::post('/btnstoreimges','CarpetaControlador\BtnGeneraImgsController@storeImagesUECam')->name('btnstoreimges.store');
+
+/*#################################################### DROPZONE #######################################################*/
+Route::prefix('/dropzone')->group(function(){
+    Route::get('/','ImageUploadController@index')->name('dropzone.index');
+    /*Route::get('/create','ImageUploadController@create')->name('dropzone.create');*/
+    /*Route::post('/','ImageUploadController@store')->name('dropzone.store');*/
+    Route::post('/','ImageUploadController@storeFile')->name('dropzone.file.store');
+    /*Route::get('/{asdsad}','ImageUploadControllerr@asdsad')->name('asdsad.show');
+    Route::get('/{asdsad}/edit','ImageUploadController@asdsad')->name('asdsad.edit');
+    Route::put('/{asdsad}','ImageUploadController@asdsad')->name('asdsad.update');
+    Route::delete('/{archivo_id}','ImageUploadController@destroy')->name('dropzone.destroy');*/
+    Route::post('/eliminarimagedropzone','ImageUploadController@fileDestroy')->name('dropzone.file.destroy');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,24 +59,24 @@ Route::prefix('/tipo')->group(function(){
 
 /*Route::resource('tipocombustible','ControladorVehiculo\TipoCombustibleController');*/
 Route::prefix('/tipocombustible')->group(function(){
-    Route::get('/','ControladorVehiculo\TipoCombustibleController@index')->name('tipocombustible.index');
-    Route::get('/create','ControladorVehiculo\TipoCombustibleController@create')->name('tipocombustible.create');
-    Route::post('/','ControladorVehiculo\TipoCombustibleController@store')->name('tipocombustible.store');
-    Route::get('/{tipocombustible_id}','ControladorVehiculo\TipoCombustibleController@show')->name('tipocombustible.show');
-    Route::get('/{tipocombustible_id}/edit','ControladorVehiculo\TipoCombustibleController@edit')->name('tipocombustible.edit');
-    Route::put('/{tipocombustible_id}','ControladorVehiculo\TipoCombustibleController@update')->name('tipocombustible.update');
-    Route::delete('/{tipocombustible_id}','ControladorVehiculo\TipoCombustibleController@destroy')->name('tipocombustible.destroy');
+    Route::get('/','ControladorVehiculo\TipoCombustibleController@index')->name('tipo_combustible.index');
+    Route::get('/create','ControladorVehiculo\TipoCombustibleController@create')->name('tipo_combustible.create');
+    Route::post('/','ControladorVehiculo\TipoCombustibleController@store')->name('tipo_combustible.store');
+    Route::get('/{tipo_combustible_id}','ControladorVehiculo\TipoCombustibleController@show')->name('tipo_combustible.show');
+    Route::get('/{tipo_combustible_id}/edit','ControladorVehiculo\TipoCombustibleController@edit')->name('tipo_combustible.edit');
+    Route::put('/{tipo_combustible_id}','ControladorVehiculo\TipoCombustibleController@update')->name('tipo_combustible.update');
+    Route::delete('/{tipo_combustible_id}','ControladorVehiculo\TipoCombustibleController@destroy')->name('tipo_combustible.destroy');
 });
 
 /*Route::resource('tipouso','ControladorVehiculo\TipoUsoController');*/
 Route::prefix('/tipouso')->group(function(){
-    Route::get('/','ControladorVehiculo\TipoUsoController@index')->name('tipouso.index');
-    Route::get('/create','ControladorVehiculo\TipoUsoController@create')->name('tipouso.create');
-    Route::post('/','ControladorVehiculo\TipoUsoController@store')->name('tipouso.store');
-    Route::get('/{tipouso_id}','ControladorVehiculo\TipoUsoController@show')->name('tipouso.show');
-    Route::get('/{tipouso_id}/edit','ControladorVehiculo\TipoUsoController@edit')->name('tipouso.edit');
-    Route::put('/{tipouso_id}','ControladorVehiculo\TipoUsoController@update')->name('tipouso.update');
-    Route::delete('/{tipouso_id}','ControladorVehiculo\TipoUsoController@destroy')->name('tipouso.destroy');
+    Route::get('/','ControladorVehiculo\TipoUsoController@index')->name('tipo_uso.index');
+    Route::get('/create','ControladorVehiculo\TipoUsoController@create')->name('tipo_uso.create');
+    Route::post('/','ControladorVehiculo\TipoUsoController@store')->name('tipo_uso.store');
+    Route::get('/{tipo_uso_id}','ControladorVehiculo\TipoUsoController@show')->name('tipo_uso.show');
+    Route::get('/{tipo_uso_id}/edit','ControladorVehiculo\TipoUsoController@edit')->name('tipo_uso.edit');
+    Route::put('/{tipo_uso_id}','ControladorVehiculo\TipoUsoController@update')->name('tipo_uso.update');
+    Route::delete('/{tipo_uso_id}','ControladorVehiculo\TipoUsoController@destroy')->name('tipo_uso.destroy');
 });
 
 /*Route::resource('vehiculo','ControladorVehiculo\VehiculoController');*/
@@ -69,7 +88,10 @@ Route::prefix('/vehiculo')->group(function(){
     Route::get('/{vehiculo_id}/edit','ControladorVehiculo\VehiculoController@edit')->name('vehiculo.edit');
     Route::put('/{vehiculo_id}','ControladorVehiculo\VehiculoController@update')->name('vehiculo.update');
     Route::delete('/{vehiculo_id}','ControladorVehiculo\VehiculoController@destroy')->name('vehiculo.destroy');
+
 });
+
+
 
 /*Route::resource('documentospropiedadvehiculo','ControladorVehiculo\DocumentosPropiedadVehiculoController');*/
 Route::prefix('/documentospropiedadvehiculo')->group(function(){
@@ -80,17 +102,23 @@ Route::prefix('/documentospropiedadvehiculo')->group(function(){
     Route::get('/{documentospropiedadvehiculo_id}/edit','ControladorVehiculo\DocumentosPropiedadVehiculoController@edit')->name('documentospropiedadvehiculo.edit');
     Route::put('/{documentospropiedadvehiculo_id}','ControladorVehiculo\DocumentosPropiedadVehiculoController@update')->name('documentospropiedadvehiculo.update');
     Route::delete('/{documentospropiedadvehiculo_id}','ControladorVehiculo\DocumentosPropiedadVehiculoController@destroy')->name('documentospropiedadvehiculo.destroy');
+    /*solo esta linea se usa para guardar files*/
+    Route::post('/storefile','ControladorVehiculo\DocumentosPropiedadVehiculoController@storeFileMethodStyde')->name('docsprop.storefile');
+    /*Route::post('/storefile','ControladorVehiculo\DocumentosPropiedadVehiculoController@storeFile')->name('docsprop.storefile');*/
+    Route::post('/deletefile','ControladorVehiculo\DocumentosPropiedadVehiculoController@fileDestroy')->name('docsprop.deletefile');
 });
 
 /*Route::resource('documentosrenovablevehiculo','ControladorVehiculo\DocumentosRenovableVehiculoController');*/
 Route::prefix('/documentosrenovablevehiculo')->group(function(){
     Route::get('/','ControladorVehiculo\DocumentosRenovableVehiculoController@index')->name('documentosrenovablevehiculo.index');
     Route::get('/create','ControladorVehiculo\DocumentosRenovableVehiculoController@create')->name('documentosrenovablevehiculo.create');
-    Route::post('/','ControladorVehiculo\DocumentosRenovableVehiculoController@store')->name('documentosrenovablevehiculo.store');
+    Route::post('/','ControladorVehiculo\DocumentosRonovableVehiculoController@store')->name('documentosrenovablevehiculo.store');
     Route::get('/{documentosrenovablevehiculo_id}','ControladorVehiculo\DocumentosRenovableVehiculoController@show')->name('documentosrenovablevehiculo.show');
     Route::get('/{documentosrenovablevehiculo_id}/edit','ControladorVehiculo\DocumentosRenovableVehiculoController@edit')->name('documentosrenovablevehiculo.edit');
     Route::put('/{documentosrenovablevehiculo_id}','ControladorVehiculo\DocumentosRenovableVehiculoController@update')->name('documentosrenovablevehiculo.update');
     Route::delete('/{documentosrenovablevehiculo_id}','ControladorVehiculo\DocumentosRenovableVehiculoController@destroy')->name('documentosrenovablevehiculo.destroy');
+
+    Route::post('/docsrenovautocomplet','ControladorVehiculo\DocumentosRonovableVehiculoController@autocompletarDocsRenov')->name('docsrenov.autocomplet');
 });
 
 /*Route::resource('seguro','ControladorVehiculo\SeguroController');*/
@@ -104,4 +132,7 @@ Route::prefix('/seguro')->group(function(){
     Route::delete('/{seguro_id}','ControladorVehiculo\SeguroController@destroy')->name('seguro.destroy');
 });
 
+Route::prefix('/imagenesperfilvehiculo')->group(function(){
+    Route::post('/storefile','ControladorVehiculo\ImagenesPerfilVehiculoController@storeFileMethodStyde')->name('imgsperfil.storefile');
+});
 /*#################################################### VEHICULOS #######################################################*/

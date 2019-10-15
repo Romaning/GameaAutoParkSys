@@ -19,18 +19,19 @@ class CreateVehiculosTable extends Migration
             $table->string('numero_crpva',100);
             $table->string('numero_chasis',100);
             $table->string('numero_motor',100);
-            $table->string('documento_iportacion',100);
-            $table->integer('numero_documento_iportacion');
+            $table->string('documento_importacion',100);
+            $table->bigInteger('numero_documento_importacion');
             $table->integer('plazas');
             $table->integer('ruedas');
             $table->string('traccion',100);
-            $table->enum('estado_servicio',['activo','inactivo','baja']);
+            $table->string('color');
             /*FOREIGN KEYS*/
             $table->integer('clase_id');
             $table->integer('marca_id');
             $table->integer('tipo_id');
             $table->integer('tipo_combustible_id');
-            $table->integer('tipo_uso');
+            $table->integer('tipo_uso_id');
+            $table->integer('estado_servicio_vehiculo_id');
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

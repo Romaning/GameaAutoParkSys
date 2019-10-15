@@ -52,42 +52,42 @@
             <!-- User Dropdown -->
             <div class="dropdown d-inline-block ml-2">
                 <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded" src="assets/media/avatars/avatar10.jpg" alt="Header Avatar" style="width: 18px;">
-                    <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                    <img class="rounded" src="{{asset('assets/media/avatars/avatar10.jpg')}}" alt="Header Avatar" style="width: 18px;">
+                    <span class="d-none d-sm-inline-block ml-1">Roman Franco</span>
                     <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
                     <div class="p-3 text-center bg-primary">
-                        <img class="img-avatar img-avatar48 img-avatar-thumb" src="assets/media/avatars/avatar10.jpg" alt="">
+                        <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{asset('assets/media/avatars/avatar10.jpg')}}" alt="">
                     </div>
                     <div class="p-2">
-                        <h5 class="dropdown-header text-uppercase">User Options</h5>
+                        <h5 class="dropdown-header text-uppercase">Opciones Usuario</h5>
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
-                            <span>Inbox</span>
+                            <span>Mensajes</span>
                             <span>
                                             <span class="badge badge-pill badge-primary">3</span>
                                             <i class="si si-envelope-open ml-1"></i>
                                         </span>
                         </a>
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
-                            <span>Profile</span>
+                            <span>Perfil</span>
                             <span>
                                             <span class="badge badge-pill badge-success">1</span>
                                             <i class="si si-user ml-1"></i>
                                         </span>
                         </a>
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            <span>Settings</span>
+                            <span>Configuraciones</span>
                             <i class="si si-settings"></i>
                         </a>
                         <div role="separator" class="dropdown-divider"></div>
-                        <h5 class="dropdown-header text-uppercase">Actions</h5>
+                        <h5 class="dropdown-header text-uppercase">Acciones</h5>
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.html">
-                            <span>Lock Account</span>
+                            <span>Bloquear Cuenta</span>
                             <i class="si si-lock ml-1"></i>
                         </a>
                         <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_signin.html">
-                            <span>Log Out</span>
+                            <span>Salir</span>
                             <i class="si si-logout ml-1"></i>
                         </a>
                     </div>
@@ -103,7 +103,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-notifications-dropdown">
                     <div class="p-2 bg-primary text-center">
-                        <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
+                        <h5 class="dropdown-header text-uppercase text-white">Notificaciones</h5>
                     </div>
                     <ul class="nav-items mb-0">
                         <li>

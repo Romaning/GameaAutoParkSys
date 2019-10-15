@@ -15,7 +15,8 @@ class MarcaController extends Controller
      */
     public function index()
     {
-        //
+        $datosmarca = Marca::all();
+        return view('vehiculos.marcasview.indexmarca', compact('datosmarca'));
     }
 
     /**
@@ -25,7 +26,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('vehiculos.marcasview.createmarca');
     }
 
     /**
@@ -36,7 +37,10 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosmarca = new Marca();
+        $datosmarca->marca_descripcion = $request->marcaDescripcionNameFront;
+        $datosmarca->save();
+        return redirect()->route('marca.index')->with('Registro exitoso');
     }
 
     /**
@@ -45,9 +49,10 @@ class MarcaController extends Controller
      * @param  \App\ModeloVehiculo\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function show(Marca $marca)
+    public function show($marca)
     {
-        //
+        $datosmarca = Marca::find($marca);
+        return view('vehiculos.marcasview.showmarca',compact('datosmarca'));
     }
 
     /**
@@ -56,9 +61,10 @@ class MarcaController extends Controller
      * @param  \App\ModeloVehiculo\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function edit(Marca $marca)
+    public function edit($marca)
     {
-        //
+        $datosmarca = Marca::find($marca);
+        return view('vehiculos.marcasview.editmarca',compact('datosmarca'));
     }
 
     /**
@@ -68,9 +74,12 @@ class MarcaController extends Controller
      * @param  \App\ModeloVehiculo\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, $marca)
     {
-        //
+        $datosmarca = Marca::find($marca);
+        $datosmarca->marca_descripcion = $request->marcaDescripcionNameFront;
+        $datosmarca->save();
+        return redirect()->route('marca.index')->with('Informacion actualizada');
     }
 
     /**
@@ -79,8 +88,10 @@ class MarcaController extends Controller
      * @param  \App\ModeloVehiculo\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Marca $marca)
+    public function destroy($marca)
     {
-        //
+        $datosmarca = Marca::find($marca);
+        $datosmarca->delete();
+        return redirect()->route('marca.index')->with('Elemento eliminado exitosamente');
     }
 }
