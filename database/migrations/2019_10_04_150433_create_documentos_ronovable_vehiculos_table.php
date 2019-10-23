@@ -20,7 +20,7 @@ class CreateDocumentosRonovableVehiculosTable extends Migration
             $table->enum('bsisa',[0,1]);
             $table->enum('inspeccion_vehicular',[0,1]);
             /*FOREIGN KEYS*/
-            $table->string('placa_id');
+            $table->string('placa_id',100);
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

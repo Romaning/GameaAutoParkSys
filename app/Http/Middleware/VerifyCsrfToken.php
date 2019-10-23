@@ -24,5 +24,9 @@ class VerifyCsrfToken extends Middleware
         'documentospropiedadvehiculo/storefile',
         'documentospropiedadvehiculo/deletefile',
         'documentosrenovablevehiculo/docsrenovautocomplet',
+        'documentospropiedadvehiculo/docspropautocomplet',
+        'documentospropiedadvehiculo/docspropstorefile',
+        'documentospropiedadvehiculo/docspropdeletefile',
+        'vehiculo'
     ];
 }

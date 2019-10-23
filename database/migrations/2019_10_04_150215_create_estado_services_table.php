@@ -15,7 +15,7 @@ class CreateEstadoServicesTable extends Migration
     {
         Schema::create('estado_services', function (Blueprint $table) {
             $table->bigIncrements('est_id');
-            $table->string('est_descripcion');
+            $table->string('est_descripcion',100);
             $table->timestamps();
             $table->softDeletes();
         });

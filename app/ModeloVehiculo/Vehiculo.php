@@ -24,6 +24,7 @@ class Vehiculo extends Model
         'tipo_id',
         'tipo_combustible_id',
         'tipo_uso_id',
+        'fecha_incorporacion_institucion',
     ];
     use SoftDeletes;
 }

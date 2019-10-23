@@ -1,5 +1,5 @@
 <!-- Header -->
-<header id="page-header">
+<header id="page-header" class="bg-black-95">
     <!-- Header Content -->
     <div class="content-header">
         <!-- Left Section -->

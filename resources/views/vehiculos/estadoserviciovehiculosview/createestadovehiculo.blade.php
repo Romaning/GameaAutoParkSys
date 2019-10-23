@@ -1,4 +1,3 @@
-
 @extends('layouts.layoutmaster')
 @section('title')
     Registrar Vehiculo
@@ -27,49 +26,63 @@
 
     <div class="block shadow p-2 mb-1 rounded " data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
-            <h3 class="block-title">SUBIR ESTADO DE SERVICIO DEL VEHICULO</h3>
+            <h3 class="block-title">CREAR HISTORIAL ESTADO DE SERVICIO DEL VEHICULO</h3>
         </div>
         <div class="block-content">
 
             <form action="{{route('estservvehi.store')}}" method="POST" id="form_subir_estado_servicio_vehicular">
                 @csrf
+                @method('post')
                 <div class="row">
-
-                    <div class="col-lg-6">
+                    <div class="col col-md-2">
                         <div class="form-group">
-                            <label for="fecha_inicio">DESDE LA FECHA</label>
+                            <label for="placa_id">PLACA:<span class="text-danger">*</span></label>
+                            <select class="js-select2 form-control" id="placa_id" name="placa_id"
+                                    style="width: 100%;" data-placeholder="Escoger...">
+                                <option></option>
+                                <!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                @foreach($placas as $filaplaca)
+                                    <option
+                                        value="{{$filaplaca->placa_id}}">{{$filaplaca->placa_id}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col col-md-3 text-sm-center">
+                        <div class="form-group">
+                            <label for="fecha_inicio">DESDE LA FECHA:</label>
                             <input type="text" class="js-flatpickr form-control bg-white"
                                    id="fecha_inicio"
                                    name="fecha_inicio" placeholder="Año-mes-dia"
                                    data-date-format="Y-m-d">
                         </div>
                     </div>
-
-                    <input type="text" name="placa_id" value="" id="placa_id_subida_estado_servicio_vehicular">
-
-                    {{--OPCION CODIGO 2--}}
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col">
-                                {{--{{$datosestado->est_id[1]}}--}}
-                                {{--<label class="custom-control-label" for="example-sw-custom-lg2">{{$datosestado[2]}}</label>
-                                <input type="checkbox" class="custom-control-input" id="example-sw-custom-lg2"
-                                       name="est_id"
-                                       value="{{$datosestado[1]}}" checked>
-                                <label class="custom-control-label" for="example-sw-custom-lg2">{{$datosestado[1]}}</label>--}}
+                    <div class="col col-md-2">
+                        <div class="form-group">
+                            <label>SERVICIO:</label>
+                            <div class="custom-control custom-switch custom-control-lg mb-2">
+                                <label>OFF</label>
+                                <input type="checkbox" class="custom-control-input" id="est_id" name="est_id"  value="
+                                @if($datosestado[0]->est_descripcion == "EN SERVICIO")
+                                    {{$datosestado[0]->est_id}}
+                                @else
+                                    @if($datosestado[1]->est_descripcion == "EN SERVICIO")
+                                        {{$datosestado[1]->est_id}}
+                                    @endif
+                                @endif
+                                ">
+                                <label class="custom-control-label" for="est_id">ON</label>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-2">
+                    <div class="col col-md-5">
                         <div class="form-group">
-                            <label for="motivo">MOTIVO</label>
-                            <input type="text" class="form-control" id="motivo" name="motivo" value="Inicio de actividades">
+                            <label for="motivo">MOTIVO:</label>
+                            <input type="text" name="motivo" class="form-control">
                         </div>
                     </div>
-
                 </div>
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">

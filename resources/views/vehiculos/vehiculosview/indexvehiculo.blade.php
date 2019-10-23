@@ -1,11 +1,12 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    MARCAS
+    VEHICULOS
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS DATATABLES-->
     <link rel="stylesheet" href="assets/js/plugins/datatables/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css">
+    {{--estilo de la pagina--}}
 @endsection
 @section('hero_cuadro_bienvenida')
     <!-- Hero -->
@@ -13,9 +14,9 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-sm-fill h3 my-2">
-                    TABLA DE MARCAS
+                    VEHICULOS
                     <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
-                        Informacion para brindar a Vehiculos
+                        Informacion rapida para Vehiculos
                     </small>
                 </h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
@@ -39,10 +40,10 @@
         {{--<div class="block-header">
             <h3 class="block-title">Tabla Dinamica<small>  Boton exportar</small></h3>
         </div>--}}
-        <div class="block-content block-content-full block invisible" data-toggle="appear" data-class="animated flipInX{{--bounceIn--}}">
-
+        <div class="block-content block-content-full block invisible" data-toggle="appear"
+             data-class="animated flipInX{{--bounceIn--}}">
             <div {{--class="block invisible" data-toggle="appear" data-class="animated flipInX"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
-                <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+            <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                     <thead>
                     <tr>
@@ -52,9 +53,9 @@
                         <th class="d-none d-sm-table-cell">N° MOTOR</th>
                         <th class="d-none d-sm-table-cell">Marca</th>
                         <th class="d-none d-sm-table-cell">Estado Serv</th>
-                        <th style="width:12%;" class="text-center">
+                        <th style="width:12%;" class="text-sm-center">
                             <a href="{{route('vehiculo.create')}}"
-                               class="{{--btn --}}dt-button buttons-copy buttons-html5 btn btn-sm btn-primary">
+                               class="{{--btn dt-button buttons-copy buttons-html5 --}}{{--btn --}}btn-sm btn-primary">
                                 <i class="fa fa-plus"></i>Añadir
                             </a>
                         </th>
@@ -80,11 +81,28 @@
                                 {{$filavehiculos->marca_descripcion}}
                             </td>
                             <td class="d-none d-sm-table-cell font-size-sm">
-                               {{-- {{$filavehiculos->estado_servicio}}--}}
+                                {{-- {{$filavehiculos->estado_servicio}}--}}
                             </td>
 
-                            <td class="d-none d-sm-table-cell text-right">
-                                <div class="row text-center">
+                            <td class="justify-content-center">
+                                {{--<div class="row justify-content-center">
+                                    <div class="col-xs-1 --}}{{--col-sm-4 col-md-3 col-lg-3--}}{{-- align-center">
+                                        <div class="--}}{{--btn-group--}}{{-- btn-group-xs">
+                                            <a href="#" class="btn bg-primary"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1 --}}{{--col-sm-4 col-md-3 col-lg-3--}}{{-- align-center">
+                                        <div class="--}}{{--btn-group--}}{{-- btn-group-xs">
+                                            <a href="#" class="btn bg-primary"><i class="fa fa-pen"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1 --}}{{--col-sm-4 col-md-3 col-lg-3--}}{{-- align-center">
+                                        <div class="--}}{{--btn-group--}}{{-- btn-group-xs">
+                                            <a href="#" class="btn bg-primary"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </div>--}}
+                                <div class="row text-sm-center">
                                     <div class="col col-xl-3">
                                         <a href="{{route('vehiculo.show',$filavehiculos->placa_id)}}"
                                            class="btn btn-success btn-sm" data-toggle="tooltip"
@@ -103,7 +121,7 @@
                                         <form action="{{route('vehiculo.destroy',$filavehiculos->placa_id)}}"
                                               method="post">
                                             @csrf
-                                            @method('delete')
+                                            @method('DELETE')
                                             <button class="btn btn-danger btn-sm" data-toggle="tooltip"
                                                     title="ELIMINAR">
                                                 <i class="fas fa-trash"></i>
@@ -163,6 +181,7 @@
 
     <!-- END Dynamic Table with Export Buttons -->
 @endsection
+
 @section('js_script_import')
     {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
     <!-- Page JS Plugins -->
@@ -176,6 +195,5 @@
 
     <!-- Page JS Code -->
     <script src="assets/js/pages/be_tables_datatables.min.js"></script>
-    {{-- ################ END SCRIPTS PARA DATATABLESS ###############--}}
 @endsection
 

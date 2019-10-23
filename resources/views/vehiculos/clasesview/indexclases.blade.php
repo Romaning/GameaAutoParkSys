@@ -9,6 +9,7 @@
 @endsection
 @section('hero_cuadro_bienvenida')
     <!-- Hero -->
+
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
@@ -35,22 +36,27 @@
 @section('content')
     <!-- Dynamic Table with Export Buttons -->
     <div class="block">
+
         {{--<div class="block-header">
             <h3 class="block-title">Tabla Dinamica<small>  Boton exportar</small></h3>
         </div>--}}
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
+        <div class="block-content block-content-full block invisible" data-toggle="appear"
+             data-class="animated flipInX{{--bounceIn--}}">
+        {{--<button class="dt-button buttons-print" tabindex="0" aria-controls="example" type="button"><span>Print</span></button>--}}
+
+        <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                 <thead>
                 <tr>
-                    <th class="text-center" style="width: 1%;">ID</th>
+                    <th class="d-none d-sm-table-cell" style="width: 1%;">ID</th>
                     {{--<th>Nombre Clase</th>--}}
-                    <th>Nombre Clase</th>
+                    <th class="d-none d-sm-table-cell">Nombre Clase</th>
                     <th class="d-none d-sm-table-cell" style="width: 19%;">Creado</th>
                     <th class="d-none d-sm-table-cell" style="width: 19%;">Actualizado</th>
-                    <th style="width:13%;" class="text-right">
-                        <a href="{{route('clase.create')}}" class="{{--btn --}}dt-button buttons-copy buttons-html5 btn btn-sm btn-primary">
-                            <i class="fa fa-plus"></i>Añadir
+                    <th style="width:13%;" class="text-sm-center font-size-sm">
+                        <a href="{{route('clase.create')}}"
+                           class="{{--btn --}}{{--dt-button buttons-copy buttons-html5 btn --}} badge badge-primary d-none d-sm-table-cell font-size-sm">
+                            <i class="fa fa-plus-circle"></i> Agregar
                         </a>
                     </th>
                     {{-- <th style="width: 15%;">Botones</th>--}}
@@ -71,30 +77,59 @@
                         <td class="d-none d-sm-table-cell font-size-sm">
                             {{$filaclase->updated_at}}
                         </td>
-                        <td class="d-none d-sm-table-cell text-right">
-                            <div class="row text-right">
-                                <div class="col col-xl-3 text-right">
-                                    <a href="{{route('clase.show',$filaclase->clase_id)}}" class="btn btn-success btn-sm" data-toggle="tooltip"
-                                                    title="VER INFORMACION COMPLETA">
-                                        <i class="fas fa-eye"></i>
-                                    </a></div>
-                                <div class="col col-xl-3 text-right">
-                                    <a href="{{route('clase.edit',$filaclase->clase_id)}}" class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                       title="EDITAR">
-                                        <i class="fas fa-pen"></i>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <a href="{{route('clase.show',$filaclase->clase_id)}}" class="badge badge-success"
+                                       data-toggle="tooltip"
+                                       title="VER INFORMACION COMPLETA">
+                                        <i class="fa fa-eye"></i>
                                     </a>
                                 </div>
-                                <div class="col col-xl-3 text-right">
+                                <div class="col-sm-1">
+                                    <a href="{{route('clase.edit',$filaclase->clase_id)}}" class="badge badge-warning"
+                                       data-toggle="tooltip"
+                                       title="EDITAR">
+                                        <i class="fa fa-pen"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
                                     <form action="{{route('clase.destroy',$filaclase->clase_id)}}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button class="btn btn-danger btn-sm" data-toggle="tooltip"
+                                        <button href="" type="submit" class="badge badge-danger" data-toggle="tooltip"
                                                 title="ELIMINAR">
-                                            <i class="fas fa-trash"></i>
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
                                 </div>
                             </div>
+                            {{--<td class="d-none d-sm-table-cell font-size-sm text-sm-center">
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <a href="{{route('clase.show',$filaclase->clase_id)}}" class="badge badge-success"
+                                           data-toggle="tooltip"
+                                           title="VER INFORMACION COMPLETA">
+                                            <i class="fas fa-eye"></i>
+                                        </a></div>
+                                    <div class="col-sm-1">
+                                        <a href="{{route('clase.edit',$filaclase->clase_id)}}" class="badge badge-warning"
+                                           data-toggle="tooltip"
+                                           title="EDITAR">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <form action="{{route('clase.destroy',$filaclase->clase_id)}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <a href="" type="submit" class="badge badge-danger" data-toggle="tooltip"
+                                               title="ELIMINAR">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </form>
+                                    </div>
+                                </div>--}}
                         </td>
                     </tr>
                 @endforeach
@@ -109,7 +144,7 @@
     <!-- Page JS Plugins -->
     <script src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
+    <script src="assets/js/plugins/datatables/buttons/dataTables.buttons.js"></script>
     <script src="assets/js/plugins/datatables/buttons/buttons.print.min.js"></script>
     <script src="assets/js/plugins/datatables/buttons/buttons.html5.min.js"></script>
     <script src="assets/js/plugins/datatables/buttons/buttons.flash.min.js"></script>
@@ -117,6 +152,7 @@
 
     <!-- Page JS Code -->
     <script src="assets/js/pages/be_tables_datatables.min.js"></script>
-    {{-- ################ END SCRIPTS PARA DATATABLESS ###############--}}
+
 @endsection
+
 

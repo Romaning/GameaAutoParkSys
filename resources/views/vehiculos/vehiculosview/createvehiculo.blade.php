@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
     <!-- Stylesheets -->
     <!-- Page CSS DIRECTO PARA SHOW VEHICULO -->
-    <link rel="stylesheet" href="{{asset('cssromsys/material_green.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/themes/material_green.css')}}">
 
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
@@ -55,6 +55,7 @@
             <form action="{{route('vehiculo.store')}}" method="POST"
                   enctype="multipart/form-data" {{--onsubmit="return false;"--}} id="form_subir_datos_vehiculo">
                 @csrf
+                @method('POST')
                 {{--#################################################################--}}
                 <div class="col-lg-4">
                     <p class="font-size-sm text-muted">
@@ -210,6 +211,19 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="fecha_incorporacion_institucion">Fecha Incorporacion a la
+                                            Institucion</label>
+                                        <input type="text" class="js-flatpickr form-control bg-white"
+                                               id="fecha_incorporacion_institucion"
+                                               name="fecha_incorporacion_institucion" placeholder="Año-mes-dia"
+                                               data-date-format="Y-m-d">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         {{--#########################################################################--}}
@@ -231,9 +245,9 @@
             <h3 class="block-title">SUBIR ESTADO DE SERVICIO DEL VEHICULO</h3>
         </div>
         <div class="block-content">
-
             <form action="{{route('estservvehi.store')}}" method="POST" id="form_subir_estado_servicio_vehicular">
                 @csrf
+                @method('POST')
                 <input type="text" name="placa_id" value="" id="placa_id_subida_estado_servicio_vehicular">
                 <div class="row">
                     {{--OPCION CODIGO 1--}}
@@ -241,30 +255,16 @@
                         <div class="form-group">
                             <br>
                             <input type="text" name="est_id" value="1" class="d-none" id="est_id_id">
-                            <div class="btn btn-success col-lg-11 form-control" id="mensaje_de_est_serv_En_servicio">EN SERVICIO</div>
-                        </div>
-                    </div>
-                    {{--OPCION CODIGO 2--}}
-                    {{--<div class="form-group">
-                        <div class="row">
-                            <div class="col">
-                                <label for="est_id">ESTADOS<span class="text-danger">*</span></label>
-                                <select class="js-select2 form-control" id="est_id" name="est_id"
-                                        style="width: 100%;" data-placeholder="Escoger...">
-                                    <option></option>
-                                    <!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                    @foreach($datosestado as $filaestado)
-                                        <option
-                                            value="{{$filaestado->est_id}}">{{$filaestado->est_descripcion}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="btn btn-success col-lg-11 form-control" id="mensaje_de_est_serv_En_servicio">EN
+                                SERVICIO
                             </div>
                         </div>
-                    </div>--}}
+                    </div>
                     <div class="col-md-2 d-none">
                         <div class="form-group">
                             <label for="motivo">MOTIVO</label>
-                            <input type="text" class="form-control" id="motivo" name="motivo" value="Inicio de actividades">
+                            <input type="text" class="form-control" id="motivo" name="motivo"
+                                   value="Inicio de actividades">
                         </div>
                     </div>
 
@@ -335,7 +335,7 @@
                     <!-- DropzoneJS Container -->
                     {{--<h3 class="jumbotron">Laravel Multiple Images Upload Using Dropzone</h3>--}}
                     <div id="dropezone_docs_prop">
-                        <form method="post" action="{{route('docsprop.storefile')}}" enctype="multipart/form-data"
+                        <form method="post" action="{{route('docsprop.storefilemet')}}" enctype="multipart/form-data"
                               class="dropzone" id="myDropzoneDocsProp">
                             @csrf
                             <input type="text" name="placa_id" value="" id="placa_id_subida_docs_prop_vehiculo">
@@ -639,11 +639,10 @@
         Dropzone.options.myDropzoneDocsProp = {
             autoProcessQueue: false,
             uploadMultiple: true,
-            maxFilezise: 50,
-            maxFiles: 20,
-            acceptedFiles: ".jpeg,.jpg,.png,.gif.pdf",
+            maxFilezise: 500,
+            maxFiles: 200,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf",
             addRemoveLinks: true,
-            renameFile: true,
             init: function () {
                 var submitBtn = document.getElementById("submit_docs_prop_vehiculo");
                 myDropzoneDocsProp = this;
@@ -670,9 +669,9 @@
         Dropzone.options.myDropzoneImgsPerfil = {
             autoProcessQueue: false,
             uploadMultiple: true,
-            maxFilezise: 50,
-            maxFiles: 20,
-            acceptedFiles: ".jpeg,.jpg,.png,.gif.pdf",
+            maxFilezise: 500,
+            maxFiles: 200,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf",
             addRemoveLinks: true,
             init: function () {
                 var submitBtn = document.getElementById("submit_imgs_perfil_vehiculo");

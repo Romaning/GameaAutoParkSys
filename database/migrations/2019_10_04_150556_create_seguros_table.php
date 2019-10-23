@@ -22,7 +22,7 @@ class CreateSegurosTable extends Migration
             $table->date('fecha_vigencia');
             $table->string('archivo_subido',191);
             /*FOREIGN KEYS*/
-            $table->string('placa_id');
+            $table->string('placa_id',100);
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

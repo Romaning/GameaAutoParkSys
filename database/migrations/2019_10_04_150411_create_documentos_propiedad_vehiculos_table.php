@@ -16,10 +16,10 @@ class CreateDocumentosPropiedadVehiculosTable extends Migration
         Schema::create('documentos_propiedad_vehiculos', function (Blueprint $table) {
             /*ATRIBUTOS*/
             $table->bigIncrements('id');
-            $table->string('archivo_subido');
-            $table->string('nombre_documento_propiedad');
+            $table->string('archivo_subido',191);
+            $table->string('nombre_documento_propiedad',191);
             /*FOREIGN KEYS*/
-            $table->string('placa_id');
+            $table->string('placa_id',100);
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

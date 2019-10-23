@@ -26,11 +26,13 @@ class CreateVehiculosTable extends Migration
             $table->string('traccion',100);
             $table->string('color');
             /*FOREIGN KEYS*/
-            $table->integer('clase_id');
-            $table->integer('marca_id');
-            $table->integer('tipo_id');
-            $table->integer('tipo_combustible_id');
-            $table->integer('tipo_uso_id');
+            $table->bigInteger('clase_id');
+            $table->bigInteger('marca_id');
+            $table->bigInteger('tipo_id');
+            $table->bigInteger('tipo_combustible_id');
+            $table->bigInteger('tipo_uso_id');
+            /*añadidos recientemente*/
+            $table->date('fecha_incorporacion_institucion');
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

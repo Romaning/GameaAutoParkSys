@@ -15,10 +15,10 @@ class CreateImagenesPerfilVehiculosTable extends Migration
     {
         Schema::create('imagenes_perfil_vehiculos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('archivo_subido');
-            $table->string('nombre_imagen_perfil');
+            $table->string('archivo_subido',191);
+            $table->string('nombre_imagen_perfil',191);
             /*FOREIGN KEYS*/
-            $table->string('placa_id');
+            $table->string('placa_id',100);
             /*FECHA DE CREACION, ACTUALIZACION Y ELIMINACION LÓGICA*/
             $table->timestamps();
             $table->softDeletes();

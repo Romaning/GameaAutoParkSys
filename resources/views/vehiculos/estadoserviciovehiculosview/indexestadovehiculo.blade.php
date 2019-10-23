@@ -33,7 +33,7 @@
                     <th style="width:12%;" class="text-right">
                         <a href="{{route('estservvehi.create')}}"
                            class="{{--btn --}}dt-button buttons-copy buttons-html5 btn btn-sm btn-primary">
-                            <i class="fa fa-plus"></i>Añadir
+                            <i class="fa fa-plus"></i> Añadir
                         </a>
                     </th>
                     {{-- <th style="width: 15%;">Botones</th>--}}
@@ -42,7 +42,7 @@
                 <tbody>
                 @foreach($datosestservvehi as $filaestservvehi)
                     <tr>
-                        <td class="text-center font-size-sm">
+                        <td class="d-none d-sm-table-cell font-size-sm">
                             {{$filaestservvehi->est_serv_vehiculo_id}}
                         </td>
                         <td class="d-none d-sm-table-cell font-size-sm">

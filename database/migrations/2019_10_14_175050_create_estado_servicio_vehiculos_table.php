@@ -16,9 +16,9 @@ class CreateEstadoServicioVehiculosTable extends Migration
         Schema::create('estado_servicio_vehiculos', function (Blueprint $table) {
             $table->bigIncrements('est_serv_vehiculo_id');
             $table->date('fecha_inicio');
-            $table->string('motivo');
-            $table->integer('est_id');
-            $table->string('placa_id');
+            $table->string('motivo',191);
+            $table->bigInteger('est_id');
+            $table->string('placa_id',100);
             $table->timestamps();
             $table->softDeletes();
         });
