@@ -49,7 +49,7 @@
     <!-- Basic -->
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
-            <h3 class="block-title">Formulario</h3>
+            <h3 class="block-title">FORMULARIO</h3>
         </div>
         <div class="block-content block-content-full">
             <form action="{{route('vehiculo.store')}}" method="POST"
@@ -59,7 +59,7 @@
                 {{--#################################################################--}}
                 <div class="col-lg-4">
                     <p class="font-size-sm text-muted">
-                        Ingrese Vehiculo
+                        INGRESE VEHICULO
                     </p>
                 </div>
                 <div class="row push">
@@ -67,26 +67,16 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="placa_id">Placa Vehicular</label>
-                                    <input type="text" class="form-control" id="placa_id" name="placa_id"
-                                           onchange="asignarPlacaIdATodaLaPagina()">
+                                    <label for="placa_id">PLACA: <span class="text-danger">*</span></label>
+                                    <input type="text" class="js-maxlength form-control" id="placa_id" name="placa_id"
+                                           onchange="asignarPlacaIdATodaLaPagina()" maxlength="10"
+                                           data-always-show="true" data-placement="top" required>
                                 </div>
                                 <div class="col">
-                                    <label for="numero_crpva">RCPVA</label>
-                                    <input type="text" class="form-control" id="numero_crpva" name="numero_crpva">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="numero_chasis">Numero Chasis</label>
-                                    <input type="text" class="form-control" id="numero_chasis" name="numero_chasis">
-                                </div>
-                                <div class="col">
-                                    <label for="numero_motor">Numero Motor</label>
-                                    <input type="text" class="form-control" id="numero_motor" name="numero_motor">
+                                    <label for="numero_crpva">RCPVA: <span class="text-danger">*</span></label>
+                                    <input type="text" class="js-maxlength form-control" id="numero_crpva"
+                                           name="numero_crpva" maxlength="20" data-always-show="true"
+                                           data-placement="top" required>
                                 </div>
                             </div>
                         </div>
@@ -94,12 +84,27 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="documento_importacion">Documento de Importacion</label>
+                                    <label for="numero_chasis">NUMERO CHASIS: <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="numero_chasis" name="numero_chasis"
+                                           required>
+                                </div>
+                                <div class="col">
+                                    <label for="numero_motor">NUMERO MOTOR: <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="numero_motor" name="numero_motor"
+                                           required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="documento_importacion">DOCUMENTO DE IMPORTACION: </label>
                                     <input type="text" class="form-control" id="documento_importacion"
                                            name="documento_importacion">
                                 </div>
                                 <div class="col">
-                                    <label for="numero_documento_importacion">Numero Documento de Importacion</label>
+                                    <label for="numero_documento_importacion">NUMERO DOCUMENTO IMPORTACION: </label>
                                     <input type="text" class="form-control" id="numero_documento_importacion"
                                            name="numero_documento_importacion">
                                 </div>
@@ -109,7 +114,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="clase_id">Clase <span class="text-danger">*</span></label>
+                                    <label for="clase_id">CLASE: </label>
                                     <select class="js-select2 form-control" id="clase_id" name="clase_id"
                                             style="width: 100%;" data-placeholder="Escoger...">
                                         <option></option>
@@ -121,7 +126,7 @@
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <label for="marca_id">Marca <span class="text-danger">*</span></label>
+                                    <label for="marca_id">MARCA: </label>
                                     <select class="js-select2 form-control" id="marca_id" name="marca_id"
                                             style="width: 100%;" data-placeholder="Escoger...">
                                         <option></option>
@@ -138,7 +143,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="tipo_id">Tipo <span class="text-danger">*</span></label>
+                                    <label for="tipo_id">TIPO: </label>
                                     <select class="js-select2 form-control" id="tipo_id" name="tipo_id"
                                             style="width: 100%;" data-placeholder="Escoger...">
                                         <option></option>
@@ -150,10 +155,11 @@
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <label for="tipo_combustible_id">Tipo Combustible <span class="text-danger">*</span></label>
+                                    <label for="tipo_combustible_id">TIPO COMBUSTIBLE: <span
+                                            class="text-danger">*</span></label>
                                     <select class="js-select2 form-control" id="tipo_combustible_id"
                                             name="tipo_combustible_id" style="width: 100%;"
-                                            data-placeholder="Escoger...">
+                                            data-placeholder="Escoger..." required>
                                         <option></option>
                                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($datostipo_combustible as $filatipo_combustible)
@@ -168,11 +174,11 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="color">Color</label>
+                                    <label for="color">COLOR: </label>
                                     <input type="text" class="form-control" id="color" name="color">
                                 </div>
                                 <div class="col">
-                                    <label for="plazas">Plazas</label>
+                                    <label for="plazas">PLAZAS: </label>
                                     <input type="text" class="form-control" id="plazas" name="plazas">
                                 </div>
                             </div>
@@ -181,11 +187,11 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="ruedas">Ruedas</label>
-                                    <input type="text" class="form-control" id="ruedas" name="ruedas">
+                                    <label for="ruedas">RUEDAS: <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="ruedas" name="ruedas" required>
                                 </div>
                                 <div class="col">
-                                    <label for="traccion">Traccion</label>
+                                    <label for="traccion">TRACCION: </label>
                                     <input type="text" class="form-control" id="traccion" name="traccion">
                                 </div>
                             </div>
@@ -193,15 +199,15 @@
 
 
                         <div class="form-group">
-                            ---------------------------------------------------------------------------------------
+
                         </div>
 
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="tipo_uso_id">Tipo de Uso<span class="text-danger">*</span></label>
+                                    <label for="tipo_uso_id">TIPO USO: <span class="text-danger">*</span></label>
                                     <select class="js-select2 form-control" id="tipo_uso_id" name="tipo_uso_id"
-                                            style="width: 100%;" data-placeholder="Escoger...">
+                                            style="width: 100%;" data-placeholder="Escoger..." required>
                                         <option></option>
                                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($datostipo_uso as $filatipo_uso)
@@ -210,18 +216,14 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="fecha_incorporacion_institucion">Fecha Incorporacion a la
-                                            Institucion</label>
-                                        <input type="text" class="js-flatpickr form-control bg-white"
-                                               id="fecha_incorporacion_institucion"
-                                               name="fecha_incorporacion_institucion" placeholder="Año-mes-dia"
-                                               data-date-format="Y-m-d">
-                                    </div>
+                                <div class="col">
+                                    <label for="fecha_incorporacion_institucion">FECHA DE INCORPORACION A INSTITUCION:
+                                        <span class="text-danger">*</span></label>
+                                    <input type="text" class="js-flatpickr form-control bg-white"
+                                           id="fecha_incorporacion_institucion"
+                                           name="fecha_incorporacion_institucion" placeholder="Año-mes-dia"
+                                           data-date-format="Y-m-d" required>
                                 </div>
                             </div>
                         </div>
@@ -230,6 +232,11 @@
                         <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded" style="float: right;">
                             GUARDAR
                         </button>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="font-size-sm text-muted">
+                            PLACA: PUEDE CONTENER LETRAS, NUMEROS Y GUION
+                        </p>
                     </div>
                 </div>
             </form>
@@ -248,21 +255,23 @@
             <form action="{{route('estservvehi.store')}}" method="POST" id="form_subir_estado_servicio_vehicular">
                 @csrf
                 @method('POST')
-                <input type="text" name="placa_id" value="" id="placa_id_subida_estado_servicio_vehicular">
+                <input type="hidden" name="placa_id" value=""
+                       id="placa_id_subida_estado_servicio_vehicular"> {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ placa oculta $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
                 <div class="row">
                     {{--OPCION CODIGO 1--}}
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <br>
-                            <input type="text" name="est_id" value="1" class="d-none" id="est_id_id">
-                            <div class="btn btn-success col-lg-11 form-control" id="mensaje_de_est_serv_En_servicio">EN
-                                SERVICIO
-                            </div>
+                            <label for="fecha_inicio">DESDE LA FECHA <span class="text-danger">*</span></label>
+                            <input type="text" class="js-flatpickr form-control bg-white"
+                                   id="fecha_inicio"
+                                   name="fecha_inicio" placeholder="Año-mes-dia"
+                                   data-date-format="Y-m-d" required>
                         </div>
                     </div>
-                    <div class="col-md-2 d-none">
+
+                    <div class="d-none">
                         <div class="form-group">
-                            <label for="motivo">MOTIVO</label>
+                            <label for="motivo">MOTIVO <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="motivo" name="motivo"
                                    value="Inicio de actividades">
                         </div>
@@ -270,13 +279,15 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="fecha_inicio">DESDE LA FECHA</label>
-                            <input type="text" class="js-flatpickr form-control bg-white"
-                                   id="fecha_inicio"
-                                   name="fecha_inicio" placeholder="Año-mes-dia"
-                                   data-date-format="Y-m-d">
+                            <br>
+                            <input type="text" name="est_id" value="1" class="d-none" id="est_id_id">
+                            <div class="btn btn-success col-lg-12 form-control shadow p-2 mb-1 rounded"
+                                 id="mensaje_de_est_serv_En_servicio" style="width: 100%;">
+                                EN SERVICIO
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row">
@@ -338,7 +349,8 @@
                         <form method="post" action="{{route('docsprop.storefilemet')}}" enctype="multipart/form-data"
                               class="dropzone" id="myDropzoneDocsProp">
                             @csrf
-                            <input type="text" name="placa_id" value="" id="placa_id_subida_docs_prop_vehiculo">
+                            <input type="hidden" name="placa_id" value=""
+                                   id="placa_id_subida_docs_prop_vehiculo"> {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ placa oculta $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
                             <div class="dz-message">
                                 Sube Tus imagenes aquí
                             </div>
@@ -372,7 +384,7 @@
         <div class="block-header">
             <h3 class="block-title">
                 <i class="fa fa-play fa-fw text-primary"></i>
-                Imagenes de perfil Vehiculo
+                IMAGENES DE PERFIL VEHICULO
                 <button type="submit" class="btn btn-primary shadow p-2 mb-1 rounded"
                         id="btn_insertar_imagenes_perfil_vehiculo" style="float: right;">
                     INSERTAR
@@ -397,16 +409,17 @@
             <h3 class="block-title">SUBIR IMAGENES (DELANTERA, DERECHA, IZQUIERDA, ATRAS, Y OTROS) DEL VEHICULO</h3>
         </div>
         <div class="block-content block-content-full">
-            <h2 class="content-heading border-bottom mb-4 pb-2">Subida de Archivos Asincrona</h2>
+            <h2 class="content-heading border-bottom mb-4 pb-2">SUBIDA DE ARCHIVOS ASINCRONA</h2>
             <div class="row">
                 <div class="{{--col-lg-8--}} col-lg-12 {{--col-xl-5--}}">
                     <!-- DropzoneJS Container -->
                     {{--<h3 class="jumbotron">Laravel Multiple Images Upload Using Dropzone</h3>--}}
                     <div id="dropezone">
-                        <form method="post" action="{{route('imgsperfil.storefile')}}" enctype="multipart/form-data"
+                        <form method="post" action="{{route('imgsperfil.storefilemet')}}" enctype="multipart/form-data"
                               class="dropzone" id="myDropzoneImgsPerfil">
                             @csrf
-                            <input type="text" name="placa_id" value="" id="placa_id_subida_imgs_perfil_vehiculo">
+                            <input type="hidden" name="placa_id" value=""
+                                   id="placa_id_subida_imgs_perfil_vehiculo">{{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ placa oculta $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
                             <div class="dz-message">
                                 Sube Tus imagenes aquí
                             </div>
@@ -442,21 +455,23 @@
         </div>
         <div class="block-content">
 
-            <form action="{{route('documentosrenovablevehiculo.store')}}" method="POST"
+            <form action="{{route('docsrenov.store')}}" method="POST"
                   id="form_subir_docs_renov_vehicular">
                 @csrf
-                <input type="hidden" name="placa_id" value="" id="placa_id_subida_docs_renov_vehicular">
+                <input type="hidden" name="placa_id" value=""
+                       id="placa_id_subida_docs_renov_vehicular"> {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ placa oculta $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="gestion_var_front">Gestion</label>
+                            <label for="gestion_var_front">GESTION: <span class="text-danger">*</span></label>
                             <input type="text" value="{{ date('Y') }}" name="gestion" class="form-control">
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="example-flatpickr-custom">FECHA FIN COBERTURA DE SOAT</label>
+                            <label for="example-flatpickr-custom">FECHA FIN COBERTURA DE SOAT: <span
+                                    class="text-danger">*</span></label>
                             <input type="text" class="js-flatpickr form-control bg-white" id="fecha_fin_cobertura_soat"
                                    name="fecha_fin_cobertura_soat" placeholder="Año-mes-dia" data-date-format="Y-m-d">
                         </div>
@@ -464,7 +479,7 @@
 
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label>B-SISA</label>
+                            <label>B-SISA: </label>
                             <div class="custom-control custom-switch custom-control-lg mb-2">
                                 <input type="checkbox" class="custom-control-input" id="example-sw-custom-lg1"
                                        name="bsisa" value="1">
@@ -475,7 +490,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>inspeccion Vehicular</label>
+                            <label>iINSPECCION VEHICULAR: </label>
                             <div class="custom-control custom-switch custom-control-lg mb-2">
                                 <input type="checkbox" class="custom-control-input" id="example-sw-custom-lg2"
                                        name="inspeccion_vehicular" value="1">
@@ -508,63 +523,43 @@
         <div class="block-header">
             <h3 class="block-title">
                 SUBIR SEGUROS
-                <button id="btn_generar_filas" class="btn btn-primary shadow p-2 mb-1 rounded" style="float: right">
-                    GENERAR CAMPOS
+                <button id="btn_generar_filas" class="btn btn-primary shadow rounded"
+                        style="float: right; justify-content: end;">
+                    <i class="fas fa-plus-circle"></i> GENERAR CAMPOS
                 </button>
             </h3>
         </div>
+
         <div class="block-content">
             <form action="{{route('seguro.store')}}" method="POST" id="form_subir_seguros">
                 @csrf
-                <input type="text" name="placa_id" class="d-none" value="" id="placa_id_subir_seguro">
-                <div class="row cabecera_tabla_div">
-                    <div class="col-lg-1">
-                        GESTION
-                    </div>
-                    <div class="col">
-                        DESCRIPCION
-                    </div>
-                    <div class="col">
-                        EMPRESA ASEGURADORA
-                    </div>
-                    <div class="col">
-                        FECHA DE VIGENCIA
-                    </div>
-                    <div class="col">
-                        SUBIR ARCHIVO
-                    </div>
-                    <div class="col d-none">
-                        PLACA ID
-                    </div>
-                </div>
-                <div id="body_tb_insertar_campos">
-                    <div class="row">
-                        <div class="col-lg-1"><input type="text" value="{{date('Y')}}" class="form-control"
-                                                     name="campoa[]"></div>
-                        <div class="col"><input type="text" value="" class="form-control" name="campob[]"></div>
-                        <div class="col"><input type="text" value="" class="form-control" name="campoc[]"></div>
-                        <div class="col"><input type='text' value=""
-                                                class='js-flatpickr form-control material_green datepickerr'
-                                                name='campod[]' placeholder='Año-mes-dia'></div>
-                        <div class="col"><input type="file" value="" class="form-control" name="campoe[]"></div>
-                        <div class="btn-eliminar">
-                            <i class='fas fa-trash'></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-1">.</div>
+                @method('POST')
+                <input type="hidden" name="placa_id" value=""
+                       id="placa_id_subir_seguro"> {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ placa oculta $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
+                <table class="table table-bordered table-striped table-vcenter{{-- js-dataTable-buttons--}}">
+                    <thead>
+                    <tr>
+                        <th class="d-none d-sm-table-cell">GESTION</th>
+                        <th class="d-none d-sm-table-cell">DESCRIPCION</th>
+                        <th class="d-none d-sm-table-cell">EMPRESA ASEGURADORA</th>
+                        <th class="d-none d-sm-table-cell">FECHA DE VIGENCIA</th>
+                        <th class="d-none d-sm-table-cell" style="width: 13%;">ARCHIVOS SUBIDOS</th>
+                        <th style="width:3%;" class="text-sm-center">
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody id="body_tb_form_in">
+
+                    </tbody>
+                </table>
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="form-group">
-                            <button type="submit" id="btn_enviar_datos " class="btn btn-success shadow p-2 mb-1 rounded"
-                                    style="float: right">
-                                GUARDAR
-                            </button>
-                        </div>
+                        <button type="submit" class="btn btn-primary shadow rounded" style="float: right;">GUARDAR
+                        </button>
                     </div>
                 </div>
-
             </form>
+
         </div>
         <div id="mensaje_respuesta_form_subir_seguros"></div>
     </div>
@@ -791,9 +786,60 @@
     </script>
 
     {{--##############################################  js  #####################################################--}}
+    <script>
+        var contador = 0;
+        $(document).on('click', '#btn_generar_filas', function () {
+            contador = contador + 1;
+            $('#body_tb_form_in').append(
+                "<tr>" +
+                "<td class='d-none d-sm-table-cell font-size-sm'>" +
+                "<input type='text' value='{{date('Y')}}' class='form-control' name='campoa[]' placeholder='20XX...' required>" +
+                "</td>" +
+                "<td class='d-none d-sm-table-cell font-size-sm'>" +
+                "<input type='text' value='' class='form-control' name='campob[]' required>" +
+                " </td>" +
+                "<td class='d-none d-sm-table-cell font-size-sm'>" +
+                "<input type='text' value='' class='form-control' name='campoc[]' required>" +
+                "</td>" +
+                " <td class='d-none d-sm-table-cell font-size-sm'>" +
+                "<input type='text' value='' class='js-flatpickr form-control material_green datepickerr" + contador + "' name='campod[]' placeholder='Año-mes-dia' required>" +
+                "</td>" +
+                "<td class='d-none d-sm-table-cell font-size-sm'>" +
+                "<div class='col-md-12' style='float: right;'>" +
+                "<input type='file' class='custom-file-input' value='' id='archiv' name='campoe[]' required>" +
+                "<label class='custom-file-label' id='archiv' id='nfile'></label>" +
+                "</div>" +
+                "</td>" +
+                " <td class='btn-eliminar justify-content-center'>" +
+                "<div class=''>" +
+                "<i class='fas fa-trash'></i>" +
+                "</div>" +
+                "</td>" +
+                " </tr>"
+            );
+            $(".datepickerr" + contador).flatpickr();
+            $(".datepickerr" + contador).flatpickr("option", "dateFormat", "yy-mm-dd");
 
+            document.getElementById('archiv'/*+ contador*/).onchange = function () {
+                console.log(this.value);
+                document.getElementById('nfile'/*+ contador*/).innerHTML = document.getElementById('archiv'/*+ contador*/).files[0].name;
+            }
+        });
+        $(document).on('click', '.btn-eliminar', function () {
+            $(this).parent().remove();
+        })
 
-    <script src="{{asset('jsromsys/vehiculos.create.js')}}"></script>
+        /*$(document).on('change', '.archiv',function () {
+            var d = $(this).val();
+            $('.nfile').text(d);
+        });*/
+        /*document.getElementsByClassName('archiv').onchange = function () {
+            console.log(this.value);
+            document.getElementsByClassName('nfile').innerHTML = document.getElementById('archiv').files[0].name;
+        }*/
+    </script>
+
+    {{--<script src="{{asset('jsromsys/vehiculos.create.js')}}"></script>--}}
 
 @endsection
 

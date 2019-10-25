@@ -152,17 +152,33 @@ Route::prefix('/documentospropiedadvehiculo')->group(function () {
 
 });
 
+/**/
+Route::prefix('/imagenesperfilvehiculo')->group(function () {
+    Route::post('/storefile', 'ControladorVehiculo\ImagenesPerfilVehiculoController@storeFileMethodStyde')->name('imgsperfil.storefilemet');
+
+    Route::get('/', 'ControladorVehiculo\ImagenesPerfilVehiculoController@index')->name('imgsperfil.index');
+
+    Route::get('/{imgsperfil_id}/editsolo', 'ControladorVehiculo\ImagenesPerfilVehiculoController@editSolo')->name('imgsperfil.editsolo');
+    Route::post('/imgsperfilautocomplet', 'ControladorVehiculo\ImagenesPerfilVehiculoController@autocompletarImgsPerfil')->name('imgsperfil.autocomplet');
+    /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+    Route::post('/imgsperfilstorefile','ControladorVehiculo\ImagenesPerfilVehiculoController@storeFile')->name('imgsperfil.storefile');
+    Route::post('/imgsperfildeletefile', 'ControladorVehiculo\ImagenesPerfilVehiculoController@fileDestroy')->name('imgsperfil.deletefile');
+    /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+});
+
 /*Route::resource('documentosrenovablevehiculo','ControladorVehiculo\DocumentosRenovableVehiculoController');*/
 Route::prefix('/documentosrenovablevehiculo')->group(function () {
-    Route::get('/', 'ControladorVehiculo\DocumentosRenovableVehiculoController@index')->name('documentosrenovablevehiculo.index');
-    Route::get('/create', 'ControladorVehiculo\DocumentosRenovableVehiculoController@create')->name('documentosrenovablevehiculo.create');
-    Route::post('/', 'ControladorVehiculo\DocumentosRonovableVehiculoController@store')->name('documentosrenovablevehiculo.store');
-    Route::get('/{documentosrenovablevehiculo_id}', 'ControladorVehiculo\DocumentosRenovableVehiculoController@show')->name('documentosrenovablevehiculo.show');
-    Route::get('/{documentosrenovablevehiculo_id}/edit', 'ControladorVehiculo\DocumentosRenovableVehiculoController@edit')->name('documentosrenovablevehiculo.edit');
-    Route::put('/{documentosrenovablevehiculo_id}', 'ControladorVehiculo\DocumentosRenovableVehiculoController@update')->name('documentosrenovablevehiculo.update');
-    Route::delete('/{documentosrenovablevehiculo_id}', 'ControladorVehiculo\DocumentosRenovableVehiculoController@destroy')->name('documentosrenovablevehiculo.destroy');
+    Route::get('/', 'ControladorVehiculo\DocumentosRonovableVehiculoController@index')->name('docsrenov.index');
+    Route::get('/create', 'ControladorVehiculo\DocumentosRonovableVehiculoController@create')->name('docsrenov.create');
+    Route::post('/', 'ControladorVehiculo\DocumentosRonovableVehiculoController@store')->name('docsrenov.store');
+    Route::get('/{documentosrenovablevehiculo_id}', 'ControladorVehiculo\DocumentosRonovableVehiculoController@show')->name('docsrenov.show');
+    Route::get('/{documentosrenovablevehiculo_id}/edit', 'ControladorVehiculo\DocumentosRonovableVehiculoController@edit')->name('docsrenov.edit');
+    Route::put('/{documentosrenovablevehiculo_id}', 'ControladorVehiculo\DocumentosRonovableVehiculoController@update')->name('docsrenov.update');
+    Route::delete('/{documentosrenovablevehiculo_id}', 'ControladorVehiculo\DocumentosRonovableVehiculoController@destroy')->name('docsrenov.destroy');
+    /*Route::post('/docsrenovautocomplet', 'ControladorVehiculo\DocumentosRonovableVehiculoController@autocompletarDocsRenov')->name('docsrenov.autocomplet');*/
+    Route::get('/{vehiculo_id}/historial', 'ControladorVehiculo\DocumentosRonovableVehiculoController@historialPlaca')->name('docsrenov.historial.placa');
+    Route::get('/{vehiculo_id}/registrar', 'ControladorVehiculo\DocumentosRonovableVehiculoController@registrarSolo')->name('docsrenov.registrarsolo');
 
-    Route::post('/docsrenovautocomplet', 'ControladorVehiculo\DocumentosRonovableVehiculoController@autocompletarDocsRenov')->name('docsrenov.autocomplet');
 });
 
 /*Route::resource('seguro','ControladorVehiculo\SeguroController');*/
@@ -174,9 +190,11 @@ Route::prefix('/seguro')->group(function () {
     Route::get('/{seguro_id}/edit', 'ControladorVehiculo\SeguroController@edit')->name('seguro.edit');
     Route::put('/{seguro_id}', 'ControladorVehiculo\SeguroController@update')->name('seguro.update');
     Route::delete('/{seguro_id}', 'ControladorVehiculo\SeguroController@destroy')->name('seguro.destroy');
+
+    Route::get('/{vehiculo_id}/historial', 'ControladorVehiculo\SeguroController@historialSeguros')->name('seguro.historial.placa');
+    Route::post('/{seguro_id}/update', 'ControladorVehiculo\SeguroController@updateClasis')->name('seguro.update.clasic');
+
 });
 
-Route::prefix('/imagenesperfilvehiculo')->group(function () {
-    Route::post('/storefile', 'ControladorVehiculo\ImagenesPerfilVehiculoController@storeFileMethodStyde')->name('imgsperfil.storefile');
-});
+
 /*#################################################### VEHICULOS #######################################################*/

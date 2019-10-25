@@ -174,7 +174,6 @@ class EstadoServicioVehiculoController extends Controller
     public function edit($estadoServicioVehiculo)
     {
         $placa_id = $estadoServicioVehiculo;
-
         return view('vehiculos.estadoserviciovehiculosview.editestadovehiculo', compact('placa_id'));
     }
 

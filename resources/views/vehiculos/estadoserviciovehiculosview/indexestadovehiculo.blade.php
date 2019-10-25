@@ -32,7 +32,7 @@
                     <th class="d-none d-sm-table-cell" style="width: 19%;">Actualizado</th>
                     <th style="width:12%;" class="text-right">
                         <a href="{{route('estservvehi.create')}}"
-                           class="{{--btn --}}dt-button buttons-copy buttons-html5 btn btn-sm btn-primary">
+                           class="{{--btn --}} dt-button buttons-copy buttons-html5 btn btn-sm btn-primary">
                             <i class="fa fa-plus"></i> Añadir
                         </a>
                     </th>

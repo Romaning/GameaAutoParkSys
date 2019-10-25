@@ -111,7 +111,7 @@
                                         </a>
                                     </div>
                                     <div class="col col-xl-3">
-                                        <a href="{{route('vehiculo.edit',$filavehiculos->placa_id)}}"
+                                        <a href="{{route('vehiculo.editsolo',$filavehiculos->placa_id)}}"
                                            class="btn btn-warning btn-sm" data-toggle="tooltip"
                                            title="EDITAR">
                                             <i class="fas fa-pen"></i>

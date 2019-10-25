@@ -23,10 +23,20 @@ class VerifyCsrfToken extends Middleware
         /*'dropzone/eliminarimagedropzone',*/
         'documentospropiedadvehiculo/storefile',
         'documentospropiedadvehiculo/deletefile',
+
         'documentosrenovablevehiculo/docsrenovautocomplet',
         'documentospropiedadvehiculo/docspropautocomplet',
+
+        'imagenesperfilvehiculo/storefile',
+        'imagenesperfilvehiculo/imgsperfilautocomplet',
+        'imagenesperfilvehiculo/imgsperfilstorefile',
+        'imagenesperfilvehiculo/imgsperfildeletefile',
+
         'documentospropiedadvehiculo/docspropstorefile',
         'documentospropiedadvehiculo/docspropdeletefile',
-        'vehiculo'
+        'vehiculo',
     ];
 }
+
+
+

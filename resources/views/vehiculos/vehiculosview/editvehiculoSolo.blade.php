@@ -171,7 +171,7 @@
                                 <div class="col">
                                     <label for="ruedas">Ruedas</label>
                                     <input type="text" class="form-control" id="ruedas" name="ruedas"
-                                           value="{{$filavehiculo->ruedas}}"">
+                                           value="{{$filavehiculo->ruedas}}">
                                 </div>
                                 <div class="col">
                                     <label for="traccion">Traccion</label>

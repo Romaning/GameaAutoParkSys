@@ -38,7 +38,7 @@
                 <h3 class="block-title">
                     <i class="fa fa-play fa-fw text-primary"></i>
                     DOCUMENTOS DE PROPIEDAD VEHICULAR <div class="btn btn-success">{{$fila['placa']}}</div>
-                    <a href="{{route('documentospropiedadvehiculo.editsolo', $fila['placa'])}}" class="btn btn-primary" style="float: right;">EDITAR</a>
+                    <a href="{{route('documentospropiedadvehiculo.editsolo', $fila['placa'])}}" class="btn btn-warning" style="float: right;">EDITAR</a>
                 </h3>
             </div>
             <div class="js-slider slick-nav-black slick-nav-hover" data-dots="true" data-arrows="true"

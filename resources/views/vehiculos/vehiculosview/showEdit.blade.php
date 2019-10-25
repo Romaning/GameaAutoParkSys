@@ -39,12 +39,12 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <label for="placa_id">Placa Vehicular</label>
+                                <label for="placa_id">PLACA: </label>
                                 <input type="text" class="form-control btn-success" id="placa_id"
                                        name="placa_id" value="{{$filavehiculo->placa_id}}">
                             </div>
                             <div class="col">
-                                <label for="numero_crpva">RCPVA</label>
+                                <label for="numero_crpva">RCPVA: </label>
                                 <input type="text" class="form-control " id="numero_crpva"
                                        name="numero_crpva" value="{{$filavehiculo->numero_crpva}}">
                             </div>
@@ -54,12 +54,12 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <label for="numero_chasis">Numero Chasis</label>
+                                <label for="numero_chasis">NUMERO CHASIS: </label>
                                 <input type="text" class="form-control" id="numero_chasis"
                                        name="numero_chasis" value="{{$filavehiculo->numero_chasis}}">
                             </div>
                             <div class="col">
-                                <label for=numero_motor">Numero Motor</label>
+                                <label for=numero_motor">NUMERO MOTOR:</label>
                                 <input type="text" class="form-control" id="numero_motor"
                                        name="numero_motor" value="{{$filavehiculo->numero_motor}}">
                             </div>
@@ -69,13 +69,13 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <label for=documento_importacion">Documento de Importacion</label>
+                                <label for=documento_importacion">DOCUMENTO DE IMPORTACION: </label>
                                 <input type="text" class="form-control"
                                        id="documento_importacion" name="documento_importacion"
                                        value="{{$filavehiculo->documento_importacion}}">
                             </div>
                             <div class="col">
-                                <label for=numero_documento_importacion">Numero Documento de Importacion</label>
+                                <label for=numero_documento_importacion">NUMERO DOCUMENTO DE IMPORTACION: </label>
                                 <input type="text" class="form-control"
                                        id="numero_documento_importacion" name="numero_documento_importacion"
                                        value="{{$filavehiculo->numero_documento_importacion}}">
@@ -86,13 +86,13 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <label for="clase_id">Clase <span class="text-danger">*</span></label>
+                                <label for="clase_id">CLASE: </label>
                                 <input type="text" class=" form-control" id="clase_id"
                                        name="clase_id" style="width: 100%;"
                                        value="{{$filavehiculo->clase_descripcion}}">
                             </div>
                             <div class="col">
-                                <label for=marca_id">Marca <span class="text-danger">*</span></label>
+                                <label for=marca_id">MARCA: </label>
                                 <input type="text" class="form-control" id="marca_id"
                                        name="marca_id" style="width: 100%;"
                                        value="{{$filavehiculo->marca_descripcion}}">
@@ -103,13 +103,12 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <label for="tipo_id">Tipo <span class="text-danger">*</span></label>
+                                <label for="tipo_id">TIPO: </label>
                                 <input type="text" class="form-control" id="tipo_id"
                                        name="tipo_id" style="width: 100%;" value="{{$filavehiculo->tipo_descripcion}}">
                             </div>
                             <div class="col">
-                                <label for=tipo_combustible_id">Tipo Combustible <span
-                                        class="text-danger">*</span></label>
+                                <label for=tipo_combustible_id">TIPO COMBUSTIBLE: </label>
                                 <input class="form-control" id="tipo_combustible_id"
                                        name="tipo_combustible_id" style="width: 100%;"
                                        value="{{$filavehiculo->tipo_combustible_descripcion}}">
@@ -120,12 +119,12 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <label for=color">Color</label>
+                                <label for=color">COLOR: </label>
                                 <input type="text" class="form-control" id="color" name="color"
                                        value="{{$filavehiculo->color}}">
                             </div>
                             <div class="col">
-                                <label for=plazas">Plazas</label>
+                                <label for=plazas">PLAZAS: </label>
                                 <input type="text" class="form-control" id="plazas"
                                        name="plazas" value="{{$filavehiculo->plazas}}">
                             </div>
@@ -135,12 +134,12 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col">
-                                <label for=ruedas">Ruedas</label>
+                                <label for=ruedas">RUEDAS: </label>
                                 <input type="text" class="form-control" id="ruedas"
                                        name="ruedas" value="{{$filavehiculo->ruedas}}">
                             </div>
                             <div class="col">
-                                <label for=traccion">Traccion</label>
+                                <label for=traccion">TRACCION: </label>
                                 <input type="text" class="form-control" id="traccion"
                                        name="traccion" value="{{$filavehiculo->traccion}}">
                             </div>
@@ -160,14 +159,13 @@
                                        value="{{$filavehiculo->estado_servicio}}">
                             </div>--}}
                             <div class="col">
-                                <label for=tipo_uso_id">Tipo de Uso<span class="text-danger">*</span></label>
+                                <label for=tipo_uso_id">TIPO USO: </label>
                                 <input type="text" class="form-control" id="tipo_uso_id"
                                        name="tipo_uso_id" style="width: 100%;"
                                        value="{{$filavehiculo->tipo_uso_descripcion}}">
                             </div>
                             <div class="col">
-                                <label for=fecha_incorporacion_institucion">Fecha Incorporacion a la Institucion<span
-                                        class="text-danger">*</span></label>
+                                <label for=fecha_incorporacion_institucion">FECHA DE INCORPORACION A INSTITUCION: </label>
                                 <input type="text" class="form-control" id="fecha_incorporacion_institucion"
                                        name="fecha_incorporacion_institucion" style="width: 100%;"
                                        value="{{$filavehiculo->fecha_incorporacion_institucion}}">
@@ -329,7 +327,8 @@
                         id="btn_insertar_documentos_propiedad_vehiculo" style="float:right;">
                     INSERTAR
                 </button>
-                <a href="{{route('documentospropiedadvehiculo.editsolo', $filavehiculo->placa_id)}}" class="btn btn-warning">EDITAR</a>
+                <a href="{{route('documentospropiedadvehiculo.editsolo', $filavehiculo->placa_id)}}"
+                   class="btn btn-warning shadow p-2 mb-1 rounded" style="float:right;">EDITAR</a>
             </h3>
         </div>
         <div class="js-slider slick-nav-black slick-nav-hover" data-dots="true" data-arrows="true"
@@ -356,7 +355,7 @@
             </h3>
         </div>
         <div class="block-content block-content-full">
-            <h2 class="content-heading border-bottom mb-4 pb-2">Subida de Archivos Asincrona</h2>
+            <h2 class="content-heading border-bottom mb-4 pb-2">SUBIDA DE ARCHIVOS ASINCRONA</h2>
             <div class="row">
                 <div class="{{--col-lg-8--}} col-lg-12 {{--col-xl-5--}}">
                     <!-- DropzoneJS Container -->
@@ -400,11 +399,13 @@
         <div class="block-header">
             <h3 class="block-title">
                 <i class="fa fa-play fa-fw text-primary"></i>
-                Imagenes de perfil Vehiculo
+                IMAGENES DE PERFIL DE VEHICULO
                 <button type="submit" class="btn btn-primary shadow p-2 mb-1 rounded"
                         id="btn_insertar_imagenes_perfil_vehiculo" style="float: right;">
                     INSERTAR
                 </button>
+                <a href="{{route('imgsperfil.editsolo', $filavehiculo->placa_id)}}"
+                   class="btn btn-warning shadow p-2 mb-1 rounded" style="float:right;">EDITAR</a>
             </h3>
         </div>
         <div class="js-slider slick-nav-black slick-nav-hover" data-dots="true" data-arrows="true"
@@ -437,7 +438,7 @@
                     <!-- DropzoneJS Container -->
                     {{--<h3 class="jumbotron">Laravel Multiple Images Upload Using Dropzone</h3>--}}
                     <div id="dropezone">
-                        <form method="post" action="{{route('imgsperfil.storefile')}}" enctype="multipart/form-data"
+                        <form method="post" action="{{route('imgsperfil.storefilemet')}}" enctype="multipart/form-data"
                               class="dropzone" id="myDropzoneImgsPerfil">
                             @csrf
                             <input type="text" name="placa_id" value="" id="placa_id_subida_imgs_perfil_vehiculo">
@@ -474,6 +475,7 @@
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
             <h3 class="block-title">SUBIR DOCUMENTOS RENOVABLES DEL VEHICULO</h3>
+            <a href="{{route('docsrenov.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info">HISTORIAL</a>
         </div>
         <div class="block-content">
             @foreach($datosdocumentosrenovable as $filadocrenov)
@@ -482,9 +484,9 @@
                      @csrf--}}
                 <input type="hidden" name="placa_id" value="" id="placa_id_subida_docs_renov_vehicular">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
-                            <label for="gestion_var_front">Gestion</label>
+                            <label for="gestion_var_front">GESTION</label>
                             <input type="text" value="{{ $filadocrenov->gestion}}" name="gestion"
                                    class="form-control">
                         </div>
@@ -514,7 +516,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>inspeccion Vehicular</label>
+                            <label>INSPECCION VEHICULAR</label>
                             <div class="custom-control custom-switch custom-control-lg mb-2">
                                 <input type="checkbox" class="custom-control-input" id="example-sw-custom-lg2"
                                        name="inspeccion_vehicular"
@@ -523,6 +525,19 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <div class="custom-control custom-switch custom-control-lg mb-2">
+                                <a href="{{route('docsrenov.edit',$filadocrenov->archivero_id)}}"
+                                   class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                   title="EDITAR">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             @endforeach
             {{--<div class="row">
@@ -549,73 +564,62 @@
         <div class="block-header">
             <h3 class="block-title">
                 SEGUROS
-                {{--<button id="btn_generar_filas" class="btn btn-primary shadow p-2 mb-1 rounded" style="float: right">
-                    GENERAR CAMPOS
-                </button>--}}
             </h3>
+            <a href="{{route('seguro.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info">HISTORIAL</a>
         </div>
         <div class="block-content">
-            <form action="{{route('seguro.store')}}" method="POST" id="form_subir_seguros">
-                @csrf
-                <input type="text" name="placa_id" class="d-none" value="" id="placa_id_subir_seguro">
-                <div class="row cabecera_tabla_div">
-                    <div class="col-lg-1">
-                        GESTION
-                    </div>
-                    <div class="col">
-                        DESCRIPCION
-                    </div>
-                    <div class="col">
-                        EMPRESA ASEGURADORA
-                    </div>
-                    <div class="col">
-                        FECHA DE VIGENCIA
-                    </div>
-                    <div class="col">
-                        ARCHIVOS SUBIDOS
-                    </div>
-                    <div class="col d-none">
-                        PLACA ID
-                    </div>
-                </div>
-                <div id="body_tb_insertar_campos">
-                    @foreach($datosseguro as $filadatosseguro)
-                        <div class="row">
-                            <div class="col-lg-1"><input type="text" value="{{$filadatosseguro->gestion}}"
-                                                         class="form-control"
-                                                         name="campoa[]"></div>
-                            <div class="col"><input type="text" value="{{$filadatosseguro->texto}}"
-                                                    class="form-control" name="campob[]"></div>
-                            <div class="col"><input type="text" value="{{$filadatosseguro->empresa_aseguradora}}"
-                                                    class="form-control" name="campoc[]"></div>
-                            <div class="col"><input type='text' value="{{$filadatosseguro->fecha_vigencia}}"
-                                                    class='js-flatpickr form-control material_green datepickerr'
-                                                    name='campod[]' placeholder='Año-mes-dia'></div>
-                            <div class="col"><input type="text" value="{{$filadatosseguro->archivo_subido}}"
-                                                    class="form-control" name="campoe[]"></div>
-                            <div class="btn-eliminar">
-                                <i class='fas fa-trash'></i>
+            <input type="text" name="placa_id" class="d-none" value="" id="placa_id_subir_seguro">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+                <thead>
+                <tr>
+                    <th class="d-none d-sm-table-cell">GESTION</th>
+                    <th class="d-none d-sm-table-cell">DESCRIPCION</th>
+                    <th class="d-none d-sm-table-cell">EMPRESA ASEGURADORA</th>
+                    <th class="d-none d-sm-table-cell">FECHA DE VIGENCIA</th>
+                    <th class="d-none d-sm-table-cell" style="width:13%;">ARCHIVOS SUBIDOS</th>
+                    <th style="width:3%;" class="text-sm-center">
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="body_tb_form_in">
+                @foreach($datosseguro as $seguro)
+                    <tr>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$seguro->gestion}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$seguro->texto}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$seguro->empresa_aseguradora}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$seguro->fecha_vigencia}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            <div class="col-md-12" style="float: right;">
+                                <input type="file" class="custom-file-input" value="" id="archiv" name="campoe">
+                                <label class="custom-file-label" for="archiv" id="nfile">{{$seguro->archivo_subido}}</label>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="col-lg-1">.</div>
-                {{--<div class="row">
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <button type="submit" id="btn_enviar_datos "
-                                    class="btn btn-success shadow p-2 mb-1 rounded" style="float: right">
-                                GUARDAR
-                            </button>
-                        </div>
-                    </div>
-                </div>--}}
-            </form>
+                        </td>
+                        <td class="btn-eliminar justify-content-center">
+                            <div class="mb-2">
+                                <a href="{{route('seguro.edit', $seguro->id)}}"
+                                   class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                   title="EDITAR">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <div class="col-lg-1">.</div>
         </div>
         <div id="mensaje_respuesta_form_subir_seguros"></div>
     </div>
     <!-- END Flatpickr Datetimepicker -->
-
 
 @endsection
 
@@ -770,6 +774,12 @@
                 interuptor_tbn_imagenes_perfil_vehiculo = 0;
             }
         });
+
+
+        document.getElementById('archiv').onchange = function () {
+            console.log(this.value);
+            document.getElementById('nfile').innerHTML = document.getElementById('archiv').files[0].name;
+        }
     </script>
 
 @endsection

@@ -157,10 +157,14 @@ class VehiculoController extends Controller
         $datosdocumentosrenovable = DB::table('documentos_ronovable_vehiculos')
             ->select('*')
             ->where('documentos_ronovable_vehiculos.placa_id', '=', $vehiculo)
+            ->where('documentos_ronovable_vehiculos.gestion','=',date('Y'))
+            ->limit(1)
             ->get();
+
         $datosseguro = DB::table('seguros')
             ->select('*')
             ->where('seguros.placa_id', '=', $vehiculo)
+            ->where('seguros.gestion', '=', date('Y'))
             ->get();
 
         return view('vehiculos.vehiculosview.showvehiculo',
@@ -227,10 +231,14 @@ class VehiculoController extends Controller
         $datosdocumentosrenovable = DB::table('documentos_ronovable_vehiculos')
             ->select('*')
             ->where('documentos_ronovable_vehiculos.placa_id', '=', $vehiculo)
+            ->where('documentos_ronovable_vehiculos.gestion','=',date('Y'))
+            ->limit(1)
             ->get();
+
         $datosseguro = DB::table('seguros')
             ->select('*')
             ->where('seguros.placa_id', '=', $vehiculo)
+            ->where('seguros.gestion', '=', date('Y'))
             ->get();
 
         return view('vehiculos.vehiculosview.showEdit',
