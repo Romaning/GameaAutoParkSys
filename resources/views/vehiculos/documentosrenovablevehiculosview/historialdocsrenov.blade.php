@@ -24,19 +24,19 @@
 @endsection
 
 @section('content')
-
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
-        <div class="block-content">
-            <div class="row">
-                <div class="col-md-6">
-                    <input type="text" name="placa_id" value="{{$vehiculo}}" class="btn btn-success">
-                </div>
-                <div class="col-md-6">
-                    <a href="{{route('docsrenov.registrarsolo',$vehiculo)}}" class="btn btn-primary" style="float:right;"><i class="fa fa-plus"></i> Añadir</a>
-                </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <input type="text" name="placa_id" value="{{$vehiculo}}" class="btn btn-success shadow rounded">
+            </div>
+            <div class="col-lg-6">
+                <a href="{{route('docsrenov.registrarsolo',$vehiculo)}}" class="btn-sm btn-primary shadow rounded" style="float:right;">
+                    <i class="fas fa-plus-circle"></i> Añadir
+                </a>
             </div>
         </div>
     </div>
+
     {{--{{ $contador = 0 }}--}}
     @foreach($datosdocsrenov as $filadocrenov)
 
@@ -100,7 +100,7 @@
                         <div class="form-group">
                             <div class="custom-control custom-switch custom-control-lg mb-2">
                                 <a href="{{route('docsrenov.edit',$filadocrenov->archivero_id)}}"
-                                   class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                   class="btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                    title="EDITAR">
                                     <i class="fas fa-pen"></i>
                                 </a>

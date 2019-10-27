@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    VEHICULOS
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
@@ -32,7 +32,7 @@
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="row">
             <div class="col-lg-12">
-                <a href="{{ route('seguro.create') }}" class="btn btn-primary shadow rounded"
+                <a href="{{ route('seguro.create') }}" class="btn-sm btn-primary shadow rounded"
                    style="float: right; justify-content: end;">
                     <i class="fas fa-plus-circle"></i> AÑADIR
                 </a>
@@ -51,8 +51,8 @@
                     <th class="d-none d-sm-table-cell">DESCRIPCION</th>
                     <th class="d-none d-sm-table-cell">EMPRESA ASEGURADORA</th>
                     <th class="d-none d-sm-table-cell">FECHA DE VIGENCIA</th>
-                    <th class="d-none d-sm-table-cell" style="width:13%;">ARCHIVOS SUBIDOS</th>
-                    <th style="width:5%;" class="text-sm-center">
+                    <th class="d-none d-sm-table-cell" style="width:12%;">ARCHIVOS SUBIDOS</th>
+                    <th style="width:10%;" class="text-sm-center font-size-sm">
                     </th>
                 </tr>
                 </thead>
@@ -80,11 +80,18 @@
                                 <label class="custom-file-label" for="archiv" id="nfile">{{$seguro->archivo_subido}}</label>
                             </div>
                         </td>
-                        <td class="justify-content-center">
+                        <td class="text-sm-center font-size-sm">
                             <div class="row text-sm-center">
+                                <div class="col col-xl-3">
+                                    <a href="{{route('seguro.show',$seguro->id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
+                                       title="VER INFORMACION COMPLETA">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
                                 <div class="col-xl-3">
                                     <a href="{{route('seguro.edit',$seguro->id)}}"
-                                       class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                       class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                        title="EDITAR">
                                         <i class="fas fa-pen"></i>
                                     </a>
@@ -94,7 +101,7 @@
                                           method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" data-toggle="tooltip"
+                                        <button class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                                 title="ELIMINAR">
                                             <i class="fas fa-trash"></i>
                                         </button>

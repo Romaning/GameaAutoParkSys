@@ -19,6 +19,7 @@ class DocumentosPropiedadVehiculoController extends Controller
     /*se muestra todos los documentos de propiedad, de todos los automoviles*/
     public function index()
     {
+        $datosplaca=[];
         $placas = DB::table('vehiculos')
             ->join('documentos_propiedad_vehiculos', 'documentos_propiedad_vehiculos.placa_id', '=', 'vehiculos.placa_id')
             ->select('documentos_propiedad_vehiculos.placa_id')

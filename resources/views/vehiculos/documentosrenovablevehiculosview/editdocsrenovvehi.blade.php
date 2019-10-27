@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    Registrar Vehiculo
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="gestion_var_front">Gestion</label>
+                                <label for="gestion_var_front">GESTION</label>
                             <input type="text" value="{{$datosdocrenov->gestion}}" name="gestion" class="form-control">
                         </div>
                     </div>

@@ -32,6 +32,7 @@ class EstadoServicioVehiculoController extends Controller
         $datosestservvehi = DB::table('estado_servicio_vehiculos')
             ->join('estado_services', 'estado_services.est_id', '=', 'estado_servicio_vehiculos.est_id')
             ->select('estado_servicio_vehiculos.*', 'estado_services.est_descripcion')
+            ->whereNull('estado_servicio_vehiculos.deleted_at')
             ->get();
         return view('vehiculos.estadoserviciovehiculosview.indexestadovehiculo', compact('datosestservvehi'));
     }
@@ -47,8 +48,15 @@ class EstadoServicioVehiculoController extends Controller
             ->select('placa_id')
             ->get();
         $datosestado = EstadoService::all();
-        /*dd($datosestado);*/
-        return view('vehiculos.estadoserviciovehiculosview.createestadovehiculo', compact('placas', 'datosestado'));
+
+        /*if (isset($datosestado)){
+            return "NO EXISTE NINGUN DATO";
+        }
+        else{*/
+            /*dd($datosestado);*/
+            return view('vehiculos.estadoserviciovehiculosview.createestadovehiculo', compact('placas', 'datosestado'));
+        /*}*/
+
     }
 
     /**
@@ -75,7 +83,7 @@ class EstadoServicioVehiculoController extends Controller
         $estservvehiculo->placa_id = $request->placa_id;
 
         $estservvehiculo->save();
-        return "EXITO EN GUARDAR EST_SERV_VEHICULO";
+        return "EXITO EN REGISTRAR ESTADO SERVICIO";
     }
 
     public function registerSolo(Request $request)
@@ -173,8 +181,18 @@ class EstadoServicioVehiculoController extends Controller
      */
     public function edit($estadoServicioVehiculo)
     {
-        $placa_id = $estadoServicioVehiculo;
-        return view('vehiculos.estadoserviciovehiculosview.editestadovehiculo', compact('placa_id'));
+        $datosestservvehi = DB::table('estado_servicio_vehiculos')
+            ->join('estado_services','estado_services.est_id','=','estado_servicio_vehiculos.est_id')
+            ->select('estado_servicio_vehiculos.est_serv_vehiculo_id',
+                'estado_servicio_vehiculos.fecha_inicio',
+                'estado_servicio_vehiculos.motivo',
+                'estado_servicio_vehiculos.est_id',
+                'estado_servicio_vehiculos.placa_id',
+                'estado_services.est_descripcion')
+            ->where('estado_servicio_vehiculos.est_serv_vehiculo_id','=',$estadoServicioVehiculo)
+            ->get();
+        $datosestado = EstadoService::all();
+        return view('vehiculos.estadoserviciovehiculosview.editestadovehiculo', compact('datosestado','datosestservvehi'));
     }
 
     /**
@@ -184,19 +202,40 @@ class EstadoServicioVehiculoController extends Controller
      * @param \App\ModeloVehiculo\EstadoServicioVehiculo $estadoServicioVehiculo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EstadoServicioVehiculo $estadoServicioVehiculo)
+    public function update(Request $request, $estadoServicioVehiculo)
     {
-        //
+        $estservvehiculo = EstadoServicioVehiculo::find($estadoServicioVehiculo);
+
+        $estservvehiculo->fecha_inicio = $request->fecha_inicio;
+        $estservvehiculo->motivo = $request->motivo;
+        if (isset($request->est_id)) {
+            $estservvehiculo->est_id = $request->est_id;
+        } else {
+            $fueradeservi = DB::table('estado_services')
+                ->select('estado_services.est_id')
+                ->where("estado_services.est_descripcion", '=', 'FUERA DE SERVICIO')
+                ->get();
+            $estservvehiculo->est_id = $fueradeservi[0]->est_id;
+        }
+        $estservvehiculo->placa_id = $request->placa_id;
+
+        $estservvehiculo->update();
+        return "ACTUALIZADO CORRECTAMENTE";
     }
-
-    public function editSolo($estadoServicioVehiculo)
-    {
-
-    }
-
-    public function updateSolo(Request $request, EstadoServicioVehiculo $estadoServicioVehiculo)
-    {
-
+    public function consultaUltimoEstado(Request $request){
+        $placa_id = $request->placa_id;
+        $estadoservvehi = DB::select("SELECT estado_servicio_vehiculos.*, estado_services.est_descripcion
+                                    FROM estado_servicio_vehiculos, estado_services
+                                    WHERE est_serv_vehiculo_id=(  SELECT MAX(est_serv_vehiculo_id) 
+                                                                  FROM estado_servicio_vehiculos 
+                                                                  WHERE fecha_inicio = (  SELECT MAX(fecha_inicio) 
+                                                                                          FROM estado_servicio_vehiculos 
+                                                                                          WHERE placa_id ='" .$placa_id. "'
+                                                                                        )
+                                                                )
+                                    AND estado_services.est_id = estado_servicio_vehiculos.est_id
+                             ");
+        return $estadoservvehi;
     }
     /**
      * Remove the specified resource from storage.
@@ -204,8 +243,9 @@ class EstadoServicioVehiculoController extends Controller
      * @param \App\ModeloVehiculo\EstadoServicioVehiculo $estadoServicioVehiculo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EstadoServicioVehiculo $estadoServicioVehiculo)
+    public function destroy($estadoServicioVehiculo)
     {
-        //
+        EstadoServicioVehiculo::find($estadoServicioVehiculo)->delete();
+        return redirect()->back();
     }
 }

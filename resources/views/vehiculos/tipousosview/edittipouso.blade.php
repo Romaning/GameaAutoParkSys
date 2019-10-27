@@ -1,32 +1,13 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    Editar Tipo Uso
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS DATATABLES-->
 @endsection
 @section('hero_cuadro_bienvenida')
     <!-- Hero -->
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill h3 my-2">
-                    FORM EDIT TIPO
-                    <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
-                        Formulario para editar tipo_uso de Vehiculo
-                    </small>
-                </h1>
-                <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Formulario de datos</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+
     <!-- END Hero -->
     {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection

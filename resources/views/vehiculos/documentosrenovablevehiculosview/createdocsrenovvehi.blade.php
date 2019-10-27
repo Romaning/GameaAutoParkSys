@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    Registrar Vehiculo
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
@@ -158,5 +158,31 @@
     <script>jQuery(function () {
             One.helpers('slick');
         });</script>
+
+
+    {{--##########################################################################################################--}}
+    <script>
+        /*JQUERY PARA ENVIAR FORM DE DOCUEMENTOS RENOVABLES*/
+        $('#form_subir_docs_renov_vehicular').submit(function () {
+            $.ajax({
+                method: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('#boton_exito').click();
+                    $('#mensaje_respuesta_form_subir_docs_renov_vehicular').append(
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>"+
+                        "<div class='flex-00-auto'>"+
+                        "<i class='fa fa-fw fa-check'></i>"+
+                        "</div>"+
+                        "<div class='flex-fill ml-3'>"+
+                        "<p class='mb-0'>"+data+" <a class='alert-link' href='javascript:void(0)'></a>!</p>"+
+                        "</div>"
+                    );
+                }
+            });
+            return false;
+        });
+    </script>
 @endsection
 

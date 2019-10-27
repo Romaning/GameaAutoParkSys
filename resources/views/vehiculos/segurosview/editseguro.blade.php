@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    VEHICULOS
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
@@ -41,9 +41,9 @@
 
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div {{--class="block invisible" data-toggle="appear" data-class="animated flipInX"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
-            <form action="{{route('seguro.update.clasic',$seguro->id)}}" method="POST">
+            <form action="{{route('seguro.update',$seguro->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('POST')
+                @method('PUT')
                 <table class="table table-bordered table-striped table-vcenter {{--js-dataTable-buttons--}}">
                     <thead>
                     <tr>
@@ -83,12 +83,16 @@
                                    class='js-flatpickr form-control material_green datepickerr'
                                    name='campod' placeholder='Año-mes-dia'>
                         </td>
+                        {{--$$$$$$$$$$$$$$  input files $$$$$$$$$$$$$$--}}
                         <td class="d-none d-sm-table-cell font-size-sm">
                             <div class="col-md-12" style="float: right;">
-                                <input type="file" class="custom-file-input" value="" id="archiv" name="campoe">
-                                <label class="custom-file-label" for="archiv" id="nfile">{{$seguro->archivo_subido}}</label>
+                                <input type="file" class="custom-file-input" data-toggle="custom-file-input"
+                                       id="input_file_image" name="campoe">
+                                <label class="custom-file-label" for="input_file_image"
+                                       id="label_file_image">{{$seguro->archivo_subido}}</label>
                             </div>
                         </td>
+                        {{--$$$$$$$$$$$$$$  input files $$$$$$$$$$$$$$--}}
                     </tr>
                     </tbody>
                 </table>
@@ -100,8 +104,22 @@
                 </div>
             </form>
         </div>
+
     </div>
 
+    {{--###########################################$ PREVISULAIZAR IMAGEN DESDE INPUT FILE $#########################################--}}
+    <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
+        <img src="{{asset('carpeta_imagenes/'.$seguro->archivo_subido)}}" width="30%" height="30%" id="images_file"
+             class="justify-content-center"
+             style="justify-content: center;">
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" value="{{$seguro->archivo_subido}}" id="nombre_de_archivo_imagen"
+                       class="form-control btn btn-info"
+                       style="width: 100%">
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -132,14 +150,43 @@
     <script>jQuery(function () {
             One.helpers('slick');
         });</script>
+    {{--#################################################### JAVA SCRIPT PERSONAL############################################################--}}
+    <script type="text/javascript">
+        /*COMO AVERIGUAR DONDE EN DONDE ESTA NUESTRO PROYECTO, POR EJEMPLO SI ESTAMOS EN localhost/proyecto3/proyectosLaravel/GAmeaAutoParkSys/public
+        *   NOS MUESTRA EL URL POR MAS QUE ESTE EN VARIAS DIRECIONES HASTA PUBLIC*/
+        var APP_URL = {!! json_encode(url('/')) !!};
+        console.log(APP_URL);
+    </script>
+    {{--########################################################################################################################################--}}
     <script>
-        document.getElementById('archiv').onchange = function () {
-            console.log(this.value);
-            document.getElementById('nfile').innerHTML = document.getElementById('archiv').files[0].name;
-        }
         $(function () {
-
+            $(document).on('change', '#input_file_image', function () {
+                $('#label_file_image').text($(this).val());
+            });
         });
     </script>
+
+    {{--##############################$ PREVISUALIZAR IMAGEN DESDE INPUT FILE, EN ESCUCHA $##############################--}}
+    <script>
+        $('#input_file_image').change(function (e) {
+            var file = e.target.files[0];
+
+            $('#nombre_de_archivo_imagen').val(file.name);
+
+            var imageType = 'image.*';
+            if (!file.type.match(imageType))
+                return;
+            $reader = "reader";
+            $reader = new FileReader();
+            $reader.onload = fileOnload;
+            $reader.readAsDataURL(file);
+        });
+
+        function fileOnload(e) {
+            var result = e.target.result;
+            $('#images_file').attr("src", result);
+        }
+    </script>
+
 @endsection
 

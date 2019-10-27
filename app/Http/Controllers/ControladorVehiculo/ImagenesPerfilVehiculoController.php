@@ -16,6 +16,8 @@ class ImagenesPerfilVehiculoController extends Controller
         $numeroplaca=$request->placa_id;  /*traemos la paca de vehiculo*/
         foreach($files as $file){
             $fileNameOriginal=$file->getClientOriginalName(); /*guardamos el nombre original*/
+            $fileNameOriginal = str_replace(" ", "_", $fileNameOriginal);
+
             $fileNameMorePlaca = $numeroplaca.$fileNameOriginal; /*concatenamos la placa con el nombre original para que no haya duplicidad */
             $path=public_path().'/carpeta_imagenes/'.$fileNameMorePlaca; /*vemos que ese archivo placa+filename coincida la imagen dentro del public*/
 
@@ -42,6 +44,7 @@ class ImagenesPerfilVehiculoController extends Controller
      */
     public function index()
     {
+        $datosplaca=[];
         $placas = DB::table('vehiculos')
             ->join('imagenes_perfil_vehiculos', 'imagenes_perfil_vehiculos.placa_id', '=', 'vehiculos.placa_id')
             ->select('imagenes_perfil_vehiculos.placa_id')
@@ -93,6 +96,7 @@ class ImagenesPerfilVehiculoController extends Controller
         $imageName = str_replace(" ", "_", $imageName);
 
         $imageNombreReal = $image->getClientOriginalName();
+        $imageNombreReal = str_replace(" ", "_", $imageNombreReal);
 
         $image->move(public_path('carpeta_imagenes'), $imageName);
         $imageUpload = new ImagenesPerfilVehiculo();

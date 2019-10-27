@@ -24,6 +24,8 @@ class VerifyCsrfToken extends Middleware
         'documentospropiedadvehiculo/storefile',
         'documentospropiedadvehiculo/deletefile',
 
+        'seguro/store',
+
         'documentosrenovablevehiculo/docsrenovautocomplet',
         'documentospropiedadvehiculo/docspropautocomplet',
 

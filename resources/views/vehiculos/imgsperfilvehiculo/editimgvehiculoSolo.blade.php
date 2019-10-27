@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    Registrar Vehiculo
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->

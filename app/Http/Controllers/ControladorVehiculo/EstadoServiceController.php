@@ -8,14 +8,11 @@ use Illuminate\Http\Request;
 
 class EstadoServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $datosestado=EstadoService::all();
+
         return view('vehiculos.estadosview.indexestado', compact('datosestado'));
     }
 

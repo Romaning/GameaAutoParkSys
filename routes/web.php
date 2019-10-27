@@ -116,14 +116,12 @@ Route::prefix('/estservvehi')->group(function () {
     Route::post('/', 'ControladorVehiculo\EstadoServicioVehiculoController@store')->name('estservvehi.store');                       /*##bien exclusive##*/
     Route::get('/{estservvehi_id}', 'ControladorVehiculo\EstadoServicioVehiculoController@show')->name('estservvehi.show');
     Route::get('/{estservvehi_id}/edit', 'ControladorVehiculo\EstadoServicioVehiculoController@edit')->name('estservvehi.edit');
-    Route::put('/{estservvehi_id}', 'ControladorVehiculo\EstadoServicioVehiculoController@update')->name('estservvehi.update');
+    Route::put('/{estservvehi_id}/', 'ControladorVehiculo\EstadoServicioVehiculoController@update')->name('estservvehi.update');
 
     Route::delete('/{estservvehi_id}', 'ControladorVehiculo\EstadoServicioVehiculoController@destroy')->name('estservvehi.destroy');
     /*#################################################################################################################################*/
     Route::get('{placa_id}/register', 'ControladorVehiculo\EstadoServicioVehiculoController@registerSolo')->name('estservvehi.registrarsolo'); /*#### bien ####*/
     Route::post('/store', 'ControladorVehiculo\EstadoServicioVehiculoController@storeSolo')->name('estservvehi.storesolo');                         /*#### bien ####*/
-    Route::get('/{estservvehi_id}/editsolo', 'ControladorVehiculo\EstadoServicioVehiculoController@editSolo')->name('estservvehi.editsolo');
-    Route::put('/{estservvehi_id}', 'ControladorVehiculo\EstadoServicioVehiculoController@updateSolo')->name('estservvehi.updatesolo');
     /*#################################################################################################################################*/
 
 });
@@ -149,6 +147,7 @@ Route::prefix('/documentospropiedadvehiculo')->group(function () {
     Route::post('/docspropstorefile','ControladorVehiculo\DocumentosPropiedadVehiculoController@storeFile')->name('docsprop.storefile');
     Route::post('/docspropdeletefile', 'ControladorVehiculo\DocumentosPropiedadVehiculoController@fileDestroy')->name('docsprop.deletefile');
     /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+    Route::post('/consulta', 'ControladorVehiculo\EstadoServicioVehiculoController@consultaUltimoEstado')->name('estservvehi.consulta');
 
 });
 
@@ -185,7 +184,7 @@ Route::prefix('/documentosrenovablevehiculo')->group(function () {
 Route::prefix('/seguro')->group(function () {
     Route::get('/', 'ControladorVehiculo\SeguroController@index')->name('seguro.index');
     Route::get('/create', 'ControladorVehiculo\SeguroController@create')->name('seguro.create');
-    Route::post('/', 'ControladorVehiculo\SeguroController@store')->name('seguro.store');
+    Route::post('/store', 'ControladorVehiculo\SeguroController@store')->name('seguro.store');
     Route::get('/{seguro_id}', 'ControladorVehiculo\SeguroController@show')->name('seguro.show');
     Route::get('/{seguro_id}/edit', 'ControladorVehiculo\SeguroController@edit')->name('seguro.edit');
     Route::put('/{seguro_id}', 'ControladorVehiculo\SeguroController@update')->name('seguro.update');

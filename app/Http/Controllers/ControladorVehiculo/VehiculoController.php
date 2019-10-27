@@ -30,14 +30,28 @@ class VehiculoController extends Controller
         FROM vehiculos v, marcas m
         WHERE v.marca_id = m.marca_id*/
         /*$datosvehiculosall= Vehiculo::all();*/
-        $datosvehiculos = DB::table('vehiculos')
-            ->join('marcas', 'marcas.marca_id', '=', 'vehiculos.marca_id')
-            ->select('vehiculos.placa_id',
-                'vehiculos.numero_crpva',
-                'vehiculos.numero_chasis',
-                'vehiculos.numero_motor',
-                'marcas.marca_descripcion')
-            ->get();
+        /**/
+        $datosvehiculos = DB::select('SELECT vehi.placa_id,vehi.numero_crpva,vehi.numero_chasis,vehi.numero_motor,
+                                        m.marca_descripcion,estservvehi.est_serv_vehiculo_id,est.est_id ,est.est_descripcion
+                                        FROM 
+                                                (SELECT	est.placa_id, MAX(est.est_serv_vehiculo_id) serv_id
+                                                FROM
+                                                        (SELECT	vehiculos.placa_id, MAX(estado_servicio_vehiculos.fecha_inicio) fechamax
+                                                        FROM	vehiculos,estado_servicio_vehiculos
+                                                        WHERE	vehiculos.placa_id = estado_servicio_vehiculos.placa_id
+                                                        GROUP BY	vehiculos.placa_id
+                                                        ) tb_orange,
+                                                estado_servicio_vehiculos est
+                                                WHERE	 tb_orange.placa_id = est.placa_id AND tb_orange.fechamax = est.fecha_inicio
+                                                GROUP BY est.placa_id) tb_master,
+                                                vehiculos vehi,
+                                                marcas m,
+                                                estado_servicio_vehiculos estservvehi,
+                                                estado_services est
+                                        WHERE vehi.placa_id=tb_master.placa_id AND
+                                            vehi.marca_id = m.marca_id AND
+                                            tb_master.serv_id = estservvehi.est_serv_vehiculo_id AND estservvehi.est_id = est.est_id');
+
         return view('vehiculos.vehiculosview.indexvehiculo', compact('datosvehiculos'));
         /*dd($datosvehiculos);*/
     }
@@ -322,7 +336,7 @@ class VehiculoController extends Controller
         /*dd($vehiculo);*/
         $vehiculo->update();
         /*return redirect()->route('vehiculo.index')->with('success','Registro Exitoso');*/
-        return "Exito en Subir";
+        return redirect()->route('vehiculo.index');
     }
 
     public function destroySolo($vehiculo)

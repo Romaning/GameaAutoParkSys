@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    Editar Tipo
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS DATATABLES-->

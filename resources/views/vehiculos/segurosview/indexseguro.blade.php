@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    VEHICULOS
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS DATATABLES-->
@@ -14,7 +14,7 @@
 @section('content')
     @csrf
     <div class="block">
-        <div class="block-content block-content-full block invisible" data-toggle="appear"
+        <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
              data-class="animated flipInX{{--bounceIn--}}">
             <div {{--class="block invisible" data-toggle="appear" data-class="animated flipInX"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
             <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
@@ -27,10 +27,10 @@
                         <th class="d-none d-sm-table-cell">EMPRESA ASEGURADORA</th>
                         <th class="d-none d-sm-table-cell">FECHA DE VIGENCIA</th>
                         <th class="d-none d-sm-table-cell" style="width:13%;">ARCHIVOS SUBIDOS</th>
-                        <th style="width:10%;" class="text-sm-center">
+                        <th style="width:10%;" class="text-sm-center font-size-sm">
                             <a href="{{route('seguro.create')}}"
-                               class="btn-sm btn-primary">
-                                <i class="fa fa-plus"></i>Añadir
+                               class="btn-sm btn-primary shadow rounded">
+                                <i class="fa fa-plus-circle"></i> Añadir
                             </a>
                         </th>
                         {{-- <th style="width: 15%;">Botones</th>--}}
@@ -54,35 +54,39 @@
                             <td class="d-none d-sm-table-cell font-size-sm">
                                 {{$filadatosseguro->fecha_vigencia}}
                             </td>
-                            <td class="d-none d-sm-table-cell font-size-sm">
-                                <div class="col-md-12" style="float: right;">
-                                    <input type="file" class="custom-file-input" value="" id="archiv" name="campoe">
-                                    <label class="custom-file-label" for="archiv" id="nfile">{{$filadatosseguro->archivo_subido}}</label>
+                            <td class="text-sm-center font-size-sm">
+                                <div class="custom-file">
+                                    <div class="col-md-12" style="float: right;">
+                                        <input type="file" class="custom-file-input col-md-1" data-toggle="custom-file-input"
+                                               name="campoe" id="archiv">
+                                        <label class="custom-file-label" for="archiv"
+                                               id="nfile">{{$filadatosseguro->archivo_subido}}</label>
+                                    </div>
                                 </div>
                             </td>
 
                             <td class="justify-content-center">
                                 <div class="row text-sm-center">
-                                    <div class="col col-xl-3">
+                                    <div class="col-sm-1">
                                         <a href="{{route('seguro.show',$filadatosseguro->id)}}"
-                                           class="btn btn-success btn-sm" data-toggle="tooltip"
+                                           class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                            title="VER INFORMACION COMPLETA">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                     </div>
-                                    <div class="col col-xl-3">
+                                    <div class="col-sm-1">
                                         <a href="{{route('seguro.edit',$filadatosseguro->id)}}"
-                                           class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                           class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                            title="EDITAR">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                     </div>
-                                    <div class="col col-xl-3">
+                                    <div class="col-sm-1">
                                         <form action="{{route('seguro.destroy',$filadatosseguro->id)}}"
                                               method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" data-toggle="tooltip"
+                                            <button class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                                     title="ELIMINAR">
                                                 <i class="fas fa-trash"></i>
                                             </button>

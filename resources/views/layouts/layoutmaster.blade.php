@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title')</title>
+    <!-- Page CS DIRECTO PARA SHOW VEHICULO -->
     {{--<meta name="description" content="Maestro sistema parque automotor gamea">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">--}}
@@ -23,6 +24,8 @@
 
     <!-- Stylesheets -->
     @yield('styles')  {{--#############################   ESTO DEBE ESTAR AQUI, SI NO NO SE APLICA LOS CSS A TODAS LAS PAGINAS #########################--}}
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
+
     <!-- Fonts and OneUI framework -->
     {{--<link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">--}}
@@ -31,7 +34,7 @@
 </head>
 <body>
 {{--<div class="titulo-master">ALGUNO DE LOS CODIGOS COMO ESTO ESTARÁN EN TODO LADO (MASTER)</div>--}}
-<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed side-trans-enabled sidebar-mini{{--sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed--}}">
+<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed{{-- side-trans-enabled sidebar-mini--}}{{--sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed--}}">
 {{--                         class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed page-header-dark"--}}
     {{--TRES RAYITAS  DE LA CABECERA ->  ESTA A LA ESQUINA DERECHA PUNTA--}}
                                      @component('componentes.1SideOverlay(lineasderarriba)')
@@ -80,5 +83,12 @@
 <!-- Page JS Code -->
 <script src="{{asset('assets/js/pages/be_pages_dashboard.min.js')}}"></script>
 @yield('js_script_import')
+
+<!-- DIALOGOS -->
+    <script src="{{asset('assets/js/plugins/es6-promise/es6-promise.auto.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+    <!-- Page JS Code -->
+    <script src="{{asset('assets/js/pages/be_comp_dialogs.min.js')}}"></script>
+
 </body>
 </html>

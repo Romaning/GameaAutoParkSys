@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    Registrar Vehiculo
+
 @endsection
 
 @section('styles')

@@ -35,7 +35,7 @@ class SeguroController extends Controller
             ->select('placa_id')
             ->groupBy('placa_id')
             ->get();
-        return view('vehiculos.segurosview.createseguro', compact('placas'));
+        return view('vehiculos.segurosview.createseguroOther', compact('placas'));
     }
 
     /**
@@ -46,32 +46,37 @@ class SeguroController extends Controller
      */
     public function store(Request $request)
     {
+        /* return "AMOR SEGURO STORE";*/
         /*dd($request->all());*/
-        $swithc = 0;
+        $placa_id = $request->placa_id;
         $gestiones = $request->campoa;
         $texto = $request->campob;
         $empresa_aseguradora = $request->campoc;
         $fecha_vigencia = $request->campod;
-        $archivo_subido = $request->campoe;
-        $placa_id = $request->placa_id;
-        if (is_array($placa_id)) {
-            $swithc = 1;
-        }
+        $archivo_subido = $request->file('campoe');
+
         for ($i = 0; $i < count($gestiones); $i++) {
             $seguro = new Seguro();
+
+            $seguro->placa_id = $placa_id[$i];
             $seguro->gestion = $gestiones[$i];
             $seguro->texto = $texto[$i];
             $seguro->empresa_aseguradora = $empresa_aseguradora[$i];
             $seguro->fecha_vigencia = $fecha_vigencia[$i];
-            $seguro->archivo_subido = $archivo_subido[$i];
-            if ($swithc == 1) {
-                $seguro->placa_id = $placa_id[$i];
-            } else {
-                $seguro->placa_id = $placa_id;
-            }
+
+            $imageName = $placa_id[$i] . "" . $archivo_subido[$i]->getClientOriginalName();
+            $imageName = str_replace(" ", "_", $imageName);
+            $archivo_subido[$i]->move(public_path('carpeta_imagenes'), $imageName);
+
+            $seguro->archivo_subido = $imageName;
+            /*$File = file($archivo_subido[$i]);
+                    $archivo_subido = $request->file('campoe');
+            $imageName = $placa_id[$i].$File->getClientOriginalName();
+            $File->move(public_path('carpeta_imagenes'), $imageName);*/
+
             $seguro->save();
         }
-        return "VER" . $i;
+        return redirect()->route('seguro.index');
     }
 
     /**
@@ -82,7 +87,13 @@ class SeguroController extends Controller
      */
     public function show($seguro)
     {
-        //
+        $placas = DB::table('vehiculos')
+            ->select('placa_id')
+            ->groupBy('placa_id')
+            ->get();
+        $seguro = Seguro::find($seguro);
+        /*dd($seguro);*/
+        return view('vehiculos.segurosview.showseguro', compact('seguro', 'placas'));
     }
 
     public function historialSeguros($vehiculo)
@@ -107,6 +118,7 @@ class SeguroController extends Controller
             ->groupBy('placa_id')
             ->get();
         $seguro = Seguro::find($seguro);
+        /*dd($seguro);*/
         return view('vehiculos.segurosview.editseguro', compact('seguro', 'placas'));
     }
 
@@ -119,7 +131,44 @@ class SeguroController extends Controller
      */
     public function update(Request $request, $seg)
     {
+
+        $seguro = Seguro::find($seg);
+        $seguro->gestion = $request->campoa;
+        $seguro->texto = $request->campob;
+        $seguro->empresa_aseguradora = $request->campoc;
+        $seguro->fecha_vigencia = $request->campod;
+
+        if ($request->hasFile('campoe')){ /*EXISTE ALGUN ARCHIVO SUBIDO ? SI*/
+            /* GUARDAMOS UN ARCHIVO A LA CARPETA PUBLIC DEL PROYECTO */
+            $archivoimag = $request->file('campoe');
+            $nombrearchivo = $request->placa_id."".$archivoimag->getClientOriginalName();
+            $nombrearchivo =  str_replace(" ", "_", $nombrearchivo);
+            $archivoimag->move(public_path('carpeta_imagenes'),$nombrearchivo);
+
+            /* BUSCAMOS EL ANTIGUO NOMBRE PARA ELIMINAR DE LA BD*/
+            $nombreImgParaDarArchivo = DB::table('seguros')
+                ->where('seguros.id','=',$seg)
+                ->select('seguros.archivo_subido')
+                ->get();
+
+            /* ELIMINAMOS LA IMAGEN DE LA CARPETA DE IMAGENES DEL PROYECTO */
+            $path = public_path().'/carpeta_imagenes/'.$nombreImgParaDarArchivo[0]->archivo_subido;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+
+            /* AHORA QUE YA HEMOS OBTENIDO EL NOMBRE PARA OTROS BENEFICIOS AHORA LO REEMPLAZAMOS*/
+            $seguro->archivo_subido = $nombrearchivo;
+        }
+        else{
+            /*ENTONCES NO CAMBIAMOS NADA EN ARCHIVOS Y BD ARHIVO_SUBIDO*/
+        }
+        $seguro->placa_id = $request->placa_id;
+        $seguro->update();
+
+        return redirect()->route('seguro.index');
     }
+
     public function updateClasis(Request $request, $seg)
     {
         $seguro = Seguro::find($seg);
@@ -133,9 +182,20 @@ class SeguroController extends Controller
         return "VER";
     }
 
-
     public function destroy($seguro)
     {
-        //
+        $archivo_subido = DB::table('seguros')
+            ->where('seguros.id', '=', $seguro)
+            ->select('seguros.archivo_subido')
+            ->get();
+
+        $archivo_subido[0]->archivo_subido =  str_replace(" ", "_", $archivo_subido[0]->archivo_subido);
+        $path = public_path() . '/carpeta_imagenes/' . $archivo_subido[0]->archivo_subido;
+        if (file_exists($path)) {
+            unlink($path);
+        }
+
+        Seguro::where('id', $seguro)->forceDelete();
+        return redirect()->route('seguro.index');
     }
 }

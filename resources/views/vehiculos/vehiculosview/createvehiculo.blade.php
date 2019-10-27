@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    Registrar Vehiculo
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
@@ -22,26 +22,7 @@
 @endsection
 @section('hero_cuadro_bienvenida')
     <!-- Hero -->
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill h3 my-2">
-                    FORM REGISTRAR VEHICULO
-                    <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">
-                        Formulario para registrar Vehiculo
-                    </small>
-                </h1>
-                <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">Form</li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            <a class="link-fx" href="">Formulario de datos</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+
     <!-- END Hero -->
     {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection
@@ -85,12 +66,18 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="numero_chasis">NUMERO CHASIS: <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="numero_chasis" name="numero_chasis"
+                                    <input type="text" class="js-maxlength form-control" id="numero_chasis"
+                                           name="numero_chasis"
+                                           maxlength="20" data-always-show="true"
+                                           data-placement="top"
                                            required>
                                 </div>
                                 <div class="col">
                                     <label for="numero_motor">NUMERO MOTOR: <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="numero_motor" name="numero_motor"
+                                    <input type="text" class="js-maxlength form-control" id="numero_motor"
+                                           name="numero_motor"
+                                           maxlength="20" data-always-show="true"
+                                           data-placement="top"
                                            required>
                                 </div>
                             </div>
@@ -100,12 +87,18 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="documento_importacion">DOCUMENTO DE IMPORTACION: </label>
-                                    <input type="text" class="form-control" id="documento_importacion"
+                                    <input type="text" class="js-maxlength form-control" id="documento_importacion"
+                                           maxlength="100" data-always-show="true"
+                                           data-placement="top"
                                            name="documento_importacion">
                                 </div>
                                 <div class="col">
                                     <label for="numero_documento_importacion">NUMERO DOCUMENTO IMPORTACION: </label>
-                                    <input type="text" class="form-control" id="numero_documento_importacion"
+                                    <input type="text" class="js-maxlength form-control"
+                                           id="numero_documento_importacion"
+                                           maxlength="20" data-always-show="true"
+                                           data-placement="top"
+                                           placeholder="Numeros..."
                                            name="numero_documento_importacion">
                                 </div>
                             </div>
@@ -175,24 +168,39 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="color">COLOR: </label>
-                                    <input type="text" class="form-control" id="color" name="color">
+                                    <input type="text" class="js-maxlength form-control" id="color" name="color"
+                                           maxlength="100" data-always-show="true"
+                                           data-placement="top">
                                 </div>
                                 <div class="col">
                                     <label for="plazas">PLAZAS: </label>
-                                    <input type="text" class="form-control" id="plazas" name="plazas">
+                                    <input type="text" class="js-maxlength form-control btn-block js-tooltip-enabled"
+                                           id="plazas" name="plazas" maxlength="11"
+                                           data-always-show="true"
+                                           data-placement="top" placeholder="Solo numeros..."
+                                           data-toggle="tooltip"
+                                           data-original-title="Solo números">
                                 </div>
                             </div>
                         </div>
-
+                        {{--<button type="button" class="btn-block js-tooltip-enabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Top Tooltip">Top</button>--}}
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
                                     <label for="ruedas">RUEDAS: <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="ruedas" name="ruedas" required>
+                                    <input type="text" class="js-maxlength form-control btn-block js-tooltip-enabled"
+                                           id="ruedas" name="ruedas" maxlength="11"
+                                           data-always-show="true"
+                                           data-placement="top" placeholder="Solo numeros..."
+                                           data-toggle="tooltip"
+                                           title="SOLO NUMEROS"
+                                           data-original-title="Solo números" required>
                                 </div>
                                 <div class="col">
                                     <label for="traccion">TRACCION: </label>
-                                    <input type="text" class="form-control" id="traccion" name="traccion">
+                                    <input type="text" class="js-maxlength form-control" id="traccion" name="traccion"
+                                           maxlength="100" data-always-show="true"
+                                           data-placement="top">
                                 </div>
                             </div>
                         </div>
@@ -490,7 +498,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>iINSPECCION VEHICULAR: </label>
+                            <label>INSPECCION VEHICULAR: </label>
                             <div class="custom-control custom-switch custom-control-lg mb-2">
                                 <input type="checkbox" class="custom-control-input" id="example-sw-custom-lg2"
                                        name="inspeccion_vehicular" value="1">
@@ -531,14 +539,16 @@
         </div>
 
         <div class="block-content">
-            <form action="{{route('seguro.store')}}" method="POST" id="form_subir_seguros">
+            <form action="{{route('seguro.store')}}" method="POST" id="form_subir_seguros"
+                  enctype="multipart/form-data">
                 @csrf
                 @method('POST')
-                <input type="hidden" name="placa_id" value=""
-                       id="placa_id_subir_seguro"> {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ placa oculta $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
+                {{--<input type="hidden" name="placa_id" value="" class="placa_id_subir_seguro"
+                       id="placa_id_subir_seguro"> --}}{{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ placa oculta $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
                 <table class="table table-bordered table-striped table-vcenter{{-- js-dataTable-buttons--}}">
                     <thead>
                     <tr>
+                        <th class="d-none"></th>
                         <th class="d-none d-sm-table-cell">GESTION</th>
                         <th class="d-none d-sm-table-cell">DESCRIPCION</th>
                         <th class="d-none d-sm-table-cell">EMPRESA ASEGURADORA</th>
@@ -549,6 +559,7 @@
                     </tr>
                     </thead>
                     <tbody id="body_tb_form_in">
+
 
                     </tbody>
                 </table>
@@ -566,7 +577,11 @@
     <!-- END Flatpickr Datetimepicker -->
 
 
-
+    <div class="d-none">
+        <button type="button" class="js-swal-success btn btn-light push" id="boton_exito">
+            <i class="fa fa-check-circle text-success mr-1"></i> Launch Dialog
+        </button>
+    </div>
 @endsection
 @section('js_script_import')
     {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
@@ -598,6 +613,7 @@
     <script>
         function asignarPlacaIdATodaLaPagina() {
             placavehiculo = $('#placa_id').val();
+
             $('#placa_id_subida_docs_prop_vehiculo').val(placavehiculo);
             $('#placa_id_subida_imgs_perfil_vehiculo').val(placavehiculo);
             $('#placa_id_subida_docs_renov_vehicular').val(placavehiculo);
@@ -612,7 +628,16 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 success: function (data) {
-                    $('#mensaje_respuesta_form_subir_datos_vehiculo').html(data);
+                    $('#boton_exito').click();
+                    $('#mensaje_respuesta_form_subir_datos_vehiculo').append(
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                        "<div class='flex-00-auto'>" +
+                        "<i class='fa fa-fw fa-check'></i>" +
+                        "</div>" +
+                        "<div class='flex-fill ml-3'>" +
+                        "<p class='mb-0'>" + data + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
+                        "</div>"
+                    );
                 }
             });
             return false;
@@ -625,7 +650,16 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 success: function (data) {
-                    $('#mensaje_respuesta_form_subir_est_serv_vehicular').html(data);
+                    $('#boton_exito').click();
+                    $('#mensaje_respuesta_form_subir_est_serv_vehicular').append(
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                        "<div class='flex-00-auto'>" +
+                        "<i class='fa fa-fw fa-check'></i>" +
+                        "</div>" +
+                        "<div class='flex-fill ml-3'>" +
+                        "<p class='mb-0'>" + data + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
+                        "</div>"
+                    );
                 }
             });
             return false;
@@ -647,7 +681,8 @@
                     myDropzoneDocsProp.processQueue();
                 });
                 this.on("addedfile", function (file) {
-                    alert("file uploaded");
+                    $('#boton_exito').click();
+                    /*alert("file uploaded");*/
                 });
 
                 this.on("complete", function (file) {
@@ -678,7 +713,8 @@
                     myDropzoneImgsPerfil.processQueue();
                 });
                 this.on("addedfile", function (file) {
-                    alert("file uploaded");
+                    $('#boton_exito').click();
+                    /*alert("file uploaded");*/
                 });
 
                 this.on("complete", function (file) {
@@ -697,12 +733,43 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 success: function (data) {
-                    $('#mensaje_respuesta_form_subir_docs_renov_vehicular').html(data);
+                    $('#boton_exito').click();
+                    $('#mensaje_respuesta_form_subir_docs_renov_vehicular').append(
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                        "<div class='flex-00-auto'>" +
+                        "<i class='fa fa-fw fa-check'></i>" +
+                        "</div>" +
+                        "<div class='flex-fill ml-3'>" +
+                        "<p class='mb-0'>" + data + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
+                        "</div>"
+                    );
                 }
             });
             return false;
         });
         /*JQUERY PARA ENVIAR FORM DE SUBIR SEGUROS DE VEHICULO*/
+        /*$('#form_subir_seguros').submit(function () {
+            var campoa = $('#form_subir_seguros').find('input[name^="campoa"]').serialize();
+            var campob = $('#form_subir_seguros').find('input[name^="campob"]').serialize();
+            var campoc = $('#form_subir_seguros').find('input[name^="campoc"]').serialize();
+            var campod = $('#form_subir_seguros').find('input[name^="campod"]').serialize();
+            var campoe = $('#form_subir_seguros').find('input[name^="campoe"]').serialize();
+            $.ajax({
+                method: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: {
+                    campoa:campoa,
+                    campob:campob,
+                    campoc:campoc,
+                    campod:campod,
+                    campoe:campoe,
+                },
+                success : function (data) {
+                    $('#mensaje_respuesta_form_subir_seguros').html(data);
+                }
+            });
+            return false;
+        });*/
         /*$('#form_subir_seguros').submit(function () {
             $.ajax({
                 method: $(this).attr('method'),
@@ -752,7 +819,6 @@
                 }, 20);*/
                 interuptor_tbn_documentos_propiedad_vehiculo = 1;
             } else {
-                bloque_subida_docs_prop_vehiculo
                 $('#bloque_subida_docs_prop_vehiculo').addClass('d-none');  /*hacer que ahora se cierre la seccion de subir archivos*/
                 $('#bloque_docs_prop_vehiculo').removeClass('d-none') /*hacer que aparezca el carrusel de imagenes*/
                 /*location.reload();*//*recargamos la imagen*/
@@ -787,11 +853,20 @@
 
     {{--##############################################  js  #####################################################--}}
     <script>
+        /*"<td class='d-none d-sm-table-cell font-size-sm'>" +
+            "<div class='col-md-12' style='float: right;'>" +
+                "<input type='file' class='custom-file-input' value='' id='archiv' name='campoe[]' required>" +
+                "<label class='custom-file-label' id='archiv' id='nfile'></label>" +
+            "</div>" +
+        "</td>" +*/
         var contador = 0;
         $(document).on('click', '#btn_generar_filas', function () {
             contador = contador + 1;
             $('#body_tb_form_in').append(
                 "<tr>" +
+                "<td class='d-none'>" +
+                "<input type='hidden' name='placa_id[]' value='' class='placa_id_subir_seguro' id='' required>" +
+                "</td>" +
                 "<td class='d-none d-sm-table-cell font-size-sm'>" +
                 "<input type='text' value='{{date('Y')}}' class='form-control' name='campoa[]' placeholder='20XX...' required>" +
                 "</td>" +
@@ -806,8 +881,7 @@
                 "</td>" +
                 "<td class='d-none d-sm-table-cell font-size-sm'>" +
                 "<div class='col-md-12' style='float: right;'>" +
-                "<input type='file' class='custom-file-input' value='' id='archiv' name='campoe[]' required>" +
-                "<label class='custom-file-label' id='archiv' id='nfile'></label>" +
+                "<input type='file' class='custom-file-input' value='' name='campoe[]' required>" +
                 "</div>" +
                 "</td>" +
                 " <td class='btn-eliminar justify-content-center'>" +
@@ -820,15 +894,17 @@
             $(".datepickerr" + contador).flatpickr();
             $(".datepickerr" + contador).flatpickr("option", "dateFormat", "yy-mm-dd");
 
-            document.getElementById('archiv'/*+ contador*/).onchange = function () {
-                console.log(this.value);
-                document.getElementById('nfile'/*+ contador*/).innerHTML = document.getElementById('archiv'/*+ contador*/).files[0].name;
-            }
+            placavehiculo = $('#placa_id').val();
+            $('.placa_id_subir_seguro').val(placavehiculo);
         });
         $(document).on('click', '.btn-eliminar', function () {
             $(this).parent().remove();
         })
 
+        /*document.getElementById('archiv').onchange = function () {
+            console.log(this.value);
+            document.getElementById('nfile').innerHTML = document.getElementById('archiv').files[0].name;
+        }*/
         /*$(document).on('change', '.archiv',function () {
             var d = $(this).val();
             $('.nfile').text(d);
@@ -838,7 +914,6 @@
             document.getElementsByClassName('nfile').innerHTML = document.getElementById('archiv').files[0].name;
         }*/
     </script>
-
     {{--<script src="{{asset('jsromsys/vehiculos.create.js')}}"></script>--}}
 
 @endsection

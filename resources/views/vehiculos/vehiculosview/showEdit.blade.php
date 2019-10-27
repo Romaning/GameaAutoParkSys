@@ -2,7 +2,7 @@
 @endforeach
 @extends('layouts.layoutmaster')
 @section('title')
-    Registrar Vehiculo
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
@@ -165,7 +165,8 @@
                                        value="{{$filavehiculo->tipo_uso_descripcion}}">
                             </div>
                             <div class="col">
-                                <label for=fecha_incorporacion_institucion">FECHA DE INCORPORACION A INSTITUCION: </label>
+                                <label for=fecha_incorporacion_institucion">FECHA DE INCORPORACION A
+                                    INSTITUCION: </label>
                                 <input type="text" class="form-control" id="fecha_incorporacion_institucion"
                                        name="fecha_incorporacion_institucion" style="width: 100%;"
                                        value="{{$filavehiculo->fecha_incorporacion_institucion}}">
@@ -192,7 +193,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="fecha_inicio_est_serv_vehi">FECHA INICIO: </label>
+                                    <label for="fecha_inicio_est_serv_vehi">DESDE LA FECHA: </label>
                                     <input type="text" name="fecha_inicio" id="fecha_inicio_est_serv_vehi"
                                            value="{{$estadoservvehi[0]->fecha_inicio}}" class="form-control">
                                 </div>
@@ -347,7 +348,7 @@
     {{--SECCION DE SUBIDA DE IMAGENES DE DOCUMENTOS DE PROPIEDAD DEL VEHICULO (TODOS LOS PERFILES O ANGULOS)--}}
     <!-- Dropzone (functionality is auto initialized by the plugin itself in js/plugins/dropzone/dropzone.min.js) -->
     <!-- For more info and examples you can check out http://www.dropzonejs.com/#usage -->
-    <div class="block d-none  shadow p-2 mb-1 rounded" id="bloque_subida_docs_prop_vehiculo" data-toggle="appear"
+    <div class="block d-none shadow p-2 mb-1 rounded" id="bloque_subida_docs_prop_vehiculo" data-toggle="appear"
          data-class="animated bounceIn">
         <div class="block-header">
             <h3 class="block-title">
@@ -355,16 +356,17 @@
             </h3>
         </div>
         <div class="block-content block-content-full">
-            <h2 class="content-heading border-bottom mb-4 pb-2">SUBIDA DE ARCHIVOS ASINCRONA</h2>
+            <h2 class="content-heading border-bottom mb-4 pb-2">Subida de Archivos Asincrona</h2>
             <div class="row">
                 <div class="{{--col-lg-8--}} col-lg-12 {{--col-xl-5--}}">
                     <!-- DropzoneJS Container -->
                     {{--<h3 class="jumbotron">Laravel Multiple Images Upload Using Dropzone</h3>--}}
                     <div id="dropezone_docs_prop">
-                        <form method="post" action="{{route('docsprop.storefile')}}" enctype="multipart/form-data"
+                        <form method="post" action="{{route('docsprop.storefilemet')}}" enctype="multipart/form-data"
                               class="dropzone" id="myDropzoneDocsProp">
                             @csrf
-                            <input type="text" name="placa_id" value="" id="placa_id_subida_docs_prop_vehiculo">
+                            <input type="hidden" name="placa_id" value="{{$filavehiculo->placa_id}}"
+                                   id="placa_id_subida_docs_prop_vehiculo"> {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ placa oculta $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
                             <div class="dz-message">
                                 Sube Tus imagenes aquí
                             </div>
@@ -390,7 +392,6 @@
         {{--<button type="submit" id="limpiar_seccion_dubida_fotos">LIMPIAR</button>--}}
     </div>
     <!-- END Dropzone -->
-
 
     {{--####################################### SLIDER PARA IMAGENES PERFIL VEHICULO #######################################--}}
     <!-- Slider with multiple images and center mode -->
@@ -425,14 +426,13 @@
     {{--SECCION DE SUBIDA DE IMAGENES DEL VEHICULO (TODOS LOS PERFILES O ANGULOS)--}}
     <!-- Dropzone (functionality is auto initialized by the plugin itself in js/plugins/dropzone/dropzone.min.js) -->
     <!-- For more info and examples you can check out http://www.dropzonejs.com/#usage -->
-    <div class="block d-none shadow p-2 mb-1 rounded" id="bloque_subida_imagenes_perfil_vehiculo"
-         data-toggle="appear"
+    <div class="block shadow p-2 mb-1 rounded d-none" id="bloque_subida_imagenes_perfil_vehiculo" data-toggle="appear"
          data-class="animated bounceIn">
         <div class="block-header">
             <h3 class="block-title">SUBIR IMAGENES (DELANTERA, DERECHA, IZQUIERDA, ATRAS, Y OTROS) DEL VEHICULO</h3>
         </div>
         <div class="block-content block-content-full">
-            <h2 class="content-heading border-bottom mb-4 pb-2">Subida de Archivos Asincrona</h2>
+            <h2 class="content-heading border-bottom mb-4 pb-2">SUBIDA DE ARCHIVOS ASINCRONA</h2>
             <div class="row">
                 <div class="{{--col-lg-8--}} col-lg-12 {{--col-xl-5--}}">
                     <!-- DropzoneJS Container -->
@@ -441,7 +441,8 @@
                         <form method="post" action="{{route('imgsperfil.storefilemet')}}" enctype="multipart/form-data"
                               class="dropzone" id="myDropzoneImgsPerfil">
                             @csrf
-                            <input type="text" name="placa_id" value="" id="placa_id_subida_imgs_perfil_vehiculo">
+                            <input type="hidden" name="placa_id" value="{{$filavehiculo->placa_id}}"
+                                   id="placa_id_subida_imgs_perfil_vehiculo">{{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ placa oculta $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
                             <div class="dz-message">
                                 Sube Tus imagenes aquí
                             </div>
@@ -470,6 +471,7 @@
 
 
 
+
     <!-- Flatpickr Datetimepicker (.js-flatpickr class is initialized in Helpers.flatpickr()) -->
     <!-- For more info and examples you can check out https://github.com/flatpickr/flatpickr -->
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
@@ -478,11 +480,12 @@
             <a href="{{route('docsrenov.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info">HISTORIAL</a>
         </div>
         <div class="block-content">
+
             @foreach($datosdocumentosrenovable as $filadocrenov)
                 {{-- <form action="{{route('documentosrenovablevehiculo.store')}}" method="POST"
                        id="form_subir_docs_renov_vehicular">
                      @csrf--}}
-                <input type="hidden" name="placa_id" value="" id="placa_id_subida_docs_renov_vehicular">
+                <input type="hidden" name="placa_id" value="{{$filavehiculo->placa_id}}" id="placa_id_subida_docs_renov_vehicular">
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -530,7 +533,7 @@
                         <div class="form-group">
                             <div class="custom-control custom-switch custom-control-lg mb-2">
                                 <a href="{{route('docsrenov.edit',$filadocrenov->archivero_id)}}"
-                                   class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                   class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                    title="EDITAR">
                                     <i class="fas fa-pen"></i>
                                 </a>
@@ -540,6 +543,7 @@
 
                 </div>
             @endforeach
+
             {{--<div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
@@ -568,7 +572,7 @@
             <a href="{{route('seguro.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info">HISTORIAL</a>
         </div>
         <div class="block-content">
-            <input type="text" name="placa_id" class="d-none" value="" id="placa_id_subir_seguro">
+            <input type="text" name="placa_id" class="d-none" value="{{$filavehiculo->placa_id}}" id="placa_id_subir_seguro">
             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                 <thead>
                 <tr>
@@ -582,7 +586,9 @@
                 </tr>
                 </thead>
                 <tbody id="body_tb_form_in">
+
                 @foreach($datosseguro as $seguro)
+
                     <tr>
                         <td class="d-none d-sm-table-cell font-size-sm">
                             {{$seguro->gestion}}
@@ -599,13 +605,14 @@
                         <td class="d-none d-sm-table-cell font-size-sm">
                             <div class="col-md-12" style="float: right;">
                                 <input type="file" class="custom-file-input" value="" id="archiv" name="campoe">
-                                <label class="custom-file-label" for="archiv" id="nfile">{{$seguro->archivo_subido}}</label>
+                                <label class="custom-file-label" for="archiv"
+                                       id="nfile">{{$seguro->archivo_subido}}</label>
                             </div>
                         </td>
                         <td class="btn-eliminar justify-content-center">
                             <div class="mb-2">
                                 <a href="{{route('seguro.edit', $seguro->id)}}"
-                                   class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                   class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                    title="EDITAR">
                                     <i class="fas fa-pen"></i>
                                 </a>
@@ -621,6 +628,12 @@
     </div>
     <!-- END Flatpickr Datetimepicker -->
 
+
+    <div class="d-none">
+        <button type="button" class="js-swal-success btn btn-light push" id="boton_exito">
+            <i class="fa fa-check-circle text-success mr-1"></i> Launch Dialog
+        </button>
+    </div>
 @endsection
 
 @section('js_script_import')
@@ -659,15 +672,67 @@
     <script>
         placavehiculo = $('#placa_id').val();
 
+        function asignarPlacaIdATodaLaPagina() {
+            placavehiculo = $('#placa_id').val();
+
+            $('#placa_id_subida_docs_prop_vehiculo').val(placavehiculo);
+            $('#placa_id_subida_imgs_perfil_vehiculo').val(placavehiculo);
+            $('#placa_id_subida_docs_renov_vehicular').val(placavehiculo);
+            $('#placa_id_subir_seguro').val(placavehiculo);
+            $('#placa_id_subida_estado_servicio_vehicular').val(placavehiculo);
+        }
+
+        /*JQUERY PARA ENVIAR FORM DE DATOS VEHICULO*/
+        $('#form_subir_datos_vehiculo').submit(function () {
+            $.ajax({
+                method: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('#boton_exito').click();
+                    $('#mensaje_respuesta_form_subir_datos_vehiculo').append(
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>"+
+                        "<div class='flex-00-auto'>"+
+                        "<i class='fa fa-fw fa-check'></i>"+
+                        "</div>"+
+                        "<div class='flex-fill ml-3'>"+
+                        "<p class='mb-0'>"+data+" <a class='alert-link' href='javascript:void(0)'></a>!</p>"+
+                        "</div>"
+                    );
+                }
+            });
+            return false;
+        });
+
+        /*JQUERY PARA ENVIAR FORM ESTADO SERVICIO DE VEHICULO*/
+        $('#form_subir_estado_servicio_vehicular').submit(function () {
+            $.ajax({
+                method: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('#boton_exito').click();
+                    $('#mensaje_respuesta_form_subir_est_serv_vehicular').append(
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>"+
+                        "<div class='flex-00-auto'>"+
+                        "<i class='fa fa-fw fa-check'></i>"+
+                        "</div>"+
+                        "<div class='flex-fill ml-3'>"+
+                        "<p class='mb-0'>"+data+" <a class='alert-link' href='javascript:void(0)'></a>!</p>"+
+                        "</div>"
+                    );
+                }
+            });
+            return false;
+        });
         /*para subir documentos de vehiculo*/
         Dropzone.options.myDropzoneDocsProp = {
             autoProcessQueue: false,
             uploadMultiple: true,
-            maxFilezise: 50,
-            maxFiles: 20,
-            acceptedFiles: ".jpeg,.jpg,.png,.gif.pdf",
+            maxFilezise: 500,
+            maxFiles: 200,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf",
             addRemoveLinks: true,
-            renameFile: true,
             init: function () {
                 var submitBtn = document.getElementById("submit_docs_prop_vehiculo");
                 myDropzoneDocsProp = this;
@@ -677,7 +742,8 @@
                     myDropzoneDocsProp.processQueue();
                 });
                 this.on("addedfile", function (file) {
-                    alert("file uploaded");
+                    $('#boton_exito').click();
+                    /*alert("file uploaded");*/
                 });
 
                 this.on("complete", function (file) {
@@ -686,8 +752,7 @@
 
                 this.on("success",
                     myDropzoneDocsProp.processQueue.bind(myDropzoneDocsProp)
-                )
-                ;
+                );
             }
         };
 
@@ -695,9 +760,9 @@
         Dropzone.options.myDropzoneImgsPerfil = {
             autoProcessQueue: false,
             uploadMultiple: true,
-            maxFilezise: 50,
-            maxFiles: 20,
-            acceptedFiles: ".jpeg,.jpg,.png,.gif.pdf",
+            maxFilezise: 500,
+            maxFiles: 200,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf",
             addRemoveLinks: true,
             init: function () {
                 var submitBtn = document.getElementById("submit_imgs_perfil_vehiculo");
@@ -709,7 +774,8 @@
                     myDropzoneImgsPerfil.processQueue();
                 });
                 this.on("addedfile", function (file) {
-                    alert("file uploaded");
+                    $('#boton_exito').click();
+                    /*alert("file uploaded");*/
                 });
 
                 this.on("complete", function (file) {
@@ -718,11 +784,9 @@
 
                 this.on("success",
                     myDropzoneImgsPerfil.processQueue.bind(myDropzoneImgsPerfil)
-                )
-                ;
+                );
             }
         };
-
         /*JQUERY PARA ENVIAR FORM DE DOCUEMENTOS RENOVABLES*/
         $('#form_subir_docs_renov_vehicular').submit(function () {
             $.ajax({
@@ -730,11 +794,75 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 success: function (data) {
-                    $('#mensaje_respuesta_form_subir_docs_renov_vehicular').html(data);
+                    $('#boton_exito').click();
+                    $('#mensaje_respuesta_form_subir_docs_renov_vehicular').append(
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>"+
+                        "<div class='flex-00-auto'>"+
+                        "<i class='fa fa-fw fa-check'></i>"+
+                        "</div>"+
+                        "<div class='flex-fill ml-3'>"+
+                        "<p class='mb-0'>"+data+" <a class='alert-link' href='javascript:void(0)'></a>!</p>"+
+                        "</div>"
+                    );
                 }
             });
             return false;
         });
+        /*JQUERY PARA ENVIAR FORM DE SUBIR SEGUROS DE VEHICULO*/
+        /*$('#form_subir_seguros').submit(function () {
+            var campoa = $('#form_subir_seguros').find('input[name^="campoa"]').serialize();
+            var campob = $('#form_subir_seguros').find('input[name^="campob"]').serialize();
+            var campoc = $('#form_subir_seguros').find('input[name^="campoc"]').serialize();
+            var campod = $('#form_subir_seguros').find('input[name^="campod"]').serialize();
+            var campoe = $('#form_subir_seguros').find('input[name^="campoe"]').serialize();
+            $.ajax({
+                method: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: {
+                    campoa:campoa,
+                    campob:campob,
+                    campoc:campoc,
+                    campod:campod,
+                    campoe:campoe,
+                },
+                success : function (data) {
+                    $('#mensaje_respuesta_form_subir_seguros').html(data);
+                }
+            });
+            return false;
+        });*/
+        /*$('#form_subir_seguros').submit(function () {
+            $.ajax({
+                method: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serializeArray(),
+                success : function (data) {
+                    $('#mensaje_respuesta_form_subir_seguros').html(data);
+                }
+            });
+            return false;
+        });*/
+
+        /*Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("#myDropzone", {
+            url: "",
+            maxFileSize: 50,
+            addRemoveLinks: true,
+            //more dropzone options here
+        });
+
+        //Add existing files into dropzone
+        var existingFiles = [
+            { name: "2710rkfadelante.jpg", size: 12345678 },
+            { name: "Filename 4.pdf", size: 12345678 },
+            { name: "Filename 5.pdf", size: 12345678 }
+
+        ];
+        for (i = 0; i < existingFiles.length; i++) {
+            myDropzone.emit("addedfile", existingFiles[i]);
+            //myDropzone.emit("thumbnail", existingFiles[i], "/image/url");
+            myDropzone.emit("complete", existingFiles[i]);
+        }*/
 
     </script>
 
@@ -775,11 +903,6 @@
             }
         });
 
-
-        document.getElementById('archiv').onchange = function () {
-            console.log(this.value);
-            document.getElementById('nfile').innerHTML = document.getElementById('archiv').files[0].name;
-        }
     </script>
 
 @endsection

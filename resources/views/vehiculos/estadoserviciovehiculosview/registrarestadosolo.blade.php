@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    Registrar Vehiculo
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
@@ -26,55 +26,13 @@
 
     <!-- Basic -->
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
+
         <div class="block-header">
             <h3 class="block-title">Formulario</h3>
         </div>
-        <div class="block-content block-content-full">
-            {{--<form action="{{route('vehiculo.store')}}" method="POST"
-                  enctype="multipart/form-data" --}}{{--onsubmit="return false;"--}}{{-- id="form_subir_datos_vehiculo">
-                @csrf--}}
-
-            <div class="row push">
-
-                <div class="col-md-8  shadow p-2 mb-1 rounded">
-                    <h3 class="content-heading border-bottom mb-4 pb-2">ESTADO SERVICIO DE VEHICULO (ULTIMO REGISTRO EN
-                        BASE DE DATOS)
-                    </h3>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="fecha_inicio_est_serv_vehi">FECHA INICIO: </label>
-                                    <input type="text" name="fecha_inicio" id="fecha_inicio_est_serv_vehi"
-                                           value="{{$estadoservvehi[0]->fecha_inicio}}" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg">
-                                <div class="form-group">
-                                    <label for="estado_service">ESTADO DE SERVICIO: </label>
-                                    <input type="text" name="estado_service" id="estado_service"
-                                           value="{{$estadoservvehi[0]->est_descripcion}}"
-                                           class="form-control btn {{$estadoservvehi[0]->est_descripcion == "EN SERVICIO"? "btn-success":"btn-danger"}}"
-                                           style="height: 100%;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <label for="motivo">MOTIVO: </label>
-                                <input type="text" name="motivo" id="motivo_est_serv_vehi"
-                                       value="{{$estadoservvehi[0]->motivo}}" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
 
         <form action="{{route('estservvehi.storesolo')}}" method="POST"
-              id="form_subir_estado_servicio_vehicular" class="col-md-8 shadow p-2 mb-1 rounded">
+              id="form_subir_estado_servicio_vehicular" class="col-md-12 shadow p-2 mb-1 rounded">
             @csrf
             @method('post')
             <h3 class="content-heading border-bottom mb-4 pb-2">CAMBIAR ESTADO SERVICIO DE VEHICULO (PARA ULTIMO REGISTRO EN
@@ -134,11 +92,56 @@
                 </div>
             </div>
         </form>
+        <div id="mensaje_respuesta_subir_estado_servicio_vehicular"></div>
 
+
+        <div class="block-content block-content-full">
+            <div class="row push">
+                <div class="col-md-12  shadow p-2 mb-1 rounded">
+                    <h3 class="content-heading border-bottom mb-4 pb-2">ESTADO SERVICIO DE VEHICULO (ULTIMO REGISTRO EN
+                        BASE DE DATOS)
+                    </h3>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="fecha_inicio_est_serv_vehi">FECHA INICIO: </label>
+                                    <input type="text" name="fecha_inicio" id="fecha_inicio_est_serv_vehi"
+                                           value="{{$estadoservvehi[0]->fecha_inicio}}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg">
+                                <div class="form-group">
+                                    <label for="estado_service">ESTADO DE SERVICIO: </label>
+                                    <input type="text" name="estado_service" id="estado_service"
+                                           value="{{$estadoservvehi[0]->est_descripcion}}"
+                                           class="form-control btn {{$estadoservvehi[0]->est_descripcion == "EN SERVICIO"? "btn-success":"btn-danger"}}"
+                                           style="height: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label for="motivo">MOTIVO: </label>
+                                <input type="text" name="motivo" id="motivo_est_serv_vehi"
+                                       value="{{$estadoservvehi[0]->motivo}}" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </div>
     <!-- END Basic -->
+
+    {{--###############################################################################################--}}
+    <div class="d-none">
+        <button type="button" class="js-swal-success btn btn-light push" id="boton_exito">
+            <i class="fa fa-check-circle text-success mr-1"></i> Launch Dialog
+        </button>
+    </div>
 @endsection
 
 @section('js_script_import')
@@ -170,4 +173,28 @@
         });</script>
 
     {{--############################################## JS #############################################--}}
+    {{--#######################################################################################################--}}
+    <script>
+        /*JQUERY PARA ENVIAR FORM DE DOCUEMENTOS RENOVABLES*/
+        $('#form_subir_estado_servicio_vehicular').submit(function () {
+            $.ajax({
+                method: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('#boton_exito').click();
+                    $('#mensaje_respuesta_subir_estado_servicio_vehicular').append(
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                        "<div class='flex-00-auto'>" +
+                        "<i class='fa fa-fw fa-check'></i>" +
+                        "</div>" +
+                        "<div class='flex-fill ml-3'>" +
+                        "<p class='mb-0'>" + data + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
+                        "</div>"
+                    );
+                }
+            });
+            return false;
+        });
+    </script>
 @endsection

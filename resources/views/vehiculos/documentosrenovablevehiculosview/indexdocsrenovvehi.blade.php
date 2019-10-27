@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    Registrar Vehiculo
+
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
@@ -29,7 +29,7 @@
         <div class="block-content">
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="{{route('docsrenov.create')}}" class="btn btn-primary" style="float: right"> <i class="fa fa-plus"></i> AÑADIR</a>
+                    <a href="{{route('docsrenov.create')}}" class="btn-sm btn-primary shadow rounded" style="float: right"> <i class="fa fa-plus-circle"></i> AÑADIR</a>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
         @endif
         <!-- Flatpickr Datetimepicker (.js-flatpickr class is initialized in Helpers.flatpickr()) -->
         <!-- For more info and examples you can check out https://github.com/flatpickr/flatpickr -->
-        <div class="block {{--shadow--}}  p-2 mb-1 rounded {{$colorblock}}" data-toggle="appear"
+        <div class="block {{--shadow--}}  p-2 mb-1 shadow rounded {{$colorblock}}" data-toggle="appear"
              data-class="animated bounceIn">
             <div class="block-content">
                 <input type="hidden" name="placa_id" value="" id="placa_id_subida_docs_renov_vehicular">
@@ -135,7 +135,7 @@
                         <div class="form-group">
                             <div class="custom-control custom-switch custom-control-lg mb-2">
                                 <a href="{{route('docsrenov.edit',$filadocrenov->archivero_id)}}"
-                                   class="btn {{$colorplaca1}} btn-sm" data-toggle="tooltip"
+                                   class="btn {{$colorplaca1}} btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                    title="EDITAR">
                                     <i class="fas fa-pen"></i>
                                 </a>
