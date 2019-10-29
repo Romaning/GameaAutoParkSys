@@ -67,7 +67,18 @@
 @endsection
 @section('hero_cuadro_bienvenida')
     <!-- Hero -->
-
+    <div class="bg-image" style="background-image: url({{asset('image_proyect/fondo_hero3.jpg')}});">
+        <div class="bg-black-50">
+            <div class="content content-full text-center">
+                <div class="my-3">
+                    <img class="img-avatar img-avatar-thumb" src="{{asset('carpeta_imagenes/2911PHCAZUL1.jpg')}}" alt=""
+                         id="imagen_perfil_hero">
+                </div>
+                <h1 class="h2 text-white mb-0"></h1>
+                <span class="text-white-75" id="ci_perfil_hero">Nombre Funcionario</span>
+            </div>
+        </div>
+    </div>
     <!-- END Hero -->
     {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection

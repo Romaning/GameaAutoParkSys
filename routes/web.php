@@ -197,3 +197,38 @@ Route::prefix('/seguro')->group(function () {
 
 
 /*#################################################### VEHICULOS #######################################################*/
+
+
+/*################################################### DEPARTAMENTOS #################################################*/
+Route::prefix('/departamento')->group(function () {
+    Route::get('/', 'ControladorDepartamento\DepartamentoController@index')->name('departamento.index');
+    Route::get('/create', 'ControladorDepartamento\DepartamentoController@create')->name('departamento.create');
+    Route::post('/store', 'ControladorDepartamento\DepartamentoController@store')->name('departamento.store');
+    Route::get('/{departamento_id}', 'ControladorDepartamento\DepartamentoController@show')->name('departamento.show');
+    Route::get('/{departamento_id}/edit', 'ControladorDepartamento\DepartamentoController@edit')->name('departamento.edit');
+    Route::put('/{departamento_id}', 'ControladorDepartamento\DepartamentoController@update')->name('departamento.update');
+    Route::delete('/{departamento_id}', 'ControladorDepartamento\DepartamentoController@destroy')->name('departamento.destroy');
+});
+/*################################################### DEPARTAMENTOS #################################################*/
+
+Route::prefix('/estadofunc')->group(function () {
+    Route::get('/', 'ControladorFuncionario\EstadoFuncController@index')->name('estadofunc.index');
+    Route::get('/create', 'ControladorFuncionario\EstadoFuncController@create')->name('estadofunc.create');
+    Route::post('/store', 'ControladorFuncionario\EstadoFuncController@store')->name('estadofunc.store');
+    Route::get('/{estadofunc_id}', 'ControladorFuncionario\EstadoFuncController@show')->name('estadofunc.show');
+    Route::get('/{estadofunc_id}/edit', 'ControladorFuncionario\EstadoFuncController@edit')->name('estadofunc.edit');
+    Route::put('/{estadofunc_id}', 'ControladorFuncionario\EstadoFuncController@update')->name('estadofunc.update');
+    Route::delete('/{estadofunc_id}', 'ControladorFuncionario\EstadoFuncController@destroy')->name('estadofunc.destroy');
+});
+
+/*################################################### FUNCIONARIOS #################################################*/
+Route::prefix('/funcionario')->group(function () {
+    Route::get('/', 'ControladorFuncionario\FuncionarioController@index')->name('funcionario.index');
+    Route::get('/create', 'ControladorFuncionario\FuncionarioController@create')->name('funcionario.create');
+    Route::post('/store', 'ControladorFuncionario\FuncionarioController@store')->name('funcionario.store');
+    Route::get('/{funcionario_id}', 'ControladorFuncionario\FuncionarioController@show')->name('funcionario.show');
+    Route::get('/{funcionario_id}/edit', 'ControladorFuncionario\FuncionarioController@edit')->name('funcionario.edit');
+    Route::put('/{funcionario_id}', 'ControladorFuncionario\FuncionarioController@update')->name('funcionario.update');
+    Route::delete('/{funcionario_id}', 'ControladorFuncionario\FuncionarioController@destroy')->name('funcionario.destroy');
+});
+/*################################################### FUNCIONARIOS #################################################*/

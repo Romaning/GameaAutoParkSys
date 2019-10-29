@@ -3,68 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="817318cc-e518-4bb2-8a41-ec246c214a15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/DocumentosPropiedadVehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/DocumentosPropiedadVehiculoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/EstadoServiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/EstadoServiceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/EstadoServicioVehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/EstadoServicioVehiculoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/ImagenesPerfilVehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/ImagenesPerfilVehiculoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/SeguroController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/SeguroController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/VehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/VehiculoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/pages/be_comp_dialogs.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/pages/be_comp_dialogs.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/plugins/sweetalert2/sweetalert2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/plugins/sweetalert2/sweetalert2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/sidebar/parts/vehiculomodule.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/sidebar/parts/vehiculomodule.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImageUploadController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ImageUpload.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameaautoparkdb.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/plugins/datatables/jquery.dataTables.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/plugins/datatables/jquery.dataTables.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/components/sidebar/sidebarcontent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/sidebar/sidebarcontent.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layoutmaster.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layoutmaster.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/clasesview/createclase.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/clasesview/createclase.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/clasesview/editclase.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/clasesview/editclase.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/clasesview/indexclases.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/clasesview/indexclases.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/clasesview/showclase.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/clasesview/showclase.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/documentospropiedadvehiculosview/editdocspropvehiSolo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/documentospropiedadvehiculosview/editdocspropvehiSolo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/documentospropiedadvehiculosview/indexdocspropvehi.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/documentospropiedadvehiculosview/indexdocspropvehi.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/createdocsrenovvehi.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/createdocsrenovvehi.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/editdocsrenovvehi.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/editdocsrenovvehi.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/historialdocsrenov.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/historialdocsrenov.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/indexdocsrenovvehi.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/indexdocsrenovvehi.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/registrardocsrenovvehiSolo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/documentosrenovablevehiculosview/registrardocsrenovvehiSolo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/createestadovehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/createestadovehiculo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/editestadovehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/editestadovehiculo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/indexestadovehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/indexestadovehiculo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/registrarestadosolo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/registrarestadosolo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/showestadovehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview/showestadovehiculo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/estadosview/createstado.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/estadosview/createstado.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/estadosview/editestado.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/estadosview/editestado.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/estadosview/indexestado.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/estadosview/indexestado.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/estadosview/showestado.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/estadosview/showestado.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/imgsperfilvehiculo/editimgvehiculoSolo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/imgsperfilvehiculo/editimgvehiculoSolo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/imgsperfilvehiculo/indeximgvehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/imgsperfilvehiculo/indeximgvehiculo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/marcasview/createmarca.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/marcasview/createmarca.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/marcasview/editmarca.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/marcasview/editmarca.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/marcasview/indexmarca.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/marcasview/indexmarca.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/marcasview/showmarca.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/marcasview/showmarca.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/createseguro.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/createseguro.blade.php.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/editseguro.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/editseguro.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/historialplacaseguro.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/historialplacaseguro.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/indexseguro.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/indexseguro.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/showseguro.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/showseguro.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tipocombustiblesview/createtipocombustible.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tipocombustiblesview/createtipocombustible.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tipocombustiblesview/edittipocombustible.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tipocombustiblesview/edittipocombustible.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tipocombustiblesview/indextipocombustible.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tipocombustiblesview/indextipocombustible.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tipocombustiblesview/showtipocombustible.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tipocombustiblesview/showtipocombustible.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tiposview/createtipo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tiposview/createtipo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tiposview/edittipo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tiposview/edittipo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tiposview/indextipo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tiposview/indextipo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tiposview/showtipo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tiposview/showtipo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tipousosview/createtipouso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tipousosview/createtipouso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tipousosview/edittipouso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tipousosview/edittipouso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tipousosview/indextipouso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tipousosview/indextipouso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/tipousosview/showtipouso.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/tipousosview/showtipouso.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/createvehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/createvehiculo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/editvehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/editvehiculo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/editvehiculoS.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/editvehiculoS.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/editvehiculoSolo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/editvehiculoSolo.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/indexvehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/indexvehiculo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/showEdit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/showEdit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/showvehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/showvehiculo.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -208,11 +152,11 @@
       <recent name="C:\xampp\htdocs\proyecto2\GameaAutoParkSys\resources\views\layouts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\public\imagenes_store\funcionarios" />
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\app\Http\Controllers\ControladorAsignacionDevolucion" />
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\app\Http\Controllers\ControladorFuncionario" />
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\app\Http\Controllers\ControladorDepartamento" />
       <recent name="C:\xampp\htdocs\proyecto2\GameaAutoParkSys\app\Http\Controllers\ControladorVehiculo" />
-      <recent name="C:\xampp\htdocs\proyecto2\GameaAutoParkSys\app\ModeloVehiculo" />
-      <recent name="C:\xampp\htdocs\proyecto2\GameaAutoParkSys\resources\views\basesystema\vehiculosviewbase" />
-      <recent name="C:\xampp\htdocs\proyecto2\GameaAutoParkSys\resources\views\basesystema" />
-      <recent name="C:\xampp\htdocs\proyecto2\GameaAutoParkSys\app\Http\Controllers\CarpetaControlador" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -289,6 +233,8 @@
       <workItem from="1572047394464" duration="71590000" />
       <workItem from="1572146340009" duration="7672000" />
       <workItem from="1572183821271" duration="4083000" />
+      <workItem from="1572192998182" duration="1156000" />
+      <workItem from="1572198118065" duration="73022000" />
     </task>
     <servers />
   </component>

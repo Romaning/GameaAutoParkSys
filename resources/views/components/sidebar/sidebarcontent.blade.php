@@ -6,7 +6,8 @@
         {{--############## /@  ###############--}}
 
         <li class="nav-main-item">
-            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+               aria-expanded="false" href="#">
                 <i class="nav-main-link-icon si si-control-play"></i>
                 <span class="nav-main-link-name">SECCION 1</span>
             </a>
@@ -29,19 +30,21 @@
             </ul>
         </li>
 
-        {{--<li class="nav-main-item">
-            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+        <li class="nav-main-item">
+            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+               aria-expanded="false" href="#">
                 <i class="nav-main-link-icon si si-control-play"></i>
                 <span class="nav-main-link-name">SECCION 2</span>
             </a>
             <ul class="nav-main-submenu">
-
-
+                <li class="nav-main-heading">DEPARTAMENTOS</li>
+                @include('components.sidebar.parts.departamentos')
+                <li class="nav-main-heading">Indepnedientes</li>
+                @include('components.sidebar.parts.independientesfuncionario')
+                <li class="nav-main-heading">Funcionarios</li>
+                @include('components.sidebar.parts.funcionariomodulo')
 
             </ul>
-        </li>--}}
-
-
     </ul>
 </div>
 <!-- END Side Navigation -->
