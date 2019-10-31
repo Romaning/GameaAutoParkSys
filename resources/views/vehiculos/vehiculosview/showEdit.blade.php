@@ -606,6 +606,7 @@
                             <div class="col-md-12" style="float: right;">
                                 <input type="file" class="custom-file-input" value="" id="archiv" name="campoe">
                                 <label class="custom-file-label" for="archiv"
+                                       style="width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
                                        id="nfile">{{$seguro->archivo_subido}}</label>
                             </div>
                         </td>

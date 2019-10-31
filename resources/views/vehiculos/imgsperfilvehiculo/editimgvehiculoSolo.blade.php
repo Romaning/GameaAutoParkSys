@@ -72,7 +72,8 @@
         });</script>
     {{-- ################ END SCRIPTS PARA DROPZONE ###############--}}
     <script>
-
+        var APP_URL = {!! json_encode(url('/')) !!};
+        console.log(APP_URL);
         var placavehiculo = $('#placa_id').val();
         Dropzone.options.dropzone = {
             init: function () {
@@ -86,12 +87,14 @@
                         $.each(response, function (key, value) {
                             var mockFile = {name: value.nombre, size: 2040};
                             myDropzone.emit("addedfile", mockFile);
-                            myDropzone.emit("thumbnail", mockFile, '/proyecto3/GameaAutoParkSys/public/' + value.carpetamasarchivo);
+                            /*myDropzone.emit("thumbnail", mockFile, 'proyecto3/GameaAutoParkSys/public/' + value.carpetamasarchivo);*//*antes*/
+                            myDropzone.emit("thumbnail", mockFile, ''+APP_URL+'/' + value.carpetamasarchivo);/*ahora*/
                             myDropzone.emit("complete", mockFile);
                         });
                     }
                 });
             },
+
             maxFilesize: 20,
             renameFile: function (file) {
                 return /*placavehiculo+''+*/ file.name /*.replace(/\s/g,"_")*/;

@@ -3,12 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="817318cc-e518-4bb2-8a41-ec246c214a15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImageUploadController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ImageUpload.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameaautoparkdb.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/plugins/datatables/jquery.dataTables.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/plugins/datatables/jquery.dataTables.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorAsignacionDevolucion/AsignacionController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorAsignacionDevolucion/DevolucionController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorFuncionario/FuncionarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorFuncionario/FuncionarioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/DocumentosPropiedadVehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/DocumentosPropiedadVehiculoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/ImagenesPerfilVehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/ImagenesPerfilVehiculoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/SeguroController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/SeguroController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/VehiculoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControladorVehiculo/VehiculoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ModuloAsignacionDevolucion/Asignacion.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ModuloAsignacionDevolucion/Devolucion.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_28_232455_create_asignacions_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_28_232603_create_devolucions_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/sidebar/parts/independientesfuncionario.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/sidebar/parts/independientesfuncionario.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/components/sidebar/sidebarcontent.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/sidebar/sidebarcontent.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/layoutmaster.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/layoutmaster.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/documentospropiedadvehiculosview/editdocspropvehiSolo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/documentospropiedadvehiculosview/editdocspropvehiSolo.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/imgsperfilvehiculo/editimgvehiculoSolo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/imgsperfilvehiculo/editimgvehiculoSolo.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/indexseguro.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/segurosview/indexseguro.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/indexvehiculo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/indexvehiculo.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/showEdit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vehiculos/vehiculosview/showEdit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -141,22 +154,22 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\resources\views\valesdecombustibles" />
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\resources\views\asignaciones" />
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\resources\views\funcionarios\funcionariosview" />
       <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\resources\views\vehiculos\segurosview" />
       <recent name="$PROJECT_DIR$/resources/views/vehiculos/estadoserviciovehiculosview" />
-      <recent name="$PROJECT_DIR$/resources/views/vehiculos/estadosview" />
-      <recent name="C:\xampp\htdocs\proyecto2\GameaAutoParkSys\resources\views\vehiculos\vehiculosview" />
-      <recent name="C:\xampp\htdocs\proyecto2\GameaAutoParkSys\resources\views\layouts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\public\imagenes_store\funcionarios" />
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\app\Http\Controllers\ControladorInfraccion" />
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\app\Http\Controllers\ControladorValesDecombustibles" />
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\app\Http\Controllers\ControladorMantenimiento" />
       <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\app\Http\Controllers\ControladorAsignacionDevolucion" />
-      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\app\Http\Controllers\ControladorFuncionario" />
-      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\app\Http\Controllers\ControladorDepartamento" />
-      <recent name="C:\xampp\htdocs\proyecto2\GameaAutoParkSys\app\Http\Controllers\ControladorVehiculo" />
+      <recent name="C:\xampp\htdocs\proyecto3\GameaAutoParkSys\public\imagenes_store\funcionarios" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -234,7 +247,11 @@
       <workItem from="1572146340009" duration="7672000" />
       <workItem from="1572183821271" duration="4083000" />
       <workItem from="1572192998182" duration="1156000" />
-      <workItem from="1572198118065" duration="73022000" />
+      <workItem from="1572198118065" duration="80456000" />
+      <workItem from="1572332569648" duration="49403000" />
+      <workItem from="1572404415748" duration="27647000" />
+      <workItem from="1572460537934" duration="9723000" />
+      <workItem from="1572480769343" duration="804000" />
     </task>
     <servers />
   </component>

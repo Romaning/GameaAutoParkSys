@@ -13,7 +13,7 @@
             </a>
             <ul class="nav-main-submenu">
                 {{--############### @/ ###############--}}
-                <li class="nav-main-heading">Indepnedientes</li>
+                <li class="nav-main-heading">Independientes</li>
                 @include('components.sidebar.parts.independientesvehiculo')
                 <li class="nav-main-heading">Vehiculos</li>
                 @include('components.sidebar.parts.vehiculomodule')
@@ -43,7 +43,14 @@
                 @include('components.sidebar.parts.independientesfuncionario')
                 <li class="nav-main-heading">Funcionarios</li>
                 @include('components.sidebar.parts.funcionariomodulo')
-
+                <li class="nav-main-heading">Asiganciones</li>
+                @include('components.sidebar.parts.asignaciones')
+                <li class="nav-main-heading">Devoluciones</li>
+                @include('components.sidebar.parts.devoluciones')
+                <li class="nav-main-heading">Mantenimientos</li>
+                @include('components.sidebar.parts.mantenimientos')
+                <li class="nav-main-heading">Vales de Combustible</li>
+                @include('components.sidebar.parts.valesdecombustible')
             </ul>
     </ul>
 </div>

@@ -83,7 +83,27 @@
     {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection
 @section('content')
-
+    @if(session()->has('alert-success'))
+        <div class='alert alert-success d-flex align-items-center' role='alert'>
+            <div class='flex-00-auto'>
+                <i class='fa fa-fw fa-check'></i>
+            </div>
+            <div class='flex-fill ml-3'>
+                <p class='mb-0'>  {{ session()->get('alert-success') }}<a class='alert-link'
+                                                                          href='javascript:void(0)'></a>!</p>
+            </div>
+        </div>
+    @endif
+    @if (session('status'))
+        <div class='alert alert-success d-flex align-items-center' role='alert'>
+            <div class='flex-00-auto'>
+                <i class='fa fa-fw fa-check'></i>
+            </div>
+            <div class='flex-fill ml-3'>
+                <p class='mb-0'>  {{ session('status') }}<a class='alert-link' href='javascript:void(0)'></a>!</p>
+            </div>
+        </div>
+    @endif
     {{--<div class="warappero">
         <a class="btn-liquid-me" href="#">Hover me!</a>
     </div>
@@ -189,7 +209,7 @@
                                             <i class="fas fa-pen"></i>
                                         </a>
                                     </div>
-                                    <div class="col-sm-1 d-none">
+                                    <div class="col-sm-1">
                                         <form action="{{route('vehiculo.destroy',$filavehiculos->placa_id)}}"
                                               method="post">
                                             @csrf

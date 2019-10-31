@@ -37,18 +37,18 @@
 <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed{{-- side-trans-enabled sidebar-mini--}}{{--sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed--}}">
 {{--                         class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed page-header-dark"--}}
     {{--TRES RAYITAS  DE LA CABECERA ->  ESTA A LA ESQUINA DERECHA PUNTA--}}
-                                     @component('componentes.1SideOverlay(lineasderarriba)')
+                                    {{-- @component('componentes.1SideOverlay(lineasderarriba)')
                                          @include('componentes.1_A_SideHeader')
                                          @include('componentes.1_B_SideContent')
                                          HOLA MUNDO
-                                     @endcomponent
+                                     @endcomponent--}}
 {{--SIDE BAR PARA LAS OPCIONES DE PAGINAS en Izquierda--}}
                                     @component('components.sidebar.sidebar')
                                         @include('components.sidebar.sidebarheader')
                                         @include('components.sidebar.sidebarcontent')
                                     @endcomponent
 {{--CABECERA -> ESTA SEARCH, NAME USER, LOGOUT  lo que esta Arriba--}}
-                                    @include('componentes.3Header(search,nameusermoreperfil,logout)')
+                                    @include('components.header.headerbar')
 <!-- Main Container -->
     <main id="main-container">
     {{--Hero Cuadro de bienvenida para administrador dashboard--}}

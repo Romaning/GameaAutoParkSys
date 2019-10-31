@@ -23,6 +23,7 @@ class DocumentosPropiedadVehiculoController extends Controller
         $placas = DB::table('vehiculos')
             ->join('documentos_propiedad_vehiculos', 'documentos_propiedad_vehiculos.placa_id', '=', 'vehiculos.placa_id')
             ->select('documentos_propiedad_vehiculos.placa_id')
+            ->whereNull('vehiculos.deleted_at')
             ->groupBy('documentos_propiedad_vehiculos.placa_id')
             ->get();
 

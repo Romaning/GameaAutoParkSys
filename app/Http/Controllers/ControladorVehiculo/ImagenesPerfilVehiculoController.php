@@ -48,6 +48,7 @@ class ImagenesPerfilVehiculoController extends Controller
         $placas = DB::table('vehiculos')
             ->join('imagenes_perfil_vehiculos', 'imagenes_perfil_vehiculos.placa_id', '=', 'vehiculos.placa_id')
             ->select('imagenes_perfil_vehiculos.placa_id')
+            ->whereNull('vehiculos.deleted_at')
             ->groupBy('imagenes_perfil_vehiculos.placa_id')
             ->get();
 

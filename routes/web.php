@@ -90,7 +90,6 @@ Route::prefix('/estado')->group(function () {
     Route::delete('/{estado_id}', 'ControladorVehiculo\EstadoServiceController@destroy')->name('estado.destroy');
 });
 
-
 /*Route::resource('vehiculo','ControladorVehiculo\VehiculoController');*/
 Route::prefix('/vehiculo')->group(function () {
     Route::get('/', 'ControladorVehiculo\VehiculoController@index')->name('vehiculo.index');                    /*##bien exclusive##*/
@@ -148,7 +147,6 @@ Route::prefix('/documentospropiedadvehiculo')->group(function () {
     Route::post('/docspropdeletefile', 'ControladorVehiculo\DocumentosPropiedadVehiculoController@fileDestroy')->name('docsprop.deletefile');
     /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
     Route::post('/consulta', 'ControladorVehiculo\EstadoServicioVehiculoController@consultaUltimoEstado')->name('estservvehi.consulta');
-
 });
 
 /**/
@@ -177,7 +175,6 @@ Route::prefix('/documentosrenovablevehiculo')->group(function () {
     /*Route::post('/docsrenovautocomplet', 'ControladorVehiculo\DocumentosRonovableVehiculoController@autocompletarDocsRenov')->name('docsrenov.autocomplet');*/
     Route::get('/{vehiculo_id}/historial', 'ControladorVehiculo\DocumentosRonovableVehiculoController@historialPlaca')->name('docsrenov.historial.placa');
     Route::get('/{vehiculo_id}/registrar', 'ControladorVehiculo\DocumentosRonovableVehiculoController@registrarSolo')->name('docsrenov.registrarsolo');
-
 });
 
 /*Route::resource('seguro','ControladorVehiculo\SeguroController');*/
@@ -192,12 +189,8 @@ Route::prefix('/seguro')->group(function () {
 
     Route::get('/{vehiculo_id}/historial', 'ControladorVehiculo\SeguroController@historialSeguros')->name('seguro.historial.placa');
     Route::post('/{seguro_id}/update', 'ControladorVehiculo\SeguroController@updateClasis')->name('seguro.update.clasic');
-
 });
-
-
 /*#################################################### VEHICULOS #######################################################*/
-
 
 /*################################################### DEPARTAMENTOS #################################################*/
 Route::prefix('/departamento')->group(function () {
@@ -210,7 +203,6 @@ Route::prefix('/departamento')->group(function () {
     Route::delete('/{departamento_id}', 'ControladorDepartamento\DepartamentoController@destroy')->name('departamento.destroy');
 });
 /*################################################### DEPARTAMENTOS #################################################*/
-
 Route::prefix('/estadofunc')->group(function () {
     Route::get('/', 'ControladorFuncionario\EstadoFuncController@index')->name('estadofunc.index');
     Route::get('/create', 'ControladorFuncionario\EstadoFuncController@create')->name('estadofunc.create');
@@ -232,3 +224,56 @@ Route::prefix('/funcionario')->group(function () {
     Route::delete('/{funcionario_id}', 'ControladorFuncionario\FuncionarioController@destroy')->name('funcionario.destroy');
 });
 /*################################################### FUNCIONARIOS #################################################*/
+/*################################################### ASIGANCIONES #################################################*/
+Route::prefix('/asignacion')->group(function () {
+    Route::get('/', 'ControladorAsignacionDevolucion\AsignacionController@index')->name('asignacion.index');
+    Route::get('/create', 'ControladorAsignacionDevolucion\AsignacionController@create')->name('asignacion.create');
+    Route::post('/', 'ControladorAsignacionDevolucion\AsignacionController@store')->name('asignacion.store');
+    Route::get('/{asignacion_id}', 'ControladorAsignacionDevolucion\AsignacionController@show')->name('asignacion.show');
+    Route::get('/{asignacion_id}/edit', 'ControladorAsignacionDevolucion\AsignacionController@edit')->name('asignacion.edit');
+    Route::put('/{asignacion_id}', 'ControladorAsignacionDevolucion\AsignacionController@update')->name('asignacion.update');
+    Route::delete('/{asignacion_id}', 'ControladorAsignacionDevolucion\AsignacionController@destroy')->name('asignacion.destroy');
+});
+
+Route::get('asignacion/{devolucion_id}/a/devolucion', 'ControladorAsignacionDevolucion\AsignacionController@llevarAsigADevolucion')->name('devolucion.asignacion');
+
+Route::prefix('/devolucion')->group(function () {
+    Route::get('/', 'ControladorAsignacionDevolucion\DevolucionController@index')->name('devolucion.index');
+    Route::get('/create', 'ControladorAsignacionDevolucion\DevolucionController@create')->name('devolucion.create');
+    Route::post('/', 'ControladorAsignacionDevolucion\DevolucionController@store')->name('devolucion.store');
+    Route::get('/{devolucion_id}', 'ControladorAsignacionDevolucion\DevolucionController@show')->name('devolucion.show');
+    Route::get('/{devolucion_id}/edit', 'ControladorAsignacionDevolucion\DevolucionController@edit')->name('devolucion.edit');
+    Route::put('/{devolucion_id}', 'ControladorAsignacionDevolucion\DevolucionController@update')->name('devolucion.update');
+    Route::delete('/{devolucion_id}', 'ControladorAsignacionDevolucion\DevolucionController@destroy')->name('devolucion.destroy');
+
+});
+
+Route::prefix('/vale')->group(function () {
+    Route::get('/', 'ControladorValesDeCombustibles\ValesDeCombustibleController@index')->name('vale.index');
+    Route::get('/create', 'ControladorValesDeCombustibles\ValesDeCombustibleController@create')->name('vale.create');
+    Route::post('/', 'ControladorValesDeCombustibles\ValesDeCombustibleController@store')->name('vale.store');
+    Route::get('/{vales_id}', 'ControladorValesDeCombustibles\ValesDeCombustibleController@show')->name('vale.show');
+    Route::get('/{vales_id}/edit', 'ControladorValesDeCombustibles\ValesDeCombustibleController@edit')->name('vale.edit');
+    Route::put('/{vales_id}', 'ControladorValesDeCombustibles\ValesDeCombustibleController@update')->name('vale.update');
+    Route::delete('/{vales_id}', 'ControladorValesDeCombustibles\ValesDeCombustibleController@destroy')->name('vale.destroy');
+});
+
+Route::prefix('/mantenimiento')->group(function () {
+    Route::get('/', 'ControladorMantenimiento\MantenimientoController@index')->name('mantenimiento.index');
+    Route::get('/create', 'ControladorMantenimiento\MantenimientoController@create')->name('mantenimiento.create');
+    Route::post('/', 'ControladorMantenimiento\MantenimientoController@store')->name('mantenimiento.store');
+    Route::get('/{mantenimiento_id}', 'ControladorMantenimiento\MantenimientoController@show')->name('mantenimiento.show');
+    Route::get('/{mantenimiento_id}/edit', 'ControladorMantenimiento\MantenimientoController@edit')->name('mantenimiento.edit');
+    Route::put('/{mantenimiento_id}', 'ControladorMantenimiento\MantenimientoController@update')->name('mantenimiento.update');
+    Route::delete('/{mantenimiento_id}', 'ControladorMantenimiento\MantenimientoController@destroy')->name('mantenimiento.destroy');
+});
+
+Route::prefix('/infraccion')->group(function () {
+    Route::get('/', 'ControladorInfraccion\InfraccionController@index')->name('infraccion.index');
+    Route::get('/create', 'ControladorInfraccion\InfraccionController@create')->name('infraccion.create');
+    Route::post('/', 'ControladorInfraccion\InfraccionController@store')->name('infraccion.store');
+    Route::get('/{infraccion_id}', 'ControladorInfraccion\InfraccionController@show')->name('infraccion.show');
+    Route::get('/{infraccion_id}/edit', 'ControladorInfraccion\InfraccionController@edit')->name('infraccion.edit');
+    Route::put('/{infraccion_id}', 'ControladorInfraccion\InfraccionController@update')->name('infraccion.update');
+    Route::delete('/{infraccion_id}', 'ControladorInfraccion\InfraccionController@destroy')->name('infraccion.destroy');
+});

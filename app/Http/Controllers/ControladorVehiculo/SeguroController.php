@@ -16,10 +16,18 @@ class SeguroController extends Controller
      */
     public function index()
     {
-        $datosseguro = DB::table('seguros')
+        $datosseguro = DB::table('vehiculos')
+            ->leftJoin('seguros','vehiculos.placa_id','=','seguros.placa_id')
+            ->whereNull('vehiculos.deleted_at')
+            ->whereNull('seguros.deleted_at')
+            ->orderBy('seguros.placa_id')
+            ->orderBy('seguros.gestion')
+            ->select('seguros.*')
+            ->get();
+        $datosseguroA = DB::table('seguros')
             ->select('*')
-            ->orderBy('placa_id')
-            ->orderBy('gestion')
+            ->orderBy('seguros.placa_id')
+            ->orderBy('seguros.gestion')
             ->get();
         return view('vehiculos.segurosview.indexseguro', compact('datosseguro'));
     }

@@ -50,7 +50,8 @@ class VehiculoController extends Controller
                                                 estado_services est
                                         WHERE vehi.placa_id=tb_master.placa_id AND
                                             vehi.marca_id = m.marca_id AND
-                                            tb_master.serv_id = estservvehi.est_serv_vehiculo_id AND estservvehi.est_id = est.est_id');
+                                            tb_master.serv_id = estservvehi.est_serv_vehiculo_id AND estservvehi.est_id = est.est_id 
+                                            AND vehi.deleted_at IS NULL');/*#################################### AQUI NO MUESTRA EL VEHICULO ELIMINADO ###### PERO NO ESTA ELIMNAOD EL RESTO DE LAS RELACIONESS ASI QUE SE PUEDE RESTAURAR ###############*/
 
         return view('vehiculos.vehiculosview.indexvehiculo', compact('datosvehiculos'));
         /*dd($datosvehiculos);*/
@@ -70,6 +71,7 @@ class VehiculoController extends Controller
         $datostipo_uso = TipoUso::all();
         $datosestado = EstadoService::all();
         /*$datosvehiculo = Vehiculo::all();*/
+
         return view('vehiculos.vehiculosview.createvehiculo', compact('datosclase',
             'datosmarca',
             'datostipo',
@@ -255,6 +257,17 @@ class VehiculoController extends Controller
             ->where('seguros.gestion', '=', date('Y'))
             ->get();
 
+        $ciEnAsignacion = DB::table('vehiculos')
+            ->leftJoin('asignacions','vehiculos.placa_id','=','asignacions.placa_id')
+            ->whereNull('asignacions.deleted_at')
+            ->where('vehiculos.placa_id','=',$vehiculo)
+            ->select('asignacions.ci')
+            ->get();
+        /*$ciAsignacionEnFuncionarios = DB::table('funcionarios')
+            ->where('funcionarios.ci','=', $ciEnAsignacion[0]->ci)
+            ->select('funcionarios.nombres')
+            ->get();
+        dd($ciAsignacionEnFuncionarios);*/
         return view('vehiculos.vehiculosview.showEdit',
             compact('datosvehiculo',
                 'estadoservvehi',
@@ -450,7 +463,8 @@ class VehiculoController extends Controller
      */
     public function destroy($vehiculo)
     {
-        //
+        Vehiculo::find($vehiculo)->delete(); /*ESTO TIENE QUE ELIMINAR EN CADENA #########################################################################*/
+        return redirect()->route('vehiculo.index')->with('alert-success','VEHICULO ELIMINADO CORRECTAMENTE, PUEDE RESTAURAR!');
     }
 
     public function subirArchivo(Request $request)

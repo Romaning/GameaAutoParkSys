@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDevolucionsTable extends Migration
+class CreateTipoMantenimientosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateDevolucionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('devolucions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('tipo_mantenimientos', function (Blueprint $table) {
+            $table->bigIncrements('tipo_mantenimiento_id');
+            $table->string('tipo_mantenimiento_descripcion',191);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +28,6 @@ class CreateDevolucionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('devolucions');
+        Schema::dropIfExists('tipo_mantenimientos');
     }
 }

@@ -73,7 +73,7 @@ class FuncionarioController extends Controller
         $nombreimagen = "";
         if ($request->hasFile('imagen_perfil')) {
             $imagen = $request->file('imagen_perfil');
-            $nombreimagen = $request->ci . "" . $imagen->getClientOriginalName();
+            $nombreimagen = $request->ci . "_" . $imagen->getClientOriginalName();
             $nombreimagen = str_replace(" ", "_", $nombreimagen);
             $imagen->move(public_path('imagenes_store/funcionarios/' . $request->ci), $nombreimagen);
         }
@@ -126,8 +126,19 @@ class FuncionarioController extends Controller
             ->whereNull('funcionarios.deleted_at')
             ->select('funcionarios.*','departamentos.departamento_nombre')
             ->get();
-        /*dd($datosfuncionarios);*/
-        return view('funcionarios.funcionariosview.showfuncionario', compact('datosfuncionarios'));
+        $datosciexpedicoens = CiExpedidoEn::all();
+        $datoscategorialicencias = CategoriaLicencia::all();
+        $datosdepartamentos = DB::table('departamentos')
+            ->select('departamentos.*')
+            ->whereNull('deleted_at')
+            ->get();
+        $datosestadosfuncs = EstadoFunc::all();
+        return view('funcionarios.funcionariosview.showfuncionario',
+            compact('datosfuncionarios',
+                'datosciexpedicoens',
+                'datoscategorialicencias',
+                'datosdepartamentos',
+                'datosestadosfuncs'));
     }
 
     /**

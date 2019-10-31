@@ -60,6 +60,7 @@
                                         <input type="file" class="custom-file-input col-md-1" data-toggle="custom-file-input"
                                                name="campoe" id="archiv">
                                         <label class="custom-file-label" for="archiv"
+                                               style="width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
                                                id="nfile">{{$filadatosseguro->archivo_subido}}</label>
                                     </div>
                                 </div>

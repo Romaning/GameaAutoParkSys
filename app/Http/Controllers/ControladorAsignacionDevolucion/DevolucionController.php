@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ControladorAsignacionDevolucion;
 
-use App\ModuloAsignacionDevolucion\Devolucion;
+use App\Http\Controllers\Controller;
+use App\ModeloAsignacionDevolucion\Asignacion;
+use App\ModeloAsignacionDevolucion\Devolucion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DevolucionController extends Controller
 {
@@ -14,7 +17,8 @@ class DevolucionController extends Controller
      */
     public function index()
     {
-        //
+        $datosdevoluciones = Devolucion::all();
+        return view('devoluciones.indexdevolucion', compact('datosdevoluciones'));
     }
 
     /**
@@ -24,35 +28,103 @@ class DevolucionController extends Controller
      */
     public function create()
     {
-        //
+        $AsigIdPlacaIdCienAsignaciones = DB::table('asignacions')
+            ->select('asignacion_id', 'placa_id', 'ci')
+            ->whereNull('deleted_at')
+            ->get();
+        return view('devoluciones.createdevolucion', compact('AsigIdPlacaIdCienAsignaciones'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        /*dd($request);*/
+        $placaIdCideAsignaciones = DB::table('asignacions')
+            ->select('placa_id', 'ci', 'coord_asig')
+            ->where('asignacion_id', '=', $request->asignacion_id)
+            ->whereNull('deleted_at')
+            ->get();
+        $asignacionIdCapturado = $request->asignacion_id;
+        $instDevolucion = new Devolucion();
+        $instDevolucion->identificador_acta_devolucion = $request->identificador_acta_devolucion;/**/
+        $instDevolucion->motivo_devolucion = $request->motivo_devolucion;
+        $instDevolucion->fecha_devolucion = $request->fecha_devolucion;/**/
+        $instDevolucion->ci = $placaIdCideAsignaciones[0]->ci;/**/
+        $instDevolucion->placa_id = $placaIdCideAsignaciones[0]->placa_id; /**/
+        $instDevolucion->coord_asig = $placaIdCideAsignaciones[0]->coord_asig;
+
+        if ($request->hasFile('archivo_acta_devolucion')) {
+            $archivoImagen = $request->file('archivo_acta_devolucion');
+            $nombreImagen = $placaIdCideAsignaciones[0]->ci . "_" . $placaIdCideAsignaciones[0]->placa_id . "_" . $archivoImagen->getClientOriginalName();
+            $nombreImagen = str_replace(" ", "_", $nombreImagen);
+            $path = public_path() . '/imagenes_store/devoluciones/' . $nombreImagen;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+            $archivoImagen->move(public_path('imagenes_store/devoluciones'), $nombreImagen);
+            $instDevolucion->archivo_acta_devolucion = $nombreImagen;
+        }
+        $instDevolucion->save();
+        $idInsertado = $instDevolucion->devolucion_id;
+        $coord_devo = "D" . $idInsertado;
+        $nuevoDevolucionInst = Devolucion::find($idInsertado);
+        $nuevoDevolucionInst->coord_devo = $coord_devo;
+        $nuevoDevolucionInst->update();
+
+        $instanceAsignaciones = Asignacion::find($asignacionIdCapturado);
+        $instanceAsignaciones->coord_devo = $coord_devo;
+        $instanceAsignaciones->update();
+        $instanceAsignaciones->delete();
+
+        return "EXITOSAMENTE";
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ModuloAsignacionDevolucion\Devolucion  $devolucion
+     * @param \App\ModeloAsignacionDevolucion\Devolucion $devolucion
      * @return \Illuminate\Http\Response
      */
-    public function show(Devolucion $devolucion)
+    public function show( $devolucion_id)
     {
-        //
+        /*dd($devolucion_id);*/
+        $Asignacion = DB::table('devolucions')
+            ->leftJoin('asignacions','devolucions.coord_asig','=','devolucions.coord_asig')
+            ->where('devolucions.devolucion_id','=',$devolucion_id)
+            ->select('asignacions.coord_asig','asignacions.asignacion_id')
+            ->get();
+
+        /*dd($Asignacion[0]->asignacion_id);*/
+        $datosAsignaciones = DB::table('asignacions')
+            ->join('funcionarios', 'asignacions.ci', '=', 'funcionarios.ci')
+            ->join('departamentos', 'funcionarios.departamento_id', '=', 'departamentos.departamento_id')
+            ->where('asignacions.asignacion_id', '=', $Asignacion[0]->asignacion_id)
+            ->select('asignacions.*', 'funcionarios.nombres', 'funcionarios.apellidos', 'funcionarios.imagen_perfil', 'funcionarios.categoria_licencia',
+                'departamentos.departamento_nombre')
+            ->get();
+
+        $imagenesPerfilVehiculo = DB::table('asignacions')
+            ->join('imagenes_perfil_vehiculos', 'asignacions.placa_id', '=', 'imagenes_perfil_vehiculos.placa_id')
+            ->where('asignacions.asignacion_id', '=', $Asignacion[0]->asignacion_id)
+            /*->whereNull('asignacions.deleted_at')
+            ->whereNull('imagenes_perfil_vehiculos.deleted_at')*/
+            ->select('imagenes_perfil_vehiculos.archivo_subido')
+            ->get();
+
+        $datosdevoluciones = Devolucion::find($devolucion_id);
+        /*dd($datosdevoluciones->all());*/
+        return view('devoluciones.showdevolucion', compact('datosdevoluciones','datosAsignaciones','imagenesPerfilVehiculo'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ModuloAsignacionDevolucion\Devolucion  $devolucion
+     * @param \App\ModeloAsignacionDevolucion\Devolucion $devolucion
      * @return \Illuminate\Http\Response
      */
     public function edit(Devolucion $devolucion)
@@ -60,22 +132,56 @@ class DevolucionController extends Controller
         //
     }
 
+/*
+$instDevolucion->motivo_devolucion = $request->motivo_devolucion;
+$instDevolucion->fecha_devolucion = $request->fecha_devolucion;
+$instDevolucion->ci = $placaIdCideAsignaciones[0]->ci;
+$instDevolucion->placa_id = $placaIdCideAsignaciones[0]->placa_id;
+$instDevolucion->coord_asig = $placaIdCideAsignaciones[0]->coord_asig;
+
+if ($request->hasFile('archivo_acta_devolucion')) {
+$archivoImagen = $request->file('archivo_acta_devolucion');
+$nombreImagen = $placaIdCideAsignaciones[0]->ci . "_" . $placaIdCideAsignaciones[0]->placa_id . "_" . $archivoImagen->getClientOriginalName();
+$nombreImagen = str_replace(" ", "_", $nombreImagen);
+$path = public_path() . '/imagenes_store/devoluciones/' . $nombreImagen;
+if (file_exists($path)) {
+unlink($path);
+}
+$archivoImagen->move(public_path('imagenes_store/devoluciones'), $nombreImagen);
+$instDevolucion->archivo_acta_devolucion = $nombreImagen;
+}
+$instDevolucion->save();
+$idInsertado = $instDevolucion->devolucion_id;
+$coord_devo = "D" . $idInsertado;
+$nuevoDevolucionInst = Devolucion::find($idInsertado);
+$nuevoDevolucionInst->coord_devo = $coord_devo;
+$nuevoDevolucionInst->update();
+
+$instanceAsignaciones = Asignacion::find($asignacionIdCapturado);
+$instanceAsignaciones->coord_devo = $coord_devo;
+$instanceAsignaciones->update();
+$instanceAsignaciones->delete();
+
+return "EXITOSAMENTE";
+dd($request);
+ * */
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ModuloAsignacionDevolucion\Devolucion  $devolucion
+     * @param \Illuminate\Http\Request $request
+     * @param \App\ModeloAsignacionDevolucion\Devolucion $devolucion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Devolucion $devolucion)
+    public function update(Request $request, $devolucion)
     {
-        //
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ModuloAsignacionDevolucion\Devolucion  $devolucion
+     * @param \App\ModeloAsignacionDevolucion\Devolucion $devolucion
      * @return \Illuminate\Http\Response
      */
     public function destroy(Devolucion $devolucion)
