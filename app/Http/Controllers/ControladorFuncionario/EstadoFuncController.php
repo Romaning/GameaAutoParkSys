@@ -40,7 +40,7 @@ class EstadoFuncController extends Controller
         $estadofunc = new EstadoFunc();
         $estadofunc->estado_func_descripcion=$request->estado_func_descripcion;
         $estadofunc->save();
-        return redirect()->route('estadofunc.index');
+        return redirect()->route('estadofunc.index')->with('alert-success','GUARDADO CORRECTAMENTE');
     }
 
     /**

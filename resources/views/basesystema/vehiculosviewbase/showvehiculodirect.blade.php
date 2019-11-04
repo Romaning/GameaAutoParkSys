@@ -491,20 +491,13 @@
     Registrar Vehiculo
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    <!-- Stylesheets -->
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
-
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
     <!-- Page JS DIRECTO PARA SHOW VEHICULO -->
     <style>
         .cajita {

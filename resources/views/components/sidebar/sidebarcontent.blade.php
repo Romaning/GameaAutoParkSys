@@ -13,34 +13,33 @@
             </a>
             <ul class="nav-main-submenu">
                 {{--############### @/ ###############--}}
+                <li class="nav-main-heading">DEPARTAMENTOS</li>
+                @include('components.sidebar.parts.departamentos')
                 <li class="nav-main-heading">Independientes</li>
                 @include('components.sidebar.parts.independientesvehiculo')
-                <li class="nav-main-heading">Vehiculos</li>
-                @include('components.sidebar.parts.vehiculomodule')
-                <li class="nav-main-heading">Documentos de Propiedad</li>
-                @include('components.sidebar.parts.documentospropiedad')
-                <li class="nav-main-heading">Iamgenes de Perfil</li>
-                @include('components.sidebar.parts.imagenesperfil')
-                <li class="nav-main-heading">Documentos Renovables Por Periodo</li>
-                @include('components.sidebar.parts.gestionSoatBsisaInspeccionVehi')
-                <li class="nav-main-heading">Seguros</li>
-                @include('components.sidebar.parts.seguros')
+                <li class="nav-main-heading">Independientes</li>
+                @include('components.sidebar.parts.independientesfuncionario')
                 {{--############## /@ ###############--}}
-
             </ul>
         </li>
 
-        <li class="nav-main-item">
+        <li class="nav-main-item open">
             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                aria-expanded="false" href="#">
                 <i class="nav-main-link-icon si si-control-play"></i>
                 <span class="nav-main-link-name">SECCION 2</span>
             </a>
             <ul class="nav-main-submenu">
-                <li class="nav-main-heading">DEPARTAMENTOS</li>
-                @include('components.sidebar.parts.departamentos')
-                <li class="nav-main-heading">Indepnedientes</li>
-                @include('components.sidebar.parts.independientesfuncionario')
+                <li class="nav-main-heading">Vehiculos</li>
+                @include('components.sidebar.parts.vehiculomodule')
+                <li class="nav-main-heading">Documentos de Propiedad</li>
+                @include('components.sidebar.parts.documentospropiedad')
+                <li class="nav-main-heading">Iamgenes de Perfil</li>
+                @include('components.sidebar.parts.imagenesperfil')
+                <li class="nav-main-heading">Documentos Por Periodo</li>
+                @include('components.sidebar.parts.gestionSoatBsisaInspeccionVehi')
+                <li class="nav-main-heading">Seguros</li>
+                @include('components.sidebar.parts.seguros')
                 <li class="nav-main-heading">Funcionarios</li>
                 @include('components.sidebar.parts.funcionariomodulo')
                 <li class="nav-main-heading">Asiganciones</li>
@@ -51,7 +50,10 @@
                 @include('components.sidebar.parts.mantenimientos')
                 <li class="nav-main-heading">Vales de Combustible</li>
                 @include('components.sidebar.parts.valesdecombustible')
+                <li class="nav-main-heading">Infracciones</li>
+                @include('components.sidebar.parts.infracciones')
             </ul>
+        </li>
     </ul>
 </div>
 <!-- END Side Navigation -->

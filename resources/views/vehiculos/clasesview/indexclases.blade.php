@@ -3,28 +3,24 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS DATATABLES-->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')}}">
+    {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
+    @include('components.links_css_js.datatable.datatable_css')
+    {{--######################## END SCRIPT DATABLE ####################--}}
 @endsection
 @section('hero_cuadro_bienvenida')
-    <!-- Hero -->
 
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection
 @section('content')
-    <!-- Dynamic Table with Export Buttons -->
-    <div class="block">
 
+    @include('components.alerts.alerttre')
+
+    <div class="block">
         {{--<div class="block-header">
             <h3 class="block-title">Tabla Dinamica<small>  Boton exportar</small></h3>
         </div>--}}
         <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
              data-class="animated flipInX{{--bounceIn--}}">
         {{--<button class="dt-button buttons-print" tabindex="0" aria-controls="example" type="button"><span>Print</span></button>--}}
-
-        <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                 <thead>
                 <tr>
@@ -74,7 +70,8 @@
                                     </a>
                                 </div>
                                 <div class="col-sm-1">
-                                    <form action="{{route('clase.destroy',$filaclase->clase_id)}}" method="post">
+                                    <form action="{{route('clase.destroy',$filaclase->clase_id)}}"
+                                          method="post" @include('components.confirmation.confirmdel')>
                                         @csrf
                                         @method('delete')
                                         <button href="" type="submit" class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
@@ -84,32 +81,6 @@
                                     </form>
                                 </div>
                             </div>
-                            {{--<td class="d-none d-sm-table-cell font-size-sm text-sm-center">
-                                <div class="row">
-                                    <div class="col-sm-1">
-                                        <a href="{{route('clase.show',$filaclase->clase_id)}}" class="badge badge-success"
-                                           data-toggle="tooltip"
-                                           title="VER INFORMACION COMPLETA">
-                                            <i class="fas fa-eye"></i>
-                                        </a></div>
-                                    <div class="col-sm-1">
-                                        <a href="{{route('clase.edit',$filaclase->clase_id)}}" class="badge badge-warning"
-                                           data-toggle="tooltip"
-                                           title="EDITAR">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <form action="{{route('clase.destroy',$filaclase->clase_id)}}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <a href="" type="submit" class="badge badge-danger" data-toggle="tooltip"
-                                               title="ELIMINAR">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </form>
-                                    </div>
-                                </div>--}}
                         </td>
                     </tr>
                 @endforeach
@@ -121,18 +92,12 @@
 @endsection
 @section('js_script_import')
     {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/dataTables.buttons.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.print.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')}}"></script>
+    @include('components.links_css_js.datatable.datatable_js')
+    {{--######################## END SCRIPT DATABLE ####################--}}
 
-    <!-- Page JS Code -->
-    <script src="{{asset('assets/js/pages/be_tables_datatables.min.js')}}"></script>
-
+    {{-- ################ START CONFIRMAR ELIMINACION FORM ###############--}}
+    @include('components.confirmation.confirmationdelete_js')
+    {{-- ################# END CONFIRMAR ELIMINACION FORM ###############--}}
 @endsection
 
 

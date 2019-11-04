@@ -98,6 +98,7 @@ class EstadoServicioVehiculoController extends Controller
                                                                                           FROM estado_servicio_vehiculos 
                                                                                           WHERE placa_id ='" .$placa_id. "'
                                                                                         )
+                                                                  AND estado_servicio_vehiculos.placa_id = '".$placa_id."'
                                                                 )
                                     AND estado_services.est_id = estado_servicio_vehiculos.est_id
                              ");
@@ -153,6 +154,7 @@ class EstadoServicioVehiculoController extends Controller
                                                                                           FROM estado_servicio_vehiculos 
                                                                                           WHERE placa_id ='2720RKF'
                                                                                         )
+                                                                  AND estado_servicio_vehiculos.placa_id = '2720RKF'
                                                                 )
                                     AND estado_services.est_id = estado_servicio_vehiculos.est_id
                              ");
@@ -232,6 +234,7 @@ class EstadoServicioVehiculoController extends Controller
                                                                                           FROM estado_servicio_vehiculos 
                                                                                           WHERE placa_id ='" .$placa_id. "'
                                                                                         )
+                                                                  AND estado_servicio_vehiculos.placa_id = '".$placa_id."'
                                                                 )
                                     AND estado_services.est_id = estado_servicio_vehiculos.est_id
                              ");
@@ -246,6 +249,6 @@ class EstadoServicioVehiculoController extends Controller
     public function destroy($estadoServicioVehiculo)
     {
         EstadoServicioVehiculo::find($estadoServicioVehiculo)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('alert-success','ELIMINADO CORRECTAMENTE');
     }
 }

@@ -3,23 +3,17 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
-    <!-- Page JS DIRECTO PARA SHOW VEHICULO -->
-    <style>
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    </style>
 @endsection
 @section('hero_cuadro_bienvenida')
 
 @endsection
 @section('content')
+    @include('components.alerts.alerttre')
+
     {{csrf_field()}}
 
     <!-- Dropzone (functionality is auto initialized by the plugin itself in js/plugins/dropzone/dropzone.min.js) -->
@@ -55,21 +49,11 @@
     <!-- END Dropzone -->
 @endsection
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+
     {{-- ################ END SCRIPTS PARA DROPZONE ###############--}}
     <script>
         var APP_URL = {!! json_encode(url('/')) !!};

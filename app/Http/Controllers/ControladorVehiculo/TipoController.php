@@ -40,7 +40,7 @@ class TipoController extends Controller
         $datostipo = new Tipo();
         $datostipo->tipo_descripcion = $request->tipoDescripcionNameFront;
         $datostipo->save();
-        return redirect()->route('tipo.index')->with('Registro exitoso');
+        return redirect()->route('tipo.index')->with('alert-success','GUARDADO CORRECTAMENTE');
     }
 
     /**
@@ -79,9 +79,11 @@ class TipoController extends Controller
         $datostipo = Tipo::find($tipo);
         $datostipo->tipo_descripcion = $request->tipoDescripcionNameFront;
         $datostipo->save();
-        return redirect()->route('tipo.index')->with('Informacion actualizada');
+        return redirect()->route('tipo.index')->with('alert-success','ACTUALIZANDO CORRECTAMENTE');
     }
-
+    /*->with('alert-success','GUARDADO CORRECTAMENTE ID: '.$placa);
+               ->with('alert-success','ACTUALIZADO CORRECTAMENTE ID: '.$valesDeCombustiblee);
+               ->with('alert-success','ELIMINADO CORRECTAMENTE ID: '.$valedecombustible_id);*/
     /**
      * Remove the specified resource from storage.
      *
@@ -92,6 +94,6 @@ class TipoController extends Controller
     {
         $datostipo = Tipo::find($tipo);
         $datostipo->delete();
-        return redirect()->route('tipo.index')->with('Elemento eliminado exitosamente');
+        return redirect()->route('tipo.index')->with('ELEMENTO ELIMINADO CORRECTAMENTE');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ControladorVehiculo;
 
 use App\Http\Controllers\Controller;
+use App\ModeloIncidencia\Incidencia;
 use App\ModeloVehiculo\Clase;
 use App\ModeloVehiculo\DocumentosPropiedadVehiculo;
 use App\ModeloVehiculo\DocumentosRonovableVehiculo;
@@ -16,6 +17,7 @@ use App\ModeloVehiculo\TipoUso;
 use App\ModeloVehiculo\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function Sodium\add;
 
 class VehiculoController extends Controller
 {
@@ -33,7 +35,7 @@ class VehiculoController extends Controller
         /**/
         $datosvehiculos = DB::select('SELECT vehi.placa_id,vehi.numero_crpva,vehi.numero_chasis,vehi.numero_motor,
                                         m.marca_descripcion,estservvehi.est_serv_vehiculo_id,est.est_id ,est.est_descripcion
-                                        FROM 
+                                        FROM
                                                 (SELECT	est.placa_id, MAX(est.est_serv_vehiculo_id) serv_id
                                                 FROM
                                                         (SELECT	vehiculos.placa_id, MAX(estado_servicio_vehiculos.fecha_inicio) fechamax
@@ -44,13 +46,13 @@ class VehiculoController extends Controller
                                                 estado_servicio_vehiculos est
                                                 WHERE	 tb_orange.placa_id = est.placa_id AND tb_orange.fechamax = est.fecha_inicio
                                                 GROUP BY est.placa_id) tb_master,
-                                                vehiculos vehi,
-                                                marcas m,
-                                                estado_servicio_vehiculos estservvehi,
-                                                estado_services est
+                                        vehiculos vehi,
+                                        marcas m,
+                                        estado_servicio_vehiculos estservvehi,
+                                        estado_services est
                                         WHERE vehi.placa_id=tb_master.placa_id AND
                                             vehi.marca_id = m.marca_id AND
-                                            tb_master.serv_id = estservvehi.est_serv_vehiculo_id AND estservvehi.est_id = est.est_id 
+                                            tb_master.serv_id = estservvehi.est_serv_vehiculo_id AND estservvehi.est_id = est.est_id
                                             AND vehi.deleted_at IS NULL');/*#################################### AQUI NO MUESTRA EL VEHICULO ELIMINADO ###### PERO NO ESTA ELIMNAOD EL RESTO DE LAS RELACIONESS ASI QUE SE PUEDE RESTAURAR ###############*/
 
         return view('vehiculos.vehiculosview.indexvehiculo', compact('datosvehiculos'));
@@ -133,11 +135,11 @@ class VehiculoController extends Controller
         JOIN tipo_combustibles ON tipo_combustibles.tipo_combustible_id = vehiculos.tipo_combustible_id
         JOIN tipo_usos ON tipo_usos.tipo_uso_id = vehiculos.tipo_uso_id*/
         $datosvehiculo = DB::table('vehiculos')
-            ->join('clases', 'clases.clase_id', '=', 'vehiculos.clase_id')
-            ->join('marcas', 'marcas.marca_id', '=', 'vehiculos.marca_id')
-            ->join('tipos', 'tipos.tipo_id', '=', 'vehiculos.tipo_id')
-            ->join('tipo_combustibles', 'tipo_combustibles.tipo_combustible_id', '=', 'vehiculos.tipo_combustible_id')
-            ->join('tipo_usos', 'tipo_usos.tipo_uso_id', '=', 'vehiculos.tipo_uso_id')
+            ->leftJoin('clases', 'clases.clase_id', '=', 'vehiculos.clase_id')
+            ->leftJoin('marcas', 'marcas.marca_id', '=', 'vehiculos.marca_id')
+            ->leftJoin('tipos', 'tipos.tipo_id', '=', 'vehiculos.tipo_id')
+            ->leftJoin('tipo_combustibles', 'tipo_combustibles.tipo_combustible_id', '=', 'vehiculos.tipo_combustible_id')
+            ->leftJoin('tipo_usos', 'tipo_usos.tipo_uso_id', '=', 'vehiculos.tipo_uso_id')
             ->select('vehiculos.*',
                 'clases.clase_descripcion',
                 'marcas.marca_descripcion',
@@ -155,8 +157,10 @@ class VehiculoController extends Controller
                                                                                           FROM estado_servicio_vehiculos 
                                                                                           WHERE placa_id ='" .$vehiculo. "'
                                                                                         )
+                                                                  AND estado_servicio_vehiculos.placa_id = '".$vehiculo."'
                                                                 )
                                     AND estado_services.est_id = estado_servicio_vehiculos.est_id
+                                    AND estado_servicio_vehiculos.placa_id = '".$vehiculo."'
                              ");
         $datosdocumentospropiedadvehicular = DB::table('vehiculos')
             ->join('documentos_propiedad_vehiculos', 'documentos_propiedad_vehiculos.placa_id', '=', 'vehiculos.placa_id')
@@ -182,6 +186,49 @@ class VehiculoController extends Controller
             ->where('seguros.placa_id', '=', $vehiculo)
             ->where('seguros.gestion', '=', date('Y'))
             ->get();
+        /*##################### VEHICULOS(placa_id)[placa_id=$vehiculo] -> (placa_id)ASIGNACIONS(ci) -> (ci)FUNCIONARIOS ##############*/
+        $asignaciones = DB::table('vehiculos')
+            ->Join('asignacions','vehiculos.placa_id','=','asignacions.placa_id')
+            ->join('funcionarios','funcionarios.ci','=','asignacions.ci')
+            ->whereNull('asignacions.deleted_at')
+            ->where('vehiculos.placa_id','=',$vehiculo)
+            ->get();
+
+        /*##################### Vehiculos(placa_id)[placa_id] ->(placa_id)Mantenimientos ##############*/
+        $mantenimientos = DB::table('vehiculos')
+            ->join('mantenimientos','vehiculos.placa_id','=','mantenimientos.placa_id_mant')
+            ->where('vehiculos.placa_id','=',$vehiculo)
+            ->whereNull('vehiculos.deleted_at')
+            ->orderBy('mantenimientos.fecha_inicio_mant','DESC')
+            ->limit(1)
+            ->get();
+
+        /*dd($mantenimientos);*/
+        /*##################### Vehiculos(placa_id)[placa_id] ->(placa_id)ValesDeConbustibles ##############*/
+        $valesporplaca = DB::table('vales_de_combustibles')
+            ->join('vehiculos','vales_de_combustibles.placa_id','=','vehiculos.placa_id')
+            ->where('vehiculos.placa_id','=',$vehiculo)
+            ->whereNull('vales_de_combustibles.deleted_at')
+            ->orderBy('fecha_entrega','DESC')
+            ->limit(1)
+            ->get();
+        /*dd($valesporplaca);*/
+
+        /*##################### Vehiculos(placa_id)[placa_id] ->(placa_id)infracciones ##############*/
+        $infracionesInst = DB::table('infraccions')
+            ->where('placa_id','=',$vehiculo)
+            ->whereNull('deleted_at')
+            ->orderBy('fecha_infraccion', 'DESC')
+            ->limit(1)
+            ->get();
+        /*##################### Vehiculos(placa_id)[placa_id] ->(placa_id)incidencias ##############*/
+        $datosincidencias = DB::table('incidencias')
+            ->where('placa_id','=',$vehiculo)
+            ->whereNull('deleted_at')
+            ->orderBy('fecha_incidencia','DESC')
+            ->limit(1)
+            ->get();
+        /*dd($datosincidencias);*/
 
         return view('vehiculos.vehiculosview.showvehiculo',
             compact('datosvehiculo',
@@ -189,7 +236,7 @@ class VehiculoController extends Controller
                 'datosdocumentospropiedadvehicular',
                 'datosimagenperfilvehicular',
                 'datosdocumentosrenovable',
-                'datosseguro'));
+                'datosseguro', 'asignaciones','mantenimientos', 'valesporplaca','infracionesInst', 'datosincidencias'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -200,18 +247,18 @@ class VehiculoController extends Controller
     public function showEdit($vehiculo)
     {
         /*SELECT vehiculos.*, clases.clase_descripcion,marcas.marca_descripcion,tipos.tipo_descripcion,tipo_combustibles.tipo_combustible_descripcion,tipo_usos.tipo_uso_descripcion
-        FROM vehiculos
-        JOIN clases ON clases.clase_id = vehiculos.clase_id
-        JOIN marcas ON marcas.marca_id =  vehiculos.marca_id
-        JOIN tipos ON tipos.tipo_id = vehiculos.tipo_id
-        JOIN tipo_combustibles ON tipo_combustibles.tipo_combustible_id = vehiculos.tipo_combustible_id
-        JOIN tipo_usos ON tipo_usos.tipo_uso_id = vehiculos.tipo_uso_id*/
+                FROM vehiculos
+                JOIN clases ON clases.clase_id = vehiculos.clase_id
+                JOIN marcas ON marcas.marca_id =  vehiculos.marca_id
+                JOIN tipos ON tipos.tipo_id = vehiculos.tipo_id
+                JOIN tipo_combustibles ON tipo_combustibles.tipo_combustible_id = vehiculos.tipo_combustible_id
+                JOIN tipo_usos ON tipo_usos.tipo_uso_id = vehiculos.tipo_uso_id*/
         $datosvehiculo = DB::table('vehiculos')
-            ->join('clases', 'clases.clase_id', '=', 'vehiculos.clase_id')
-            ->join('marcas', 'marcas.marca_id', '=', 'vehiculos.marca_id')
-            ->join('tipos', 'tipos.tipo_id', '=', 'vehiculos.tipo_id')
-            ->join('tipo_combustibles', 'tipo_combustibles.tipo_combustible_id', '=', 'vehiculos.tipo_combustible_id')
-            ->join('tipo_usos', 'tipo_usos.tipo_uso_id', '=', 'vehiculos.tipo_uso_id')
+            ->leftJoin('clases', 'clases.clase_id', '=', 'vehiculos.clase_id')
+            ->leftJoin('marcas', 'marcas.marca_id', '=', 'vehiculos.marca_id')
+            ->leftJoin('tipos', 'tipos.tipo_id', '=', 'vehiculos.tipo_id')
+            ->leftJoin('tipo_combustibles', 'tipo_combustibles.tipo_combustible_id', '=', 'vehiculos.tipo_combustible_id')
+            ->leftJoin('tipo_usos', 'tipo_usos.tipo_uso_id', '=', 'vehiculos.tipo_uso_id')
             ->select('vehiculos.*',
                 'clases.clase_descripcion',
                 'marcas.marca_descripcion',
@@ -229,8 +276,10 @@ class VehiculoController extends Controller
                                                                                           FROM estado_servicio_vehiculos 
                                                                                           WHERE placa_id ='" .$vehiculo. "'
                                                                                         )
+                                                                  AND estado_servicio_vehiculos.placa_id = '".$vehiculo."'
                                                                 )
                                     AND estado_services.est_id = estado_servicio_vehiculos.est_id
+                                    AND estado_servicio_vehiculos.placa_id = '".$vehiculo."'
                              ");
         $datosdocumentospropiedadvehicular = DB::table('vehiculos')
             ->join('documentos_propiedad_vehiculos', 'documentos_propiedad_vehiculos.placa_id', '=', 'vehiculos.placa_id')
@@ -256,25 +305,50 @@ class VehiculoController extends Controller
             ->where('seguros.placa_id', '=', $vehiculo)
             ->where('seguros.gestion', '=', date('Y'))
             ->get();
-
-        $ciEnAsignacion = DB::table('vehiculos')
-            ->leftJoin('asignacions','vehiculos.placa_id','=','asignacions.placa_id')
+        /*##################### VEHICULOS(placa_id)[placa_id=$vehiculo] -> (placa_id)ASIGNACIONS(ci) -> (ci)FUNCIONARIOS ##############*/
+        $asignaciones = DB::table('vehiculos')
+            ->Join('asignacions','vehiculos.placa_id','=','asignacions.placa_id')
+            ->join('funcionarios','funcionarios.ci','=','asignacions.ci')
             ->whereNull('asignacions.deleted_at')
             ->where('vehiculos.placa_id','=',$vehiculo)
-            ->select('asignacions.ci')
             ->get();
-        /*$ciAsignacionEnFuncionarios = DB::table('funcionarios')
-            ->where('funcionarios.ci','=', $ciEnAsignacion[0]->ci)
-            ->select('funcionarios.nombres')
+
+        /*##################### Vehiculos(placa_id)[placa_id] ->(placa_id)Mantenimientos ##############*/
+        $mantenimientos = DB::table('vehiculos')
+            ->join('mantenimientos','vehiculos.placa_id','=','mantenimientos.placa_id_mant')
+            ->where('vehiculos.placa_id','=',$vehiculo)
+            ->whereNull('vehiculos.deleted_at')
+            ->orderBy('mantenimientos.fecha_inicio_mant','DESC')
+            ->limit(1)
             ->get();
-        dd($ciAsignacionEnFuncionarios);*/
-        return view('vehiculos.vehiculosview.showEdit',
+
+        /*dd($mantenimientos);*/
+        /*##################### Vehiculos(placa_id)[placa_id] ->(placa_id)ValesDeConbustibles ##############*/
+        $valesporplaca = DB::table('vales_de_combustibles')
+            ->join('vehiculos','vales_de_combustibles.placa_id','=','vehiculos.placa_id')
+            ->where('vehiculos.placa_id','=',$vehiculo)
+            ->whereNull('vales_de_combustibles.deleted_at')
+            ->orderBy('fecha_entrega','DESC')
+            ->limit(1)
+            ->get();
+        /*dd($valesporplaca);*/
+
+        /*##################### Vehiculos(placa_id)[placa_id] ->(placa_id)infracciones ##############*/
+        $infracionesInst = DB::table('infraccions')
+            ->where('placa_id','=',$vehiculo)
+            ->whereNull('deleted_at')
+            ->orderBy('fecha_infraccion', 'DESC')
+            ->limit(1)
+            ->get();
+
+
+        return view('vehiculos.vehiculosview.showvehiculo',
             compact('datosvehiculo',
                 'estadoservvehi',
                 'datosdocumentospropiedadvehicular',
                 'datosimagenperfilvehicular',
                 'datosdocumentosrenovable',
-                'datosseguro'));
+                'datosseguro', 'asignaciones','mantenimientos', 'valesporplaca','infracionesInst'));
     }
 
     public function editSolo($vehiculo)
@@ -313,8 +387,10 @@ class VehiculoController extends Controller
                                                                                           FROM estado_servicio_vehiculos 
                                                                                           WHERE placa_id ='" .$vehiculo. "'
                                                                                         )
+                                                                  AND estado_servicio_vehiculos.placa_id = '".$vehiculo."'
                                                                 )
                                     AND estado_services.est_id = estado_servicio_vehiculos.est_id
+                                    AND estado_servicio_vehiculos.placa_id = '".$vehiculo."'
                              ");
         return view('vehiculos.vehiculosview.editvehiculoSolo' ,
             compact(
@@ -349,7 +425,7 @@ class VehiculoController extends Controller
         /*dd($vehiculo);*/
         $vehiculo->update();
         /*return redirect()->route('vehiculo.index')->with('success','Registro Exitoso');*/
-        return redirect()->route('vehiculo.index');
+        return redirect()->route('vehiculo.show',$vehiculo)->with('alert-success', 'Datos actualizados correctamente!');
     }
 
     public function destroySolo($vehiculo)
@@ -364,11 +440,11 @@ class VehiculoController extends Controller
         $datostipo_uso = TipoUso::all();
 
         $datosvehiculo = DB::table('vehiculos')
-            ->join('clases', 'clases.clase_id', '=', 'vehiculos.clase_id')
-            ->join('marcas', 'marcas.marca_id', '=', 'vehiculos.marca_id')
-            ->join('tipos', 'tipos.tipo_id', '=', 'vehiculos.tipo_id')
-            ->join('tipo_combustibles', 'tipo_combustibles.tipo_combustible_id', '=', 'vehiculos.tipo_combustible_id')
-            ->join('tipo_usos', 'tipo_usos.tipo_uso_id', '=', 'vehiculos.tipo_uso_id')
+            ->leftJoin('clases', 'clases.clase_id', '=', 'vehiculos.clase_id')
+            ->leftJoin('marcas', 'marcas.marca_id', '=', 'vehiculos.marca_id')
+            ->leftJoin('tipos', 'tipos.tipo_id', '=', 'vehiculos.tipo_id')
+            ->leftJoin('tipo_combustibles', 'tipo_combustibles.tipo_combustible_id', '=', 'vehiculos.tipo_combustible_id')
+            ->leftJoin('tipo_usos', 'tipo_usos.tipo_uso_id', '=', 'vehiculos.tipo_uso_id')
             ->select('vehiculos.*',
                 'clases.clase_id',
                 'clases.clase_descripcion',
@@ -391,8 +467,10 @@ class VehiculoController extends Controller
                                                                                           FROM estado_servicio_vehiculos 
                                                                                           WHERE placa_id ='" .$vehiculo. "'
                                                                                         )
+                                                                  AND estado_servicio_vehiculos.placa_id = '".$vehiculo."'
                                                                 )
                                     AND estado_services.est_id = estado_servicio_vehiculos.est_id
+                                    AND estado_servicio_vehiculos.placa_id = '".$vehiculo."'
                              ");
 
         $datosdocumentospropiedadvehicular = DB::table('vehiculos')
@@ -463,8 +541,23 @@ class VehiculoController extends Controller
      */
     public function destroy($vehiculo)
     {
-        Vehiculo::find($vehiculo)->delete(); /*ESTO TIENE QUE ELIMINAR EN CADENA #########################################################################*/
-        return redirect()->route('vehiculo.index')->with('alert-success','VEHICULO ELIMINADO CORRECTAMENTE, PUEDE RESTAURAR!');
+
+        $asignaciones = DB::table('vehiculos')
+            ->Join('asignacions','vehiculos.placa_id','=','asignacions.placa_id')
+            ->join('funcionarios','funcionarios.ci','=','asignacions.ci')
+            ->whereNull('asignacions.deleted_at')
+            ->where('vehiculos.placa_id','=',$vehiculo)
+            ->get();
+
+        if (empty($asignaciones[0]->asignacion_id)){
+            /*TODO: SOLO SE DEBE HACER ELIMINACION SUAVE, PARA QUE FUNCIONEN LOS HISTORIALES*/
+            Vehiculo::find($vehiculo)->delete(); /*ESTO TIENE QUE ELIMINAR EN CADENA PERO NO SE HACE, LO MALO ES QUE NO SE PUEDE REGISTRAR OTRO(SE DEBE RESTAURAR DESDE BD) ################################*/
+            return redirect()->route('vehiculo.index')->with('alert-success','VEHICULO ELIMINADO CORRECTAMENTE, PUEDE RESTAURAR!');
+        }
+        else{
+            return redirect()->back()->with('alert-danger','EL VEHICULO NO PUEDE SER ELIMINADO, PORQUE TIENE UNA ASIGNACION EN LINEA!');
+        }
+
     }
 
     public function subirArchivo(Request $request)

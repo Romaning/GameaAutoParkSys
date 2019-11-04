@@ -3,25 +3,16 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
+    @include('components.links_css_js.datatable.datatable_css')
+    {{--######################## END CSS SCRIPT DATABLE ####################--}}
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
 
-    <!-- Stylesheets -->
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
-
-    <!-- Page CS DIRECTO PARA SHOW VEHICULO -->
-    <!-- Page JS Plugins CSS DATATABLES-->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')}}">
-    {{--estilo de la pagina--}}
 @endsection
 @section('hero_cuadro_bienvenida')
 
@@ -29,16 +20,16 @@
 @section('content')
     @csrf
 
-    <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
+    {{--<div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="row">
-            <div class="col-lg-12">
-                <a href="{{ route('seguro.create') }}" class="btn-sm btn-primary shadow rounded"
+            <div class="col-lg-12">--}}
+                {{--<a href="{{ route('seguro.create') }}" class="btn-sm btn-primary shadow rounded"
                    style="float: right; justify-content: end;">
                     <i class="fas fa-plus-circle"></i> AÑADIR
-                </a>
-            </div>
+                </a>--}}
+            {{--</div>
         </div>
-    </div>
+    </div>--}}
 
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div {{--class="block invisible" data-toggle="appear" data-class="animated flipInX"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
@@ -52,7 +43,12 @@
                     <th class="d-none d-sm-table-cell">EMPRESA ASEGURADORA</th>
                     <th class="d-none d-sm-table-cell">FECHA DE VIGENCIA</th>
                     <th class="d-none d-sm-table-cell" style="width:12%;">ARCHIVOS SUBIDOS</th>
+                    <th class="d-none d-sm-table-cell" style="width:3%;">IMG</th>
                     <th style="width:10%;" class="text-sm-center font-size-sm">
+                        <a href="{{ route('seguro.createsolo',$datosseguro[0]->placa_id) }}" class="btn-sm btn-primary shadow rounded"
+                           style="float: right; justify-content: end;">
+                            <i class="fas fa-plus-circle"></i> AÑADIR
+                        </a>
                     </th>
                 </tr>
                 </thead>
@@ -74,11 +70,20 @@
                         <td class="d-none d-sm-table-cell font-size-sm">
                             {{$seguro->fecha_vigencia}}
                         </td>
+
                         <td class="d-none d-sm-table-cell font-size-sm">
                             <div class="col-md-12" style="float: right;">
                                 <input type="file" class="custom-file-input {{--form-control --}} form-control-sm" value="" id="archiv" name="campoe">
-                                <label class="custom-file-label" for="archiv" id="nfile">{{$seguro->archivo_subido}}</label>
+                                <label class="custom-file-label" for="archiv"
+                                       style="width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
+                                       id="nfile">{{$seguro->archivo_subido}}</label>
                             </div>
+                        </td>
+
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            <img class="img-avatar img-avatar48"
+                                 src="{{asset('imagenes_store/seguros/'.$seguro->archivo_subido.'' )}}"
+                                 alt="">
                         </td>
                         <td class="text-sm-center font-size-sm">
                             <div class="row text-sm-center">
@@ -120,46 +125,21 @@
 @endsection
 
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
-    <!-- Page JS Plugins -->
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    {{--############################################## CARROUSEL #############################################--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/slick-carousel/slick.min.js')}}"></script>
-
-    <!-- Page JS Helpers (Slick Slider Plugin) -->
-    <script>jQuery(function () {
-            One.helpers('slick');
-        });</script>
-
-    {{--############################################## JS #############################################--}}
     {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.print.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')}}"></script>
+    @include('components.links_css_js.datatable.datatable_js')
+    {{--######################## END SCRIPT DATABLE ####################--}}
 
-    <!-- Page JS Code -->
-    <script src="{{asset('assets/js/pages/be_tables_datatables.min.js')}}"></script>
-    {{--#################### js #################--}}
+    {{-- ################ START CONFIRMAR ELIMINACION FORM ###############--}}
+    @include('components.confirmation.confirmationdelete_js')
+    {{-- ################# END CONFIRMAR ELIMINACION FORM ###############--}}
+
+    {{--###################### START SCRIPT JS CARROUSEL ####################--}}
+    @include('components.links_css_js.carousel.carousel_js')
+    {{--###################### END SCRIPT JS CARROUSEL ####################--}}
 @endsection
 

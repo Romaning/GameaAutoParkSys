@@ -152,6 +152,6 @@ class DepartamentoController extends Controller
     public function destroy($departamento)
     {
         Departamento::find($departamento)->delete();
-        return redirect()->route('departamento.index');
+        return redirect()->route('departamento.index')->with('alert-success','ELIMINADO CORRECTAMENTE');;
     }
 }

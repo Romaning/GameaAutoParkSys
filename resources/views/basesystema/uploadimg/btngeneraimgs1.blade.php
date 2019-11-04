@@ -54,7 +54,7 @@
         </div>
     </div>
     <button type="button" class="btn btn-primary" id="btnaccionguardarfotosuecam">
-        ENVIAR FOTOS
+        GUARDAR FOTOS
     </button>
 
 </div>

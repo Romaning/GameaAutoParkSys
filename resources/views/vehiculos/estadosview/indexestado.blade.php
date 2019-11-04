@@ -3,15 +3,16 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS DATATABLES-->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')}}">
+    {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
+    @include('components.links_css_js.datatable.datatable_css')
+    {{--######################## END CSS SCRIPT DATABLE ####################--}}
 @endsection
 @section('hero_cuadro_bienvenida')
 
 @endsection
 
 @section('content')
+    @include('components.alerts.alerttre')
     @csrf
     <!-- Dynamic Table with Export Buttons -->
     <div class="block">
@@ -68,7 +69,9 @@
                                     </a>
                                 </div>
                                 <div class="col-sm-1">
-                                    <form action="{{route('estado.destroy',$filaestado->est_id)}}" method="post">
+                                    <form action="{{route('estado.destroy',$filaestado->est_id)}}"
+                                          @include('components.confirmation.confirmdel')
+                                          method="post">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
@@ -89,17 +92,11 @@
 @endsection
 @section('js_script_import')
     {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.print.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')}}"></script>
+    @include('components.links_css_js.datatable.datatable_js')
+    {{--######################## END SCRIPT DATABLE ####################--}}
 
-    <!-- Page JS Code -->
-    <script src="{{asset('assets/js/pages/be_tables_datatables.min.js')}}"></script>
-    {{-- ################ END SCRIPTS PARA DATATABLESS ###############--}}
+    {{-- ################ START CONFIRMAR ELIMINACION FORM ###############--}}
+    @include('components.confirmation.confirmationdelete_js')
+    {{-- ################# END CONFIRMAR ELIMINACION FORM ###############--}}
 @endsection
 

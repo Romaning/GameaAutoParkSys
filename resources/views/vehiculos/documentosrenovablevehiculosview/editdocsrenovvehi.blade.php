@@ -3,30 +3,23 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
     <!-- Stylesheets -->
     <!-- Page CSS DIRECTO PARA SHOW VEHICULO -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/themes/material_green.css')}}">
-
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
-
 @endsection
 @section('hero_cuadro_bienvenida')
-
-
 
 @endsection
 
 @section('content')
+
     <!-- Flatpickr Datetimepicker (.js-flatpickr class is initialized in Helpers.flatpickr()) -->
     <!-- For more info and examples you can check out https://github.com/flatpickr/flatpickr -->
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
@@ -93,36 +86,68 @@
             </form>
         </div>
         <div id="mensaje_respuesta_form_subir_docs_renov_vehicular"></div>
+        @if(session()->has('alert-success'))
+            <div class='alert alert-success d-flex align-items-center' role='alert'>
+                <div class='flex-00-auto'>
+                    <i class='fa fa-fw fa-check'></i>
+                </div>
+                <div class='flex-fill ml-3'>
+                    <p class='mb-0'>  {{ session()->get('alert-success') }}<a class='alert-link'
+                                                                              href='javascript:void(0)'></a>!</p>
+                </div>
+            </div>
+            <a href="{{ URL::previous() }}">Go Back</a>
+        @endif
+        @if (session('status'))
+            <div class='alert alert-success d-flex align-items-center' role='alert'>
+                <div class='flex-00-auto'>
+                    <i class='fa fa-fw fa-check'></i>
+                </div>
+                <div class='flex-fill ml-3'>
+                    <p class='mb-0'>  {{ session('status') }}<a class='alert-link' href='javascript:void(0)'></a>!</p>
+                </div>
+            </div>
+            <a href="{{ URL::previous() }}">Go Back</a>
+        @endif
+
     </div>
     <!-- END Flatpickr Datetimepicker -->
+
+
 @endsection
 
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
-
-    {{--############################################## CARROUSEL #############################################--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/slick-carousel/slick.min.js')}}"></script>
-
-    <!-- Page JS Helpers (Slick Slider Plugin) -->
-    <script>jQuery(function () {
-            One.helpers('slick');
-        });</script>
+    {{--###################### START SCRIPT JS CARROUSEL ####################--}}
+    @include('components.links_css_js.carousel.carousel_js')
+    {{--###################### END SCRIPT JS CARROUSEL ####################--}}
 
     {{-- ############################################### END SCRIPTS PARA DROPZONE ######################################################--}}
+    <script>
+        /*JQUERY PARA ENVIAR FORM ESTADO SERVICIO DE VEHICULO*/
+        $('#form_subir_docs_renov_vehicular').submit(function () {
+            $.ajax({
+                method: $(this).attr('method'),
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('#boton_exito').click();
+                    $('#mensaje_respuesta_form_subir_docs_renov_vehicular').append(
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                        "<div class='flex-00-auto'>" +
+                        "<i class='fa fa-fw fa-check'></i>" +
+                        "</div>" +
+                        "<div class='flex-fill ml-3'>" +
+                        "<p class='mb-0'>" + data + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
+                        "</div>"
+                    );
+                }
+            });
+            return false;
+        });
+    </script>
 @endsection
 

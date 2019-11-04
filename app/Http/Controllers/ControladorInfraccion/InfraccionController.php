@@ -69,6 +69,15 @@ class InfraccionController extends Controller
     {
         //
     }
+    public function historialInfraccion($placa_id)
+    {
+        $infracionesInst = DB::table('infraccions')
+            ->where('placa_id','=',$placa_id)
+            ->whereNull('deleted_at')
+            ->orderBy('fecha_infraccion', 'DESC')
+            ->get();
+        return view('infraciones.historialinfraccion',compact('infracionesInst'));
+    }
 
     /**
      * Show the form for editing the specified resource.

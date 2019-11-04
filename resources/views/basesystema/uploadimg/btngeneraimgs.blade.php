@@ -45,7 +45,7 @@
         </div>
     </div>
     <button type="button" class="btn btn-primary" id="btnaccionguardarfotosuecam">
-        ENVIAR FOTOS
+        GUARDAR FOTOS
     </button>
 
 <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>

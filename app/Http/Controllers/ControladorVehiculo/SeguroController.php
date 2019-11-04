@@ -46,6 +46,11 @@ class SeguroController extends Controller
         return view('vehiculos.segurosview.createseguroOther', compact('placas'));
     }
 
+    public function createSolo($vehiculo_placa_id)
+    {
+        return view('vehiculos.segurosview.createseguroSolo', compact('vehiculo_placa_id'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -74,17 +79,18 @@ class SeguroController extends Controller
 
             $imageName = $placa_id[$i] . "" . $archivo_subido[$i]->getClientOriginalName();
             $imageName = str_replace(" ", "_", $imageName);
-            $archivo_subido[$i]->move(public_path('carpeta_imagenes'), $imageName);
+            $archivo_subido[$i]->move(public_path('imagenes_store/seguros'), $imageName);
 
             $seguro->archivo_subido = $imageName;
             /*$File = file($archivo_subido[$i]);
                     $archivo_subido = $request->file('campoe');
             $imageName = $placa_id[$i].$File->getClientOriginalName();
-            $File->move(public_path('carpeta_imagenes'), $imageName);*/
+            $File->move(public_path('imagenes_store/seguros'), $imageName);*/
 
             $seguro->save();
         }
-        return redirect()->route('seguro.index');
+        return redirect()->back()->with('alert-success', 'Datos guardados correctamente! ')
+            ->with('alert-seguro','GUARDADO CORRECTAMENTE');/*route('seguro.index')->with('alert-success', 'Datos guardados correctamente! ');*/
     }
 
     /**
@@ -106,9 +112,10 @@ class SeguroController extends Controller
 
     public function historialSeguros($vehiculo)
     {
-
         $datosseguro = DB::table('seguros')
             ->where('placa_id', '=', $vehiculo)
+            ->orderBy('placa_id')
+            ->orderBy('gestion', 'DESC')
             ->get();
         return view('vehiculos.segurosview.historialplacaseguro', compact('datosseguro'));
     }
@@ -151,7 +158,7 @@ class SeguroController extends Controller
             $archivoimag = $request->file('campoe');
             $nombrearchivo = $request->placa_id."".$archivoimag->getClientOriginalName();
             $nombrearchivo =  str_replace(" ", "_", $nombrearchivo);
-            $archivoimag->move(public_path('carpeta_imagenes'),$nombrearchivo);
+            $archivoimag->move(public_path('imagenes_store/seguros'),$nombrearchivo);
 
             /* BUSCAMOS EL ANTIGUO NOMBRE PARA ELIMINAR DE LA BD*/
             $nombreImgParaDarArchivo = DB::table('seguros')
@@ -160,7 +167,7 @@ class SeguroController extends Controller
                 ->get();
 
             /* ELIMINAMOS LA IMAGEN DE LA CARPETA DE IMAGENES DEL PROYECTO */
-            $path = public_path().'/carpeta_imagenes/'.$nombreImgParaDarArchivo[0]->archivo_subido;
+            $path = public_path().'/imagenes_store/seguros/'.$nombreImgParaDarArchivo[0]->archivo_subido;
             if (file_exists($path)) {
                 unlink($path);
             }
@@ -174,7 +181,7 @@ class SeguroController extends Controller
         $seguro->placa_id = $request->placa_id;
         $seguro->update();
 
-        return redirect()->route('seguro.index');
+        return redirect()->back()->with('alert-success', 'Datos actualizados correctamente! ');
     }
 
     public function updateClasis(Request $request, $seg)
@@ -198,7 +205,7 @@ class SeguroController extends Controller
             ->get();
 
         $archivo_subido[0]->archivo_subido =  str_replace(" ", "_", $archivo_subido[0]->archivo_subido);
-        $path = public_path() . '/carpeta_imagenes/' . $archivo_subido[0]->archivo_subido;
+        $path = public_path() . '/imagenes_store/seguros/' . $archivo_subido[0]->archivo_subido;
         if (file_exists($path)) {
             unlink($path);
         }

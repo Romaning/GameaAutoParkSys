@@ -19,7 +19,7 @@ class ImagenesPerfilVehiculoController extends Controller
             $fileNameOriginal = str_replace(" ", "_", $fileNameOriginal);
 
             $fileNameMorePlaca = $numeroplaca.$fileNameOriginal; /*concatenamos la placa con el nombre original para que no haya duplicidad */
-            $path=public_path().'/carpeta_imagenes/'.$fileNameMorePlaca; /*vemos que ese archivo placa+filename coincida la imagen dentro del public*/
+            $path=public_path().'/imagenes_store/vehiculos/'.$fileNameMorePlaca; /*vemos que ese archivo placa+filename coincida la imagen dentro del public*/
 
             /*guardamos el nombre de archivo y enlazamos a que placa le pertence*/
             $imageUpload = new ImagenesPerfilVehiculo();
@@ -30,7 +30,7 @@ class ImagenesPerfilVehiculoController extends Controller
 
             if (!file_exists($path)) {/*vemos si existe el archivo 2720RKF_fotodelantera.jpg, si entonces solo registramos en la bd ingresa a la bd, sino entonces movemos el archivo*/
                 /*return "REPETIDO EL ".$fileNameMorePlaca;*/ /*MANDA MENSAJE DE ARCHIVOS REPETIDOS*/
-                $file->move(public_path('carpeta_imagenes'),$fileNameMorePlaca); /*es como hacer #move foto.jpg /public/placa+foto.jpg */
+                $file->move(public_path('imagenes_store/vehiculos'),$fileNameMorePlaca); /*es como hacer #move foto.jpg /public/placa+foto.jpg */
                 /*el if si no se mueve el archivo, en el else si se mueve porque no hay en fisico*/
                 /*el arhivo original enviado desde form ahora se movera dentro de nuestra carpeta public con otro nombre*/
             }
@@ -99,7 +99,7 @@ class ImagenesPerfilVehiculoController extends Controller
         $imageNombreReal = $image->getClientOriginalName();
         $imageNombreReal = str_replace(" ", "_", $imageNombreReal);
 
-        $image->move(public_path('carpeta_imagenes'), $imageName);
+        $image->move(public_path('imagenes_store/vehiculos'), $imageName);
         $imageUpload = new ImagenesPerfilVehiculo();
         $imageUpload->archivo_subido = $imageName;
         $imageUpload->nombre_imagen_perfil = $imageNombreReal;
@@ -113,7 +113,7 @@ class ImagenesPerfilVehiculoController extends Controller
         $placa = $request->placa_id;
 
         $filename = $request->filename;
-        $path = public_path() . '/carpeta_imagenes/' . $filename;
+        $path = public_path() . '/imagenes_store/vehiculos/' . $filename;
 
         if (file_exists($path)) {
             unlink($path);
@@ -121,7 +121,7 @@ class ImagenesPerfilVehiculoController extends Controller
             $filename = str_replace(" ", "_", $filename);
             $filename = $placa . '' . $filename;
 
-            $path = public_path() . '/carpeta_imagenes/' . $filename;
+            $path = public_path() . '/imagenes_store/vehiculos/' . $filename;
             if (file_exists($path)) {
                 unlink($path);
             }
@@ -136,9 +136,30 @@ class ImagenesPerfilVehiculoController extends Controller
      * @param  \App\ModeloVehiculo\ImagenesPerfilVehiculo  $imagenesPerfilVehiculo
      * @return \Illuminate\Http\Response
      */
-    public function show(ImagenesPerfilVehiculo $imagenesPerfilVehiculo)
+    public function show($imagenesPerfilVehiculo_placa_id)
     {
-        //
+        $datosplaca=[];
+        $placas = DB::table('vehiculos')
+            ->join('imagenes_perfil_vehiculos', 'imagenes_perfil_vehiculos.placa_id', '=', 'vehiculos.placa_id')
+            ->select('imagenes_perfil_vehiculos.placa_id')
+            ->where('imagenes_perfil_vehiculos.placa_id','=',$imagenesPerfilVehiculo_placa_id)
+            ->whereNull('vehiculos.deleted_at')
+            ->groupBy('imagenes_perfil_vehiculos.placa_id')
+            ->get();
+
+        for ($i = 0; $i < count($placas); $i++) {
+            $datosimagenperfilvehicular = DB::table('vehiculos')
+                ->join('imagenes_perfil_vehiculos', 'imagenes_perfil_vehiculos.placa_id', '=', 'vehiculos.placa_id')
+                ->select('vehiculos.placa_id', 'imagenes_perfil_vehiculos.archivo_subido', 'imagenes_perfil_vehiculos.nombre_imagen_perfil')
+                ->where('vehiculos.placa_id', '=', $placas[$i]->placa_id)
+                ->get();
+
+            $datosplaca[$i] = array(
+                "placa" => $placas[$i]->placa_id,
+                "images" => array($datosimagenperfilvehicular),
+            );
+        }
+        return view('vehiculos.imgsperfilvehiculo.showimgporplaca', compact('datosplaca'));
     }
 
     /**
@@ -174,7 +195,7 @@ class ImagenesPerfilVehiculoController extends Controller
         }
         if ($requiere == 2) {
             $lista_array_archivos = array();
-            $directorio = public_path() . '/caperta_imagenes/';
+            $directorio = public_path() . '/imagenes_store/vehiculos/';
         }
 
         $datosimgsperfilvehiculos = DB::table('vehiculos')
@@ -185,7 +206,7 @@ class ImagenesPerfilVehiculoController extends Controller
 
         foreach ($datosimgsperfilvehiculos as $file) {
             /*$size = filesize($directorio."".$file->archivo_subido);*/
-            $lista_array_archivos[] = array('nombre' => $file->archivo_subido, 'tamano' => "2MB", 'carpetamasarchivo' => 'carpeta_imagenes/' . $file->archivo_subido, 'path' => $directorio);
+            $lista_array_archivos[] = array('nombre' => $file->archivo_subido, 'tamano' => "2MB", 'carpetamasarchivo' => 'imagenes_store/vehiculos/' . $file->archivo_subido, 'path' => $directorio);
         }
         return response()->json($lista_array_archivos);
     }

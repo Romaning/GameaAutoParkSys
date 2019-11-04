@@ -227,7 +227,7 @@
                             {{--</form>--}}
                         </div>
                         <button type="button" class="btn btn-primary" id="btnaccionguardarfotosuecam">
-                            ENVIAR FOTOS
+                            GUARDAR FOTOS
                         </button>
                     </div>
                     {{--################################### END GENERAR BOTONES ##########################################--}}
@@ -243,7 +243,7 @@
         {{ csrf_field() }}
         <label for="archivo"><b>Archivo: </b></label><br>
         <input type="file" name="archivo" required>
-        <input class="btn btn-success" type="submit" value="Enviar" >
+        <input class="btn btn-success" type="submit" value="GUARDAR" >
     </form>
 
     <!-- Dropzone (functionality is auto initialized by the plugin itself in js/plugins/dropzone/dropzone.min.js) -->

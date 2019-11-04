@@ -137,7 +137,7 @@ class DocumentosRonovableVehiculoController extends Controller
         $docsrenovables->placa_id = $request->placa_id;
         $docsrenovables->update();
 
-        return redirect()->back();
+        return "Actualizado" /* redirect()->back()->with('alert-success', 'Datos actualizados correctamente!')*/;
     }
 
     /**

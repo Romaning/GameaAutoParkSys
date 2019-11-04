@@ -15,7 +15,7 @@
     <input type="file" id="imagen">
     <input type="text" id="perspectiva">
     <button id="btnguardarfoto">
-        ENVIAR FOTOS
+        GUARDAR FOTOS
     </button>
     <div id="fotoinsertdcorrect"></div>
 </div>

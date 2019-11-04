@@ -20,6 +20,8 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
+        /*$funcionariosmasvehiculos = DB::table('funcionarios')
+            ->join('asignacions')*/
         $datosfuncionario = Funcionario::all();
         return view('funcionarios.funcionariosview.indexfuncionario', compact('datosfuncionario'));
     }
@@ -97,7 +99,7 @@ class FuncionarioController extends Controller
 
         /*Session::flash('flash_message','successfully saved.'); with('status', 'GUARDADO EXITOSAMENTE EL FUNCIONARIO '.$funcionario->ci.'!')->*/
         return redirect()->route('funcionario.index')/*->with('alert-success', 'The data was saved successfully')*/
-            ->with('status', 'GUARDADO EXITOSAMENTE EL FUNCIONARIO '.$algo.'!');
+        ->with('status', 'GUARDADO EXITOSAMENTE EL FUNCIONARIO ' . $algo . '!');
     }
 
     /*public function storeM(Request $request)
@@ -121,10 +123,10 @@ class FuncionarioController extends Controller
     public function show($funcionario)
     {
         $datosfuncionarios = DB::table('funcionarios')
-            ->leftJoin('departamentos','funcionarios.departamento_id','=','departamentos.departamento_id')
-            ->where('funcionarios.ci','=',$funcionario)
+            ->leftJoin('departamentos', 'funcionarios.departamento_id', '=', 'departamentos.departamento_id')
+            ->where('funcionarios.ci', '=', $funcionario)
             ->whereNull('funcionarios.deleted_at')
-            ->select('funcionarios.*','departamentos.departamento_nombre')
+            ->select('funcionarios.*', 'departamentos.departamento_nombre')
             ->get();
         $datosciexpedicoens = CiExpedidoEn::all();
         $datoscategorialicencias = CategoriaLicencia::all();
@@ -133,12 +135,71 @@ class FuncionarioController extends Controller
             ->whereNull('deleted_at')
             ->get();
         $datosestadosfuncs = EstadoFunc::all();
+
+
+        /*#### asignaciones FUNCIONARIOS(ci) -> (ci)Asignacions(placa_id) -> (placa_id)Vehiculos ####*/
+        $asiganciones = DB::table('funcionarios')
+            ->join('asignacions', 'funcionarios.ci', '=', 'asignacions.ci')
+            ->join('vehiculos', 'vehiculos.placa_id', '=', 'asignacions.placa_id')
+            ->where('funcionarios.ci', '=', $funcionario)
+            /*->whereNull('funcionarios.deleted_at')*/
+            ->whereNull('asignacions.deleted_at')
+            /*->whereNull('vehiculos.deleted_at') /**/
+            ->get();
+
+        /*dd($asiganciones);*/
+        if (empty($asiganciones[0]->asignacion_id)) {
+            $imagenesPerfilVehiculo = "";
+            $datosvehiculo = "";
+            $estadoservvehi="";
+        } else {
+            $imagenesPerfilVehiculo = DB::table('asignacions')
+                ->join('imagenes_perfil_vehiculos', 'asignacions.placa_id', '=', 'imagenes_perfil_vehiculos.placa_id')
+                ->where('asignacions.asignacion_id', '=', $asiganciones[0]->asignacion_id)
+                ->whereNull('asignacions.deleted_at')
+                ->whereNull('imagenes_perfil_vehiculos.deleted_at')
+                ->select('imagenes_perfil_vehiculos.archivo_subido')
+                ->get();
+
+            $datosvehiculo = DB::table('vehiculos')
+                ->join('clases', 'clases.clase_id', '=', 'vehiculos.clase_id')
+                ->join('marcas', 'marcas.marca_id', '=', 'vehiculos.marca_id')
+                ->join('tipos', 'tipos.tipo_id', '=', 'vehiculos.tipo_id')
+                ->join('tipo_combustibles', 'tipo_combustibles.tipo_combustible_id', '=', 'vehiculos.tipo_combustible_id')
+                ->join('tipo_usos', 'tipo_usos.tipo_uso_id', '=', 'vehiculos.tipo_uso_id')
+                ->select('vehiculos.*',
+                    'clases.clase_descripcion',
+                    'marcas.marca_descripcion',
+                    'tipos.tipo_descripcion',
+                    'tipo_combustibles.tipo_combustible_descripcion',
+                    'tipo_usos.tipo_uso_descripcion')
+                ->where('vehiculos.placa_id', '=', $asiganciones[0]->placa_id)
+                ->get();
+            /*dd($datosvehiculo);*/
+
+            $estadoservvehi = DB::select("SELECT estado_servicio_vehiculos.*, estado_services.est_descripcion
+                                    FROM estado_servicio_vehiculos, estado_services
+                                    WHERE est_serv_vehiculo_id=(  SELECT MAX(est_serv_vehiculo_id) 
+                                                                  FROM estado_servicio_vehiculos 
+                                                                  WHERE fecha_inicio = (  SELECT MAX(fecha_inicio) 
+                                                                                          FROM estado_servicio_vehiculos 
+                                                                                          WHERE placa_id ='" .$asiganciones[0]->placa_id. "'
+                                                                                        )
+                                                                  AND estado_servicio_vehiculos.placa_id = '".$asiganciones[0]->placa_id."'
+                                                                )
+                                    AND estado_services.est_id = estado_servicio_vehiculos.est_id
+                                    AND estado_servicio_vehiculos.placa_id = '".$asiganciones[0]->placa_id."'
+                             ");
+        }
+
+
+        /*dd($imagenesPerfilVehiculo);*/
         return view('funcionarios.funcionariosview.showfuncionario',
             compact('datosfuncionarios',
                 'datosciexpedicoens',
                 'datoscategorialicencias',
                 'datosdepartamentos',
-                'datosestadosfuncs'));
+                'datosestadosfuncs', 'asiganciones', 'imagenesPerfilVehiculo','estadoservvehi','datosvehiculo'));
     }
 
     /**
@@ -150,10 +211,10 @@ class FuncionarioController extends Controller
     public function edit($funcionario)
     {
         $datosfuncionarios = DB::table('funcionarios')
-            ->leftJoin('departamentos','funcionarios.departamento_id','=','departamentos.departamento_id')
-            ->where('funcionarios.ci','=',$funcionario)
+            ->leftJoin('departamentos', 'funcionarios.departamento_id', '=', 'departamentos.departamento_id')
+            ->where('funcionarios.ci', '=', $funcionario)
             ->whereNull('funcionarios.deleted_at')
-            ->select('funcionarios.*','departamentos.departamento_nombre')
+            ->select('funcionarios.*', 'departamentos.departamento_nombre')
             ->get();
         $datosciexpedicoens = CiExpedidoEn::all();
         $datoscategorialicencias = CategoriaLicencia::all();
@@ -164,10 +225,10 @@ class FuncionarioController extends Controller
         $datosestadosfuncs = EstadoFunc::all();
         return view('funcionarios.funcionariosview.editfuncionario',
             compact('datosfuncionarios',
-                    'datosciexpedicoens',
-                    'datoscategorialicencias',
-                    'datosdepartamentos',
-                    'datosestadosfuncs'));
+                'datosciexpedicoens',
+                'datoscategorialicencias',
+                'datosdepartamentos',
+                'datosestadosfuncs'));
     }
 
     /**
@@ -181,24 +242,24 @@ class FuncionarioController extends Controller
     {
         $funcionario = Funcionario::find($funcionario_ci);
         $nombreimagen = "";
-        $nombreImgParaDarArchivo="";
+        $nombreImgParaDarArchivo = "";
         if ($request->hasFile('imagen_perfil')) {
 
             /* BUSCAMOS EL ANTIGUO NOMBRE PARA ELIMINAR DE LA BD*/
             $nombreImgParaDarArchivo = DB::table('funcionarios')
-                ->where('funcionarios.ci','=',$funcionario_ci)
+                ->where('funcionarios.ci', '=', $funcionario_ci)
                 ->select('funcionarios.imagen_perfil')
                 ->get();
-            if (isset($nombreImgParaDarArchivo)){
+            if (isset($nombreImgParaDarArchivo)) {
                 /* ELIMINAMOS LA IMAGEN DE LA CARPETA DE IMAGENES DEL PROYECTO */
-                $path = public_path().'/imagenes_store/funcionarios/'.$funcionario_ci."/".$nombreImgParaDarArchivo[0]->imagen_perfil;
+                $path = public_path() . '/imagenes_store/funcionarios/' . $funcionario_ci . "/" . $nombreImgParaDarArchivo[0]->imagen_perfil;
                 if (file_exists($path)) {
                     unlink($path);
                 }
             }
             /* AHORA QUE YA HEMOS OBTENIDO EL NOMBRE PARA OTROS BENEFICIOS AHORA LO REEMPLAZAMOS*/
             $imagen = $request->file('imagen_perfil');
-            $nombreimagen = $funcionario_ci."".$imagen->getClientOriginalName();
+            $nombreimagen = $funcionario_ci . "" . $imagen->getClientOriginalName();
             $nombreimagen = str_replace(" ", "_", $nombreimagen);
             $imagen->move(public_path('imagenes_store/funcionarios/' . $funcionario_ci), $nombreimagen);
             /*  REEMPLAZAMOS EN LA BASE DE DATOS */
@@ -220,7 +281,7 @@ class FuncionarioController extends Controller
         $funcionario->estado_func_descripcion = $request->estado_func_descripcion;
         $funcionario->update();
         return redirect()->route('funcionario.index')/*->with('alert-success', 'The data was saved successfully')*/
-        ->with('status', 'ACTUALIZADO EXITOSAMENTE EL FUNCIONARIO '.$ciparamostrarmensaje.'!');
+        ->with('status', 'ACTUALIZADO EXITOSAMENTE EL FUNCIONARIO ' . $ciparamostrarmensaje . '!');
     }
 
     /**
@@ -236,18 +297,35 @@ class FuncionarioController extends Controller
 
         /* BUSCAMOS EL ANTIGUO NOMBRE PARA ELIMINAR DE LA BD*/
         $nombreImgParaDarArchivo = DB::table('funcionarios')
-            ->where('funcionarios.ci','=',$funcionario_ci)
+            ->where('funcionarios.ci', '=', $funcionario_ci)
             ->select('funcionarios.imagen_perfil')
             ->get();
-        if (isset($nombreImgParaDarArchivo)){
+        if (isset($nombreImgParaDarArchivo)) {
             /* ELIMINAMOS LA IMAGEN DE LA CARPETA DE IMAGENES DEL PROYECTO */
-            $path = public_path().'/imagenes_store/funcionarios/'.$funcionario_ci."/".$nombreImgParaDarArchivo[0]->imagen_perfil;
+            /*$path = public_path().'/imagenes_store/funcionarios/'.$funcionario_ci."/".$nombreImgParaDarArchivo[0]->imagen_perfil;
             if (file_exists($path)) {
                 unlink($path);
-            }
+            }*/   /*  DESCOMENTAR PARA ELIMINAR LOS ARCHIVOS DE IMAGEN  */
         }
-        $funcionario->delete();
-        return redirect()->route('funcionario.index')/*->with('alert-success', 'The data was saved successfully')*/
-        ->with('status', 'ELIMANDO EXITOSAMENTE EL FUNCIONARIO '.$ciparamostrarmensaje.'!');
+        /*#### asignaciones FUNCIONARIOS(ci) -> (ci)Asignacions(placa_id) -> (placa_id)Vehiculos ####*/
+        $asiganciones = DB::table('funcionarios')
+            ->join('asignacions', 'funcionarios.ci', '=', 'asignacions.ci')
+            ->join('vehiculos', 'vehiculos.placa_id', '=', 'asignacions.placa_id')
+            ->where('funcionarios.ci', '=', $funcionario_ci)
+            /*->whereNull('funcionarios.deleted_at')*/
+            ->whereNull('asignacions.deleted_at')
+            /*->whereNull('vehiculos.deleted_at') /**/
+            ->get();
+        /*dd($asiganciones);*/
+
+        if (empty($asiganciones[0]->asignacion_id)) {
+            $funcionario->delete();
+            return redirect()->back()/*->with('alert-success', 'The data was saved successfully')*/
+            ->with('alert-success', 'FUNCIONARIO ELIMINADO CORRECTAMENTE, PUEDE RESTAURAR!');
+            /*->with('alert-danger', ' EL FUNCIONARIO '.$ciparamostrarmensaje.'  NO PUEDE SER ELIMINADO, PORQUE EXISTE UNA ASIGNACION EN LINEA!');*/
+        } else {
+            return redirect()->back()/*->with('alert-success', 'The data was saved successfully')*/
+            ->with('alert-danger', ' EL FUNCIONARIO ' . $ciparamostrarmensaje . '  NO PUEDE SER ELIMINADO, PORQUE EXISTE UNA ASIGNACION EN LINEA!');
+        }
     }
 }

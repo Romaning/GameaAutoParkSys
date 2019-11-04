@@ -1,17 +1,16 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    CREAR CLASE
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS DATATABLES-->
+
 @endsection
 @section('hero_cuadro_bienvenida')
-    <!-- Hero -->
 
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection
 @section('content')
+    @include('components.alerts.alerttre')
+
     <!-- Basic -->
     <div class="block shadow p-2 mb-1 rounded">
         <div class="block-header">
@@ -32,8 +31,8 @@
                             <input type="text" class="form-control" id="claseDescripcionIdFront" name="claseDescripcionNameFront" placeholder="">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">
-                                ENVIAR
+                            <button type="submit" class="btn btn-success">
+                                GUARDAR
                             </button>
                         </div>
                     </div>
@@ -44,8 +43,6 @@
     <!-- END Basic -->
 @endsection
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
 
-    {{-- ################ END SCRIPTS PARA DATATABLESS ###############--}}
 @endsection
 

@@ -15,9 +15,15 @@ class DevolucionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()/**/
     {
-        $datosdevoluciones = Devolucion::all();
+        /*$datosdevoluciones = DB::select('SELECT * FROM devolucions ORDER BY devolucions.fecha_devolucion DESC');*/
+        $datosdevoluciones = DB::table('devolucions')
+            ->whereNull('devolucions.deleted_at')
+            ->select('devolucions.*')
+            ->orderBy('devolucions.fecha_devolucion','DESC')
+            ->get();
+        /*$datosdevoluciones = Devolucion::all()->sortByDesc('devolucion_id');*/
         return view('devoluciones.indexdevolucion', compact('datosdevoluciones'));
     }
 
@@ -81,7 +87,7 @@ class DevolucionController extends Controller
         $instanceAsignaciones->update();
         $instanceAsignaciones->delete();
 
-        return "EXITOSAMENTE";
+        return redirect()->back()->with('alert-success', 'Datos guardado correctamente!');
     }
 
     /**
@@ -92,9 +98,9 @@ class DevolucionController extends Controller
      */
     public function show( $devolucion_id)
     {
-        /*dd($devolucion_id);*/
+        /*dd($devolucion_id);*/ /* TODAS LAS ASIGNACIONES */
         $Asignacion = DB::table('devolucions')
-            ->leftJoin('asignacions','devolucions.coord_asig','=','devolucions.coord_asig')
+            ->leftJoin('asignacions','devolucions.coord_asig','=','asignacions.coord_asig')
             ->where('devolucions.devolucion_id','=',$devolucion_id)
             ->select('asignacions.coord_asig','asignacions.asignacion_id')
             ->get();

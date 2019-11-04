@@ -3,32 +3,40 @@
 @extends('layouts.layoutmaster')
 @section('title')
 
+
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
 
     <!-- Stylesheets -->
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
+    <!-- Page CSS DIRECTO PARA SHOW VEHICULO -->
+    {{--<link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/themes/material_green.css')}}">--}}
 
+    <link rel="stylesheet"
+          href="{{asset('assets/js/plugins/magnific-popup/magnific-popup.css')}}">{{--para ver imagen perfil en tipo modal--}}
     <!-- Page CS DIRECTO PARA SHOW VEHICULO -->
+
+    {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
+    @include('components.links_css_js.datatable.datatable_css')
+    {{--######################## END CSS SCRIPT DATABLE ####################--}}
+
 @endsection
 @section('hero_cuadro_bienvenida')
 
 @endsection
 @section('content')
+    @include('components.alerts.alerttre')
+
     <!-- Basic -->
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
-            <h3 class="block-title">Formulario</h3>
+            <h3 class="block-title">DATOS VEHICULO</h3>
         </div>
         <div class="block-content block-content-full">
             {{--<form action="{{route('vehiculo.store')}}" method="POST"
@@ -175,7 +183,7 @@
 
                     </div>
                     {{--######################################editar vehiculo ####################################--}}
-                    {{--<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group" style="float:right;">
@@ -185,7 +193,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>--}}
+                    </div>
                     {{--#########################################################################################--}}
 
                     {{--<h3 class="content-heading border-bottom mb-4 pb-2">ESTADO SERVICIO DE VEHICULO</h3>--}}
@@ -218,7 +226,7 @@
                     </div>
 
                     {{--######################################editar vehiculo ####################################--}}
-                    {{--<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group" style="float:right;">
@@ -227,7 +235,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>--}}
+                    </div>
                     {{--#########################################################################################--}}
                 </div>
                 {{--#################################################################--}}
@@ -328,15 +336,18 @@
                         id="btn_insertar_documentos_propiedad_vehiculo" style="float:right;">
                     INSERTAR
                 </button>
-               {{-- <a href="{{route('documentospropiedadvehiculo.editsolo', $filavehiculo->placa_id)}}"
-                   class="btn btn-warning shadow p-2 mb-1 rounded" style="float:right;">EDITAR</a>--}}
+                <a href="{{route('documentospropiedadvehiculo.editsolo', $filavehiculo->placa_id)}}"
+                   class="btn btn-warning shadow p-2 mb-1 rounded" style="float:right;">EDITAR</a>
+                <a href="{{route('documentospropiedadvehiculo.show', $filavehiculo->placa_id)}}"
+                   class="btn btn-info shadow p-2 mb-1 rounded" style="float:right;">></a>
             </h3>
         </div>
         <div class="js-slider slick-nav-black slick-nav-hover" data-dots="true" data-arrows="true"
              data-slides-to-show="3" data-center-mode="true" data-autoplay="true" data-autoplay-speed="3000">
             @foreach($datosdocumentospropiedadvehicular as $filadocpropvehi)
                 <div>
-                    <img class="img-fluid" src="{{asset('carpeta_imagenes/'.$filadocpropvehi->archivo_subido.'')}}">
+                    <img class="img-fluid"
+                         src="{{asset('imagenes_store/documentos/'.$filadocpropvehi->archivo_subido.'')}}">
                 </div>
             @endforeach
             {{--<img class="img-fluid" src="{{asset('assets/media/photos/photo19@2x.jpg')}}" alt="">--}}
@@ -405,8 +416,10 @@
                         id="btn_insertar_imagenes_perfil_vehiculo" style="float: right;">
                     INSERTAR
                 </button>
-                {{--<a href="{{route('imgsperfil.editsolo', $filavehiculo->placa_id)}}"
-                   class="btn btn-warning shadow p-2 mb-1 rounded" style="float:right;">EDITAR</a>--}}
+                <a href="{{route('imgsperfil.editsolo', $filavehiculo->placa_id)}}"
+                   class="btn btn-warning shadow p-2 mb-1 rounded" style="float:right;">EDITAR</a>
+                <a href="{{route('imgsperfil.show', $filavehiculo->placa_id)}}"
+                   class="btn btn-info shadow p-2 mb-1 rounded" style="float:right;">></a>
             </h3>
         </div>
         <div class="js-slider slick-nav-black slick-nav-hover" data-dots="true" data-arrows="true"
@@ -414,7 +427,8 @@
             {{--<img class="img-fluid" src="{{asset('assets/media/photos/photo19@2x.jpg')}}" alt="">--}}
             @foreach($datosimagenperfilvehicular as $fileimgperfil)
                 <div>
-                    <img class="img-fluid" src="{{asset('carpeta_imagenes/'.$fileimgperfil->archivo_subido.'' )}}">
+                    <img class="img-fluid"
+                         src="{{asset('imagenes_store/vehiculos/'.$fileimgperfil->archivo_subido.'' )}}">
                 </div>
             @endforeach
         </div>
@@ -470,13 +484,209 @@
     <!-- END Dropzone -->
 
 
+    @foreach($asignaciones as $asignacion)
+    @endforeach
+    @if(empty($asignacion->placa_id))
+        <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
+            <div class="row">
+                <div class="col-lg-12 text-center justify-content-center">
+                    <label for="" class="btn btn-danger">
+                        <span class="font-italic">NO EXISTE ASIGNACION</span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    @else
+        {{--########################################  ######################################--}}
+        <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
+            <div class="block-header">
+                <h3 class="block-title">
+                    <i class="fa fa-play fa-fw text-primary"></i>
+                    FUNCIONARIO ASIGNADO A VEHICULO
+                </h3>
+                <a href="{{ route('asignacion.show', $asignacion->asignacion_id)}}" class="btn btn-info shadow">IR A</a>
+            </div>
+            <div class="block-content block-content-full">
+                {{--<form action="{{route('asignacion.store')}}" method="POST" enctype="multipart/form-data"
+                      id="">--}}
+                {{--@csrf
+                @method('POST')--}}
+                {{--############### FORMULARIO EN EL CENTRO ############--}}
+                <div class="row push">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">FECHA DE ASIGNACION: </label>
+                                    <input type="text" class="js-flatpickr form-control bg-white"
+                                           id="fecha_devolucion" name="fecha_devolucion" style="width: 310px;"
+                                           value="{{$asignacion->fecha_asignacion}}"
+                                           data-inline="true"
+                                           placeholder="Año-mes-dia"
+                                           data-date-format="Y-m-d">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">APELLIDOS Y NOMBRES: </label>
+                                    <input type="text" value="{{$asignacion->apellidos}} {{$asignacion->nombres}}"
+                                           class="form-control btn-success">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="">NUMERO DE LICENCIA: </label>
+                                    <input type="text" name="" id="" value="{{$asignacion->numero_licencia}}"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group ">
+                                    <label for="">CAT: </label>
+                                    <input type="text" name="" id="" value="{{$asignacion->categoria_licencia}}"
+                                           class="form-control text-center">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="">CI: </label>
+                                    <input type="text" name="" id="" value="{{$asignacion->ci}}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">EXP: </label>
+                                    <input type="text" name="" id="" value="{{$asignacion->ci_exped_en}}"
+                                           class="form-control text-center">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">TIPO: </label>
+                                    <input type="text" name="" id="" value="{{$asignacion->tipo_conductor_chofer}}"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="">IDENTIFICADOR MEMO: </label>
+                                    <input type="text" name="" id="" value="{{$asignacion->identificador_memorandum}}"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="row">
+                            <div class="col-lg-8" data-toggle="appear" data-class="animated zoomIn">
+                                <!-- Team Member -->
+                                <div class="block">
+                                    <div class="block-content">
+                                        {{--<label for="">{{$asignacion->apellidos}} </label>--}}
+                                        <img
+                                            src="{{asset('/imagenes_store/funcionarios/'.$asignacion->ci."/".$asignacion->imagen_perfil)}}"
+                                            width="100%"
+                                            height="100%" id=""
+                                            class="justify-content-center">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
+                                        <input type="file" class="custom-file-input" data-toggle="custom-file-input"
+                                               id=""
+                                               name="">
+                                        <label class="custom-file-label"
+                                               style="width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
+                                               for=""> {{$asignacion->imagen_perfil}}</label>
+                                    </div>
+                                </div>
+                                <!-- END Team Member -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8" data-toggle="appear" data-class="animated zoomIn">
+                                <!-- Team Member -->
+                                <div class="block">
+                                    <div class="block-content">
+                                        <label for="">MEMORANDUM </label>
+                                        <div class="js-gallery img-fluid-100 img-link-zoom-in">
+                                            <a href="{{asset('imagenes_store/asignaciones/'.$asignacion->archivo_memorandum)}}"
+                                               class="img-link-zoom-in img-thumb img-lightbox justify-content-center">
+                                                <img class="justify-content-center img-link-zoom-in img-fluid"
+                                                     src="{{asset('imagenes_store/asignaciones/'.$asignacion->archivo_memorandum)}}"
+                                                     width="100%"
+                                                     height="100%" id="src_imagen_perfil"
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
+                                        <input type="file" class="custom-file-input" data-toggle="custom-file-input"
+                                               id=""
+                                               name="">
+                                        <label class="custom-file-label"
+                                               style="width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
+                                               for=""> {{$asignacion->archivo_memorandum}}</label>
+                                    </div>
+                                </div>
+                                <!-- END Team Member -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+
+                    </div>
+                </div>
+
+                {{--<div class="row">
+                    <div class="col-lg-8"></div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded"
+                                    style="float: right; width: 100%">
+                                GUARDAR
+                            </button>
+                        </div>
+                    </div>
+                </div>--}}
+                {{--</form>--}}
+            </div>
+            <div id=""></div>
+        </div>
+        <!-- END Flatpickr Datetimepicker -->
+    @endif
+
 
 
     <!-- Flatpickr Datetimepicker (.js-flatpickr class is initialized in Helpers.flatpickr()) -->
     <!-- For more info and examples you can check out https://github.com/flatpickr/flatpickr -->
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
-            <h3 class="block-title">SUBIR DOCUMENTOS RENOVABLES DEL VEHICULO</h3>
+            <h3 class="block-title">
+                <i class="fa fa-play fa-fw text-primary"></i>
+                SUBIR DOCUMENTOS RENOVABLES DEL VEHICULO
+            </h3>
             <a href="{{route('docsrenov.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info">HISTORIAL</a>
         </div>
         <div class="block-content">
@@ -485,7 +695,8 @@
                 {{-- <form action="{{route('documentosrenovablevehiculo.store')}}" method="POST"
                        id="form_subir_docs_renov_vehicular">
                      @csrf--}}
-                <input type="hidden" name="placa_id" value="{{$filavehiculo->placa_id}}" id="placa_id_subida_docs_renov_vehicular">
+                <input type="hidden" name="placa_id" value="{{$filavehiculo->placa_id}}"
+                       id="placa_id_subida_docs_renov_vehicular">
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -529,17 +740,17 @@
                         </div>
                     </div>
 
-                   {{-- <div class="col-md-1">
+                    <div class="col-md-1">
                         <div class="form-group">
                             <div class="custom-control custom-switch custom-control-lg mb-2">
                                 <a href="{{route('docsrenov.edit',$filadocrenov->archivero_id)}}"
-                                   class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                   class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
                                    title="EDITAR">
                                     <i class="fas fa-pen"></i>
                                 </a>
                             </div>
                         </div>
-                    </div>--}}
+                    </div>
 
                 </div>
             @endforeach
@@ -567,12 +778,14 @@
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
             <h3 class="block-title">
+                <i class="fa fa-play fa-fw text-primary"></i>
                 SEGUROS
             </h3>
             <a href="{{route('seguro.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info">HISTORIAL</a>
         </div>
         <div class="block-content">
-            <input type="text" name="placa_id" class="d-none" value="{{$filavehiculo->placa_id}}" id="placa_id_subir_seguro">
+            <input type="text" name="placa_id" class="d-none" value="{{$filavehiculo->placa_id}}"
+                   id="placa_id_subir_seguro">
             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                 <thead>
                 <tr>
@@ -581,8 +794,9 @@
                     <th class="d-none d-sm-table-cell">EMPRESA ASEGURADORA</th>
                     <th class="d-none d-sm-table-cell">FECHA DE VIGENCIA</th>
                     <th class="d-none d-sm-table-cell" style="width:13%;">ARCHIVOS SUBIDOS</th>
-                    <th style="width:3%;" class="text-sm-center">
-                    </th>
+                    <th class="d-none d-sm-table-cell" style="width:2%;">IMG</th>
+                    {{--<th style="width:2%;" class="text-sm-center"></th>--}}
+                    <th style="width:9.5%;" class="d-none d-sm-table-cell text-sm-center col-sm-3"></th>
                 </tr>
                 </thead>
                 <tbody id="body_tb_form_in">
@@ -606,18 +820,46 @@
                             <div class="col-md-12" style="float: right;">
                                 <input type="file" class="custom-file-input" value="" id="archiv" name="campoe">
                                 <label class="custom-file-label" for="archiv"
+                                       style="width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
                                        id="nfile">{{$seguro->archivo_subido}}</label>
                             </div>
                         </td>
-                        {{--<td class="btn-eliminar justify-content-center">
-                            <div class="mb-2">
-                                <a href="{{route('seguro.edit', $seguro->id)}}"
-                                   class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                   title="EDITAR">
-                                    <i class="fas fa-pen"></i>
-                                </a>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            <img class="img-avatar img-avatar48"
+                                 src="{{asset('imagenes_store/seguros/'.$seguro->archivo_subido.'' )}}"
+                                 alt="">
+                        </td>
+                        <td class="justify-content-center">
+                            <div class="row text-sm-center">
+                                <div class="col-sm-1">
+                                    <a href="{{route('seguro.show',$seguro->id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
+                                       title="VER INFORMACION COMPLETA">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a href="{{route('seguro.edit',$seguro->id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
+                                       title="EDITAR">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <form action="{{route('seguro.destroy',$seguro->id)}}" name="form_seguro"
+                                          method="post" onsubmit="return confirmation()">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
+                                                title="ELIMINAR">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+
+                                </div>
                             </div>
-                        </td>--}}
+                        </td>
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -629,6 +871,416 @@
     <!-- END Flatpickr Datetimepicker -->
 
 
+
+    <!-- Flatpickr Datetimepicker (.js-flatpickr class is initialized in Helpers.flatpickr()) -->
+    <!-- For more info and examples you can check out https://github.com/flatpickr/flatpickr -->
+    {{--    <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
+            <div class="block-header">
+                <h3 class="block-title">UTIMO MANTENIMIENTO REGISTRADO EN LA BASE DE DATOS</h3>
+                <a href="{{route('mantenimiento.historial', $filavehiculo->placa_id)}}" class="btn btn-info">HISTORIAL</a>
+            </div>
+            <div class="block-content">
+
+
+
+            </div>
+        </div>--}}
+
+
+
+    <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
+        <div class="block-header">
+            <h3 class="block-title">
+                <i class="fa fa-play fa-fw text-primary"></i>
+                ULTIMO MANTENIMIENTO REGISTRADO EN LA BASE DE DATOS DE VEHICULO
+            </h3>
+            <a href="{{route('mantenimiento.historial.placa', $filavehiculo->placa_id)}}"
+               class="btn btn-info">HISTORIAL</a>
+        </div>
+        <div>
+            <table class="table table-bordered table-striped table-vcenter {{--js-dataTable-buttons--}}">
+                <thead>
+                <tr>
+                    {{--<th class="d-none d-sm-table-cell">ID</th>--}}
+                    {{--<th class="d-none d-sm-table-cell">MI ID</th>--}}
+                    <th class="d-none d-sm-table-cell">FECHA MANTENIMIENTO</th>
+                    <th class="d-none d-sm-table-cell">PLACA</th>
+                    <th class="d-none d-sm-table-cell">DEATALLE MANT</th>
+                    <th class="d-none d-sm-table-cell">TIPO MANT</th>
+                    <th class="d-none d-sm-table-cell">EMPRESA ENCARGADA</th>
+                    <th class="d-none d-sm-table-cell">FIN MANTENIMIENTO</th>
+                    <th style="width:10%" class="text-sm-center font-size-sm">
+                        {{--<a href="{{route('mantenimiento.create')}}"
+                           class="btn-sm btn-primary shadow rounded">
+                            <i class="fa fa-plus-circle"></i> Añadir
+                        </a>--}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($mantenimientos as $filamant)
+                    <tr>
+                        {{--<td class="text-center font-size-sm">
+                            {{$filamant->mantenimiento_id}}
+                        </td>--}}
+                        {{--<td class="text-center">
+                            {{$filamant->mant_id_ini_asign}}
+                        </td>--}}
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filamant->fecha_inicio_mant}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filamant->placa_id_mant}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filamant->detalle_mant}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filamant->tipo_mant}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filamant->empresa_encargada_mant}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            @if(empty($filamant->mant_id_fin_asign))
+                                <div class="col-sm-1">
+                                    <a href="{{route('mantenimiento.edit',$filamant->mantenimiento_id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="FINALIZAR MANTENIMIENTO">
+                                        <i class="fas fa-stop"></i>
+                                    </a>
+                                </div>
+                            @else
+                                {{$filamant->fecha_fin_mant}}
+                            @endif
+                            {{--<a href="">
+                                <img class="img-avatar img-avatar48"
+                                     src=""
+                                     alt="">
+                            </a>--}}
+                        </td>
+                        <td class="justify-content-center">
+                            <div class="row text-sm-center">
+                                <div class="col-sm-1">
+                                    <a href="{{route('mantenimiento.show',$filamant->mantenimiento_id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="VER INFORMACION COMPLETA">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a href="{{route('mantenimiento.edit',$filamant->mantenimiento_id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="EDITAR">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <form
+                                        action="{{route('mantenimiento.destroy',$filamant->mantenimiento_id)}}"
+                                        method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button href="" type="submit" class="btn btn-sm btn-light push mb-md-0"
+                                                data-toggle="tooltip"
+                                                title="ELIMINAR">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+        @if(session()->has('alert-success'))
+            <div class='alert alert-success d-flex align-items-center' role='alert'>
+                <div class='flex-00-auto'>
+                    <i class='fa fa-fw fa-check'></i>
+                </div>
+                <div class='flex-fill ml-3'>
+                    <p class='mb-0'>  {{ session()->get('alert-success') }}<a class='alert-link'
+                                                                              href='javascript:void(0)'></a>!</p>
+                </div>
+            </div>
+        @endif
+        @if (session('status'))
+            <div class='alert alert-success d-flex align-items-center' role='alert'>
+                <div class='flex-00-auto'>
+                    <i class='fa fa-fw fa-check'></i>
+                </div>
+                <div class='flex-fill ml-3'>
+                    <p class='mb-0'>  {{ session('status') }}<a class='alert-link' href='javascript:void(0)'></a>!</p>
+                </div>
+            </div>
+        @endif
+    </div>
+
+
+
+    <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
+        <div class="block-header">
+            <h3 class="block-title">
+                <i class="fa fa-play fa-fw text-primary"></i>
+                ULTIMO VALE DE COMBUSTIBLE REGISTRADO EN LA BASE DE DATOS DE VEHICULO
+            </h3>
+            <a href="{{route('vale.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info">HISTORIAL</a>
+        </div>
+        <div>
+            <table class="table table-bordered table-striped table-vcenter ">
+                <thead>
+                <tr>
+                    <th class="d-none d-sm-table-cell">FECHA ENTREGA</th>
+                    <th style="width:10%" class="text-sm-center font-size-sm">
+                        {{--<a href="{{route('mantenimiento.create')}}"
+                           class="btn-sm btn-primary shadow rounded">
+                            <i class="fa fa-plus-circle"></i> Añadir
+                        </a>--}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($valesporplaca as $filavale)
+                    <tr>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filavale->fecha_entrega}}
+                        </td>
+                        <td class="justify-content-center">
+                            <div class="row text-sm-center">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-1">
+                                    <a href="{{route('vale.edit',$filavale->id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="EDITAR">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
+         data-class="animated flipInX">
+        <div class="block-header">
+            <h3 class="block-title">
+                <i class="fa fa-play fa-fw text-primary"></i>
+                ULTIMA INFRACCION REGISTRADA EN LA BASE DE DATOS DE VEHICULO
+                <a href="{{route('infraccion.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info"
+                   style="float: right;"> HISTORIAL </a>
+            </h3>
+        </div>
+        <div>
+            <table class="table table-bordered table-striped table-vcenter{{-- js-dataTable-buttons--}}">
+                <thead>
+                <tr>
+                    <th class="d-none d-sm-table-cell">ID</th>
+                    <th class="d-none d-sm-table-cell">PLACA</th>
+                    <th class="d-none d-sm-table-cell">GESTION</th>
+                    <th class="d-none d-sm-table-cell">FECHA</th>
+                    <th class="d-none d-sm-table-cell">SERIE</th>
+                    <th class="d-none d-sm-table-cell">BOLETA</th>
+                    <th class="d-none d-sm-table-cell">CODIGO</th>
+                    <th class="d-none d-sm-table-cell">DESCRIPCION</th>
+                    <th class="d-none d-sm-table-cell">MONTO</th>
+                    <th style="width:10%" class="text-sm-center font-size-sm">
+                        {{--<a href="{{route('infraccion.create')}}"
+                           class="btn-sm btn-primary shadow rounded">
+                            <i class="fa fa-plus-circle"></i> Añadir
+                        </a>--}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($infracionesInst as $filainfracion)
+                    <tr>
+                        <td class="text-center font-size-sm">
+                            {{$filainfracion->infraccion_id}}
+                        </td>
+                        <td class="text-center">
+                            {{$filainfracion->placa_id}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filainfracion->gestion}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filainfracion->fecha_infraccion}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filainfracion->serie}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filainfracion->boleta}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filainfracion->condigo}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filainfracion->descripcion}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filainfracion->monto}}
+                        </td>
+                        <td class="justify-content-center">
+                            <div class="row text-sm-center">
+                                <div class="col-sm-1">
+                                    <a href="{{route('infraccion.show',$filainfracion->infraccion_id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="VER INFORMACION COMPLETA">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a href="{{route('infraccion.edit',$filainfracion->infraccion_id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="EDITAR">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <form
+                                        action="{{route('infraccion.destroy',$filainfracion->infraccion_id)}}"
+                                        method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button href="" type="submit" class="btn btn-sm btn-light push mb-md-0"
+                                                data-toggle="tooltip"
+                                                title="ELIMINAR">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div class="block">
+        <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
+             data-class="animated flipInX">
+            <div class="block-header">
+                <h3 class="block-title">
+                    <i class="fa fa-play fa-fw text-primary"></i>
+                    ULTIMA INCIDENCIA REGISTRADA EN LA BASE DE DATOS DE VEHICULO
+                    <a href="{{route('incidencia.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info"
+                       style="float: right;"> HISTORIAL </a>
+                </h3>
+            </div>
+            <div>
+                <table class="table table-bordered table-striped table-vcenter {{--js-dataTable-buttons--}}">
+                    <thead>
+                    <tr>
+                        <th class="d-none d-sm-table-cell">ID</th>
+                        <th class="d-none d-sm-table-cell">PLACA</th>
+                        <th class="d-none d-sm-table-cell">CI</th>
+                        <th class="d-none d-sm-table-cell">TIPO INCIDENCIA</th>
+                        <th class="d-none d-sm-table-cell">FECHA INCIDENCIA</th>
+                        <th class="d-none d-sm-table-cell">EN MOVIMIENTO</th>
+                        <th class="d-none d-sm-table-cell">LUGAR DE INCIDENCIA</th>
+                        <th class="d-none d-sm-table-cell">DESCRIPCION</th>
+                        <th style="width:10%" class="text-sm-center font-size-sm">
+                            {{--<a href="{{route('incidencia.create')}}"
+                               class="btn-sm btn-primary shadow rounded">
+                                <i class="fa fa-plus-circle"></i> Añadir
+                            </a>--}}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                     @foreach($datosincidencias as $filaincidencia)
+                    <tr>
+                        <td class="text-center font-size-sm">
+                            {{$filaincidencia->incidencia_id}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->placa_id}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->ci}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->tipo_incidencia_descripcion}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->fecha_incidencia}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->vehiculo_en_movimiento}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->lugar_incidencia}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->descripcion}}
+                        </td>
+                        <td class="justify-content-center">
+                            <div class="row text-sm-center">
+                                <div class="col-sm-1">
+                                    <a href="{{route('incidencia.show',$filaincidencia->incidencia_id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="VER INFORMACION COMPLETA">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a href="{{route('incidencia.edit',$filaincidencia->incidencia_id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="EDITAR">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <form
+                                        action="{{route('incidencia.destroy',$filaincidencia->incidencia_id)}}"
+                                        @include('components.confirmation.confirmdel')
+                                        method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button href="" type="submit" class="btn btn-sm btn-light push mb-md-0"
+                                                data-toggle="tooltip"
+                                                title="ELIMINAR">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
     <div class="d-none">
         <button type="button" class="js-swal-success btn btn-light push" id="boton_exito">
             <i class="fa fa-check-circle text-success mr-1"></i> Launch Dialog
@@ -637,43 +1289,32 @@
 @endsection
 
 @section('footer')
-    <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-        <a href="{{route('vehiculo.showedit', $filavehiculo->placa_id)}}" class="btn btn-warning shadow p-2 mb-4 rounded"
-           style="float: right">
-            EDITAR POR SECCIONES
-        </a>
-    </div>
-    <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-
-    </div>
 @endsection
 
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+
+    {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
+    @include('components.links_css_js.datatable.datatable_js')
+    {{--######################## END SCRIPT DATABLE ####################--}}
+
+    {{-- ################ START CONFIRMAR ELIMINACION FORM ###############--}}
+    @include('components.confirmation.confirmationdelete_js')
+    {{-- ################# END CONFIRMAR ELIMINACION FORM ###############--}}
+
+    {{--###################### START SCRIPT JS CARROUSEL ####################--}}
+    @include('components.links_css_js.carousel.carousel_js')
+    {{--###################### END SCRIPT JS CARROUSEL ####################--}}
+
+    {{--##############################################  FOTOS PREVISUALIZAR EDIT VIEW #######################################--}}
     <!-- Page JS Plugins -->
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
+    <!-- Page JS Helpers (Magnific Popup Plugin) -->
     <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
-
-    {{--############################################## CARROUSEL #############################################--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/slick-carousel/slick.min.js')}}"></script>
-
-    <!-- Page JS Helpers (Slick Slider Plugin) -->
-    <script>jQuery(function () {
-            One.helpers('slick');
+            One.helpers('magnific-popup');
         });</script>
 
     {{--############################################## JS #############################################--}}
@@ -703,12 +1344,12 @@
                 success: function (data) {
                     $('#boton_exito').click();
                     $('#mensaje_respuesta_form_subir_datos_vehiculo').append(
-                        "<div class='alert alert-success d-flex align-items-center' role='alert'>"+
-                        "<div class='flex-00-auto'>"+
-                        "<i class='fa fa-fw fa-check'></i>"+
-                        "</div>"+
-                        "<div class='flex-fill ml-3'>"+
-                        "<p class='mb-0'>"+data+" <a class='alert-link' href='javascript:void(0)'></a>!</p>"+
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                        "<div class='flex-00-auto'>" +
+                        "<i class='fa fa-fw fa-check'></i>" +
+                        "</div>" +
+                        "<div class='flex-fill ml-3'>" +
+                        "<p class='mb-0'>" + data + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
                         "</div>"
                     );
                 }
@@ -725,12 +1366,12 @@
                 success: function (data) {
                     $('#boton_exito').click();
                     $('#mensaje_respuesta_form_subir_est_serv_vehicular').append(
-                        "<div class='alert alert-success d-flex align-items-center' role='alert'>"+
-                        "<div class='flex-00-auto'>"+
-                        "<i class='fa fa-fw fa-check'></i>"+
-                        "</div>"+
-                        "<div class='flex-fill ml-3'>"+
-                        "<p class='mb-0'>"+data+" <a class='alert-link' href='javascript:void(0)'></a>!</p>"+
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                        "<div class='flex-00-auto'>" +
+                        "<i class='fa fa-fw fa-check'></i>" +
+                        "</div>" +
+                        "<div class='flex-fill ml-3'>" +
+                        "<p class='mb-0'>" + data + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
                         "</div>"
                     );
                 }
@@ -808,12 +1449,12 @@
                 success: function (data) {
                     $('#boton_exito').click();
                     $('#mensaje_respuesta_form_subir_docs_renov_vehicular').append(
-                        "<div class='alert alert-success d-flex align-items-center' role='alert'>"+
-                        "<div class='flex-00-auto'>"+
-                        "<i class='fa fa-fw fa-check'></i>"+
-                        "</div>"+
-                        "<div class='flex-fill ml-3'>"+
-                        "<p class='mb-0'>"+data+" <a class='alert-link' href='javascript:void(0)'></a>!</p>"+
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                        "<div class='flex-00-auto'>" +
+                        "<i class='fa fa-fw fa-check'></i>" +
+                        "</div>" +
+                        "<div class='flex-fill ml-3'>" +
+                        "<p class='mb-0'>" + data + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
                         "</div>"
                     );
                 }
@@ -916,5 +1557,18 @@
         });
 
     </script>
+    <script>
+        function pregunta() {
+            if (confirm('¿Estas seguro de enviar este formulario?')) {
+                document.form_seguro.submit()
+            }
+        }
+    </script>
 
+    <script>
+        $(document).ready(function () {//*[@id="DataTables_Table_1_wrapper"]/div[1]/div/div/div
+            document.querySelector("#DataTables_Table_0_wrapper > div:nth-child(1)").remove();
+            document.querySelector("#DataTables_Table_1_wrapper > div:nth-child(1)").remove();
+        });
+    </script>
 @endsection

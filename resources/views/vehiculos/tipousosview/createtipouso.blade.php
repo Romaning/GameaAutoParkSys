@@ -12,6 +12,8 @@
     {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection
 @section('content')
+    @include('components.alerts.alerttre')
+
     <!-- Basic -->
     <div class="block shadow p-2 mb-1 rounded">
         <div class="block-header">
@@ -33,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">
-                                ENVIAR
+                                GUARDAR
                             </button>
                         </div>
                     </div>

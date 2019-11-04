@@ -3,21 +3,17 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
+
     <!-- Stylesheets -->
     <!-- Page CSS DIRECTO PARA SHOW VEHICULO -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/themes/material_green.css')}}">
-
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
 
 @endsection
 @section('hero_cuadro_bienvenida')
@@ -27,6 +23,9 @@
     {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection
 @section('content')
+
+    @include('components.alerts.alerttre')
+
     <!-- Basic -->
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
@@ -99,6 +98,7 @@
                                            maxlength="20" data-always-show="true"
                                            data-placement="top"
                                            placeholder="Numeros..."
+                                           pattern="[0-9]+"
                                            name="numero_documento_importacion">
                                 </div>
                             </div>
@@ -178,6 +178,7 @@
                                            id="plazas" name="plazas" maxlength="11"
                                            data-always-show="true"
                                            data-placement="top" placeholder="Solo numeros..."
+                                           pattern="[0-9]+"
                                            data-toggle="tooltip"
                                            data-original-title="Solo números">
                                 </div>
@@ -194,6 +195,7 @@
                                            data-placement="top" placeholder="Solo numeros..."
                                            data-toggle="tooltip"
                                            title="SOLO NUMEROS"
+                                           pattern="[0-9]+"
                                            data-original-title="Solo números" required>
                                 </div>
                                 <div class="col">
@@ -237,7 +239,8 @@
                         </div>
 
                         {{--#########################################################################--}}
-                        <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded" style="float: right;">
+                        <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded" style="float: right;"
+                        onclick="habilitarBotones()">
                             GUARDAR
                         </button>
                     </div>
@@ -301,8 +304,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded" style="float: right"
-                                    id="guardar_estado_servicio_vehiculo">
+                            <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded" style="float: right;"
+                                    id="guardar_estado_servicio_vehiculo" disabled>
                                 GUARDAR
                             </button>
                         </div>
@@ -367,7 +370,7 @@
                         <div class="row">
                             <div class="col">
                                 <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded"
-                                        id="submit_docs_prop_vehiculo" style="float:right;">
+                                        id="submit_docs_prop_vehiculo" style="float:right;" disabled>
                                     GUARDAR
                                 </button>
                                 <button type="submit" class="btn btn-danger shadow p-2 mb-1 rounded"
@@ -436,7 +439,7 @@
                         <div class="row">
                             <div class="col">
                                 <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded"
-                                        id="submit_imgs_perfil_vehiculo" style="float: right;">
+                                        id="submit_imgs_perfil_vehiculo" style="float: right;" disabled>
                                     GUARDAR
                                 </button>
                                 <button type="submit" class="btn btn-danger shadow p-2 mb-1 rounded"
@@ -472,7 +475,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="gestion_var_front">GESTION: <span class="text-danger">*</span></label>
-                            <input type="text" value="{{ date('Y') }}" name="gestion" class="form-control">
+                            <input type="text" value="{{ date('Y') }}" name="gestion" class="form-control" pattern="[0-9]+">
                         </div>
                     </div>
 
@@ -511,7 +514,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded" style="float: right">
+                            <button type="submit" class="btn btn-success shadow p-2 mb-1 rounded" style="float: right"
+                            id="btn_guardar_form_subida_doc_renov" disabled>
                                 GUARDAR
                             </button>
                         </div>
@@ -565,7 +569,8 @@
                 </table>
                 <div class="row">
                     <div class="col-lg-12">
-                        <button type="submit" class="btn btn-primary shadow rounded" style="float: right;">GUARDAR
+                        <button type="submit" class="btn btn-primary shadow rounded" style="float: right;"
+                        id="btn_guardar_form_subida_seguro" disabled>GUARDAR
                         </button>
                     </div>
                 </div>
@@ -573,9 +578,19 @@
 
         </div>
         <div id="mensaje_respuesta_form_subir_seguros"></div>
+        @if(session()->has('alert-seguro'))
+            <div class='alert alert-success d-flex align-items-center' role='alert'>
+                <div class='flex-00-auto'>
+                    <i class='fa fa-fw fa-check'></i>
+                </div>
+                <div class='flex-fill ml-3'>
+                    <p class='mb-0'>  {{ session()->get('alert-seguro') }}<a class='alert-link'
+                                                                             href='javascript:void(0)'></a>!</p>
+                </div>
+            </div>
+        @endif
     </div>
     <!-- END Flatpickr Datetimepicker -->
-
 
     <div class="d-none">
         <button type="button" class="js-swal-success btn btn-light push" id="boton_exito">
@@ -584,30 +599,13 @@
     </div>
 @endsection
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
-
-    {{--############################################## CARROUSEL #############################################--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/slick-carousel/slick.min.js')}}"></script>
-
-    <!-- Page JS Helpers (Slick Slider Plugin) -->
-    <script>jQuery(function () {
-            One.helpers('slick');
-        });</script>
+    {{--###################### START SCRIPT JS CARROUSEL ####################--}}
+    @include('components.links_css_js.carousel.carousel_js')
+    {{--###################### END SCRIPT JS CARROUSEL ####################--}}
 
     {{-- ############################################### END SCRIPTS PARA DROPZONE ######################################################--}}
     <script>
@@ -619,6 +617,14 @@
             $('#placa_id_subida_docs_renov_vehicular').val(placavehiculo);
             $('#placa_id_subir_seguro').val(placavehiculo);
             $('#placa_id_subida_estado_servicio_vehicular').val(placavehiculo);
+        }
+
+        function habilitarBotones(){
+            $("#btn_guardar_form_subida_seguro").prop('disabled', false);
+            $("#btn_guardar_form_subida_doc_renov").prop('disabled', false);
+            $("#submit_imgs_perfil_vehiculo").prop('disabled', false);
+            $("#submit_docs_prop_vehiculo").prop('disabled', false);
+            $("#guardar_estado_servicio_vehiculo").prop('disabled', false);
         }
 
         /*JQUERY PARA ENVIAR FORM DE DATOS VEHICULO*/
@@ -650,7 +656,6 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 success: function (data) {
-                    $('#boton_exito').click();
                     $('#mensaje_respuesta_form_subir_est_serv_vehicular').append(
                         "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
                         "<div class='flex-00-auto'>" +
@@ -681,7 +686,8 @@
                     myDropzoneDocsProp.processQueue();
                 });
                 this.on("addedfile", function (file) {
-                    $('#boton_exito').click();
+                    $('#enfoque_zona_subir_docs_prop_vehiculo').children().remove();
+                    $('#enfoque_zona_subir_docs_prop_vehiculo').append(".....")
                     /*alert("file uploaded");*/
                 });
 
@@ -694,6 +700,20 @@
                 );
             }
         };
+        $('#submit_docs_prop_vehiculo').on('click',function () {
+            $('#boton_exito').click();
+            $('#enfoque_zona_subir_docs_prop_vehiculo').children().remove();
+            $('#enfoque_zona_subir_docs_prop_vehiculo').append(
+                "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                "<div class='flex-00-auto'>" +
+                "<i class='fa fa-fw fa-check'></i>" +
+                "</div>" +
+                "<div class='flex-fill ml-3'>" +
+                "<p class='mb-0'>" + "Agregados" + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
+                "</div>"
+            );
+        })
+
 
         /*para subir imagenes de perfil de vehiculo*/
         Dropzone.options.myDropzoneImgsPerfil = {
@@ -713,7 +733,9 @@
                     myDropzoneImgsPerfil.processQueue();
                 });
                 this.on("addedfile", function (file) {
-                    $('#boton_exito').click();
+                    $('#enfoque_zona_subir_imgs_perfil_vehiculo').children().remove();
+                    $('#enfoque_zona_subir_imgs_perfil_vehiculo').append("......");
+
                     /*alert("file uploaded");*/
                 });
 
@@ -726,6 +748,22 @@
                 );
             }
         };
+        $('#submit_imgs_perfil_vehiculo').on('click',function () {
+            $('#boton_exito').click();
+            $('#enfoque_zona_subir_imgs_perfil_vehiculo').children().remove();
+            $('#enfoque_zona_subir_imgs_perfil_vehiculo').append(
+                "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                "<div class='flex-00-auto'>" +
+                "<i class='fa fa-fw fa-check'></i>" +
+                "</div>" +
+                "<div class='flex-fill ml-3'>" +
+                "<p class='mb-0'>" + "Agregados" + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
+                "</div>"
+            );
+        });
+
+
+
         /*JQUERY PARA ENVIAR FORM DE DOCUEMENTOS RENOVABLES*/
         $('#form_subir_docs_renov_vehicular').submit(function () {
             $.ajax({
@@ -881,7 +919,7 @@
                 "</td>" +
                 "<td class='d-none d-sm-table-cell font-size-sm'>" +
                 "<div class='col-md-12' style='float: right;'>" +
-                "<input type='file' class='custom-file-input' value='' name='campoe[]' required>" +
+                "<input type='file' class='' value='' name='campoe[]' required>" +
                 "</div>" +
                 "</td>" +
                 " <td class='btn-eliminar justify-content-center'>" +

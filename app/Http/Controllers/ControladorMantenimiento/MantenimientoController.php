@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\ModeloMantenimiento\Mantenimiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 
 class MantenimientoController extends Controller
 {
@@ -73,7 +74,7 @@ class MantenimientoController extends Controller
             $newMantInst->fecha_fin_mant = $request->fecha_fin_mant;
             $newMantInst->update();
         }
-        return "EXITO";
+        return redirect()->back()->with('alert-success', 'Datos guardado correctamente!');
     }
 
     /**
@@ -103,6 +104,18 @@ class MantenimientoController extends Controller
             ->select('imagenes_perfil_vehiculos.archivo_subido')
             ->get();
         return view('mantenimientos.showmantenimiento',compact('datosMantenimientos','tiposMant','datosvehiculo','imagenesPerfilVehiculo'));
+    }
+
+    public function historial($placa_id){
+        /*##################### Vehiculos(placa_id)[placa_id] ->(placa_id)Mantenimientos ##############*/
+        $mantenimientos = DB::table('vehiculos')
+            ->join('mantenimientos','vehiculos.placa_id','=','mantenimientos.placa_id_mant')
+            ->where('vehiculos.placa_id','=',$placa_id)
+            ->whereNull('vehiculos.deleted_at')
+            ->orderBy('mantenimientos.fecha_inicio_mant','DESC')
+            ->get();
+        /*dd($mantenimientos);*/
+        return view('mantenimientos.historialmantenimiento',compact('mantenimientos'));
     }
 
     /**
@@ -148,7 +161,7 @@ class MantenimientoController extends Controller
             $mant->fecha_fin_mant = $request->fecha_fin_mant;
         }
         $mant->update();
-        return "EXITO";
+        return redirect()->back()->with('alert-success', 'Datos actualizado correctamente!');
     }
 
     /**
@@ -160,6 +173,6 @@ class MantenimientoController extends Controller
     public function destroy( $mantenimiento)
     {
         Mantenimiento::find($mantenimiento)->delete();
-        return "ELIMANDO";
+        return redirect()->back()->with('alert-success', 'Datos eliminados correctamente!');
     }
 }

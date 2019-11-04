@@ -221,7 +221,7 @@
                             </div>
                         </div>
                         <button type="button" class="btn btn-primary d-none" id="btnaccionguardarfotosuecam">
-                            ENVIAR FOTOS
+                            GUARDAR FOTOS
                         </button>
                         {{--################################### GENERAR BOTONES ##########################################--}}
 
@@ -243,7 +243,7 @@
         {{ csrf_field() }}
         <label for="archivo"><b>Archivo: </b></label><br>
         <input type="file" name="archivo" required>
-        <input class="btn btn-success" type="submit" value="Enviar" >
+        <input class="btn btn-success" type="submit" value="GUARDAR" >
     </form>
 
 

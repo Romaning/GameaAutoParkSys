@@ -3,15 +3,15 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS DATATABLES-->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')}}">
-    {{--estilo de la pagina--}}
+    {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
+    @include('components.links_css_js.datatable.datatable_css')
+    {{--######################## END CSS SCRIPT DATABLE ####################--}}
 @endsection
 @section('hero_cuadro_bienvenida')
 
 @endsection
 @section('content')
+    @include('components.alerts.alerttre')
     @csrf
     <div class="block">
         <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
@@ -27,6 +27,7 @@
                         <th class="d-none d-sm-table-cell">EMPRESA ASEGURADORA</th>
                         <th class="d-none d-sm-table-cell">FECHA DE VIGENCIA</th>
                         <th class="d-none d-sm-table-cell" style="width:13%;">ARCHIVOS SUBIDOS</th>
+                        <th class="d-none d-sm-table-cell"></th>
                         <th style="width:10%;" class="text-sm-center font-size-sm">
                             <a href="{{route('seguro.create')}}"
                                class="btn-sm btn-primary shadow rounded">
@@ -65,7 +66,11 @@
                                     </div>
                                 </div>
                             </td>
-
+                            <td class="d-none d-sm-table-cell font-size-sm">
+                                <img class="img-avatar img-avatar48"
+                                     src="{{asset('imagenes_store/seguros/'.$filadatosseguro->archivo_subido.'' )}}"
+                                     alt="">
+                            </td>
                             <td class="justify-content-center">
                                 <div class="row text-sm-center">
                                     <div class="col-sm-1">
@@ -84,6 +89,7 @@
                                     </div>
                                     <div class="col-sm-1">
                                         <form action="{{route('seguro.destroy',$filadatosseguro->id)}}"
+                                              @include('components.confirmation.confirmdel')
                                               method="post">
                                             @csrf
                                             @method('DELETE')
@@ -107,17 +113,13 @@
 
 @section('js_script_import')
     {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.print.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')}}"></script>
+    @include('components.links_css_js.datatable.datatable_js')
+    {{--######################## END SCRIPT DATABLE ####################--}}
 
-    <!-- Page JS Code -->
-    <script src="{{asset('assets/js/pages/be_tables_datatables.min.js')}}"></script>
+    {{-- ################ START CONFIRMAR ELIMINACION FORM ###############--}}
+    @include('components.confirmation.confirmationdelete_js')
+    {{-- ################# END CONFIRMAR ELIMINACION FORM ###############--}}
+
     {{--#################### js #################--}}
     <script>
         var nuveorequerimiento = $('#body_tb_insertar_campos').html();

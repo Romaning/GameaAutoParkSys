@@ -3,26 +3,19 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    <!-- Stylesheets -->
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
-
-    <!-- Page CS DIRECTO PARA SHOW VEHICULO -->
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
 @endsection
 @section('hero_cuadro_bienvenida')
 
 @endsection
 @section('content')
+    @include('components.alerts.alerttre')
 
     <div class="block shadow p-2 mb-1 rounded " data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
@@ -154,32 +147,15 @@
     </div>
 @endsection
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
-    <!-- Page JS Plugins -->
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    {{--############################################## CARROUSEL #############################################--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/slick-carousel/slick.min.js')}}"></script>
 
-    <!-- Page JS Helpers (Slick Slider Plugin) -->
-    <script>jQuery(function () {
-            One.helpers('slick');
-        });</script>
+    {{--###################### START SCRIPT JS CARROUSEL ####################--}}
+    @include('components.links_css_js.carousel.carousel_js')
+    {{--###################### END SCRIPT JS CARROUSEL ####################--}}
 
     {{--############################################## JS #############################################--}}
     <script>
@@ -192,12 +168,12 @@
                 success: function (data) {
                     $('#boton_exito').click();
                     $('#mensaje_respuesta_form_subir_est_serv_vehicular').append(
-                        "<div class='alert alert-success d-flex align-items-center' role='alert'>"+
-                        "<div class='flex-00-auto'>"+
-                        "<i class='fa fa-fw fa-check'></i>"+
-                        "</div>"+
-                        "<div class='flex-fill ml-3'>"+
-                        "<p class='mb-0'>"+data+" <a class='alert-link' href='javascript:void(0)'></a>!</p>"+
+                        "<div class='alert alert-success d-flex align-items-center' role='alert'>" +
+                        "<div class='flex-00-auto'>" +
+                        "<i class='fa fa-fw fa-check'></i>" +
+                        "</div>" +
+                        "<div class='flex-fill ml-3'>" +
+                        "<p class='mb-0'>" + data + " <a class='alert-link' href='javascript:void(0)'></a>!</p>" +
                         "</div>"
                     );
                     /*ocultar la seccion de ULTIMO ESTADO DE SERVICIO DE ESTA PLACA*/
@@ -218,7 +194,7 @@
                             'placa_id': $('#placa_id').val()
                         },
                         success: function (data) {
-                            var colorMensaje="";
+                            var colorMensaje = "";
                             for (var dato in data) {
                                 /*## VISIBLIZAMOS LA SECCION DE ULTIMO ETADO DE SERVICIO PARA ESTA PLACA*/
                                 $('#ultimo_estado_servicio_vehiculo_placa').removeClass('d-none');
@@ -232,15 +208,14 @@
                                     "class='form-control' >");
 
                                 {{--{{$estadoservvehi[0]->est_descripcion == 'EN SERVICIO'? 'btn-success':'btn-danger'}}--}}
-                                if(data[dato].est_descripcion == "EN SERVICIO"){
-                                    colorMensaje ="btn-success";
-                                }
-                                else{
-                                    colorMensaje ="btn-danger";
+                                if (data[dato].est_descripcion == "EN SERVICIO") {
+                                    colorMensaje = "btn-success";
+                                } else {
+                                    colorMensaje = "btn-danger";
                                 }
                                 $('#input-estado-serv-vehi').children().remove();
                                 $('#input-estado-serv-vehi').append("<input type='text' value='" + data[dato].est_descripcion + "' " +
-                                    "class='form-control btn "+colorMensaje+"' style='height: 100%;' >");
+                                    "class='form-control btn " + colorMensaje + "' style='height: 100%;' >");
 
                                 $('#input-motivo').children().remove();
                                 $('#input-motivo').append("<input type='text' value='" + data[dato].motivo + "' " +

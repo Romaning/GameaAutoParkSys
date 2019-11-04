@@ -5,26 +5,21 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    <!-- Stylesheets -->
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
 
-    <!-- Page CS DIRECTO PARA SHOW VEHICULO -->
 @endsection
 @section('hero_cuadro_bienvenida')
 
 @endsection
 @section('content')
+    @include('components.alerts.alerttre')
+
     <!-- Basic -->
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
@@ -40,12 +35,16 @@
                         <div class="row">
                             <div class="col">
                                 <label for="placa_id">Placa Vehicular</label>
-                                <input type="text" class="form-control btn-success" id="placa_id"
+                                <input type="text" class="form-control btn-success js-maxlength" id="placa_id"
+                                       maxlength="100" data-always-show="true"
+                                           data-placement="top"
                                        name="placa_id" value="{{$filavehiculo->placa_id}}">
                             </div>
                             <div class="col">
                                 <label for="numero_crpva">RCPVA</label>
-                                <input type="text" class="form-control " id="numero_crpva"
+                                <input type="text" class="form-control js-maxlength" id="numero_crpva"
+                                       maxlength="100" data-always-show="true"
+                                           data-placement="top"
                                        name="numero_crpva" value="{{$filavehiculo->numero_crpva}}">
                             </div>
                         </div>
@@ -55,12 +54,16 @@
                         <div class="row">
                             <div class="col">
                                 <label for="numero_chasis">Numero Chasis</label>
-                                <input type="text" class="form-control" id="numero_chasis"
+                                <input type="text" class="form-control js-maxlength" id="numero_chasis"
+                                       maxlength="100" data-always-show="true"
+                                           data-placement="top"
                                        name="numero_chasis" value="{{$filavehiculo->numero_chasis}}">
                             </div>
                             <div class="col">
                                 <label for=numero_motor">Numero Motor</label>
-                                <input type="text" class="form-control" id="numero_motor"
+                                <input type="text" class="form-control js-maxlength" id="numero_motor"
+                                       maxlength="100" data-always-show="true"
+                                           data-placement="top"
                                        name="numero_motor" value="{{$filavehiculo->numero_motor}}">
                             </div>
                         </div>
@@ -70,13 +73,17 @@
                         <div class="row">
                             <div class="col">
                                 <label for=documento_importacion">Documento de Importacion</label>
-                                <input type="text" class="form-control"
+                                <input type="text" class="form-control js-maxlength"
+                                       maxlength="100" data-always-show="true"
+                                           data-placement="top"
                                        id="documento_importacion" name="documento_importacion"
                                        value="{{$filavehiculo->documento_importacion}}">
                             </div>
                             <div class="col">
                                 <label for=numero_documento_importacion">Numero Documento de Importacion</label>
-                                <input type="text" class="form-control"
+                                <input type="text" class="form-control js-maxlength"
+                                       maxlength="20" data-always-show="true"
+                                           data-placement="top"
                                        id="numero_documento_importacion" name="numero_documento_importacion"
                                        value="{{$filavehiculo->numero_documento_importacion}}">
                             </div>
@@ -353,7 +360,7 @@
              data-slides-to-show="3" data-center-mode="true" data-autoplay="true" data-autoplay-speed="3000">
             @foreach($datosdocumentospropiedadvehicular as $filadocpropvehi)
                 <div>
-                    <img class="img-fluid" src="{{asset('carpeta_imagenes/'.$filadocpropvehi->archivo_subido.'')}}">
+                    <img class="img-fluid" src="{{asset('imagenes_store/documentos/'.$filadocpropvehi->archivo_subido.'')}}">
                 </div>
             @endforeach
             {{--<img class="img-fluid" src="{{asset('assets/media/photos/photo19@2x.jpg')}}" alt="">--}}
@@ -427,7 +434,7 @@
             {{--<img class="img-fluid" src="{{asset('assets/media/photos/photo19@2x.jpg')}}" alt="">--}}
             @foreach($datosimagenperfilvehicular as $fileimgperfil)
                 <div>
-                    <img class="img-fluid" src="{{asset('carpeta_imagenes/'.$fileimgperfil->archivo_subido.'' )}}">
+                    <img class="img-fluid" src="{{asset('imagenes_store/vehiculos/'.$fileimgperfil->archivo_subido.'' )}}">
                 </div>
             @endforeach
         </div>
@@ -582,39 +589,19 @@
 @endsection
 
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
-    <!-- Page JS Plugins -->
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    {{--############################################## CARROUSEL #############################################--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/slick-carousel/slick.min.js')}}"></script>
-
-    <!-- Page JS Helpers (Slick Slider Plugin) -->
-    <script>jQuery(function () {
-            One.helpers('slick');
-        });</script>
+    {{--###################### START SCRIPT JS CARROUSEL ####################--}}
+    @include('components.links_css_js.carousel.carousel_js')
+    {{--###################### END SCRIPT JS CARROUSEL ####################--}}
 
     {{--############################################## JS #############################################--}}
     {{--
         <script src="{{asset('jsromsys/vehiculos.show.js')}}"></script>
     --}}
-
-
     {{-- ############################################### END SCRIPTS PARA DROPZONE ######################################################--}}
     <script>
         placavehiculo = $('#placa_id').val();

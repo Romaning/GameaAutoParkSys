@@ -5,43 +5,19 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
-    <!-- Stylesheets -->
-    <!-- Page CSS DIRECTO PARA SHOW VEHICULO -->
-    {{--<link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/themes/material_green.css')}}">--}}
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
 
     <link rel="stylesheet"
           href="{{asset('assets/js/plugins/magnific-popup/magnific-popup.css')}}">{{--para ver imagen perfil en tipo modal--}}
 @endsection
 @section('hero_cuadro_bienvenida')
-    <!-- Hero -->
-    <div class="bg-image" style="background-image: url({{asset('image_proyect/fondo_hero3.jpg')}});">
-        <div class="bg-black-50">
-            <div class="content content-full text-center">
-                {{--<div class="my-3">
-                    <img class="img-avatar img-avatar-thumb" src="{{asset('')}}" alt=""
-                         id="src_imagen_perfil_hero">
-                </div>
-                <h1 class="h2 text-white mb-0" id=""></h1>
-                <span class="text-white-75">
-                    Nombre Funcionario
-                </span>--}}
-            </div>
-        </div>
-    </div>
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
+
 @endsection
 @section('content')
     @if(count($errors) > 0)
@@ -153,8 +129,9 @@
                     <div class="col-lg-4">
                         <div class="row">
                             <div class="col" data-toggle="appear" data-class="animated zoomIn">
-                                <!-- Team Member -->
+                                <label for="" class="text-center"> (ARCHIVO ACTA DEVOLUCION)</label>
                                 <div class="block">
+
                                     <div class="block-content">
                                         <div class="js-gallery img-fluid-100 img-link-zoom-in">
                                             <a href="{{asset('imagenes_store/devoluciones/'.$datosdevoluciones->archivo_acta_devolucion)}}"
@@ -209,7 +186,7 @@
     {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
-            <h3 class="block-title">HISTORIA</h3>
+            <h3 class="block-title">HISTORIA (DATOS DEL ANTERIOR FUNCIONARIO ASIGNADO AL VEHICULO) </h3>
         </div>
         <div class="block-content block-content-full">
             <form action="{{--{{route('asignacion.store')}}--}}" method="POST" enctype="multipart/form-data"
@@ -223,25 +200,24 @@
                             <div class="col" data-toggle="appear" data-class="animated zoomIn">
                                 <!-- Team Member -->
                                 <div class="block">
-                                    <div class="block-content">
+                                    {{--<div class="block-content">
                                         <img
                                             src="{{asset('/imagenes_store/funcionarios/'.$filaasignacion->ci."/".$filaasignacion->imagen_perfil)}}"
                                             width="100%"
                                             height="100%" id=""
                                             class="justify-content-center">
-                                    </div>
+                                    </div>--}}
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="custom-file">
-                                        <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
+                                    {{--<div class="custom-file">
                                         <input type="file" class="custom-file-input" data-toggle="custom-file-input"
                                                id=""
                                                name="">
                                         <label class="custom-file-label"
                                                style="width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
                                                for=""> {{$filaasignacion->imagen_perfil}}</label>
-                                    </div>
+                                    </div>--}}
                                 </div>
                                 <!-- END Team Member -->
                             </div>
@@ -376,7 +352,7 @@
                     <div class="col-lg-3">
                         <div class="row">
                             <div class="col" data-toggle="appear" data-class="animated zoomIn">
-                                <!-- Team Member -->
+                                <label for="" class="text-center"> (ARCHIVO MEMORANDUM ASIGNACION)</label>
                                 <div class="block">
                                     <div class="block-content">
                                         <div class="js-gallery img-fluid-100 img-link-zoom-in">
@@ -400,7 +376,7 @@
                                                name="">
                                         <label class="custom-file-label"
                                                style="width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
-                                               for=""> {{$filaasignacion->imagen_perfil}}</label>
+                                               for=""> {{$filaasignacion->archivo_memorandum}}</label>
                                     </div>
                                 </div>
                                 <!-- END Team Member -->
@@ -456,30 +432,14 @@
     </div>
 @endsection
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
+    {{--###################### START SCRIPT JS CARROUSEL ####################--}}
+    @include('components.links_css_js.carousel.carousel_js')
+    {{--###################### END SCRIPT JS CARROUSEL ####################--}}
 
-    {{--############################################## CARROUSEL #############################################--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/slick-carousel/slick.min.js')}}"></script>
-
-    <!-- Page JS Helpers (Slick Slider Plugin) -->
-    <script>jQuery(function () {
-            One.helpers('slick');
-        });</script>
     {{--##############################################  FOTOS PREVISUALIZAR EDIT VIEW #######################################--}}
     <!-- Page JS Plugins -->
     <script src="{{asset('assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js')}}"></script>

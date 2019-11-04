@@ -154,6 +154,7 @@ Route::prefix('/imagenesperfilvehiculo')->group(function () {
     Route::post('/storefile', 'ControladorVehiculo\ImagenesPerfilVehiculoController@storeFileMethodStyde')->name('imgsperfil.storefilemet');
 
     Route::get('/', 'ControladorVehiculo\ImagenesPerfilVehiculoController@index')->name('imgsperfil.index');
+    Route::get('/{imagenesperfilvehiculo_id}', 'ControladorVehiculo\ImagenesPerfilVehiculoController@show')->name('imgsperfil.show');
 
     Route::get('/{imgsperfil_id}/editsolo', 'ControladorVehiculo\ImagenesPerfilVehiculoController@editSolo')->name('imgsperfil.editsolo');
     Route::post('/imgsperfilautocomplet', 'ControladorVehiculo\ImagenesPerfilVehiculoController@autocompletarImgsPerfil')->name('imgsperfil.autocomplet');
@@ -188,6 +189,7 @@ Route::prefix('/seguro')->group(function () {
     Route::delete('/{seguro_id}', 'ControladorVehiculo\SeguroController@destroy')->name('seguro.destroy');
 
     Route::get('/{vehiculo_id}/historial', 'ControladorVehiculo\SeguroController@historialSeguros')->name('seguro.historial.placa');
+    Route::get('/{seguro_id}/createsolo', 'ControladorVehiculo\SeguroController@createSolo')->name('seguro.createsolo');
     Route::post('/{seguro_id}/update', 'ControladorVehiculo\SeguroController@updateClasis')->name('seguro.update.clasic');
 });
 /*#################################################### VEHICULOS #######################################################*/
@@ -256,6 +258,9 @@ Route::prefix('/vale')->group(function () {
     Route::get('/{vales_id}/edit', 'ControladorValesDeCombustibles\ValesDeCombustibleController@edit')->name('vale.edit');
     Route::put('/{vales_id}', 'ControladorValesDeCombustibles\ValesDeCombustibleController@update')->name('vale.update');
     Route::delete('/{vales_id}', 'ControladorValesDeCombustibles\ValesDeCombustibleController@destroy')->name('vale.destroy');
+
+    Route::get('/{placa_id}/historial', 'ControladorValesDeCombustibles\ValesDeCombustibleController@historialVale')->name('vale.historial.placa');
+
 });
 
 Route::prefix('/mantenimiento')->group(function () {
@@ -266,6 +271,8 @@ Route::prefix('/mantenimiento')->group(function () {
     Route::get('/{mantenimiento_id}/edit', 'ControladorMantenimiento\MantenimientoController@edit')->name('mantenimiento.edit');
     Route::put('/{mantenimiento_id}', 'ControladorMantenimiento\MantenimientoController@update')->name('mantenimiento.update');
     Route::delete('/{mantenimiento_id}', 'ControladorMantenimiento\MantenimientoController@destroy')->name('mantenimiento.destroy');
+
+    Route::get('/{mantenimiento_id}/historial', 'ControladorMantenimiento\MantenimientoController@historial')->name('mantenimiento.historial.placa');
 });
 
 Route::prefix('/infraccion')->group(function () {
@@ -276,4 +283,22 @@ Route::prefix('/infraccion')->group(function () {
     Route::get('/{infraccion_id}/edit', 'ControladorInfraccion\InfraccionController@edit')->name('infraccion.edit');
     Route::put('/{infraccion_id}', 'ControladorInfraccion\InfraccionController@update')->name('infraccion.update');
     Route::delete('/{infraccion_id}', 'ControladorInfraccion\InfraccionController@destroy')->name('infraccion.destroy');
+
+    Route::get('/{placa_id}/historial', 'ControladorInfraccion\InfraccionController@historialInfraccion')->name('infraccion.historial.placa');
 });
+
+
+Route::prefix('/incidencia')->group(function () {
+    Route::get('/', 'ControladorIncidencia\IncidenciaController@index')->name('incidencia.index');
+    Route::get('/create', 'ControladorIncidencia\IncidenciaController@create')->name('incidencia.create');
+    Route::post('/', 'ControladorIncidencia\IncidenciaController@store')->name('incidencia.store');
+    Route::get('/{incidencia_id}', 'ControladorIncidencia\IncidenciaController@show')->name('incidencia.show');
+    Route::get('/{incidencia_id}/edit', 'ControladorIncidencia\IncidenciaController@edit')->name('incidencia.edit');
+    Route::put('/{incidencia_id}', 'ControladorIncidencia\IncidenciaController@update')->name('incidencia.update');
+    Route::delete('/{incidencia_id}', 'ControladorIncidencia\IncidenciaController@destroy')->name('incidencia.destroy');
+
+    Route::post('/consulta', 'ControladorIncidencia\IncidenciaController@consulta')->name('incidencia.consulta');
+    Route::get('/{incidencia_id}/historial', 'ControladorIncidencia\IncidenciaController@historialPlaca')->name('incidencia.historial.placa');
+});
+
+

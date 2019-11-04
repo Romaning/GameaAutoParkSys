@@ -40,7 +40,8 @@ class ClaseController extends Controller
         $clasebackend= new Clase();
         $clasebackend->clase_descripcion = $request->claseDescripcionNameFront;
         $clasebackend->save();
-        return redirect()->route('clase.index')->with('Registro exitoso');
+
+        return redirect()->back()->with('alert-success','Registro exitoso');
     }
 
     /**
@@ -92,6 +93,6 @@ class ClaseController extends Controller
     {
         $datosclase = Clase::find($clase);
         $datosclase->delete();
-        return redirect()->route('clase.index')->with('Elemento eliminado exitosamente');
+        return redirect()->back()->with('alert-success','Elemento eliminado exitosamente');
     }
 }

@@ -10,7 +10,6 @@ class TipoUsoController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -40,7 +39,8 @@ class TipoUsoController extends Controller
         $datostipo_uso = new TipoUso();
         $datostipo_uso->tipo_uso_descripcion = $request->tipo_usoDescripcionNameFront;
         $datostipo_uso->save();
-        return redirect()->route('tipo_uso.index')->with('Registro exitoso');
+        return redirect()->route('tipo_uso.index')->with('alert-success','GUARDADO CORRECTAMENTE');
+
     }
 
     /**
@@ -79,7 +79,7 @@ class TipoUsoController extends Controller
         $datostipo_uso = TipoUso::find($tipo_uso);
         $datostipo_uso->tipo_uso_descripcion = $request->tipo_usoDescripcionNameFront;
         $datostipo_uso->save();
-        return redirect()->route('tipo_uso.index')->with('Informacion actualizada');
+        return redirect()->route('tipo_uso.index')->with('alert-success','ACTUALIZADO CORRECTAMENTE');
     }
 
     /**
@@ -92,6 +92,6 @@ class TipoUsoController extends Controller
     {
         $datostipo_uso = TipoUso::find($tipo_uso);
         $datostipo_uso->delete();
-        return redirect()->route('tipo_uso.index')->with('Elemento eliminado exitosamente');
+        return redirect()->route('tipo_uso.index')->with('alert-success','ELIMINADO CORRECTAMENTE');
     }
 }

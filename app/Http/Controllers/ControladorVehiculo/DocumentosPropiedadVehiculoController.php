@@ -80,12 +80,12 @@ class DocumentosPropiedadVehiculoController extends Controller
                 $fileNameMorePlaca = $numeroplaca . $fileNameOriginal; /*concatenamos la placa con el nombre original para que no haya duplicidad */
                 $fileNameOriginal = str_replace(" ", "_", $fileNameOriginal); /*guardamos el nombre original*/
                 $fileNameMorePlaca = str_replace(" ", "_", $fileNameMorePlaca); /*concatenamos la placa con el nombre original para que no haya duplicidad */
-                $path = public_path() . '/carpeta_imagenes/' . $fileNameMorePlaca; /*vemos que ese archivo placa+filename coincida la imagen dentro del public*/
+                $path = public_path() . '/imagenes_store/documentos/' . $fileNameMorePlaca; /*vemos que ese archivo placa+filename coincida la imagen dentro del public*/
                 if (file_exists($path)) {/*vemos si existe el archivo 2720RKF_fotodelantera.jpg, si entonces no ingresa a la bd, sino entonces entra*/
                     /*return "REPETIDO EL ".$fileNameMorePlaca;*/ /*MANDA MENSAJE DE ARCHIVOS REPETIDOS*/
                 } else {
                     /*el arhivo original enviado desde form ahora se movera dentro de nuestra carpeta public con otro nombre*/
-                    $file->move(public_path('carpeta_imagenes'), $fileNameMorePlaca); /*es como hacer #move foto.jpg /public/placa+foto.jpg */
+                    $file->move(public_path('imagenes_store/documentos'), $fileNameMorePlaca); /*es como hacer #move foto.jpg /public/placa+foto.jpg */
                     /*guardamos el nombre de archivo y enlazamos a que placa le pertence*/
                     $imageUpload = new DocumentosPropiedadVehiculo();
                     $imageUpload->archivo_subido = $fileNameMorePlaca;  /*2720RKF_fotodelantera.jpg*/
@@ -115,7 +115,7 @@ class DocumentosPropiedadVehiculoController extends Controller
 
         $imageNombreReal = $image->getClientOriginalName();
 
-        $image->move(public_path('carpeta_imagenes'), $imageName);
+        $image->move(public_path('imagenes_store/documentos'), $imageName);
         $imageUpload = new DocumentosPropiedadVehiculo();
         $imageUpload->archivo_subido = $imageName;
         $imageUpload->nombre_documento_propiedad = $imageNombreReal;
@@ -128,7 +128,7 @@ class DocumentosPropiedadVehiculoController extends Controller
         $imageName = $numeroplaca . $image->getClientOriginalName();
         $imageNombreReal = $image->getClientOriginalName();*/
         /*$registros = count(DocumentosPropiedadVehiculo::where('archivo_subido',$imageName)->get());*/
-        /*$path = public_path() . '/carpeta_imagenes/' . $imageName;
+        /*$path = public_path() . '/imagenes_store/documentos/' . $imageName;
         if (file_exists($path)) {
             return "YA VLAE";
         } else {
@@ -147,7 +147,7 @@ class DocumentosPropiedadVehiculoController extends Controller
         $placa = $request->placa_id;
 
         $filename = $request->filename;
-        $path = public_path() . '/carpeta_imagenes/' . $filename;
+        $path = public_path() . '/imagenes_store/documentos/' . $filename;
 
         if (file_exists($path)) {
             unlink($path);
@@ -155,7 +155,7 @@ class DocumentosPropiedadVehiculoController extends Controller
             $filename = str_replace(" ", "_", $filename);
             $filename = $placa . '' . $filename;
 
-            $path = public_path() . '/carpeta_imagenes/' . $filename;
+            $path = public_path() . '/imagenes_store/documentos/' . $filename;
             if (file_exists($path)) {
                 unlink($path);
             }
@@ -192,9 +192,31 @@ class DocumentosPropiedadVehiculoController extends Controller
      * @param \App\ModeloVehiculo\DocumentosPropiedadVehiculo $documentosPropiedadVehiculo
      * @return \Illuminate\Http\Response
      */
-    public function show(DocumentosPropiedadVehiculo $documentosPropiedadVehiculo)
+    public function show( $vehiculo_placa)
     {
-        //
+        $datosplaca=[];
+        $placas = DB::table('vehiculos')
+            ->join('documentos_propiedad_vehiculos', 'documentos_propiedad_vehiculos.placa_id', '=', 'vehiculos.placa_id')
+            ->select('documentos_propiedad_vehiculos.placa_id')
+            ->where('documentos_propiedad_vehiculos.placa_id','=',$vehiculo_placa)
+            ->whereNull('vehiculos.deleted_at')
+            ->groupBy('documentos_propiedad_vehiculos.placa_id')
+            ->get();
+
+        for ($i = 0; $i < count($placas); $i++) {
+            $datosdocumentospropiedadvehicular = DB::table('vehiculos')
+                ->join('documentos_propiedad_vehiculos', 'documentos_propiedad_vehiculos.placa_id', '=', 'vehiculos.placa_id')
+                ->select('vehiculos.placa_id', 'documentos_propiedad_vehiculos.archivo_subido', 'documentos_propiedad_vehiculos.nombre_documento_propiedad')
+                ->where('vehiculos.placa_id', '=', $placas[$i]->placa_id)
+                ->get();
+
+            $datosplaca[$i] = array(
+                "placa" => $placas[$i]->placa_id,
+                "images" => array($datosdocumentospropiedadvehicular),
+            );
+        }
+        return view('vehiculos.documentospropiedadvehiculosview.showimgporplaca', compact('datosplaca'));
+
     }
 
     /**
@@ -232,7 +254,7 @@ class DocumentosPropiedadVehiculoController extends Controller
         }
         if ($requiere == 2) {
             $lista_array_archivos = array();
-            $directorio = public_path() . '/caperta_imagenes/';
+            $directorio = public_path() . '/imagenes_store/documentos/';
         }
 
         $datosdocumentospropiedadvehicular = DB::table('vehiculos')
@@ -244,7 +266,7 @@ class DocumentosPropiedadVehiculoController extends Controller
 
         foreach ($datosdocumentospropiedadvehicular as $file) {
             /*$size = filesize($directorio."".$file->archivo_subido);*/
-            $lista_array_archivos[] = array('nombre' => $file->archivo_subido, 'tamano' => "2MB", 'carpetamasarchivo' => 'carpeta_imagenes/' . $file->archivo_subido, 'path' => $directorio);
+            $lista_array_archivos[] = array('nombre' => $file->archivo_subido, 'tamano' => "2MB", 'carpetamasarchivo' => 'imagenes_store/documentos/' . $file->archivo_subido, 'path' => $directorio);
         }
         return response()->json($lista_array_archivos);
     }

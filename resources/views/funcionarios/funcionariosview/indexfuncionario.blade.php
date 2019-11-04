@@ -3,9 +3,9 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS DATATABLES-->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')}}">
+    {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
+    @include('components.links_css_js.datatable.datatable_css')
+    {{--######################## END CSS SCRIPT DATABLE ####################--}}
 @endsection
 @section('hero_cuadro_bienvenida')
     <!-- Hero -->
@@ -14,27 +14,7 @@
     {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection
 @section('content')
-    @if(session()->has('alert-success'))
-        <div class='alert alert-success d-flex align-items-center' role='alert'>
-            <div class='flex-00-auto'>
-                <i class='fa fa-fw fa-check'></i>
-            </div>
-            <div class='flex-fill ml-3'>
-                <p class='mb-0'>  {{ session()->get('alert-success') }}<a class='alert-link'
-                                                                          href='javascript:void(0)'></a>!</p>
-            </div>
-        </div>
-    @endif
-    @if (session('status'))
-        <div class='alert alert-success d-flex align-items-center' role='alert'>
-            <div class='flex-00-auto'>
-                <i class='fa fa-fw fa-check'></i>
-            </div>
-            <div class='flex-fill ml-3'>
-                <p class='mb-0'>  {{ session('status') }}<a class='alert-link' href='javascript:void(0)'></a>!</p>
-            </div>
-        </div>
-    @endif
+    @include('components.alerts.alerttre')
     @csrf
     <div class="block">
         <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
@@ -126,7 +106,7 @@
                                     <div class="col-sm-1">
                                         <form
                                             action="{{route('funcionario.destroy',$filafuncionario->ci)}}"
-                                            method="post">
+                                            method="post" onsubmit="return confirmation()">
                                             @csrf
                                             @method('delete')
                                             <button href="" type="submit" class="btn btn-sm btn-light push mb-md-0"
@@ -150,16 +130,23 @@
 @endsection
 
 @section('js_script_import')
+
     {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.print.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')}}"></script>
-    <!-- Page JS Code -->
-    <script src="{{asset('assets/js/pages/be_tables_datatables.min.js')}}"></script>
+    @include('components.links_css_js.datatable.datatable_js')
+    {{--######################## END SCRIPT DATABLE ####################--}}
+
+    {{-- ################ START CONFIRMAR ELIMINACION FORM ###############--}}
+    @include('components.confirmation.confirmationdelete_js')
+    {{-- ################# END CONFIRMAR ELIMINACION FORM ###############--}}
+
+    <script type="text/javascript">
+        function confirmation() {
+            if (confirm("Esta seguro de eliminar?")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
 @endsection
 

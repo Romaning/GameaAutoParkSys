@@ -13,7 +13,10 @@
     <!-- END Hero -->
     {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection
+
 @section('content')
+    @include('components.alerts.alerttre')
+
     <!-- Basic -->
     <div class="block shadow p-2 mb-1 rounded">
         <div class="block-header">

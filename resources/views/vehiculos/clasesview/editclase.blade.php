@@ -3,16 +3,13 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS DATATABLES-->
 @endsection
 @section('hero_cuadro_bienvenida')
-    <!-- Hero -->
 
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
 @endsection
 @section('content')
-    <!-- Basic -->
+    @include('components.alerts.alerttre')
+
     <div class="block shadow p-2 mb-1 rounded">
         <div class="block-header">
             <h3 class="block-title">Formulario</h3>
@@ -34,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">
-                                ENVIAR
+                                GUARDAR
                             </button>
                         </div>
                     </div>
@@ -42,11 +39,9 @@
             </form>
         </div>
     </div>
-    <!-- END Basic -->
+
 @endsection
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
 
-    {{-- ################ END SCRIPTS PARA DATATABLESS ###############--}}
 @endsection
 

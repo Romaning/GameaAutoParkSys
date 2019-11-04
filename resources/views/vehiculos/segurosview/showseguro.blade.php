@@ -3,48 +3,38 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
-
-    <!-- Stylesheets -->
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
-
-    <!-- Page CS DIRECTO PARA SHOW VEHICULO -->
-    <!-- Page JS Plugins CSS DATATABLES-->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css')}}">
-    {{--estilo de la pagina--}}
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
+    @include('components.links_css_js.datatable.datatable_css')
+    {{--######################## END CSS SCRIPT DATABLE ####################--}}
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
 @endsection
 @section('hero_cuadro_bienvenida')
 
 @endsection
 @section('content')
 
-    <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
+    {{--<div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="row">
-            <div class="col-lg-12">
-                {{--<button id="btn_generar_filas" class="btn btn-primary shadow rounded"
-                        style="float: right; justify-content: end;">
-                    <i class="fas fa-plus-circle"></i> GENERAR CAMPOS
-                </button>--}}
-            </div>
-        </div>
-    </div>
+            <div class="col-lg-12">--}}
+    {{--<button id="btn_generar_filas" class="btn btn-primary shadow rounded"
+            style="float: right; justify-content: end;">
+        <i class="fas fa-plus-circle"></i> GENERAR CAMPOS
+    </button>--}}
+    {{--</div>
+</div>
+</div>--}}
 
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
         <div {{--class="block invisible" data-toggle="appear" data-class="animated flipInX"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
             <form action="{{route('seguro.update',$seguro->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <table class="table table-bordered table-striped table-vcenter {{--js-dataTable-buttons--}}">
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                     <thead>
                     <tr>
                         <th class="d-none d-sm-table-cell">N° PLACA</th>
@@ -53,35 +43,25 @@
                         <th class="d-none d-sm-table-cell">EMPRESA ASEGURADORA</th>
                         <th class="d-none d-sm-table-cell">FECHA DE VIGENCIA</th>
                         <th class="d-none d-sm-table-cell" style="width:13%;">ARCHIVOS SUBIDOS</th>
+                        <th class="d-none d-sm-table-cell"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td class="text-center font-size-sm">
-                            <select class="js-select2 form-control" id="placa_id" name="placa_id"
-                                    style="width: 100%;" data-placeholder="Escoger...">
-                                <option></option>
-                                @foreach($placas as $filaplaca)
-                                    <option
-                                        value="{{$filaplaca->placa_id}}" {{$filaplaca->placa_id == $seguro->placa_id? "selected":""}}> {{$filaplaca->placa_id}}
-                                    </option>
-                                @endforeach
-                            </select>
+                            {{$seguro->placa_id}}
                         </td>
                         <td class="d-none d-sm-table-cell font-size-sm">
-                            <input type="text" value="{{$seguro->gestion}}" class="form-control" name="campoa">
+                            {{$seguro->gestion}}
                         </td>
                         <td class="d-none d-sm-table-cell font-size-sm">
-                            <input type="text" value="{{$seguro->texto}}" class="form-control" name="campob">
+                            {{$seguro->texto}}
                         </td>
                         <td class="d-none d-sm-table-cell font-size-sm">
-                            <input type="text" value="{{$seguro->empresa_aseguradora}}" class="form-control"
-                                   name="campoc">
+                            {{$seguro->empresa_aseguradora}}
                         </td>
                         <td class="d-none d-sm-table-cell font-size-sm">
-                            <input type='text' value="{{$seguro->fecha_vigencia}}"
-                                   class='js-flatpickr form-control material_green datepickerr'
-                                   name='campod' placeholder='Año-mes-dia'>
+                            {{$seguro->fecha_vigencia}}
                         </td>
                         {{--$$$$$$$$$$$$$$  input files $$$$$$$$$$$$$$--}}
                         <td class="d-none d-sm-table-cell font-size-sm">
@@ -89,7 +69,17 @@
                                 <input type="file" class="custom-file-input" data-toggle="custom-file-input"
                                        id="input_file_image" name="example-file-input-custom">
                                 <label class="custom-file-label" for="input_file_image"
+                                       style="width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"
                                        id="label_file_image">{{$seguro->archivo_subido}}</label>
+                            </div>
+                        </td>
+                        <td class="justify-content-center">
+                            <div class="mb-2">
+                                <a href="{{route('seguro.edit', $seguro->id)}}"
+                                   class="btn btn-sm btn-light push mb-md-0" data-toggle="tooltip"
+                                   title="EDITAR">
+                                    <i class="fas fa-pen"></i>
+                                </a>
                             </div>
                         </td>
                         {{--$$$$$$$$$$$$$$  input files $$$$$$$$$$$$$$--}}
@@ -120,7 +110,8 @@
                     <div class="block-header">
                     </div>
                     <div class="block-content font-size-sm">
-                        <img src="{{asset('carpeta_imagenes/'.$seguro->archivo_subido)}}" width="100%" height="100%" id="images_file"
+                        <img src="{{asset('imagenes_store/seguros/'.$seguro->archivo_subido)}}" width="100%"
+                             height="100%" id="images_file"
                              class="justify-content-center"
                              style="justify-content: center;">
                         <div class="row">
@@ -144,32 +135,22 @@
 @endsection
 
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
-    <!-- Page JS Plugins -->
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script
-        src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
+    {{-- ################ START SCRIPTS PARA DATATABLESS ###############--}}
+    @include('components.links_css_js.datatable.datatable_js')
+    {{--######################## END SCRIPT DATABLE ####################--}}
 
-    {{--############################################## CARROUSEL #############################################--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/slick-carousel/slick.min.js')}}"></script>
+    {{-- ################ START CONFIRMAR ELIMINACION FORM ###############--}}
+    @include('components.confirmation.confirmationdelete_js')
+    {{-- ################# END CONFIRMAR ELIMINACION FORM ###############--}}
 
-    <!-- Page JS Helpers (Slick Slider Plugin) -->
-    <script>jQuery(function () {
-            One.helpers('slick');
-        });</script>
+    {{--###################### START SCRIPT JS CARROUSEL ####################--}}
+    @include('components.links_css_js.carousel.carousel_js')
+    {{--###################### END SCRIPT JS CARROUSEL ####################--}}
+
     {{--#################################################### JAVA SCRIPT PERSONAL############################################################--}}
     <script type="text/javascript">
         /*COMO AVERIGUAR DONDE EN DONDE ESTA NUESTRO PROYECTO, POR EJEMPLO SI ESTAMOS EN localhost/proyecto3/proyectosLaravel/GAmeaAutoParkSys/public

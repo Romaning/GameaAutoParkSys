@@ -3,43 +3,20 @@
 
 @endsection
 @section('styles')
-    <!-- Page JS Plugins CSS BE_FORM_PLUGINS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
-    <link rel="stylesheet"
-          href="{{asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/ion-rangeslider/css/ion.rangeSlider.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzone/dist/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/flatpickr.min.css')}}">
-    <!-- Stylesheets -->
-    <!-- Page CSS DIRECTO PARA SHOW VEHICULO -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/themes/material_green.css')}}">
+    {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_css')
+    {{--#################### END CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/slick-carousel/slick-theme.css')}}">
-
+    {{--##################### START CAROUSEL CSS #####################--}}
+    @include('components.links_css_js.carousel.carousel_css')
+    {{--##################### END CAROUSEL CSS #####################--}}
 @endsection
 @section('hero_cuadro_bienvenida')
-    <!-- Hero -->
-    <div class="bg-image" style="background-image: url({{asset('image_proyect/fondo_hero3.jpg')}});">
-        <div class="bg-black-50">
-            <div class="content content-full text-center">
-                {{--<div class="my-3">
-                    <img class="img-avatar img-avatar-thumb" src="{{asset('')}}" alt=""
-                         id="src_imagen_perfil_hero">
-                </div>
-                <h1 class="h2 text-white mb-0" id=""></h1>
-                <span class="text-white-75">
-                    Nombre Funcionario
-                </span>--}}
-            </div>
-        </div>
-    </div>
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
+
 @endsection
 @section('content')
+    @include('components.alerts.alerttre')
+
     @if(count($errors) > 0)
         <div class="errors">
             <ul>
@@ -75,7 +52,7 @@
                                 <div class="form-group">
                                     <label for="asignacion_id">ASIGANCIONES DISPONIBLES PARA DEVOLUCION: <span class="text-danger">*</span></label>
                                     <select class="js-select2 form-control" id="asignacion_id" name="asignacion_id"
-                                            style="width: 100%;" data-placeholder="Escoger...">
+                                            style="width: 100%;" data-placeholder="Escoger..." required>
                                         <option></option>
                                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                         @foreach($AsigIdPlacaIdCienAsignaciones as $filaasginados)
@@ -95,13 +72,15 @@
                                     <input type="text" class="js-flatpickr form-control bg-white"
                                            id="fecha_devolucion"
                                            name="fecha_devolucion" placeholder="Año-mes-dia"
-                                           data-date-format="Y-m-d">
+                                           data-date-format="Y-m-d" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="identificador_acta_devolucion">IDENTIFICADOR ACTA DEVOLUCION: <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control js-maxlength"
+                                           maxlength="100" data-always-show="true"
+                                           data-placement="top"
                                            name="identificador_acta_devolucion"
                                            id="identificador_acta_devolucion" pattern="[A-Za-z0-9]+">
                                 </div>
@@ -111,7 +90,9 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="motivo_devolucion">MOTIVO DE DEVOLUCION: <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control js-maxlength"
+                                           maxlength="191" data-always-show="true"
+                                           data-placement="top"
                                            name="motivo_devolucion"
                                            id="motivo_devolucion" required>
                                     {{--<select class="js-select2 form-control"
@@ -168,6 +149,27 @@
             </form>
         </div>
         <div id="mensaje_respuesta_form_subir_devolucion"></div>
+        @if(session()->has('alert-success'))
+            <div class='alert alert-success d-flex align-items-center' role='alert'>
+                <div class='flex-00-auto'>
+                    <i class='fa fa-fw fa-check'></i>
+                </div>
+                <div class='flex-fill ml-3'>
+                    <p class='mb-0'>  {{ session()->get('alert-success') }}<a class='alert-link'
+                                                                              href='javascript:void(0)'></a>!</p>
+                </div>
+            </div>
+        @endif
+        @if (session('status'))
+            <div class='alert alert-success d-flex align-items-center' role='alert'>
+                <div class='flex-00-auto'>
+                    <i class='fa fa-fw fa-check'></i>
+                </div>
+                <div class='flex-fill ml-3'>
+                    <p class='mb-0'>  {{ session('status') }}<a class='alert-link' href='javascript:void(0)'></a>!</p>
+                </div>
+            </div>
+        @endif
     </div>
 
     <div class="d-none">
@@ -177,34 +179,14 @@
     </div>
 @endsection
 @section('js_script_import')
-    {{-- ################ START SCRIPTS PARA LA PAGINA DE VALIDACIONES BE_FORM_PLUGINS ###############--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/dropzone/dropzone.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/flatpickr/flatpickr.min.js')}}"></script>
 
-    <!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Inputs + Ion Range Slider plugins) -->
-    <script>jQuery(function () {
-            One.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']);
-        });</script>
+    {{--############################ START SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
+    @include('components.links_css_js.pluginsform.plugin_form_js')
+    {{--############################ END SCRIPTS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
 
-    {{--############################################## CARROUSEL #############################################--}}
-    <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/slick-carousel/slick.min.js')}}"></script>
-
-    <!-- Page JS Helpers (Slick Slider Plugin) -->
-    <script>jQuery(function () {
-            One.helpers('slick');
-        });</script>
-    {{--###################################### time --}}
-
-    {{-- ############################################### END SCRIPTS  ######################################################--}}
-
+    {{--###################### START SCRIPT JS CARROUSEL ####################--}}
+    @include('components.links_css_js.carousel.carousel_js')
+    {{--###################### END SCRIPT JS CARROUSEL ####################--}}
 
     {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
     {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SCRIPT PERSONAL $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
