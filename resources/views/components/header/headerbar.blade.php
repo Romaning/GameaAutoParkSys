@@ -8,7 +8,7 @@
             <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
             <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none bg" data-toggle="layout"
                     data-action="sidebar_toggle">
-                <i class="fa fa-fw fa-bars "> </i>
+                <i class="fa fa-fw fa-car "> </i>
             </button>
             <!-- END Toggle Sidebar -->
 

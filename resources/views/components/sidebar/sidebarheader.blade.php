@@ -1,5 +1,8 @@
 <!-- Side Header -->
 <div class="content-header bg-white-5">
+
+
+    <!-- END Close Side Overlay -->
     <!-- Logo -->
     {{--<div class="row">--}}{{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
     <a class="font-w600 text-dual" href="{{route('webpage')}}">
@@ -17,10 +20,16 @@
             </span> {{--$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$--}}
         </span>
     </a>
-    {{--</div>--}} {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
+{{--</div>--}} {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
+<!-- Close Sidebar, Visible only on mobile screens -->
+    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+    <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+        <i class="fa fa-times"></i>
+    </a>
+    <!-- END Close Sidebar -->
 </div>
 <div id="sidebar_header_perfil_usuario"
-    class="bg-image @yield('sidebar_header_perfil_usuario_css')" >
+     class="bg-image @yield('sidebar_header_perfil_usuario_css')">
     {{--style="background-image: url( @yield('background_avatar_sidebar',asset('image_proyect/fondo_hero3.jpg')));"--}}
     <div class="bg-black-50">
         <div class="content content-full text-center">

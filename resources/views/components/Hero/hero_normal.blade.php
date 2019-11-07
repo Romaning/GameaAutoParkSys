@@ -2,7 +2,7 @@
 
 <div class="bg-image @yield('css_hero')" style="background-image: url( @yield('imagen_fondo',asset('image_proyect/fondo_hero5.jpg')));/* height: 10%;*/">
     {{--<div class="row" style="height: 10px;"></div>--}}
-    <div class="bg-black-75 @yield('div_hero_css','')" {{--style="height: 10%"--}}>
+    <div class="bg-black-50 @yield('div_hero_css','')" {{--style="height: 10%"--}}>
         <div class="content content-full @yield('div_content_css','text-center')">
             <div class="my-0 @yield('div_imagen_avatar_css','')">
                 <img class="img-avatar {{--img-avatar-thumb--}} @yield('imagen_avatar_css','')"
