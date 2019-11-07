@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    EDITAR SEGURO
 @endsection
 @section('styles')
     {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
@@ -15,6 +15,22 @@
     @include('components.links_css_js.carousel.carousel_css')
     {{--##################### END CAROUSEL CSS #####################--}}
 @endsection
+
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Editar Seguro')
+        {{--<li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">IMAGENES DE PERFIL</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Generar Registrar Nuevo</a>
+        </li>--}}
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
 @section('hero_cuadro_bienvenida')
 
 @endsection
@@ -32,7 +48,7 @@
     </div>--}}
 
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
-        <div {{--class="block invisible" data-toggle="appear" data-class="animated flipInX"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
+        <div {{--class="block invisible" data-toggle="appear" data-class="animated bounceIn"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
             <form action="{{route('seguro.update',$seguro->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

@@ -1,12 +1,28 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    ESTADOS DE SERVICIO DE VEHICULOS
 @endsection
 @section('styles')
     {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
     @include('components.links_css_js.datatable.datatable_css')
     {{--######################## END CSS SCRIPT DATABLE ####################--}}
 @endsection
+
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Tabla Estado Servicio Vehiculos')
+        <li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">VEHICULOS</li>
+        <li class="breadcrumb-item">Historial de Estados de Vehiculos</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Tabla Estado Servicios</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
 @section('hero_cuadro_bienvenida')
 
 @endsection

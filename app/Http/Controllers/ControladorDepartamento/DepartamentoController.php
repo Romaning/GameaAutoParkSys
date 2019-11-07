@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class DepartamentoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      *  Item ::from( 'items as items_alias' )
      * ->join( 'attachments as att', DB::raw( 'att.item_id' ), '=', DB::raw( 'items_alias.id' ) )

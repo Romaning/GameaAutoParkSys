@@ -1,11 +1,28 @@
 @extends('layouts.layoutmaster')
 @section('title')
+    HISTORIAL INCIDENCIAS
 @endsection
 @section('styles')
     {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
     @include('components.links_css_js.datatable.datatable_css')
     {{--######################## END CSS SCRIPT DATABLE ####################--}}
 @endsection
+
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Historial Incidencias')
+        {{--<li class="breadcrumb-item">SECCION 3</li>
+        <li class="breadcrumb-item">INCIDENCIAS</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Form Registar Incidencia</a>
+        </li>--}}
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
 @section('hero_cuadro_bienvenida')
 
 @endsection
@@ -14,7 +31,7 @@
     @include('components.alerts.alerttre')
     <div class="block">
         <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
-             data-class="animated flipInX">
+             data-class="animated bounceIn">
             <div>
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                     <thead>

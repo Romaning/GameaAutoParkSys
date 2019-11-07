@@ -1,24 +1,38 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    FUNCIONARIOS
 @endsection
 @section('styles')
     {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
     @include('components.links_css_js.datatable.datatable_css')
     {{--######################## END CSS SCRIPT DATABLE ####################--}}
 @endsection
-@section('hero_cuadro_bienvenida')
-    <!-- Hero -->
 
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Tabla Funcionarios')
+        <li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">FUNCIONARIOS</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Tabla Funcionarios</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
+@section('hero_cuadro_bienvenida')
 @endsection
 @section('content')
     @include('components.alerts.alerttre')
     @csrf
+
+    <!-- Dynamic Table with Export Buttons -->
     <div class="block">
         <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
-             data-class="animated flipInX">
+             data-class="animated bounceIn">
             <div>
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                     <thead>

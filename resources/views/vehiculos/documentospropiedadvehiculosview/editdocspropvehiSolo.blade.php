@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    EDITAR DOCUMENTOS DE PROPIEDAD
 @endsection
 @section('styles')
     {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
@@ -13,6 +13,20 @@
     @include('components.links_css_js.carousel.carousel_css')
     {{--##################### END CAROUSEL CSS #####################--}}
 @endsection
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Editar Documento')
+        {{--<li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">DOCUMENTOS DE PROPIEDAD</li>
+        <li class="breadcrumb-item">Imagenes</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Editar</a>
+        </li>--}}
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
 @section('hero_cuadro_bienvenida')
 
 @endsection

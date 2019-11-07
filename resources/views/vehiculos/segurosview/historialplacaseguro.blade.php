@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    HISTORIAL SEGURO
 @endsection
 @section('styles')
     {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
@@ -14,6 +14,22 @@
     {{--##################### END CAROUSEL CSS #####################--}}
 
 @endsection
+
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Historial Seguros')
+        <li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">SEGUROS</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">De Todos Los Vehiculos</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
 @section('hero_cuadro_bienvenida')
 
 @endsection
@@ -32,7 +48,7 @@
     </div>--}}
 
     <div class="block shadow p-2 mb-1 rounded" data-toggle="appear" data-class="animated bounceIn">
-        <div {{--class="block invisible" data-toggle="appear" data-class="animated flipInX"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
+        <div {{--class="block invisible" data-toggle="appear" data-class="animated bounceIn"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
         <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                 <thead>

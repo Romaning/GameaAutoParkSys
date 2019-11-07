@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    REGISTRAR SEGURO
 @endsection
 @section('styles')
     {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
@@ -12,6 +12,22 @@
     {{--##################### END CAROUSEL CSS #####################--}}
 
 @endsection
+
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Registrar Seguros')
+        {{--<li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">IMAGENES DE PERFIL</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Generar Registrar Nuevo</a>
+        </li>--}}
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
 @section('hero_cuadro_bienvenida')
     <!-- Hero -->
 

@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    REGISTRAR ASIGNACION
 @endsection
 @section('styles')
     {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
@@ -10,8 +10,23 @@
     {{--##################### START CAROUSEL CSS #####################--}}
     @include('components.links_css_js.carousel.carousel_css')
     {{--##################### END CAROUSEL CSS #####################--}}
-
 @endsection
+
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Registrar Asignacion')
+        <li class="breadcrumb-item">SECCION 3</li>
+        <li class="breadcrumb-item">ASIGNACIONES</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Form Nueva Asignacion</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
 @section('hero_cuadro_bienvenida')
 
 
@@ -26,6 +41,8 @@
             </ul>
         </div>
     @endif
+    {{--,
+    "ext-http": "*"--}}
     {{csrf_field()}}
     <!-- Basic -->
 

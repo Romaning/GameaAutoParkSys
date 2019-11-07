@@ -1,28 +1,25 @@
 <?php
 /* PRUEBA SUBIR ARCHIVOS DE IMAGENES*/
-Route::get('/indexfile', 'CarpetaControlador\BtnGeneraImgsController@index')->name('indexfile.index');
+/*Route::get('/indexfile', 'CarpetaControlador\BtnGeneraImgsController@index')->name('indexfile.index');*/
 /*BTN STORE IMG 1*/
-Route::post('/storeimg1', 'CarpetaControlador\BtnGeneraImgsController@storeimg1')->name('storeimg1.store');
+/*Route::post('/storeimg1', 'CarpetaControlador\BtnGeneraImgsController@storeimg1')->name('storeimg1.store');*/
 /*btngeneraimgs BtnGeneraImgsController->storeImagesUECam*/
-Route::post('/btnstoreimges', 'CarpetaControlador\BtnGeneraImgsController@storeImagesUECam')->name('btnstoreimges.store');
+/*Route::post('/btnstoreimges', 'CarpetaControlador\BtnGeneraImgsController@storeImagesUECam')->name('btnstoreimges.store');*/
 
 /*#################################################### DROPZONE #######################################################*/
 Route::prefix('/dropzone')->group(function () {
-    Route::get('/', 'ImageUploadController@index')->name('dropzone.index');
+    /*Route::get('/', 'ImageUploadController@index')->name('dropzone.index');*/
     /*Route::get('/create','ImageUploadController@create')->name('dropzone.create');*/
     /*Route::post('/','ImageUploadController@store')->name('dropzone.store');*/
-    Route::post('/', 'ImageUploadController@storeFile')->name('dropzone.file.store');
+    /*Route::post('/', 'ImageUploadController@storeFile')->name('dropzone.file.store');*/
     /*Route::get('/{asdsad}','ImageUploadControllerr@asdsad')->name('asdsad.show');
     Route::get('/{asdsad}/edit','ImageUploadController@asdsad')->name('asdsad.edit');
     Route::put('/{asdsad}','ImageUploadController@asdsad')->name('asdsad.update');
     Route::delete('/{archivo_id}','ImageUploadController@destroy')->name('dropzone.destroy');*/
-    Route::post('/eliminarimagedropzone', 'ImageUploadController@fileDestroy')->name('dropzone.file.destroy');
+    /*Route::post('/eliminarimagedropzone', 'ImageUploadController@fileDestroy')->name('dropzone.file.destroy');*/
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/paginaindex', 'CarpetaControlador\ControllerRoman@index');
+/*Route::get('/paginaindex', 'CarpetaControlador\ControllerRoman@index');*/
 /*#################################################### VEHICULOS #######################################################*/
 /*Route::resource('clase','ControladorVehiculo\ClaseController');*/
 Route::prefix('/clase')->group(function () {
@@ -122,9 +119,8 @@ Route::prefix('/estservvehi')->group(function () {
     Route::get('{placa_id}/register', 'ControladorVehiculo\EstadoServicioVehiculoController@registerSolo')->name('estservvehi.registrarsolo'); /*#### bien ####*/
     Route::post('/store', 'ControladorVehiculo\EstadoServicioVehiculoController@storeSolo')->name('estservvehi.storesolo');                         /*#### bien ####*/
     /*#################################################################################################################################*/
-
 });
-
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R documentospropiedadvehiculo ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 /*Route::resource('documentospropiedadvehiculo','ControladorVehiculo\DocumentosPropiedadVehiculoController');*/
 Route::prefix('/documentospropiedadvehiculo')->group(function () {
     Route::get('/', 'ControladorVehiculo\DocumentosPropiedadVehiculoController@index')->name('documentospropiedadvehiculo.index');
@@ -148,8 +144,7 @@ Route::prefix('/documentospropiedadvehiculo')->group(function () {
     /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
     Route::post('/consulta', 'ControladorVehiculo\EstadoServicioVehiculoController@consultaUltimoEstado')->name('estservvehi.consulta');
 });
-
-/**/
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R imagenesperfilvehiculo ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/imagenesperfilvehiculo')->group(function () {
     Route::post('/storefile', 'ControladorVehiculo\ImagenesPerfilVehiculoController@storeFileMethodStyde')->name('imgsperfil.storefilemet');
 
@@ -163,7 +158,7 @@ Route::prefix('/imagenesperfilvehiculo')->group(function () {
     Route::post('/imgsperfildeletefile', 'ControladorVehiculo\ImagenesPerfilVehiculoController@fileDestroy')->name('imgsperfil.deletefile');
     /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 });
-
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R documentosrenovablevehiculo ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 /*Route::resource('documentosrenovablevehiculo','ControladorVehiculo\DocumentosRenovableVehiculoController');*/
 Route::prefix('/documentosrenovablevehiculo')->group(function () {
     Route::get('/', 'ControladorVehiculo\DocumentosRonovableVehiculoController@index')->name('docsrenov.index');
@@ -177,7 +172,7 @@ Route::prefix('/documentosrenovablevehiculo')->group(function () {
     Route::get('/{vehiculo_id}/historial', 'ControladorVehiculo\DocumentosRonovableVehiculoController@historialPlaca')->name('docsrenov.historial.placa');
     Route::get('/{vehiculo_id}/registrar', 'ControladorVehiculo\DocumentosRonovableVehiculoController@registrarSolo')->name('docsrenov.registrarsolo');
 });
-
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R VEHICULOS ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 /*Route::resource('seguro','ControladorVehiculo\SeguroController');*/
 Route::prefix('/seguro')->group(function () {
     Route::get('/', 'ControladorVehiculo\SeguroController@index')->name('seguro.index');
@@ -192,9 +187,7 @@ Route::prefix('/seguro')->group(function () {
     Route::get('/{seguro_id}/createsolo', 'ControladorVehiculo\SeguroController@createSolo')->name('seguro.createsolo');
     Route::post('/{seguro_id}/update', 'ControladorVehiculo\SeguroController@updateClasis')->name('seguro.update.clasic');
 });
-/*#################################################### VEHICULOS #######################################################*/
-
-/*################################################### DEPARTAMENTOS #################################################*/
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R DEPARTAMENTOS ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/departamento')->group(function () {
     Route::get('/', 'ControladorDepartamento\DepartamentoController@index')->name('departamento.index');
     Route::get('/create', 'ControladorDepartamento\DepartamentoController@create')->name('departamento.create');
@@ -204,7 +197,7 @@ Route::prefix('/departamento')->group(function () {
     Route::put('/{departamento_id}', 'ControladorDepartamento\DepartamentoController@update')->name('departamento.update');
     Route::delete('/{departamento_id}', 'ControladorDepartamento\DepartamentoController@destroy')->name('departamento.destroy');
 });
-/*################################################### DEPARTAMENTOS #################################################*/
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R ESTADO FUNCIONARIO ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/estadofunc')->group(function () {
     Route::get('/', 'ControladorFuncionario\EstadoFuncController@index')->name('estadofunc.index');
     Route::get('/create', 'ControladorFuncionario\EstadoFuncController@create')->name('estadofunc.create');
@@ -214,8 +207,7 @@ Route::prefix('/estadofunc')->group(function () {
     Route::put('/{estadofunc_id}', 'ControladorFuncionario\EstadoFuncController@update')->name('estadofunc.update');
     Route::delete('/{estadofunc_id}', 'ControladorFuncionario\EstadoFuncController@destroy')->name('estadofunc.destroy');
 });
-
-/*################################################### FUNCIONARIOS #################################################*/
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R FUNCIONARIOS ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/funcionario')->group(function () {
     Route::get('/', 'ControladorFuncionario\FuncionarioController@index')->name('funcionario.index');
     Route::get('/create', 'ControladorFuncionario\FuncionarioController@create')->name('funcionario.create');
@@ -225,8 +217,7 @@ Route::prefix('/funcionario')->group(function () {
     Route::put('/{funcionario_id}', 'ControladorFuncionario\FuncionarioController@update')->name('funcionario.update');
     Route::delete('/{funcionario_id}', 'ControladorFuncionario\FuncionarioController@destroy')->name('funcionario.destroy');
 });
-/*################################################### FUNCIONARIOS #################################################*/
-/*################################################### ASIGANCIONES #################################################*/
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R ASIGANCIONES ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/asignacion')->group(function () {
     Route::get('/', 'ControladorAsignacionDevolucion\AsignacionController@index')->name('asignacion.index');
     Route::get('/create', 'ControladorAsignacionDevolucion\AsignacionController@create')->name('asignacion.create');
@@ -236,9 +227,9 @@ Route::prefix('/asignacion')->group(function () {
     Route::put('/{asignacion_id}', 'ControladorAsignacionDevolucion\AsignacionController@update')->name('asignacion.update');
     Route::delete('/{asignacion_id}', 'ControladorAsignacionDevolucion\AsignacionController@destroy')->name('asignacion.destroy');
 });
-
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::get('asignacion/{devolucion_id}/a/devolucion', 'ControladorAsignacionDevolucion\AsignacionController@llevarAsigADevolucion')->name('devolucion.asignacion');
-
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/devolucion')->group(function () {
     Route::get('/', 'ControladorAsignacionDevolucion\DevolucionController@index')->name('devolucion.index');
     Route::get('/create', 'ControladorAsignacionDevolucion\DevolucionController@create')->name('devolucion.create');
@@ -249,7 +240,7 @@ Route::prefix('/devolucion')->group(function () {
     Route::delete('/{devolucion_id}', 'ControladorAsignacionDevolucion\DevolucionController@destroy')->name('devolucion.destroy');
 
 });
-
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/vale')->group(function () {
     Route::get('/', 'ControladorValesDeCombustibles\ValesDeCombustibleController@index')->name('vale.index');
     Route::get('/create', 'ControladorValesDeCombustibles\ValesDeCombustibleController@create')->name('vale.create');
@@ -262,7 +253,7 @@ Route::prefix('/vale')->group(function () {
     Route::get('/{placa_id}/historial', 'ControladorValesDeCombustibles\ValesDeCombustibleController@historialVale')->name('vale.historial.placa');
 
 });
-
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/mantenimiento')->group(function () {
     Route::get('/', 'ControladorMantenimiento\MantenimientoController@index')->name('mantenimiento.index');
     Route::get('/create', 'ControladorMantenimiento\MantenimientoController@create')->name('mantenimiento.create');
@@ -274,7 +265,7 @@ Route::prefix('/mantenimiento')->group(function () {
 
     Route::get('/{mantenimiento_id}/historial', 'ControladorMantenimiento\MantenimientoController@historial')->name('mantenimiento.historial.placa');
 });
-
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/infraccion')->group(function () {
     Route::get('/', 'ControladorInfraccion\InfraccionController@index')->name('infraccion.index');
     Route::get('/create', 'ControladorInfraccion\InfraccionController@create')->name('infraccion.create');
@@ -286,8 +277,7 @@ Route::prefix('/infraccion')->group(function () {
 
     Route::get('/{placa_id}/historial', 'ControladorInfraccion\InfraccionController@historialInfraccion')->name('infraccion.historial.placa');
 });
-
-
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
 Route::prefix('/incidencia')->group(function () {
     Route::get('/', 'ControladorIncidencia\IncidenciaController@index')->name('incidencia.index');
     Route::get('/create', 'ControladorIncidencia\IncidenciaController@create')->name('incidencia.create');
@@ -300,5 +290,12 @@ Route::prefix('/incidencia')->group(function () {
     Route::post('/consulta', 'ControladorIncidencia\IncidenciaController@consulta')->name('incidencia.consulta');
     Route::get('/{incidencia_id}/historial', 'ControladorIncidencia\IncidenciaController@historialPlaca')->name('incidencia.historial.placa');
 });
-
-
+/* &&&&&&&&&&&&&&&&&&&////////////////////////////////////////// R //////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
+Route::get('/','PaginaWebController@index')->name('webpage'); /*/*/
+Auth::routes();
+Route::get('/tablero','ControladorTablero\TableroPrincipalController@index')->name('tablero');/*HOME*/
+/* &&&&&&&&&&&&&&&&&&&///////////////////////////////////////// R ///////////////////////////////////////&&&&&&&&&&&&&&&&&&& */
+/*Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/home', 'HomeController@index')->name('home');*/

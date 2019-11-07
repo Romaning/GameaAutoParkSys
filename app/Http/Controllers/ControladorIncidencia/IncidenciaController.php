@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class IncidenciaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -71,6 +74,7 @@ class IncidenciaController extends Controller
         $incidenciaInst = new Incidencia();
         $incidenciaInst->placa_id = $request->placa_id;
         $incidenciaInst->ci = $request->ci;
+        $carnet = $request->ci;
         $incidenciaInst->tipo_incidencia_descripcion = $request->tipo_incidencia_descripcion;
         $incidenciaInst->fecha_incidencia = $request->fecha_incidencia;
         if (empty($request->vehiculo_en_movimiento)){
@@ -82,6 +86,13 @@ class IncidenciaController extends Controller
         $incidenciaInst->lugar_incidencia = $request->lugar_incidencia;
         $incidenciaInst->descripcion = $request->descripcion;
         $incidenciaInst->save();
+
+        $funcInst = Funcionario::find($carnet);
+        $accidentesFunc = $funcInst->numero_accidentes;
+        $accidentesFunc = $accidentesFunc + 1;
+        $funcInst->numero_accidentes = $accidentesFunc;
+        $funcInst->update();
+
         return redirect()->back()->with('alert-success','GUARDADO EXITOSAMENTE!');
     }
 

@@ -1,12 +1,26 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    SEGUROS
 @endsection
 @section('styles')
     {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
     @include('components.links_css_js.datatable.datatable_css')
     {{--######################## END CSS SCRIPT DATABLE ####################--}}
 @endsection
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Tabla Seguros')
+        <li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">SEGUROS</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">De Todos Los Vehiculos</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
 @section('hero_cuadro_bienvenida')
 
 @endsection
@@ -15,8 +29,8 @@
     @csrf
     <div class="block">
         <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
-             data-class="animated flipInX{{--bounceIn--}}">
-            <div {{--class="block invisible" data-toggle="appear" data-class="animated flipInX"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
+             data-class="animated bounceIn{{--bounceIn--}}">
+            <div {{--class="block invisible" data-toggle="appear" data-class="animated bounceIn"--}}> {{--esta parte hace que la tabal tenga amimacion--}}
             <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
                     <thead>

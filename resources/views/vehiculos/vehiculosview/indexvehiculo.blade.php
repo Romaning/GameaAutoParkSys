@@ -7,31 +7,36 @@
     @include('components.links_css_js.datatable.datatable_css')
     {{--######################## END CSS SCRIPT DATABLE ####################--}}
 @endsection
+{{--start hero--}}
+{{--@section('imagen_fondo', asset('image_proyect/fondo_hero2.jpg'))--}}
+    @section('div_content_css','d-none')
+    @section('nuevo_contenido_hero')
+          @component('components.Hero.herotexto')
+                @slot('titulo1','Tabla Vehiculo')
+                <li class="breadcrumb-item">SECCION 2</li>
+                <li class="breadcrumb-item">VEHICULOS</li>
+                <li class="breadcrumb-item">Informacion</li>
+                <li class="breadcrumb-item" aria-current="page">
+                    <a class="link-fx" href="">Vehiculo</a>
+                </li>
+          @endcomponent
+    @endsection
+
+{{--end hero--}}
 @section('hero_cuadro_bienvenida')
-    <div class="bg-image" style="background-image: url({{asset('image_proyect/fondo_hero3.jpg')}});">
-        <div class="bg-black-50">
-            <div class="content content-full text-center">
-                <div class="my-3">
-                    <img class="img-avatar img-avatar-thumb" src="{{asset('image_proyect/fondo_hero3.jpg')}}" alt=""
-                         id="imagen_perfil_hero">
-                </div>
-                <h1 class="h2 text-white mb-0"></h1>
-                <span class="text-white-75" id="ci_perfil_hero">Nombre Funcionario</span>
-            </div>
-        </div>
-    </div>
 @endsection
+
 @section('content')
     {{--####################################### CABECERA DE IMPRESION ##############################--}}
     <div id="cabecera_carta_general" class="d-none">
         <div class="row mb-4">
             <!-- Company Info -->
             <div class="col-6 font-size-sm">
-                <p class="h3">Company</p>
+                <p class="h3">DATOS</p>
                 <address>
-                    Street Address<br>
-                    State, City<br>
-                    Region, Postal Code<br>
+                    Avenida<br>
+                    Estado, Cuidad<br>
+                    Region, Codigo Postal<br>
                     ltd@example.com
                 </address>
             </div>
@@ -39,12 +44,12 @@
 
             <!-- Client Info -->
             <div class="col-6 text-right font-size-sm">
-                <p class="h3">Client</p>
+                <p class="h3">Cliente</p>
                 <address>
-                    Street Address<br>
-                    State, City<br>
-                    Region, Postal Code<br>
-                    ctr@example.com
+                    Avenida<br>
+                    Estado, Cuidad<br>
+                    Region, Codigo Postal<br>
+                    ltd@example.com
                 </address>
             </div>
             <!-- END Client Info -->
@@ -59,7 +64,8 @@
         <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
              data-class="animated bounceIn">
             <div>
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons" id="table_vehiculo_print">
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons"
+                       id="table_vehiculo_print">
                     <thead>
                     <tr>
                         <th class="d-none d-sm-table-cell">N° PLACA</th>

@@ -2,8 +2,7 @@
 @endforeach
 @extends('layouts.layoutmaster')
 @section('title')
-
-
+    INFORMACION VEHICULO
 @endsection
 @section('styles')
     {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
@@ -27,6 +26,22 @@
     {{--######################## END CSS SCRIPT DATABLE ####################--}}
 
 @endsection
+
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Informacion Vehiculo')
+        <li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">VEHICULOS</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Vehiculo</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
 @section('hero_cuadro_bienvenida')
 
 @endsection
@@ -239,7 +254,7 @@
                     {{--#########################################################################################--}}
                 </div>
                 {{--#################################################################--}}
-                <div class="col-md-4">
+                {{--<div class="col-md-4">
                     <!-- Tiles Slider 3 -->
                     <div class="js-slider slick-nav-hover" data-dots="true" data-autoplay="true" data-arrows="true">
                         <div class="block text-center mb-0">
@@ -317,7 +332,7 @@
                         </div>
                     </div>
                     <!-- END Tiles Slider 3 -->
-                </div>
+                </div>--}}
             </div>
         </div>
     </div>
@@ -1073,14 +1088,117 @@
 
 
 
+
+
+    <div class="block shadow p-2 mb-1 rounded" id="bloque_docs_prop_vehiculo" data-toggle="appear" data-class="animated bounceIn">
+        <div class="block-header">
+            <h3 class="block-title">
+                <i class="fa fa-play fa-fw text-primary"></i>
+                ULTIMA INCIDENCIA REGISTRADA EN LA BASE DE DATOS DE VEHICULO
+                <a href="{{route('incidencia.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info"
+                   style="float: right;"> HISTORIAL </a>
+            </h3>
+        </div>
+        <div>
+            <table class="table table-bordered table-striped table-vcenter {{--js-dataTable-buttons--}}">
+                <thead>
+                <tr>
+                    <th class="d-none d-sm-table-cell">ID</th>
+                    <th class="d-none d-sm-table-cell">PLACA</th>
+                    <th class="d-none d-sm-table-cell">CI</th>
+                    <th class="d-none d-sm-table-cell">TIPO INCIDENCIA</th>
+                    <th class="d-none d-sm-table-cell">FECHA INCIDENCIA</th>
+                    <th class="d-none d-sm-table-cell">EN MOVIMIENTO</th>
+                    <th class="d-none d-sm-table-cell">LUGAR DE INCIDENCIA</th>
+                    <th class="d-none d-sm-table-cell">DESCRIPCION</th>
+                    <th style="width:10%" class="text-sm-center font-size-sm">
+                        {{--<a href="{{route('incidencia.create')}}"
+                           class="btn-sm btn-primary shadow rounded">
+                            <i class="fa fa-plus-circle"></i> Añadir
+                        </a>--}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($datosincidencias as $filaincidencia)
+                    <tr>
+                        <td class="text-center font-size-sm">
+                            {{$filaincidencia->incidencia_id}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->placa_id}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->ci}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->tipo_incidencia_descripcion}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->fecha_incidencia}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->vehiculo_en_movimiento}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->lugar_incidencia}}
+                        </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            {{$filaincidencia->descripcion}}
+                        </td>
+                        <td class="justify-content-center">
+                            <div class="row text-sm-center">
+                                <div class="col-sm-1">
+                                    <a href="{{route('incidencia.show',$filaincidencia->incidencia_id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="VER INFORMACION COMPLETA">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a href="{{route('incidencia.edit',$filaincidencia->incidencia_id)}}"
+                                       class="btn btn-sm btn-light push mb-md-0"
+                                       data-toggle="tooltip"
+                                       title="EDITAR">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-1">
+                                    <form
+                                        action="{{route('incidencia.destroy',$filaincidencia->incidencia_id)}}"
+                                        @include('components.confirmation.confirmdel')
+                                        method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button href="" type="submit" class="btn btn-sm btn-light push mb-md-0"
+                                                data-toggle="tooltip"
+                                                title="ELIMINAR">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
     <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
-         data-class="animated flipInX">
+         data-class="animated bounceIn">
         <div class="block-header">
             <h3 class="block-title">
                 <i class="fa fa-play fa-fw text-primary"></i>
                 ULTIMA INFRACCION REGISTRADA EN LA BASE DE DATOS DE VEHICULO
                 <a href="{{route('infraccion.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info"
-                   style="float: right;"> HISTORIAL </a>
+                   style="float: right;"> HISTORIAL
+                </a>
             </h3>
         </div>
         <div>
@@ -1173,112 +1291,6 @@
             </table>
         </div>
     </div>
-
-
-
-    <div class="block">
-        <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear"
-             data-class="animated flipInX">
-            <div class="block-header">
-                <h3 class="block-title">
-                    <i class="fa fa-play fa-fw text-primary"></i>
-                    ULTIMA INCIDENCIA REGISTRADA EN LA BASE DE DATOS DE VEHICULO
-                    <a href="{{route('incidencia.historial.placa', $filavehiculo->placa_id)}}" class="btn btn-info"
-                       style="float: right;"> HISTORIAL </a>
-                </h3>
-            </div>
-            <div>
-                <table class="table table-bordered table-striped table-vcenter {{--js-dataTable-buttons--}}">
-                    <thead>
-                    <tr>
-                        <th class="d-none d-sm-table-cell">ID</th>
-                        <th class="d-none d-sm-table-cell">PLACA</th>
-                        <th class="d-none d-sm-table-cell">CI</th>
-                        <th class="d-none d-sm-table-cell">TIPO INCIDENCIA</th>
-                        <th class="d-none d-sm-table-cell">FECHA INCIDENCIA</th>
-                        <th class="d-none d-sm-table-cell">EN MOVIMIENTO</th>
-                        <th class="d-none d-sm-table-cell">LUGAR DE INCIDENCIA</th>
-                        <th class="d-none d-sm-table-cell">DESCRIPCION</th>
-                        <th style="width:10%" class="text-sm-center font-size-sm">
-                            {{--<a href="{{route('incidencia.create')}}"
-                               class="btn-sm btn-primary shadow rounded">
-                                <i class="fa fa-plus-circle"></i> Añadir
-                            </a>--}}
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                     @foreach($datosincidencias as $filaincidencia)
-                    <tr>
-                        <td class="text-center font-size-sm">
-                            {{$filaincidencia->incidencia_id}}
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            {{$filaincidencia->placa_id}}
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            {{$filaincidencia->ci}}
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            {{$filaincidencia->tipo_incidencia_descripcion}}
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            {{$filaincidencia->fecha_incidencia}}
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            {{$filaincidencia->vehiculo_en_movimiento}}
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            {{$filaincidencia->lugar_incidencia}}
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            {{$filaincidencia->descripcion}}
-                        </td>
-                        <td class="justify-content-center">
-                            <div class="row text-sm-center">
-                                <div class="col-sm-1">
-                                    <a href="{{route('incidencia.show',$filaincidencia->incidencia_id)}}"
-                                       class="btn btn-sm btn-light push mb-md-0"
-                                       data-toggle="tooltip"
-                                       title="VER INFORMACION COMPLETA">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a href="{{route('incidencia.edit',$filaincidencia->incidencia_id)}}"
-                                       class="btn btn-sm btn-light push mb-md-0"
-                                       data-toggle="tooltip"
-                                       title="EDITAR">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
-                                </div>
-                                <div class="col-sm-1">
-                                    <form
-                                        action="{{route('incidencia.destroy',$filaincidencia->incidencia_id)}}"
-                                        @include('components.confirmation.confirmdel')
-                                        method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button href="" type="submit" class="btn btn-sm btn-light push mb-md-0"
-                                                data-toggle="tooltip"
-                                                title="ELIMINAR">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-
-
-
 
 
     <div class="d-none">
@@ -1567,8 +1579,8 @@
 
     <script>
         $(document).ready(function () {//*[@id="DataTables_Table_1_wrapper"]/div[1]/div/div/div
-            document.querySelector("#DataTables_Table_0_wrapper > div:nth-child(1)").remove();
-            document.querySelector("#DataTables_Table_1_wrapper > div:nth-child(1)").remove();
+            /*document.querySelector("#DataTables_Table_0_wrapper > div:nth-child(1)").remove();
+            document.querySelector("#DataTables_Table_1_wrapper > div:nth-child(1)").remove();*/
         });
     </script>
 @endsection

@@ -2,9 +2,11 @@
 @endforeach
 
 @extends('layouts.layoutmaster')
+
 @section('title')
 
 @endsection
+
 @section('styles')
     {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
     @include('components.links_css_js.pluginsform.plugin_form_css')
@@ -13,29 +15,15 @@
     {{--##################### START CAROUSEL CSS #####################--}}
     @include('components.links_css_js.carousel.carousel_css')
     {{--##################### END CAROUSEL CSS #####################--}}
-
 @endsection
+
+@section('imagen_avatar', asset('imagenes_store/funcionarios/'.$filafuncionario->ci."/".$filafuncionario->imagen_perfil))
+@section('texto_en_h1',$filafuncionario->apellidos." ".$filafuncionario->nombres)
+
+
+
 @section('hero_cuadro_bienvenida')
-    <!-- Hero -->
-    <div class="bg-image" style="background-image: url({{asset('image_proyect/fondo_hero3.jpg')}});">
-        <div class="bg-black-50">
-            <div class="content content-full text-center">
-                <div class="my-1">
-                    <img class="img-avatar img-avatar-thumb"
-                         src="{{asset('imagenes_store/funcionarios/'.$filafuncionario->ci."/".$filafuncionario->imagen_perfil)}}"
-                         alt=""
-                         id="src_imagen_perfil_hero">
-                </div>
-                <h1 class="h2 text-white mb-0"
-                    id="name_perfil_hero">{{$filafuncionario->apellidos}} {{$filafuncionario->nombres}}</h1>
-                <span class="text-white-75">
-                    Nombre Funcionario
-                </span>
-            </div>
-        </div>
-    </div>
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
+
 @endsection
 @section('content')
     @if(count($errors) > 0)
@@ -62,16 +50,16 @@
             @method('PUT')
             {{-- ############### FORMULARIO EN EL CENTRO ############--}}
             <div class="row push justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-8 text-center">
                     <div class="row">
                         <div class="col" data-toggle="appear" data-class="animated zoomIn">
                             <!-- Team Member -->
                             <div class="block">
-                                <div class="block-content">
+                                <div class="block-content text-center">
                                     <img
                                         src="{{asset('imagenes_store/funcionarios/'.$filafuncionario->ci."/".$filafuncionario->imagen_perfil)}}"
-                                        width="100%"
-                                        height="100%" id="src_imagen_perfil"
+                                        width="50%"
+                                        height="50%" id="src_imagen_perfil"
                                         class="justify-content-center">
                                 </div>
                             </div>

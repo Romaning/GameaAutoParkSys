@@ -1,17 +1,30 @@
 @extends('layouts.layoutmaster')
 @section('title')
-    VALES DE COMBUSTIBLE
+    HISTORIAL VALES DE COMBUSTIBLE
 @endsection
 @section('styles')
     {{-- ################ START CSSS SCRIPT PARA DATATABLESS ###############--}}
     @include('components.links_css_js.datatable.datatable_css')
     {{--######################## END CSS SCRIPT DATABLE ####################--}}
 @endsection
-@section('hero_cuadro_bienvenida')
-    <!-- Hero -->
 
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Historial Vales de Combustible')
+        {{--<li class="breadcrumb-item">SECCION 3</li>
+        <li class="breadcrumb-item">VALES DE COMBUSTIBLE</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Tabla Vales De Combustible</a>
+        </li>--}}
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
+@section('hero_cuadro_bienvenida')
+
 @endsection
 @section('content')
     {{--####################################### CABECERA DE IMPRESION ##############################--}}

@@ -5,6 +5,19 @@
 @section('styles')
 
 @endsection
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Registrar Estado')
+        <li class="breadcrumb-item">SECCION 1</li>
+        <li class="breadcrumb-item">INDEPENDIENTES</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Estados</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
 @section('hero_cuadro_bienvenida')
 
 @endsection

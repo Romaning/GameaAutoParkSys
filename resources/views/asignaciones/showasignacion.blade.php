@@ -2,7 +2,7 @@
 @endforeach
 @extends('layouts.layoutmaster')
 @section('title')
-
+    INFORMACION ASIGNACION
 @endsection
 @section('styles')
 
@@ -18,25 +18,24 @@
           href="{{asset('assets/js/plugins/magnific-popup/magnific-popup.css')}}">{{--para ver imagen perfil en tipo modal--}}
 
 @endsection
+
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Informacion Asignacion')
+        {{--<li class="breadcrumb-item">SECCION 3</li>
+        <li class="breadcrumb-item">ASIGNACIONES</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Tabla Asignaciones</a>
+        </li>--}}
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
 @section('hero_cuadro_bienvenida')
-    <!-- Hero -->
-    <div class="bg-image"
-         style="background-image: url({{asset('imagenes_store/vehiculos/'.$imagenesPerfilVehiculo[0]->archivo_subido.'')}});">
-        <div class="bg-black-50">
-            <div class="content content-full text-center">
-                {{--<div class="my-3">
-                    <img class="img-avatar img-avatar-thumb" src="{{asset('')}}" alt=""
-                         id="src_imagen_perfil_hero">
-                </div>--}}
-                <h1 class="h2 text-white mb-0" id="">ASIGNACION</h1>
-                {{--<span class="text-white-75">
-                    Nombre Funcionario
-                </span>--}}
-            </div>
-        </div>
-    </div>
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
+
 @endsection
 @section('content')
     @if(count($errors) > 0)

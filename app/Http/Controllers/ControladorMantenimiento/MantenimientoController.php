@@ -10,6 +10,9 @@ use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 
 class MantenimientoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * mantenimiento_id',
      * 'mant_id_ini_asign',

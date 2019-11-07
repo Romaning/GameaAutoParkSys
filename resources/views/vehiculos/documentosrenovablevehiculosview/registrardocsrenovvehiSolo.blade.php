@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    REGISTRAR DOCUMENTOS RENOVABLES
 @endsection
 @section('styles')
     {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
@@ -14,6 +14,20 @@
     <!-- Page CSS DIRECTO PARA SHOW VEHICULO -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/flatpickr/themes/material_green.css')}}">
 @endsection
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Registrar Documentos Renovables')
+        <li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">DOCUMENTOS POR PERIODO</li>
+        <li class="breadcrumb-item">Anualmente</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Asociar a Placa</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
 @section('hero_cuadro_bienvenida')
     <!-- Hero -->
 

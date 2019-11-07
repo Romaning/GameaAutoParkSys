@@ -10,10 +10,10 @@
     Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
     Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
 -->
+
 <nav id="sidebar" class="bg-black-95" aria-label="Main Navigation">
     {{$slot}}
     {{--@include('sidebarheader.blade.php')
     @include('sidebarcontent.blade.php')--}}
 
 </nav>
-<!-- END Sidebar -->

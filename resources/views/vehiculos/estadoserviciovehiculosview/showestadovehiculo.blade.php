@@ -1,15 +1,28 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    INFORMACION ESTADO SERVICIO
 @endsection
 @section('styles')
     <!-- Page JS Plugins CSS DATATABLES-->
 @endsection
-@section('hero_cuadro_bienvenida')
-    <!-- Hero -->
 
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Informacion Estado Serivicio Vehiculo')
+        {{--<li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">VEHICULOS</li>
+        <li class="breadcrumb-item">Historial de Estados de Vehiculos</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Informacion</a>
+        </li>--}}
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
+@section('hero_cuadro_bienvenida')
+
 @endsection
 @section('content')
     <div class="block shadow p-2 mb-1 rounded">

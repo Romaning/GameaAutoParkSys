@@ -1075,7 +1075,7 @@
 
 
 
-    <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear" data-class="animated flipInX">
+    <div class="block-content block-content-full block invisible shadow rounded" data-toggle="appear" data-class="animated bounceIn">
         <div class="block-header">
             <h3 class="block-title">
                 <i class="fa fa-play fa-fw text-primary"></i>

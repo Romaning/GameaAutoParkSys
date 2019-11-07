@@ -1,89 +1,45 @@
 <!-- Side Header -->
 <div class="content-header bg-white-5">
     <!-- Logo -->
-    <a class="font-w600 text-dual" href="#">
+    {{--<div class="row">--}}{{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
+    <a class="font-w600 text-dual" href="{{route('webpage')}}">
         {{--<i class="fa fa-circle-notch text-primary"></i>--}}
-        <span class="smini-hide">
+        <img src="{{asset('image_proyect/lara.png')}}" alt="" width="16%">
+        {{--<i class="fa-house-damage"></i>--}}
+        <span class="smini-hide text-right">
+            <span class="col-lg-12"> {{--$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$--}}
                 <span class="font-w700 font-size-h5">
-                    ne
+
                 </span>
-                <span class="font-w400">
-                    4.3
+                <span class="font-w400" {{--style="font-size: 18px; font-family: Brush Script MT, Brush Script Std, cursive;"--}}>
+                    ROM-SYS
                 </span>
-            </span>
+            </span> {{--$$$$$$$$$$$$$$$$$ $$$$$$$$$$$$$$$$$--}}
+        </span>
     </a>
-    <!-- END Logo -->
-
-    <!-- Options -->
-{{--<div>
-    <!-- Color Variations -->
-    <div class="dropdown d-inline-block ml-3">
-        <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-            <i class="si si-drop"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
-            <!-- Color Themes -->
-            <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
-            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="default" href="#">
-                <span>Default</span>
-                <i class="fa fa-circle text-default"></i>
-            </a>
-            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/amethyst.min.css')}}" href="#">
-                <span>Amethyst</span>
-                <i class="fa fa-circle text-amethyst"></i>
-            </a>
-            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/city.min.css')}}" href="#">
-                <span>City</span>
-                <i class="fa fa-circle text-city"></i>
-            </a>
-            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/flat.min.css')}}" href="#">
-                <span>Flat</span>
-                <i class="fa fa-circle text-flat"></i>
-            </a>
-            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/modern.min.css')}}" href="#">
-                <span>Modern</span>
-                <i class="fa fa-circle text-modern"></i>
-            </a>
-            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{asset('assets/css/themes/smooth.min.css')}}" href="#">
-                <span>Smooth</span>
-                <i class="fa fa-circle text-smooth"></i>
-            </a>
-            <!-- END Color Themes -->
-
-            <div class="dropdown-divider"></div>
-
-            <!-- Sidebar Styles -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
-                <span>Sidebar Light</span>
-            </a>
-            <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
-                <span>Sidebar Dark</span>
-            </a>
-            <!-- Sidebar Styles -->
-
-            <div class="dropdown-divider"></div>
-
-            <!-- Header Styles -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
-                <span>Header Light</span>
-            </a>
-            <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
-                <span>Header Dark</span>
-            </a>
-            <!-- Header Styles -->
+    {{--</div>--}} {{--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$--}}
+</div>
+<div id="sidebar_header_perfil_usuario"
+    class="bg-image @yield('sidebar_header_perfil_usuario_css')" >
+    {{--style="background-image: url( @yield('background_avatar_sidebar',asset('image_proyect/fondo_hero3.jpg')));"--}}
+    <div class="bg-black-50">
+        <div class="content content-full text-center">
+            <div class="my-1">
+                <img class="img-avatar img-avatar-thumb"
+                     src="@yield('imagen_avatar_sidebar','')" alt="" id="src_imagen_perfil_sidebar">
+            </div>
+            <h1 class="h2 text-white mb-0" id="name_perfil_sidebar">
+                @yield('texto_en_avatar_sidebar','')
+            </h1>
+            <span class="text-white-75"> @yield('texto_miniatura_sidebar','')
+                @if (Route::has('login'))
+                    @auth
+                        {{ Auth::user()->name }}
+                    @else
+                    @endauth
+                @endif
+            </span>
         </div>
     </div>
-    <!-- END Themes -->
-
-    <!-- Close Sidebar, Visible only on mobile screens -->
-    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-    <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
-        <i class="fa fa-times"></i>
-    </a>
-    <!-- END Close Sidebar -->
-</div>--}}
-<!-- END Options -->
 </div>
-<!-- END Side Header -->
+

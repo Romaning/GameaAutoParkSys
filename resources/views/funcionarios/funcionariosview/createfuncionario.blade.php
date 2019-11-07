@@ -1,6 +1,6 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+    REGISTRAR FUNCIONARIO
 @endsection
 @section('styles')
     {{--#################### START CSS PLUGINS PARA FORMS VALIDATIONS Page JS Plugins CSS BE_FORM_PLUGINS ####################--}}
@@ -10,26 +10,25 @@
     {{--##################### START CAROUSEL CSS #####################--}}
     @include('components.links_css_js.carousel.carousel_css')
     {{--##################### END CAROUSEL CSS #####################--}}
-
 @endsection
+
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Registrar Funcionario')
+        <li class="breadcrumb-item">SECCION 2</li>
+        <li class="breadcrumb-item">FUNCIONARIOS</li>
+        <li class="breadcrumb-item">Informacion</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Form Registrar</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
+
 @section('hero_cuadro_bienvenida')
-    <!-- Hero -->
-    <div class="bg-image" style="background-image: url({{asset('image_proyect/fondo_hero3.jpg')}});">
-        <div class="bg-black-50">
-            <div class="content content-full text-center">
-                <div class="my-3">
-                    <img class="img-avatar img-avatar-thumb" src="{{asset('image_proyect/fondo_hero.jpg')}}" alt=""
-                         id="src_imagen_perfil_hero">
-                </div>
-                <h1 class="h2 text-white mb-0" id="name_perfil_hero"></h1>
-                <span class="text-white-75">
-                    Nombre Funcionario
-                </span>
-            </div>
-        </div>
-    </div>
-    <!-- END Hero -->
-    {{--@include('componentes.4_A_Hero(otrabienvenida)')--}}
+
 @endsection
 @section('content')
     {{--

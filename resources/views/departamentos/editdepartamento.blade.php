@@ -1,12 +1,25 @@
 @extends('layouts.layoutmaster')
 @section('title')
-
+EDITAR DEPARTAMENTO
 @endsection
 @section('styles')
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/css/select2.min.css')}}">
 @endsection
+{{--################### MODIFICACION HERO #################--}}
+@section('div_content_css','d-none')
+@section('nuevo_contenido_hero')
+    @component('components.Hero.herotexto')
+        @slot('titulo1','Editar Departamento')
+        <li class="breadcrumb-item">SECCION 1</li>
+        <li class="breadcrumb-item">DEPARTAMENTOS</li>
+        <li class="breadcrumb-item" aria-current="page">
+            <a class="link-fx" href="">Editar Departamentos</a>
+        </li>
+    @endcomponent
+@endsection
+{{--################### MODIFICACION HERO #################--}}
 @section('hero_cuadro_bienvenida')
     <!-- Hero -->
 
